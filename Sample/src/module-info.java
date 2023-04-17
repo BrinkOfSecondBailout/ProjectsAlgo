@@ -1,0 +1,9 @@
+/**
+ * 
+ */
+/**
+ * @author obgwo
+ *
+ */
+module Sample {
+}
