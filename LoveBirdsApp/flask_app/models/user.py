@@ -25,7 +25,7 @@ class User:
     def validate_registration(data):
         is_valid = True
         query = 'SELECT * FROM users WHERE email=%(email)s;'
-        results = connectToMySQL('recipes_schema').query_db(query, data)
+        results = connectToMySQL('lovebirds_schema').query_db(query, data)
         if len(results) > 0:
             flash('This email account already exists! Please log in.', 'registration')
             is_valid = False
