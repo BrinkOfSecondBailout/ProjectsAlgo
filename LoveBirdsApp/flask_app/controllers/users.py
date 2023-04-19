@@ -38,4 +38,10 @@ def process_login():
     
 @app.route('/dashboard')
 def dashboard():
-    return render_template('dashboard.html')
+    return render_template('dashboard.html', all_users=user.User.get_all_users())
+
+
+@app.route('/logout')
+def logout():
+    session.clear()
+    return redirect('/')

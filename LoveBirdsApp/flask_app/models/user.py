@@ -80,4 +80,10 @@ class User:
     def delete_user(cls, data):
         query = 'DELETE FROM users WHERE id=%(id)s;'
         return connectToMySQL('lovebirds_schema').query_db(query, data)
+    
+    @classmethod
+    def get_all_users(cls):
+        query = 'SELECT * FROM users;'
+        return connectToMySQL('lovebirds_schema').query_db(query)
+
 
