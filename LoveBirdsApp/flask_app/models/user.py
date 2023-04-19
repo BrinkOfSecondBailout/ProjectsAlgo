@@ -1,6 +1,6 @@
 import re
 from flask_app.config.mysqlconnection import connectToMySQL
-from flask_app.controllers import users, recipes
+from flask_app.controllers import users
 from flask_bcrypt import Bcrypt
 from flask_app import app
 from flask import flash
@@ -18,6 +18,8 @@ class User:
         self.created_at = data['created_at']
         self.updated_at = data['updated_at']
         
+    def fullName(self):
+        return f'{self.first_name} {self.last_name}'
 
     @staticmethod
     def validate_registration(data):
