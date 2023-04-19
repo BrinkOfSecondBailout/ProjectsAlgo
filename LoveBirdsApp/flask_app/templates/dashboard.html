@@ -11,9 +11,14 @@
     <h1>Dashboard</h1>
     
     <a href="/logout">logout</a>
+
+    <a href="/users/edit">Edit profile</a>
+
     {% for user in all_users %}
         {{user.first_name}} {{user.last_name}}
     {% endfor %}
+
+    {{session.user_id}}
 
 </body>
 </html>

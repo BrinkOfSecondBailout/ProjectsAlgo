@@ -40,8 +40,19 @@ def process_login():
 def dashboard():
     return render_template('dashboard.html', all_users=user.User.get_all_users())
 
+@app.route('/users/edit')
+def edit_profile():
+    if not session:
+        return redirect('/logout')
+    data = {
+        'id': session['user_id']
+    }
+    return render_template('edit_profile.html', user=user.User.get_info_by_id(data))
+
 
 @app.route('/logout')
 def logout():
     session.clear()
     return redirect('/')
+
+
