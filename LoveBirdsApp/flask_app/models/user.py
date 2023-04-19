@@ -38,8 +38,8 @@ class User:
         if not EMAIL_REGEX.match(data['email']):
             flash('Invalid email format', 'registration')
             is_valid = False
-        if len(data['password']) < 8:
-            flash('Password must be at least 8 characters', 'registration')
+        if len(data['password']) < 5:
+            flash('Password must be at least 5 characters', 'registration')
             is_valid = False
         if data['password'] != data['confirm_password']:
             flash('Password confirmation not matching! Try again.', 'registration')
@@ -70,3 +70,14 @@ class User:
         query = 'SELECT * FROM users WHERE id=%(id)s;'
         results = connectToMySQL('lovebirds_schema').query_db(query, data)
         return cls(results[0])
+    
+    @classmethod
+    def update_user(cls, data):
+        query = 'UPDATE users SET first_name=%(first_name)s, last_name=%(last_name)s, email=%(email)s WHERE id = %(id)s;'
+        return connectToMySQL('lovebirds_schema').query_db(query, data)
+    
+    @classmethod
+    def delete_user(cls, data):
+        query = 'DELETE FROM users WHERE id=%(id)s;'
+        return connectToMySQL('lovebirds_schema').query_db(query, data)
+
