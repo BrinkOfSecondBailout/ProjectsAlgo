@@ -45,6 +45,22 @@ class User:
             flash('Password confirmation not matching! Try again.', 'registration')
             is_valid = False
         return is_valid
+    
+    @staticmethod
+    def validate_edit(data):
+        is_valid = True
+        query = 'SELECT * FROM users WHERE id=%(id)s;'
+        results = connectToMySQL('lovebirds_schema').query_db(query, data)
+        if len(data['first_name']) < 2:
+            flash('First name must be at least 2 characters!', 'edit')
+            is_valid = False
+        if len(data['last_name']) < 2:
+            flash('Last name must be at least 2 characters!', 'edit')
+            is_valid = False
+        if not EMAIL_REGEX.match(data['email']):
+            flash('Invalid email format', 'edit')
+            is_valid = False
+        return is_valid
 
     @staticmethod
     def validate_login(data):
