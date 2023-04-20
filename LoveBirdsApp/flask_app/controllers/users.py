@@ -49,6 +49,15 @@ def get_img(id):
         return "No image with that id", 404
     return Response(img.img, mimetype=img.mimetype)
 
+@app.route('/pics/delete/<int:id>')
+def delete_img(id):
+    img = image.Img.query.filter_by(id=id).first()
+    if not img:
+        return "No image with that id", 404
+    db.session.delete(img)
+    db.session.commit()
+    return redirect('/dashboard')
+
 
 
 
