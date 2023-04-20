@@ -24,8 +24,8 @@ def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 
-@app.route('/upload', methods=['POST'])
-def upload_pic():
+@app.route('/upload/<int:id>', methods=['POST'])
+def upload_pic(id):
     pic = request.files['pic']
     if not pic:
         flash('No image has been selected!', 'upload')
@@ -35,8 +35,9 @@ def upload_pic():
         return redirect('/users/edit')
     filename = secure_filename(pic.filename)
     mimetype = pic.mimetype
-    img1 = image.Img(img=pic.read(), mimetype=mimetype, name=filename)
-    db.session.add(img1)
+    userid = int(id)
+    img = image.Image(img=pic.read(), name=filename, mimetype=mimetype, user=userid)
+    db.session.add(img)
     db.session.commit()
     flash('Upload successful!', 'upload')
     return redirect('/users/edit')
@@ -44,14 +45,14 @@ def upload_pic():
 
 @app.route('/pics/<int:id>')
 def get_img(id):
-    img = image.Img.query.filter_by(id=id).first()
+    img = image.Image.query.filter_by(id=id).first()
     if not img:
         return "No image with that id", 404
     return Response(img.img, mimetype=img.mimetype)
 
 @app.route('/pics/delete/<int:id>')
 def delete_img(id):
-    img = image.Img.query.filter_by(id=id).first()
+    img = image.Image.query.filter_by(id=id).first()
     if not img:
         return "No image with that id", 404
     db.session.delete(img)
