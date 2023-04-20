@@ -1,48 +1,78 @@
 from flask_app import app
-from flask import render_template, redirect, request, session, flash, url_for
-from flask_app.models import user
+from flask import render_template, redirect, request, session, flash, url_for, Response
+from flask_app.models import user, image
 from flask_bcrypt import Bcrypt
 from werkzeug.utils import secure_filename
 import urllib.request
 import os
+from flask_app.models.db import db_init, db
+
 bcrypt = Bcrypt(app)
 
-UPLOAD_FOLDER = 'flask_app/static/files/'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///img.db'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+db_init(app)
+
+
+# UPLOAD_FOLDER = 'flask_app/static/files/'
 
 ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'gif'])
 
-app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+# app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 
-@app.route('/upload')
-def upload_pic():
-    return render_template('file_upload.html')
-
-
 @app.route('/upload', methods=['POST'])
-def process_pic():
-    if 'file' not in request.files:
-        flash('No file part')
-        return redirect(request.url)
-    file= request.files['file']
-    if file.filename == '':
-        flash('No image selected for uploading')
-        return redirect(request.url)
-    if file and allowed_file(file.filename):
-        filename= secure_filename(file.filename)
-        file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-        flash('Image successfully uploaded!')
-        return render_template('file_upload.html', filename=filename)
-    else:
-        flash('Allowed image types are - png, jpg, jpeg, gif')
-        return redirect(request.url)
+def upload_pic():
+    pic = request.files['pic']
+    if not pic:
+        flash('No image has been selected!', 'upload')
+        return redirect('/users/edit')
+    if not allowed_file(pic.filename):
+        flash('Allowed image types are - png, jpg, jpeg, gif', 'upload')
+        return redirect('/users/edit')
+    filename = secure_filename(pic.filename)
+    mimetype = pic.mimetype
+    img1 = image.Img(img=pic.read(), mimetype=mimetype, name=filename)
+    db.session.add(img1)
+    db.session.commit()
+    flash('Upload successful!', 'upload')
+    return redirect('/users/edit')
 
-@app.route('/display/<filename>')
-def display_image(filename):
-    return redirect(url_for('static', filename='files/' + filename), code=301)
+
+@app.route('/pics/<int:id>')
+def get_img(id):
+    img = image.Img.query.filter_by(id=id).first()
+    if not img:
+        return "No image with that id", 404
+    return Response(img.img, mimetype=img.mimetype)
+
+
+
+
+# @app.route('/upload', methods=['POST'])
+# def process_pic():
+#     if 'file' not in request.files:
+#         flash('No file part')
+#         return redirect(request.url)
+#     file= request.files['file']
+#     if file.filename == '':
+#         flash('No image selected for uploading')
+#         return redirect(request.url)
+#     if file and allowed_file(file.filename):
+#         filename= secure_filename(file.filename)
+#         file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+#         flash('Image successfully uploaded!')
+#         return render_template('file_upload.html', filename=filename)
+#     else:
+#         flash('Allowed image types are - png, jpg, jpeg, gif')
+#         return redirect(request.url)
+
+# @app.route('/display/<filename>')
+# def display_image(filename):
+#     return redirect(url_for('static', filename='files/' + filename), code=301)
 
 
 @app.route('/')
