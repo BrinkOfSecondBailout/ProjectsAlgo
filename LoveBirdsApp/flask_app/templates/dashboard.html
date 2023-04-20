@@ -8,17 +8,21 @@
     <title>Dashboard</title>
 </head>
 <body>
-    <h1>Dashboard</h1>
+    <h1>Hello, {{user.first_name}}</h1>
     
     <a href="/logout">logout</a>
 
     <a href="/users/edit">Edit profile</a>
 
-    {% for user in all_users %}
-        {{user.first_name}} {{user.last_name}}
-    {% endfor %}
+    <a href="/upload">Upload Pictures</a>
 
-    {{session.user_id}}
+    <div>
+    {% for user in all_users %}
+        {% if session.user_id != user.id %}
+            <a href="/users/{{user.id}}">{{user.first_name}} {{user.last_name}}</a>
+        {% endif %}
+    {% endfor %}
+    </div>
 
 </body>
 </html>

@@ -19,6 +19,14 @@
         {% endwith %}
     </div>
 
+    {% if filename %}
+        <div>
+            <img src="{{ url_for('display_image', filename=filename) }}">
+        </div>
+    {% endif %}
+
+
+
     <form action="/users/update" method="post">
         <label for="first_name">First Name:</label>
         <input type="text" name="first_name" value={{user.first_name}}><br><br>
@@ -28,6 +36,8 @@
         <input type="email" name="email" value={{user.email}}><br><br>
         <input type="submit" value="Update">
     </form>
+
+    <a href="/dashboard"><button>Cancel</button></a>
 
 
 </body>

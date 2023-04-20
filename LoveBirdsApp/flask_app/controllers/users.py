@@ -1,8 +1,48 @@
 from flask_app import app
-from flask import render_template, redirect, request, session, flash
+from flask import render_template, redirect, request, session, flash, url_for
 from flask_app.models import user
 from flask_bcrypt import Bcrypt
+from werkzeug.utils import secure_filename
+import urllib.request
+import os
 bcrypt = Bcrypt(app)
+
+UPLOAD_FOLDER = 'flask_app/static/files/'
+
+ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'gif'])
+
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+
+def allowed_file(filename):
+    return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
+
+@app.route('/upload')
+def upload_pic():
+    return render_template('file_upload.html')
+
+
+@app.route('/upload', methods=['POST'])
+def process_pic():
+    if 'file' not in request.files:
+        flash('No file part')
+        return redirect(request.url)
+    file= request.files['file']
+    if file.filename == '':
+        flash('No image selected for uploading')
+        return redirect(request.url)
+    if file and allowed_file(file.filename):
+        filename= secure_filename(file.filename)
+        file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+        flash('Image successfully uploaded!')
+        return render_template('file_upload.html', filename=filename)
+    else:
+        flash('Allowed image types are - png, jpg, jpeg, gif')
+        return redirect(request.url)
+
+@app.route('/display/<filename>')
+def display_image(filename):
+    return redirect(url_for('static', filename='files/' + filename), code=301)
 
 
 @app.route('/')
@@ -38,7 +78,14 @@ def process_login():
     
 @app.route('/dashboard')
 def dashboard():
-    return render_template('dashboard.html', all_users=user.User.get_all_users())
+    if not session:
+        return redirect('/logout')
+    data = {
+        'id': session['user_id']
+    }
+    return render_template('dashboard.html', all_users=user.User.get_all_users(), user=user.User.get_info_by_id(data))
+
+
 
 @app.route('/users/edit')
 def edit_profile():
@@ -64,10 +111,17 @@ def update_profile():
     user.User.update_user(data)
     return redirect('/dashboard')
 
+@app.route('/users/<int:id>')
+def show_profile(id):
+    if not session:
+        return redirect('/logout')
+    data = {
+        'id': id
+    }
+    return render_template('display_profile.html', user=user.User.get_info_by_id(data))
+
 
 @app.route('/logout')
 def logout():
     session.clear()
     return redirect('/')
-
-
