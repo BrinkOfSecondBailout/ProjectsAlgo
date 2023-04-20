@@ -9,7 +9,7 @@ from flask_app.models.db import db_init, db
 
 bcrypt = Bcrypt(app)
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///img.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///Image.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db_init(app)
 
@@ -58,7 +58,6 @@ def delete_img(id):
     db.session.delete(img)
     db.session.commit()
     return redirect('/dashboard')
-
 
 
 
@@ -158,7 +157,18 @@ def show_profile(id):
     data = {
         'id': id
     }
-    return render_template('display_profile.html', user=user.User.get_info_by_id(data))
+
+    all_pics = image.Image.query.filter_by(user=id).all()
+    if not all_pics:
+        flash('This user has not uploaded any pics yet!', 'upload')
+        return render_template('display_profile.html', user=user.User.get_info_by_id(data))
+    
+    profile_pic = image.Image.query.filter_by(id=id).first()
+    if not profile_pic:
+        flash('This user has no profile picture! Sorry :(', 'upload')
+        return render_template('display_profile.html', user=user.User.get_info_by_id(data))
+
+    return render_template('display_profile.html', user=user.User.get_info_by_id(data), profile=profile_pic, pics=all_pics)
 
 
 @app.route('/logout')

@@ -11,3 +11,18 @@
 .red {
     color: red;
 }
+
+.photo-profile {
+    width: 350px;
+    height: 300px;
+    border-radius: 20px;
+    border-style: solid;
+    border-width: 10px;
+    border-image: linear-gradient(45deg, rgb(21, 88, 243), rgb(255, 255, 255)) 1;
+}
+
+.photo-list {
+    width: 220px;
+    height: 170px;
+    border-radius: 20px;
+}

@@ -9,5 +9,37 @@
 </head>
 <body>
     <h1>{{user.first_name}} {{user.last_name}}</h1>
+
+    <div class="red">
+        {% with messages = get_flashed_messages(category_filter=['upload']) %}
+            {% if messages %}
+                <ul>
+                    {% for message in messages %}
+                        <li> {{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
+    </div>
+
+    <div>
+        {% if profile %}
+            <img src="/pics/{{profile.id}}" alt="profile-pic" class="photo-profile">
+        {% endif %}
+    </div>
+
+
+    <div>
+        {% if pics %}
+            {% for pic in pics %}
+                <img src="/pics/{{pic.id}}" alt="image {{pic.id}}" class="photo-list">
+            {% endfor %}
+        {% endif %}
+    </div>
+
+
+    <div>
+        <a href="/dashboard">Back to dashboard</a>
+    </div>
 </body>
 </html>
