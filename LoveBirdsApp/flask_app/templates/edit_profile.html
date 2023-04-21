@@ -22,12 +22,33 @@
         {% endwith %}
     </div>
     <div>
-        <h3>Upload Your Profile Picture</h3>
+        <h3>Upload Your Pictures</h3>
         <form method="post" action="/upload/{{session.user_id}}" enctype="multipart/form-data">
             <input type="file" name="pic">
             <input type="submit" value="Submit">
         </form>
     </div>
+
+    <h3>Profile Picture:</h3>
+    <div>
+        {% if profile %}
+            <img src="/pics/{{profile.id}}" alt="profile-pic" class="photo-profile">
+        {% endif %}
+    </div>
+
+
+    <div>
+        <h4>Click on the photo you want as your profile picture!</h4>
+        {% if pics %}
+            {% for pic in pics %}
+                <a href="/makeprofile/{{pic.id}}">
+                    <img src="/pics/{{pic.id}}" alt="image {{pic.id}}" class="photo-list">
+                </a>
+            {% endfor %}
+        {% endif %}
+    </div>
+
+
 
 
     <div>

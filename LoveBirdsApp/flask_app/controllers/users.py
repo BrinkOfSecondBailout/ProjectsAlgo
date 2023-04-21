@@ -9,7 +9,7 @@ from flask_app.models.db import db_init, db
 
 bcrypt = Bcrypt(app)
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///Image.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///Photo.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db_init(app)
 
@@ -36,7 +36,7 @@ def upload_pic(id):
     filename = secure_filename(pic.filename)
     mimetype = pic.mimetype
     userid = int(id)
-    img = image.Image(img=pic.read(), name=filename, mimetype=mimetype, user=userid)
+    img = image.Photo(img=pic.read(), name=filename, mimetype=mimetype, user=userid, profile="no")
     db.session.add(img)
     db.session.commit()
     flash('Upload successful!', 'upload')
@@ -45,20 +45,33 @@ def upload_pic(id):
 
 @app.route('/pics/<int:id>')
 def get_img(id):
-    img = image.Image.query.filter_by(id=id).first()
+    img = image.Photo.query.filter_by(id=id).first()
     if not img:
         return "No image with that id", 404
     return Response(img.img, mimetype=img.mimetype)
 
 @app.route('/pics/delete/<int:id>')
 def delete_img(id):
-    img = image.Image.query.filter_by(id=id).first()
+    img = image.Photo.query.filter_by(id=id).first()
     if not img:
         return "No image with that id", 404
     db.session.delete(img)
     db.session.commit()
     return redirect('/dashboard')
 
+
+@app.route('/makeprofile/<int:id>')
+def make_profile_pic(id):
+    user_id = session['user_id']
+    all_pics = image.Photo.query.filter_by(user=user_id).all()
+    for pic in all_pics:
+        if(pic.profile == "yes"):
+            pic.profile = "no"
+            db.session.commit()
+        if(pic.id == id):
+            pic.profile = "yes"
+            db.session.commit()
+    return redirect('/users/edit')
 
 
 # @app.route('/upload', methods=['POST'])
@@ -133,7 +146,18 @@ def edit_profile():
     data = {
         'id': session['user_id']
     }
-    return render_template('edit_profile.html', user=user.User.get_info_by_id(data))
+    id = session["user_id"]
+    all_pics = image.Photo.query.filter_by(user=id).all()
+    if not all_pics:
+        flash('This user has not uploaded any pics yet!', 'upload')
+        return render_template('display_profile.html', user=user.User.get_info_by_id(data))
+    
+    for pic in all_pics:
+        if(pic.profile == "yes"):
+            profile_pic = pic
+            return render_template('edit_profile.html', user=user.User.get_info_by_id(data), pics=all_pics, profile=profile_pic)
+
+    return render_template('edit_profile.html', user=user.User.get_info_by_id(data), pics=all_pics)
 
 @app.route('/users/update', methods=['POST'])
 def update_profile():
@@ -158,17 +182,22 @@ def show_profile(id):
         'id': id
     }
 
-    all_pics = image.Image.query.filter_by(user=id).all()
+    all_pics = image.Photo.query.filter_by(user=id).all()
     if not all_pics:
         flash('This user has not uploaded any pics yet!', 'upload')
         return render_template('display_profile.html', user=user.User.get_info_by_id(data))
     
-    profile_pic = image.Image.query.filter_by(id=id).first()
-    if not profile_pic:
-        flash('This user has no profile picture! Sorry :(', 'upload')
-        return render_template('display_profile.html', user=user.User.get_info_by_id(data))
+    for pic in all_pics:
+        if(pic.profile == "yes"):
+            profile_pic = pic
+            return render_template('display_profile.html', user=user.User.get_info_by_id(data), pics=all_pics, profile=profile_pic)
 
-    return render_template('display_profile.html', user=user.User.get_info_by_id(data), profile=profile_pic, pics=all_pics)
+    # profile_pic = image.Img.query.filter_by(id=id).first()
+    # if not profile_pic:
+    #     flash('This user has no profile picture! Sorry :(', 'upload')
+    #     return render_template('display_profile.html', user=user.User.get_info_by_id(data))
+
+    return render_template('display_profile.html', user=user.User.get_info_by_id(data), pics=all_pics)
 
 
 @app.route('/logout')
