@@ -8,8 +8,11 @@
     <title>Edit Profile</title>
 </head>
 <body>
-    <h1>Edit Profile</h1>
-    
+    <div>
+        <h1>Edit Profile</h1>
+        <a href="/dashboard">Back to dashboard</a>
+    </div>
+
     <div class="red">
         {% with messages = get_flashed_messages(category_filter=['upload']) %}
             {% if messages %}
@@ -73,7 +76,7 @@
             <input type="email" name="email" value={{user.email}}><br><br>
             <input type="submit" value="Update">
         </form>
-        <a href="/dashboard"><button>Cancel</button></a>
+        <a href="/changepw"><button>Change your password</button></a>
     </div>
 
 

@@ -181,6 +181,11 @@ def update_profile():
     user.User.update_user(data)
     return redirect('/dashboard')
 
+@app.route('/changepw')
+def change_pw():
+    return render_template('change_pw.html')
+
+
 @app.route('/users/<int:id>')
 def show_profile(id):
     if not session:
@@ -198,11 +203,6 @@ def show_profile(id):
         if(pic.profile == "yes"):
             profile_pic = pic
             return render_template('display_profile.html', user=user.User.get_info_by_id(data), pics=all_pics, profile=profile_pic)
-
-    # profile_pic = image.Img.query.filter_by(id=id).first()
-    # if not profile_pic:
-    #     flash('This user has no profile picture! Sorry :(', 'upload')
-    #     return render_template('display_profile.html', user=user.User.get_info_by_id(data))
 
     return render_template('display_profile.html', user=user.User.get_info_by_id(data), pics=all_pics)
 
