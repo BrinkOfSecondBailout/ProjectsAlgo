@@ -37,13 +37,16 @@
     </div>
 
 
-    <div>
-        <h4>Click on the photo you want as your profile picture!</h4>
+    <h4>Click on the photo you want as your profile picture!</h4>
+    <div class="all-photos">
         {% if pics %}
             {% for pic in pics %}
-                <a href="/makeprofile/{{pic.id}}">
-                    <img src="/pics/{{pic.id}}" alt="image {{pic.id}}" class="photo-list">
-                </a>
+                <div class="one-photo">
+                    <a href="/makeprofile/{{pic.id}}">
+                        <img src="/pics/{{pic.id}}" alt="image {{pic.id}}" class="photo-list">
+                    </a>
+                    <a href="/pics/delete/{{pic.id}}"><button class="delete-button">Delete</button></a>
+                </div>
             {% endfor %}
         {% endif %}
     </div>

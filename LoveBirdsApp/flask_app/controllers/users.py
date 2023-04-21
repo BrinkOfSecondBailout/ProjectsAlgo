@@ -57,7 +57,7 @@ def delete_img(id):
         return "No image with that id", 404
     db.session.delete(img)
     db.session.commit()
-    return redirect('/dashboard')
+    return redirect('/users/edit')
 
 
 @app.route('/makeprofile/<int:id>')
@@ -135,6 +135,13 @@ def dashboard():
     data = {
         'id': session['user_id']
     }
+    id = session['user_id']
+    all_pics = image.Photo.query.filter_by(user=id).all()
+    for pic in all_pics:
+        if(pic.profile == "yes"):
+            profile_pic = pic
+            return render_template('dashboard.html', all_users=user.User.get_all_users(), user=user.User.get_info_by_id(data), profile=profile_pic)
+
     return render_template('dashboard.html', all_users=user.User.get_all_users(), user=user.User.get_info_by_id(data))
 
 
