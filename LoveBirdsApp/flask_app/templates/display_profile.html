@@ -14,7 +14,12 @@
     <title>Show Profile</title>
 </head>
 <body>
+    
     <h1>{{user.first_name}} {{user.last_name}}</h1>
+
+    <div>
+        <h4><a href="/dashboard">Back to dashboard</a></h4>
+    </div>
 
     <div class="red">
         {% with messages = get_flashed_messages(category_filter=['upload']) %}
@@ -44,8 +49,6 @@
     </div>
 
 
-    <div>
-        <h4><a href="/dashboard">Back to dashboard</a></h4>
-    </div>
+    
 </body>
 </html>

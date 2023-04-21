@@ -33,7 +33,7 @@
         <h3>Upload Your Pictures</h3>
         <form method="post" action="/upload/{{session.user_id}}" enctype="multipart/form-data">
             <input type="file" name="pic">
-            <input type="submit" class="long-button" value="Submit">
+            <input type="submit" class="regular-button" value="Submit">
         </form>
     </div>
 
@@ -74,12 +74,12 @@
         </div>
         <form action="/users/update" method="post">
             <label for="first_name"><p>First Name:</p></label>
-            <input type="text" name="first_name" value={{user.first_name}}><br><br>
+            <input class="regular-input" type="text" name="first_name" value={{user.first_name}}><br><br>
             <label for="last_name"><p>Last Name:</p></label>
-            <input type="text" name="last_name" value={{user.last_name}}><br><br>
+            <input class="regular-input" type="text" name="last_name" value={{user.last_name}}><br><br>
             <label for="email"><p>Email:</p></label>
-            <input type="email" name="email" value={{user.email}}><br><br>
-            <input type="submit" class="long-button" value="Update">
+            <input class="regular-input" type="email" name="email" value={{user.email}}><br><br>
+            <input type="submit" class="regular-button" value="Update">
         </form>
         <h4><a href="/changepw">Change your password</a></h4>
     </div>

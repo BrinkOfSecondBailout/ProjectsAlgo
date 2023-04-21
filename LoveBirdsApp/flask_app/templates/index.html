@@ -4,14 +4,28 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk&family=Titillium+Web:ital,wght@0,300;1,200&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Schibsted+Grotesk&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lovers+Quarrel&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
     <title>Welcome</title>
 </head>
 <body>
-    <h1>Welcome</h1>
+    <div>
+    <video autoplay loop muted plays-inline class="back-video">
+        <source src="../static/files/pexels-fikret-ceylan-2813368-1920x1080-50fps.mp4" type="video/mp4">
+    </video>
+
+    <p class="welcome-font">Are you ready to find love?</p>
+
+
     <div class="container">
         <div class="left">
-            <h2>Register</h2>
+            <h2 class="header-text">Register</h2>
             <div class="red">
                 {% with messages = get_flashed_messages(category_filter=['registration']) %}
                     {% if messages %}
@@ -22,21 +36,21 @@
                 {% endwith %}
             </div>
             <form action="/process/registration" method="post">
-                <label for="first_name">First Name:</label>
-                <input type="text" name="first_name"><br><br>
-                <label for="last_name">Last Name:</label>
-                <input type="text" name="last_name"><br><br>
-                <label for="email">Email:</label>
-                <input type="email" name="email"><br><br>
-                <label for="password">Password:</label>
-                <input type="password" name="password"><br><br>
-                <label for="confirm_password">Confirm PW:</label>
-                <input type="password" name="confirm_password"><br><br>
-                <input type="submit" value="Submit">
+                <label for="first_name"><h5 class="header-text">First Name:</h5></label>
+                <input class="regular-input" type="text" name="first_name"><br>
+                <label for="last_name"><h5 class="header-text">Last Name:</h5></label>
+                <input class="regular-input" type="text" name="last_name"><br>
+                <label for="email"><h5 class="header-text">Email:</h5></label>
+                <input class="regular-input" type="email" name="email"><br>
+                <label for="password"><h5 class="header-text">Password:</h5></label>
+                <input class="regular-input" type="password" name="password"><br>
+                <label for="confirm_password"><h5 class="header-text">Confirm PW:</h5></label>
+                <input class="regular-input" type="password" name="confirm_password"><br><br>
+                <input class="regular-button" type="submit" value="Submit">
             </form>
         </div>
         <div class="right">
-            <h2>Log in</h2>
+            <h2 class="header-text">Log in</h2>
             <div class="red">
                 {% with messages = get_flashed_messages(category_filter=['login']) %}
                     {% if messages %}
@@ -47,14 +61,14 @@
                 {% endwith %}
             </div>
             <form action="/process/login" method="post">
-                <label for="email">Email:</label>
-                <input type="email" name="email"><br><br>
-                <label for="password">Password:</label>
-                <input type="password" name="password"><br><br>
-                <input type="submit" value="Submit">
+                <label for="email"><h5 class="header-text">Email:</h5></label>
+                <input class="regular-input" type="email" name="email"><br>
+                <label for="password"><h5 class="header-text">Password:</h5></label>
+                <input class="regular-input" type="password" name="password"><br><br>
+                <input class="regular-button" type="submit" value="Submit">
             </form>
         </div>
-
+    </div>
     </div>
 </body>
 </html>
