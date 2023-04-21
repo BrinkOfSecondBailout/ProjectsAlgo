@@ -47,5 +47,5 @@ class Attribute:
     
     @classmethod
     def update_attribute(cls, data):
-        query = 'UPDATE attributes SET description=%(description)s, age=%(age)s, gender=%(gender)s,  smoker=%(smoker)s, drinker=%(drinker)s, dating_goal=%(dating_goal)s, hobbies=%(hobbies)s, body_type=%(body_type)s, WHERE user_id = %(user_id)s;'
+        query = 'UPDATE attributes SET description=%(description)s, age=%(age)s, gender=%(gender)s,  smoker=%(smoker)s, drinker=%(drinker)s, dating_goal=%(dating_goal)s, hobbies=%(hobbies)s, body_type=%(body_type)s WHERE user_id = %(user_id)s;'
         return connectToMySQL('lovebirds_schema').query_db(query, data)

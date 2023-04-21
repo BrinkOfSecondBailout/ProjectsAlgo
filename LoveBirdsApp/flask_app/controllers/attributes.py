@@ -26,3 +26,30 @@ def create_attributes():
     }
     attribute.Attribute.save_attribute(data)
     return redirect('/users/edit')
+
+@app.route('/attributes/edit')
+def update_attributes():
+    data = {
+        'user_id': session['user_id']
+    }
+    return render_template('update_attributes.html', attribute=attribute.Attribute.get_attribute_by_user_id(data))
+
+@app.route('/attributes/update', methods=['POST'])
+def process_update_attributes():
+    if not session:
+        return redirect('/logout')
+    if not attribute.Attribute.validate_attribute(request.form):
+        return redirect('/attributes/edit')
+    data = {
+        'description': request.form['description'],
+        'age': request.form['age'],
+        'gender': request.form['gender'],
+        'smoker': request.form['smoker'],
+        'drinker': request.form['drinker'],
+        'dating_goal': request.form['dating_goal'],
+        'hobbies': request.form['hobbies'],
+        'body_type': request.form['body_type'],
+        'user_id': session['user_id'],
+    }
+    attribute.Attribute.update_attribute(data)
+    return redirect('/users/edit')
