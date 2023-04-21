@@ -4,6 +4,12 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk&family=Titillium+Web:ital,wght@0,300;1,200&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Schibsted+Grotesk&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
     <title>Show Profile</title>
 </head>
@@ -15,7 +21,7 @@
             {% if messages %}
                 <ul>
                     {% for message in messages %}
-                        <li> {{ message }}</li>
+                        <li> <p>{{ message }}</p></li>
                     {% endfor %}
                 </ul>
             {% endif %}
@@ -32,14 +38,14 @@
     <div>
         {% if pics %}
             {% for pic in pics %}
-                <img src="/pics/{{pic.id}}" alt="image {{pic.id}}" class="photo-list">
+                <a href="/pics/{{pic.id}}"><img src="/pics/{{pic.id}}" alt="image {{pic.id}}" class="photo-list"></a>
             {% endfor %}
         {% endif %}
     </div>
 
 
     <div>
-        <a href="/dashboard">Back to dashboard</a>
+        <h4><a href="/dashboard">Back to dashboard</a></h4>
     </div>
 </body>
 </html>

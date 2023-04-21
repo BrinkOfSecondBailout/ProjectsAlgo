@@ -4,29 +4,38 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk&family=Titillium+Web:ital,wght@0,300;1,200&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Schibsted+Grotesk&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
     <title>Dashboard</title>
 </head>
 <body>
     <h1>Hello, <a href="/users/{{session.user_id}}">{{user.first_name}}</a></h1>
-    <div>
-        {% if profile %}
-            <img src="/pics/{{profile.id}}" alt="profile-pic" class="photo-profile-main">
-        {% endif %}
+    <div class="profile-bar">
+        <div class="profile-pic">
+            {% if profile %}
+                <a href="/pics/{{profile.id}}"><img src="/pics/{{profile.id}}" alt="profile-pic" class="photo-profile-main"></a>
+            {% endif %}
+        </div>
+        <div class="nav-links">
+            <h4><a href="/logout">Logout</a></h4>
+            <h4><a href="/users/edit">Edit profile</a></h4>
+        </div>
     </div>
 
-    <div>
-        <a href="/logout">logout</a>
-        <a href="/users/edit">Edit profile</a>
-    </div>
 
 
     <div>
-    {% for user in all_users %}
-        {% if session.user_id != user.id %}
-            <a href="/users/{{user.id}}">{{user.first_name}} {{user.last_name}}</a>
-        {% endif %}
-    {% endfor %}
+        <h2>Browse All Lovebirds</h2>
+        {% for user in all_users %}
+            {% if session.user_id != user.id %}
+                <h4><a href="/users/{{user.id}}">{{user.first_name}} {{user.last_name}}</a></h4>
+            {% endif %}
+        {% endfor %}
     </div>
 
 </body>

@@ -4,13 +4,18 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk&family=Titillium+Web:ital,wght@0,300;1,200&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Schibsted+Grotesk&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
     <title>Edit Profile</title>
 </head>
 <body>
     <div>
         <h1>Edit Profile</h1>
-        <a href="/dashboard">Back to dashboard</a>
+        <h4><a href="/dashboard">Back to dashboard</a></h4>
     </div>
 
     <div class="red">
@@ -18,7 +23,7 @@
             {% if messages %}
                 <ul>
                     {% for message in messages %}
-                        <li> {{ message }}</li>
+                        <li> <p>{{ message }}</p></li>
                     {% endfor %}
                 </ul>
             {% endif %}
@@ -28,7 +33,7 @@
         <h3>Upload Your Pictures</h3>
         <form method="post" action="/upload/{{session.user_id}}" enctype="multipart/form-data">
             <input type="file" name="pic">
-            <input type="submit" value="Submit">
+            <input type="submit" class="long-button" value="Submit">
         </form>
     </div>
 
@@ -68,23 +73,23 @@
             {% endwith %}
         </div>
         <form action="/users/update" method="post">
-            <label for="first_name">First Name:</label>
+            <label for="first_name"><p>First Name:</p></label>
             <input type="text" name="first_name" value={{user.first_name}}><br><br>
-            <label for="last_name">Last Name:</label>
+            <label for="last_name"><p>Last Name:</p></label>
             <input type="text" name="last_name" value={{user.last_name}}><br><br>
-            <label for="email">Email:</label>
+            <label for="email"><p>Email:</p></label>
             <input type="email" name="email" value={{user.email}}><br><br>
-            <input type="submit" value="Update">
+            <input type="submit" class="long-button" value="Update">
         </form>
-        <a href="/changepw"><button>Change your password</button></a>
+        <h4><a href="/changepw">Change your password</a></h4>
     </div>
 
     <div>
         {% if not attributes %}
-            <a href="/attributes/new"><h3>Let's add your preferences</h3></a>
+            <a href="/attributes/new"><h4>Add your preferences</h4></a>
         {% endif %}
         {% if attributes %}
-            <a href="/attributes/edit"><h3>Let's update your preferences</h3></a>
+            <a href="/attributes/edit"><h4>Update your preferences</h4></a>
         {% endif %}
 
     </div>

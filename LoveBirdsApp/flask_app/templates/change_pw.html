@@ -4,11 +4,18 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk&family=Titillium+Web:ital,wght@0,300;1,200&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Schibsted+Grotesk&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
     <title>Change Password</title>
 </head>
 <body>
     <h1>Change your Password</h1>
+    <h4><a href="/dashboard">Back to dashboard</a></h4>
     <div class="red">
         {% with messages = get_flashed_messages(category_filter=['update_pw']) %}
             {% if messages %}
@@ -20,11 +27,11 @@
     </div>
 
     <form action="/updatepw" method="post">
-        <label for="password">New Password:</label><br>
-        <input type="password" name="password"><br><br>
-        <label for="confirm_password">Confirm New Password:</label><br>
-        <input type="password" name="confirm_password"><br><br>
-        <input type="submit" value="Update Password">
+        <label for="password"><p>New Password:</p></label><br>
+        <input class="regular-input" type="password" name="password"><br><br>
+        <label for="confirm_password"><p>Confirm New Password:</p></label><br>
+        <input class="regular-input" type="password" name="confirm_password"><br><br>
+        <input type="submit" class="regular-button" value="Update Password">
     </form>
 
 </body>
