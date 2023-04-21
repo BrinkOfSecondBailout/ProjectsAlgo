@@ -1,6 +1,5 @@
 import re
 from flask_app.config.mysqlconnection import connectToMySQL
-from flask_app.controllers import users
 from flask_bcrypt import Bcrypt
 from flask_app import app
 from flask import flash

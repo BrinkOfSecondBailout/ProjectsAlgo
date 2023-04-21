@@ -1,7 +1,7 @@
 import re
+from flask_app.config.mysqlconnection import connectToMySQL
 from flask_app import app
 from flask import flash
-from flask_app.config.mysqlconnection import connectToMySQL
 
 
 class Attribute:
@@ -24,8 +24,11 @@ class Attribute:
     def validate_attribute(data):
         is_valid = True
         if len(data['description']) < 10:
-                flash('Please type a description, must be at least 10 characters!', 'attribute')
-                is_valid = False
+            flash('Please type a description, must be at least 10 characters!', 'attribute')
+            is_valid = False
+        if not (data['age']):
+            flash('Please specify your age!', 'attribute')
+            is_valid = False
         return is_valid
 
 

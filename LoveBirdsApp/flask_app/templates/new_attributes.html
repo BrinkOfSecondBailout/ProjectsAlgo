@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <title>Update Preferences</title>
+</head>
+<body>
+    <h1>Tell Us About Yourself</h1>
+    <div class="red">
+        {% with messages = get_flashed_messages(category_filter=['attribute']) %}
+            {% if messages %}
+                {% for message in messages %}
+                    <p>*{{message}}</p>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </div>
+    <div>
+        <form action="/attributes/create" method="post">
+
+            <label for="description">Describe yourself:</label>
+            <textarea rows="10" cols="7" name="description"></textarea><br><br>
+
+            <label for="age">Age:</label><br>
+            <input class="small-input" type="number" name="age"><br><br>
+
+            <label for="gender">What is your gender?</label><br>
+            <select class="small-input" id="gender" name="gender">
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                <option value="none">N/A</option>
+            </select><br><br>
+
+            <label for="smoker">How often you do smoke?</label>
+            <select id="smoker" name="smoker">
+                <option value="no">Never</option>
+                <option value="occasions">Sometimes</option>
+                <option value="frequently">Very frequently</option>
+            </select><br><br>
+
+            <label for="drinker">Do you drink alcohol?</label>
+            <select id="drinker" name="drinker">
+                <option value="no">Nope, not at all</option>
+                <option value="occasions">Yes, but only on special occasions</option>
+                <option value="frequently">Yes, very frequently</option>
+            </select><br><br>
+
+
+            <label for="dating_goal">What are you looking for?</label>
+            <select id="dating_goal" name="dating_goal">
+                <option value="casual">Casual, harmless fun</option>
+                <option value="open">Open relationship</option>
+                <option value="relationship">Exclusive relationship</option>
+                <option value="marriage">Marriage material</option>
+            </select><br><br>
+
+
+            <label for="hobbies">Pick your favorite hobby:</label>
+            <select id="hobbies" name="hobbies">
+                <option value="music">Music</option>
+                <option value="sports">Sports/Physical Activities</option>
+                <option value="reading">Reading/Writing</option>
+                <option value="cooking">Cooking</option>
+                <option value="traveling">Traveling</option>
+                <option value="politics">Politics</option>
+                <option value="photography">Photography</option>
+            </select><br><br>
+
+            <label for="body_type">What best describes your body type:</label>
+            <select id="body_type" name="body_type">
+                <option value="slender">Slender</option>
+                <option value="medium">Medium/Average</option>
+                <option value="athletic">Athletic</option>
+                <option value="more">More to love</option>
+            </select><br><br>
+
+            <input type="submit" value="Submit">
+        </form>
+
+    </div>
+</body>
+</html>
