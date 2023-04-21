@@ -41,6 +41,8 @@ class Attribute:
     def get_attribute_by_user_id(cls, data):
         query = 'SELECT * FROM attributes WHERE user_id=%(user_id)s;'
         results = connectToMySQL('lovebirds_schema').query_db(query, data)
+        if not results:
+            return False;
         return cls(results[0])
     
     @classmethod
