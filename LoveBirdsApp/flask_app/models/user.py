@@ -92,6 +92,23 @@ class User:
         return connectToMySQL('lovebirds_schema').query_db(query, data)
     
     @classmethod
+    def validate_password(cls, data):
+        is_valid = True
+        if len(data['password']) < 5:
+            flash('Password must be at least 5 characters', 'update_pw')
+            is_valid = False
+        if data['password'] != data['confirm_password']:
+            flash('Password confirmation not matching! Try again.', 'update_pw')
+            is_valid = False
+        return is_valid
+
+
+    @classmethod
+    def update_password(cls, data):
+        query = 'UPDATE users SET password=%(password)s WHERE id = %(id)s;'
+        return connectToMySQL('lovebirds_schema').query_db(query, data)
+    
+    @classmethod
     def delete_user(cls, data):
         query = 'DELETE FROM users WHERE id=%(id)s;'
         return connectToMySQL('lovebirds_schema').query_db(query, data)

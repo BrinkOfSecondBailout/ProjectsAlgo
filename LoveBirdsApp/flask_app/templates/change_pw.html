@@ -4,9 +4,28 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
     <title>Change Password</title>
 </head>
 <body>
     <h1>Change your Password</h1>
+    <div class="red">
+        {% with messages = get_flashed_messages(category_filter=['update_pw']) %}
+            {% if messages %}
+                {% for message in messages %}
+                    <p>*{{message}}</p>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </div>
+
+    <form action="/updatepw" method="post">
+        <label for="password">New Password:</label><br>
+        <input type="password" name="password"><br><br>
+        <label for="confirm_password">Confirm New Password:</label><br>
+        <input type="password" name="confirm_password"><br><br>
+        <input type="submit" value="Update Password">
+    </form>
+
 </body>
 </html>

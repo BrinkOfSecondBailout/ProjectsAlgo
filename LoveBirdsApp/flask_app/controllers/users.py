@@ -92,6 +92,19 @@ def update_profile():
 def change_pw():
     return render_template('change_pw.html')
 
+@app.route('/updatepw', methods=['POST'])
+def update_pw():
+    if not session:
+        return redirect('/logout')
+    if not user.User.validate_password(request.form):
+        return redirect('/changepw')
+    data = {
+        'password': bcrypt.generate_password_hash(request.form['password']),
+        'id': session['user_id']
+    }
+    user.User.update_password(data)
+    return redirect('/users/edit')
+
 
 @app.route('/users/<int:id>')
 def show_profile(id):
