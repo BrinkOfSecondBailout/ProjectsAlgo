@@ -98,7 +98,7 @@ def show_profile(id):
     if not session:
         return redirect('/logout')
     data = {
-        'id': id
+        'user_id': id
     }
 
     all_pics = image.Photo.query.filter_by(user=id).all()
