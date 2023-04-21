@@ -80,8 +80,12 @@
     </div>
 
     <div>
-        <a href="/attributes/new"><h3>Let's update your preferences</h3></a>
-        
+        {% if not attributes %}
+            <a href="/attributes/new"><h3>Let's add your preferences</h3></a>
+        {% endif %}
+        {% if attributes %}
+            <a href="/attributes/update"><h3>Let's update your preferences</h3></a>
+        {% endif %}
 
     </div>
 

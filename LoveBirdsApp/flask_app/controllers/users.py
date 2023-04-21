@@ -1,6 +1,6 @@
 from flask_app import app
 from flask import render_template, redirect, request, session, flash
-from flask_app.models import user, image
+from flask_app.models import user, image, attribute
 from flask_bcrypt import Bcrypt
 
 bcrypt = Bcrypt(app)
@@ -41,7 +41,7 @@ def dashboard():
     if not session:
         return redirect('/logout')
     data = {
-        'id': session['user_id']
+        'user_id': session['user_id']
     }
     id = session['user_id']
     all_pics = image.Photo.query.filter_by(user=id).all()
@@ -59,19 +59,19 @@ def edit_profile():
     if not session:
         return redirect('/logout')
     data = {
-        'id': session['user_id']
+        'user_id': session['user_id']
     }
     id = session["user_id"]
     all_pics = image.Photo.query.filter_by(user=id).all()
     if not all_pics:
-        return render_template('edit_profile.html', user=user.User.get_info_by_id(data))
+        return render_template('edit_profile.html', user=user.User.get_info_by_id(data), attributes=attribute.Attribute.get_attribute_by_user_id(data))
     
     for pic in all_pics:
         if(pic.profile == "yes"):
             profile_pic = pic
-            return render_template('edit_profile.html', user=user.User.get_info_by_id(data), pics=all_pics, profile=profile_pic)
+            return render_template('edit_profile.html', user=user.User.get_info_by_id(data), pics=all_pics, profile=profile_pic, attributes=attribute.Attribute.get_attribute_by_user_id(data))
 
-    return render_template('edit_profile.html', user=user.User.get_info_by_id(data), pics=all_pics)
+    return render_template('edit_profile.html', user=user.User.get_info_by_id(data), pics=all_pics, attributes=attribute.Attribute.get_attribute_by_user_id(data))
 
 @app.route('/users/update', methods=['POST'])
 def update_profile():

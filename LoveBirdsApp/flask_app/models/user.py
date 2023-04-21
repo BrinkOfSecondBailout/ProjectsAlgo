@@ -82,7 +82,7 @@ class User:
 
     @classmethod
     def get_info_by_id(cls, data):
-        query = 'SELECT * FROM users WHERE id=%(id)s;'
+        query = 'SELECT * FROM users WHERE id=%(user_id)s;'
         results = connectToMySQL('lovebirds_schema').query_db(query, data)
         return cls(results[0])
     
