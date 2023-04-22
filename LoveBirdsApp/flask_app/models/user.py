@@ -16,9 +16,9 @@ class User:
         self.password = data['password']
         self.created_at = data['created_at']
         self.updated_at = data['updated_at']
+        self.hearts_sent = []
         
-    def fullName(self):
-        return f'{self.first_name} {self.last_name}'
+
 
     @staticmethod
     def validate_registration(data):
@@ -75,6 +75,7 @@ class User:
             user_data = results[0]
             return user_data
 
+
     @classmethod
     def save_user(cls, data):
         query = 'INSERT INTO users(first_name, last_name, email, password, created_at, updated_at) VALUES ( %(first_name)s, %(last_name)s, %(email)s, %(password)s , NOW(), NOW() );'
@@ -118,4 +119,33 @@ class User:
         query = 'SELECT * FROM users;'
         return connectToMySQL('lovebirds_schema').query_db(query)
 
+    @classmethod
+    def send_heart(cls, data):
+        query = 'INSERT INTO matches(user_id, match_id) VALUES (%(user_id)s, %(match_id)s);'
+        return connectToMySQL('lovebirds_schema').query_db(query, data)
+    
 
+    @classmethod
+    def get_me_with_users_i_sent_hearts_to(cls, data):
+        query = 'SELECT u.*, m.* FROM users u LEFT JOIN matches ON matches.user_id = u.id LEFT JOIN users m ON matches.match_id = m.id WHERE u.id = %(id)s;'
+        results = connectToMySQL('lovebirds_schema').query_db(query, data)
+        user = cls(results[0])
+        for row in results:
+            user_data = {
+                'id': row['m.id'],
+                'first_name': row['m.first_name'],
+                'last_name': row['m.last_name'],
+                'email': row['m.email'],
+                'password': row['m.password'],
+                'created_at': row['m.created_at'],
+                'updated_at': row['m.updated_at']
+            }
+            user.hearts_sent.append(cls(user_data))
+        return user
+
+
+
+
+    # @classmethod
+    # def all_who_sent_me_hearts(cls, data):
+    #     query = 'SELECT * FROM matches where'

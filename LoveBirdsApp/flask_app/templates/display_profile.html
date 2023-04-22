@@ -48,7 +48,36 @@
         {% endif %}
     </div>
 
+    <h2>A little bit about myself:</h2>
 
-    
+    <div>
+        {% if attributes %}
+            <p>{{attributes.description}}</p>
+            <p>I am {{attributes.age}} years of age</p>
+            <p>My gender is {{attributes.gender}}</p>
+            <p>I {{attributes.smoker}} smoke</p>
+            <p>I {{attributes.drinker}} drink</p>
+            <p>I am looking for {{attributes.dating_goal}}</p>
+            <p>My favorite hobby would have to be {{attributes.hobbies}}</p>
+            <p>My bodytype is {{attributes.body_type}} ;)</p>
+        {% endif %}
+    </div>
+
+    <div>
+        {% if session.user_id != user.id %}
+            <a href="/sendheart/{{user.id}}"><button class="heart-button">Send {{user.first_name}} a heart</button></a>
+        {% endif %}
+    </div>
+
+    <div>
+        {% if session.user_id == user.id %}
+            <h3>Matches Sent:</h3>
+            {% for match in user_with_hearts.hearts_sent %}
+                <h5>{{match.first_name}}</h5>
+            {% endfor %}
+        {% endif %}
+
+    </div>
+
 </body>
 </html>
