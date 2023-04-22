@@ -17,6 +17,7 @@ class User:
         self.created_at = data['created_at']
         self.updated_at = data['updated_at']
         self.hearts_sent = []
+        self.hearts_received = []
         
 
 
@@ -126,7 +127,9 @@ class User:
     
 
     @classmethod
-    def get_me_with_users_i_sent_hearts_to(cls, data):
+    def get_me_with_all_my_hearts(cls, data):
+
+        # this gets us all the users that we have sent hearts out to and add it to the hearts_sent array above
         query = 'SELECT u.*, m.* FROM users u LEFT JOIN matches ON matches.user_id = u.id LEFT JOIN users m ON matches.match_id = m.id WHERE u.id = %(id)s;'
         results = connectToMySQL('lovebirds_schema').query_db(query, data)
         user = cls(results[0])
@@ -141,11 +144,22 @@ class User:
                 'updated_at': row['m.updated_at']
             }
             user.hearts_sent.append(cls(user_data))
+
+        # this gets us all the users that have sent us hearts and add it to the hearts_received array above
+        query = 'SELECT u.* , m.* FROM users u LEFT JOIN matches ON matches.match_id = u.id LEFT JOIN users m ON matches.user_id = m.id WHERE u.id = %(id)s;'
+        results = connectToMySQL('lovebirds_schema').query_db(query, data)
+        for row in results:
+            user_data = {
+                'id': row['m.id'],
+                'first_name': row['m.first_name'],
+                'last_name': row['m.last_name'],
+                'email': row['m.email'],
+                'password': row['m.password'],
+                'created_at': row['m.created_at'],
+                'updated_at': row['m.updated_at']
+            }
+            user.hearts_received.append(cls(user_data))
+
         return user
+    
 
-
-
-
-    # @classmethod
-    # def all_who_sent_me_hearts(cls, data):
-    #     query = 'SELECT * FROM matches where'

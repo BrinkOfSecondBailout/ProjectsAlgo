@@ -71,13 +71,24 @@
 
     <div>
         {% if session.user_id == user.id %}
-            <h3>Matches Sent:</h3>
-            {% for match in user_with_hearts.hearts_sent %}
-                <h5>{{match.first_name}}</h5>
+            <h3>Hearts I've Sent Out To:</h3>
+            {% for receiver in user_with_hearts.hearts_sent %}
+                {% if receiver.id %}
+                    <a href="users/{{receiver.id}}"><h5>{{receiver.first_name}}</h5></a>
+                {% endif %}
             {% endfor %}
-        {% endif %}
 
+            <h3>Those Who Sent Me Hearts:</h3>
+            {% for sender in user_with_hearts.hearts_received %}
+                {% if sender.id %}
+                    <a href="users/{{sender.id}}"><h5>{{sender.first_name}}</h5></a>
+                {% endif %}
+            {% endfor %}
+
+        {% endif %}
     </div>
+
+
 
 </body>
 </html>

@@ -122,7 +122,7 @@ def show_profile(id):
         'id': session['user_id']
     }
     attributes = attribute.Attribute.get_attribute_by_user_id(data)
-    user_with_hearts = user.User.get_me_with_users_i_sent_hearts_to(data1)
+    user_with_hearts = user.User.get_me_with_all_my_hearts(data1)
     all_pics = image.Photo.query.filter_by(user=id).all()
     if not all_pics:
         flash('This user has not uploaded any pics yet!', 'upload')
