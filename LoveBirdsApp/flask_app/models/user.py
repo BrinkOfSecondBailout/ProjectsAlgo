@@ -162,4 +162,14 @@ class User:
 
         return user
     
+    @classmethod
+    def check_if_we_match(cls, data):
+        user1 = cls.get_me_with_all_my_hearts(data)
+        for sent in user1.hearts_sent:
+            for received in user1.hearts_received:
+                if sent.id == received.id:
+                    print("Congrats! It's a match!")
+                    return True
+        return False
+    
 

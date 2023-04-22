@@ -59,7 +59,7 @@
             <p>I {{attributes.drinker}} drink</p>
             <p>I am looking for {{attributes.dating_goal}}</p>
             <p>My favorite hobby would have to be {{attributes.hobbies}}</p>
-            <p>My bodytype is {{attributes.body_type}} ;)</p>
+            <p>My body type is {{attributes.body_type}} ;)</p>
         {% endif %}
     </div>
 
@@ -74,17 +74,16 @@
             <h3>Hearts I've Sent Out To:</h3>
             {% for receiver in user_with_hearts.hearts_sent %}
                 {% if receiver.id %}
-                    <a href="users/{{receiver.id}}"><h5>{{receiver.first_name}}</h5></a>
+                    <a href="/users/{{receiver.id}}"><h5>{{receiver.first_name}}</h5></a>
                 {% endif %}
             {% endfor %}
 
             <h3>Those Who Sent Me Hearts:</h3>
             {% for sender in user_with_hearts.hearts_received %}
                 {% if sender.id %}
-                    <a href="users/{{sender.id}}"><h5>{{sender.first_name}}</h5></a>
+                    <a href="/users/{{sender.id}}"><h5>{{sender.first_name}}</h5></a>
                 {% endif %}
             {% endfor %}
-
         {% endif %}
     </div>
 

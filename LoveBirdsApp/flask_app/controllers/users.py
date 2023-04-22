@@ -95,6 +95,8 @@ def update_profile():
 
 @app.route('/changepw')
 def change_pw():
+    if not session:
+        return redirect('/logout')
     return render_template('change_pw.html')
 
 @app.route('/updatepw', methods=['POST'])
@@ -138,11 +140,24 @@ def show_profile(id):
 
 @app.route('/sendheart/<int:id>')
 def send_a_heart(id):
+    if not session:
+        return redirect('/logout')
     data = {
         'user_id': session['user_id'],
         'match_id': id
     }
+    data1 = {
+        'id': session['user_id']
+    }
     user.User.send_heart(data)
+
+    if user.User.check_if_we_match(data1):
+        data2 = {
+            'user_id': id
+        }
+        match = user.User.get_info_by_id(data2)
+        return render_template('matched_up.html', match=match)
+
     return redirect('/dashboard')
 
 
