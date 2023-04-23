@@ -125,6 +125,10 @@ class User:
         query = 'INSERT INTO matches(user_id, match_id) VALUES (%(user_id)s, %(match_id)s);'
         return connectToMySQL('lovebirds_schema').query_db(query, data)
     
+    @classmethod
+    def unsend_heart(cls, data):
+        query = 'DELETE FROM matches WHERE user_id = %(user_id)s AND match_id = %(id)s;'
+        return connectToMySQL('lovebirds_schema').query_db(query, data)
 
     @classmethod
     def get_me_with_all_my_hearts(cls, data):

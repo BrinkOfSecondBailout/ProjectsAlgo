@@ -161,6 +161,18 @@ def send_a_heart(id):
     return redirect('/dashboard')
 
 
+@app.route('/unsend/<int:id>')
+def unsend_a_heart(id):
+    if not session:
+        return redirect('/logout')
+    data = {
+        'user_id': session['user_id'],
+        'id': id
+    }
+    user.User.unsend_heart(data)
+
+    return redirect('/users/' + str(session['user_id']))
+
 
 @app.route('/logout')
 def logout():

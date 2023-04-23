@@ -74,16 +74,19 @@
             <h3>Hearts I've Sent Out To:</h3>
             {% for receiver in user_with_hearts.hearts_sent %}
                 {% if receiver.id %}
-                    <a href="/users/{{receiver.id}}"><h5>{{receiver.first_name}}</h5></a>
+                <div class="hearts_list">
+                    <h4><a href="/users/{{receiver.id}}">{{receiver.first_name}}</a></h4>
+                    <a href="/unsend/{{receiver.id}}"><button class="delete-button">Unsend</button></a>
+                </div>
                 {% endif %}
             {% endfor %}
 
-            <h3>Those Who Sent Me Hearts:</h3>
+            <!-- <h3>Those Who Sent Me Hearts:</h3>
             {% for sender in user_with_hearts.hearts_received %}
                 {% if sender.id %}
                     <a href="/users/{{sender.id}}"><h5>{{sender.first_name}}</h5></a>
                 {% endif %}
-            {% endfor %}
+            {% endfor %} -->
         {% endif %}
     </div>
 

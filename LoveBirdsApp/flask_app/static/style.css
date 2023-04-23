@@ -6,7 +6,7 @@
 
 .back-video {
     position: absolute;
-    opacity: 0.7;
+    opacity: 0.8;
     right: 0;
     bottom: 0;
     z-index: -1;
@@ -142,5 +142,10 @@ a {
 .heart-button {
     color: red;
     width: 100px;
+    padding: 5px;
+}
+
+.hearts-list {
+    display: flex;
     padding: 5px;
 }
