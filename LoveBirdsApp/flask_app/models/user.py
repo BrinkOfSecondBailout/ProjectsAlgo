@@ -3,6 +3,7 @@ from flask_app.config.mysqlconnection import connectToMySQL
 from flask_bcrypt import Bcrypt
 from flask_app import app
 from flask import flash
+from flask_app.models.message import Message
 bcrypt = Bcrypt(app)
 EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$')
 
@@ -18,6 +19,7 @@ class User:
         self.updated_at = data['updated_at']
         self.hearts_sent = []
         self.hearts_received = []
+        self.messages = []
         
 
 
@@ -119,6 +121,28 @@ class User:
     def get_all_users(cls):
         query = 'SELECT * FROM users;'
         return connectToMySQL('lovebirds_schema').query_db(query)
+    
+    @classmethod
+    def get_all_messages_for_me(cls, data):
+        query = 'SELECT * FROM messages LEFT JOIN users ON messages.sender_id = users.id WHERE receiver_id = %(user_id)s;'
+        results = connectToMySQL('lovebirds_schema').query_db(query, data)
+        all_messages = []
+        for row in results:
+            one_message = Message(row)
+            one_message_sender_info = {
+                'id': row['users.id'],
+                'first_name': row['first_name'],
+                'last_name': row['last_name'],
+                'email': None,
+                'password': None,
+                'created_at': None,
+                'updated_at': None
+            }
+            one_message.sender = cls(one_message_sender_info)
+            all_messages.append(one_message)
+        return all_messages
+
+
 
     @classmethod
     def send_heart(cls, data):

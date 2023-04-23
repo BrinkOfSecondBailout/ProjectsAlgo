@@ -161,7 +161,7 @@ def send_a_heart(id):
         match = user.User.get_info_by_id(data2)
         return render_template('matched_up.html', match=match)
 
-    return redirect('/dashboard')
+    return redirect('/users/' + str(id))
 
 
 @app.route('/unsend/<int:id>')
@@ -175,6 +175,16 @@ def unsend_a_heart(id):
     user.User.unsend_heart(data)
 
     return redirect('/users/' + str(session['user_id']))
+
+@app.route('/users/inbox')
+def inbox_folder():
+    if not session:
+        return redirect('/logout')
+    data = {
+        'user_id': session['user_id']
+    }
+    messages = user.User.get_all_messages_for_me(data)
+    return render_template('inbox.html', messages=messages)
 
 
 @app.route('/logout')
