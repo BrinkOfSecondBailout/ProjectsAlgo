@@ -126,6 +126,8 @@ def show_profile(id):
     attributes = attribute.Attribute.get_attribute_by_user_id(data)
     user_with_hearts = user.User.get_me_with_all_my_hearts(data1)
     all_pics = image.Photo.query.filter_by(user=id).all()
+
+
     if not all_pics:
         flash('This user has not uploaded any pics yet!', 'upload')
         return render_template('display_profile.html', user=user.User.get_info_by_id(data), attributes=attributes, user_with_hearts=user_with_hearts)
@@ -149,7 +151,8 @@ def send_a_heart(id):
     data1 = {
         'id': session['user_id']
     }
-    user.User.send_heart(data)
+    if not user.User.send_heart(data):
+        return redirect('/users/' + str(id))
 
     if user.User.check_if_we_match(data1):
         data2 = {

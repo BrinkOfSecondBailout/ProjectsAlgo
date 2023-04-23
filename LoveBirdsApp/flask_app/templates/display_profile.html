@@ -33,6 +33,20 @@
         {% endwith %}
     </div>
 
+    <div class="red">
+        {% with messages = get_flashed_messages(category_filter=['heart']) %}
+            {% if messages %}
+                <ul>
+                    {% for message in messages %}
+                        <li>
+                            <p>{{ message }}</p>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
+    </div>
+
     <div>
         {% if profile %}
             <img src="/pics/{{profile.id}}" alt="profile-pic" class="photo-profile">
@@ -80,6 +94,9 @@
                 </div>
                 {% endif %}
             {% endfor %}
+
+            <h3>My Matches:</h3>
+            
 
             <!-- <h3>Those Who Sent Me Hearts:</h3>
             {% for sender in user_with_hearts.hearts_received %}

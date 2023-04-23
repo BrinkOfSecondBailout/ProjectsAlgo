@@ -122,6 +122,12 @@ class User:
 
     @classmethod
     def send_heart(cls, data):
+        query = 'SELECT * FROM matches WHERE user_id = %(user_id)s AND match_id = %(match_id)s;'
+        results = connectToMySQL('lovebirds_schema').query_db(query, data)
+        if results:
+            flash('You already sent this user a heart, be patient! :)', 'heart')
+            return False
+
         query = 'INSERT INTO matches(user_id, match_id) VALUES (%(user_id)s, %(match_id)s);'
         return connectToMySQL('lovebirds_schema').query_db(query, data)
     
