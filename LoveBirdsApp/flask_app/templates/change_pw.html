@@ -14,6 +14,7 @@
     <title>Change Password</title>
 </head>
 <body>
+    <div>
     <h1>Change your Password</h1>
     <h4><a href="/dashboard">Back to dashboard</a></h4>
     <div class="red">
@@ -26,13 +27,13 @@
         {% endwith %}
     </div>
 
-    <form action="/updatepw" method="post">
-        <label for="password"><p>New Password:</p></label><br>
-        <input class="regular-input" type="password" name="password"><br><br>
-        <label for="confirm_password"><p>Confirm New Password:</p></label><br>
+    <form class="form-bg" action="/updatepw" method="post">
+        <label for="password"><h4>New Password:</h4></label>
+        <input class="regular-input" type="password" name="password">
+        <label for="confirm_password"><h4>Confirm New Password:</h4></label>
         <input class="regular-input" type="password" name="confirm_password"><br><br>
-        <input type="submit" class="regular-button" value="Update Password">
+        <input type="submit" class="regular-button" value="Update Password"><br><br>
     </form>
-
+    </div>
 </body>
 </html>

@@ -4,11 +4,19 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk&family=Titillium+Web:ital,wght@0,300;1,200&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Schibsted+Grotesk&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
     <title>Update Preferences</title>
 </head>
 <body>
+    <div>
     <h1>Tell Us About Yourself</h1>
+    <h4><a href="/dashboard">Back to dashboard</a></h4>
     <div class="red">
         {% with messages = get_flashed_messages(category_filter=['attribute']) %}
             {% if messages %}
@@ -18,48 +26,48 @@
             {% endif %}
         {% endwith %}
     </div>
-    <div>
+    <div class="form-bg">
         <form action="/attributes/create" method="post">
 
-            <label for="description">Describe yourself:</label>
-            <textarea rows="10" cols="7" name="description" placeholder="The more you type the better your chance of getting a heart :)"></textarea><br><br>
+            <label for="description"><h4>Describe yourself:</h4></label>
+            <textarea class="regular-input" rows="10" cols="20" name="description" placeholder="The more you type the better your chance of getting a heart :)"></textarea>
 
-            <label for="age">Age:</label><br>
-            <input class="small-input" type="number" name="age"><br><br>
+            <label for="age"><h4>Age:</h4></label>
+            <input class="small-input" type="number" name="age">
 
-            <label for="gender">What is your gender?</label><br>
+            <label for="gender"><h4>What is your gender?</h4></label>
             <select class="small-input" id="gender" name="gender">
                 <option value="male">Male</option>
                 <option value="female">Female</option>
                 <option value="not specified">N/A</option>
-            </select><br><br>
+            </select>
 
-            <label for="smoker">How often you do smoke?</label>
-            <select id="smoker" name="smoker">
+            <label for="smoker"><h4>How often you do smoke?</h4></label>
+            <select class="small-input" id="smoker" name="smoker">
                 <option value="never">Never</option>
                 <option value="occasionally">Sometimes</option>
                 <option value="frequently">Very frequently</option>
-            </select><br><br>
+            </select>
 
-            <label for="drinker">Do you drink alcohol?</label>
-            <select id="drinker" name="drinker">
+            <label for="drinker"><h4>Do you drink alcohol?</h4></label>
+            <select class="regular-input" id="drinker" name="drinker">
                 <option value="never">Nope, not at all</option>
                 <option value="occasionally">Yes, but only on special occasions</option>
                 <option value="frequently">Yes, very frequently</option>
-            </select><br><br>
+            </select>
 
 
-            <label for="dating_goal">What are you looking for?</label>
-            <select id="dating_goal" name="dating_goal">
+            <label for="dating_goal"><h4>What are you looking for?</h4></label>
+            <select class="regular-input" id="dating_goal" name="dating_goal">
                 <option value="casual, harmless fun">Casual, harmless fun</option>
                 <option value="an open relationship">Open relationship</option>
                 <option value="an exclusive relationship">Exclusive relationship</option>
                 <option value="someone who's marriage material">Marriage material</option>
-            </select><br><br>
+            </select>
 
 
-            <label for="hobbies">Pick your favorite hobby:</label>
-            <select id="hobbies" name="hobbies">
+            <label for="hobbies"><h4>Pick your favorite hobby:</h4></label>
+            <select class="regular-input" id="hobbies" name="hobbies">
                 <option value="music">Music</option>
                 <option value="sports">Sports/Physical Activities</option>
                 <option value="reading">Reading/Writing</option>
@@ -67,19 +75,20 @@
                 <option value="traveling">Traveling</option>
                 <option value="politics">Politics</option>
                 <option value="photography">Photography</option>
-            </select><br><br>
+            </select><br>
 
-            <label for="body_type">What best describes your body type:</label>
-            <select id="body_type" name="body_type">
+            <label for="body_type"><h4>What best describes your body type:</h4></label>
+            <select class="regular-input" id="body_type" name="body_type">
                 <option value="slender">Slender</option>
                 <option value="medium">Medium/Average</option>
                 <option value="athletic">Athletic</option>
                 <option value="more to love">More to love</option>
             </select><br><br>
 
-            <input type="submit" value="Submit">
+            <input type="submit" class="delete-button" value="Submit">
         </form>
 
+    </div>
     </div>
 </body>
 </html>

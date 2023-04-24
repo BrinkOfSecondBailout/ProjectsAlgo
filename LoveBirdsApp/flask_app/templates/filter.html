@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk&family=Titillium+Web:ital,wght@0,300;1,200&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Schibsted+Grotesk&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <title>Filter By Preferences</title>
+</head>
+<body>
+    <div>
+        <h1>Filter By Preferences:</h1>
+        <h4><a href="/dashboard">Back to dashboard</a></h4>
+
+        <div class="form-bg">
+            <form action="/" method="post"
+        
+                <label for="age">
+                    <h4>Age:</h4>
+                </label>
+                <input class="small-input" type="number" name="age">
+        
+                <label for="gender">
+                    <h4>What is your gender?</h4>
+                </label>
+                <select class="small-input" id="gender" name="gender">
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                    <option value="not specified">N/A</option>
+                </select>
+        
+                <label for="smoker">
+                    <h4>How often you do smoke?</h4>
+                </label>
+                <select class="small-input" id="smoker" name="smoker">
+                    <option value="never">Never</option>
+                    <option value="occasionally">Sometimes</option>
+                    <option value="frequently">Very frequently</option>
+                </select>
+        
+                <label for="drinker">
+                    <h4>Do you drink alcohol?</h4>
+                </label>
+                <select class="regular-input" id="drinker" name="drinker">
+                    <option value="never">Nope, not at all</option>
+                    <option value="occasionally">Yes, but only on special occasions</option>
+                    <option value="frequently">Yes, very frequently</option>
+                </select>
+        
+        
+                <label for="dating_goal">
+                    <h4>What are you looking for?</h4>
+                </label>
+                <select class="regular-input" id="dating_goal" name="dating_goal">
+                    <option value="casual, harmless fun">Casual, harmless fun</option>
+                    <option value="an open relationship">Open relationship</option>
+                    <option value="an exclusive relationship">Exclusive relationship</option>
+                    <option value="someone who's marriage material">Marriage material</option>
+                </select>
+        
+        
+                <label for="hobbies">
+                    <h4>Pick your favorite hobby:</h4>
+                </label>
+                <select class="regular-input" id="hobbies" name="hobbies">
+                    <option value="music">Music</option>
+                    <option value="sports">Sports/Physical Activities</option>
+                    <option value="reading">Reading/Writing</option>
+                    <option value="cooking">Cooking</option>
+                    <option value="traveling">Traveling</option>
+                    <option value="politics">Politics</option>
+                    <option value="photography">Photography</option>
+                </select><br>
+        
+                <label for="body_type">
+                    <h4>What best describes your body type:</h4>
+                </label>
+                <select class="regular-input" id="body_type" name="body_type">
+                    <option value="slender">Slender</option>
+                    <option value="medium">Medium/Average</option>
+                    <option value="athletic">Athletic</option>
+                    <option value="more to love">More to love</option>
+                </select><br><br>
+        
+                <input type="submit" class="delete-button" value="Submit">
+            </form>
+        
+        </div>
+    </div>
+</body>
+</html>

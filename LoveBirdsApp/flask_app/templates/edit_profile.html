@@ -45,7 +45,7 @@
 
     <div>
         <h4>Click on the photo you want as your profile picture!</h4>
-        <h4>(Scroll down if needed)</h4>
+        <h4>(Scroll if needed)</h4>
         <div class="flex">
             <div class="flex-column">
                 <div class="all-photos">
@@ -95,11 +95,11 @@
                 <div class="bio-box">
                     <div class="red">
                         {% with messages = get_flashed_messages(category_filter=['edit']) %}
-                        {% if messages %}
-                        {% for message in messages %}
-                        <p>*{{message}}</p>
-                        {% endfor %}
-                        {% endif %}
+                            {% if messages %}
+                                {% for message in messages %}
+                                    <p>*{{message}}</p>
+                                {% endfor %}
+                            {% endif %}
                         {% endwith %}
                     </div>
                     <form action="/users/update" method="post">
@@ -115,7 +115,7 @@
                             <p>Email:</p>
                         </label>
                         <input class="regular-input" type="email" name="email" value={{user.email}}><br><br>
-                        <input type="submit" class="delete-button" value="Update">
+                        <input type="submit" class="delete-button" value="Update"><br><br><br>
                     </form>
                 </div>
             </div>

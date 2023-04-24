@@ -33,12 +33,17 @@
     <div class="total-box">
 
     <div class="lovebirds-box">
-        <h2>Browse All Lovebirds</h2>
-        {% for user in all_users %}
-            {% if session.user_id != user.id %}
-                <h4><a href="/users/{{user.id}}">{{user.first_name}} {{user.last_name}}</a></h4>
-            {% endif %}
-        {% endfor %}
+        
+            <h2>Browse All Lovebirds</h2>
+            <div class="flex2">
+                {% for user in all_users %}
+                    {% if session.user_id != user.id %}
+                        <h4><a href="/users/{{user.id}}">{{user.first_name}} {{user.last_name}}</a></h4>
+                    {% endif %}
+                {% endfor %}
+            </div>
+            <a href="/filter"><button class="delete-button">Filter</button></a>
+        
     </div>
 
 

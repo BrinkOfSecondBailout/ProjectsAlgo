@@ -191,6 +191,10 @@ def inbox_folder():
     messages = user.User.get_all_messages_for_me(data)
     return render_template('inbox.html', messages=messages)
 
+@app.route('/filter')
+def filter_out():
+    return render_template('filter.html')
+
 
 @app.route('/logout')
 def logout():
