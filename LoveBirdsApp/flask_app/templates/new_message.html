@@ -4,12 +4,21 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk&family=Titillium+Web:ital,wght@0,300;1,200&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Schibsted+Grotesk&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
     <title>Send A Message</title>
 </head>
 <body>
+    <div class="flex-column2">
     <h1>Send {{receiver.first_name}} a Message:</h1>
-
+    <a href="/dashboard">Go Back</a>
+    </div>
+    <div>
     <div class="red">
         {% with messages = get_flashed_messages(category_filter=['message']) %}
             {% if messages %}
@@ -26,8 +35,12 @@
             <textarea rows="10" cols="50" name="text"></textarea><br><br>
             <input type="hidden" name="sender_id" value="{{session['user_id']}}">
             <input type="hidden" name="receiver_id" value="{{receiver.id}}">
-            <input type="submit" value="Submit">
+            <button class="delete-button">Submit</button>
         </form>
+    </div>
+
+    
+
     </div>
 </body>
 </html>

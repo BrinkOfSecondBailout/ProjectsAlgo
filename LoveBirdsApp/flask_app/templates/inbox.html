@@ -14,16 +14,17 @@
     <title>Inbox</title>
 </head>
 <body>
+    <div class="flex-column">
     <h1>All My Messages:</h1>
     {% if messages %}
         {% for message in messages %}
-            <div>
+            <div class="message-box">
                 <p>From: {{message.sender.first_name}}</p>
                 <p>{{message.text}}</p>
                 <p>{{message.created_at.strftime("%I:%M %p %a - %b %d, %y")}}</p>
-                <a href="/messages/new/{{message.sender.id}}">Reply</a>
-                <a href="/messages/delete/{{message.id}}">Delete</a>
-                </div>
+                <a href="/messages/new/{{message.sender.id}}"><button class="delete-button">Reply</button></a>
+                <a href="/messages/delete/{{message.id}}"><button class="delete-button">Delete</button></a>
+            </div>
         {% endfor %}
     {% endif %}
 
@@ -32,5 +33,6 @@
     {% endif %}
 
     <h4><a href="/dashboard">Back to dashboard</a></h4>
+    </div>
 </body>
 </html>

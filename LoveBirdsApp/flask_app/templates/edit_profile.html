@@ -13,39 +13,66 @@
     <title>Edit Profile</title>
 </head>
 <body>
+
     <div>
-        <h1>Edit Profile</h1>
+    <div>
+        <h1>Edit Your Profile, {{user.first_name}}</h1>
         <h4><a href="/dashboard">Back to dashboard</a></h4>
     </div>
 
-    <div class="red">
-        {% with messages = get_flashed_messages(category_filter=['upload']) %}
-            {% if messages %}
-                <ul>
-                    {% for message in messages %}
-                        <li> <p>{{ message }}</p></li>
-                    {% endfor %}
-                </ul>
-            {% endif %}
-        {% endwith %}
-    </div>
-    <div>
-        <h3>Upload Your Pictures</h3>
-        <form method="post" action="/upload/{{session.user_id}}" enctype="multipart/form-data">
-            <input type="file" name="pic">
-            <input type="submit" class="regular-button" value="Submit">
-        </form>
-    </div>
+    
 
-    <h3>Profile Picture:</h3>
+    <div class="flex">
+
     <div>
         {% if profile %}
             <img src="/pics/{{profile.id}}" alt="profile-pic" class="photo-profile">
         {% endif %}
     </div>
 
+    <div class="upload-box">
+    <div class="lovebirds-box">
+        <div class="red">
+            {% with messages = get_flashed_messages(category_filter=['upload']) %}
+                {% if messages %}
+                    <ul>
+                        {% for message in messages %}
+                            <li>
+                                <p>{{ message }}</p>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            {% endwith %}
+        </div>
+        <h3>Upload Your Pictures</h3>
+        <form method="post" action="/upload/{{session.user_id}}" enctype="multipart/form-data">
+            <input type="file" name="pic">
+            <input type="submit" class="delete-button" value="Submit">
+        </form>
+    </div>
+    </div>
+    </div>
 
+    <div>
+        <h4><a href="/changepw">Change your password</a></h4>
+        {% if not attributes %}
+        <a href="/attributes/new">
+            <h4>Add your preferences</h4>
+        </a>
+        {% endif %}
+        {% if attributes %}
+        <a href="/attributes/edit">
+            <h4>Update your preferences</h4>
+        </a>
+        {% endif %}
+    </div>
+
+    
     <h4>Click on the photo you want as your profile picture!</h4>
+    <h4>(Scroll down if needed)</h4>
+    <div class="flex">
+    <div class="flex-column">
     <div class="all-photos">
         {% if pics %}
             {% for pic in pics %}
@@ -57,43 +84,41 @@
                 </div>
             {% endfor %}
         {% endif %}
+
+    </div>
     </div>
 
 
 
 
     <div>
-        <div class="red">
-            {% with messages = get_flashed_messages(category_filter=['edit']) %}
-                {% if messages %}
-                    {% for message in messages %}
-                        <p>*{{message}}</p>
-                    {% endfor %}
-                {% endif %}
-            {% endwith %}
+        <div class="total-box">
+            <div class="bio-box">
+                <div class="red">
+                    {% with messages = get_flashed_messages(category_filter=['edit']) %}
+                        {% if messages %}
+                            {% for message in messages %}
+                                <p>*{{message}}</p>
+                            {% endfor %}
+                        {% endif %}
+                    {% endwith %}
+                </div>
+                <form action="/users/update" method="post">
+                    <label for="first_name"><p>First Name:</p></label>
+                    <input class="regular-input" type="text" name="first_name" value={{user.first_name}}><br>
+                    <label for="last_name"><p>Last Name:</p></label>
+                    <input class="regular-input" type="text" name="last_name" value={{user.last_name}}><br>
+                    <label for="email"><p>Email:</p></label>
+                    <input class="regular-input" type="email" name="email" value={{user.email}}><br><br>
+                    <input type="submit" class="delete-button" value="Update">
+                </form>
+            </div>
         </div>
-        <form action="/users/update" method="post">
-            <label for="first_name"><p>First Name:</p></label>
-            <input class="regular-input" type="text" name="first_name" value={{user.first_name}}><br><br>
-            <label for="last_name"><p>Last Name:</p></label>
-            <input class="regular-input" type="text" name="last_name" value={{user.last_name}}><br><br>
-            <label for="email"><p>Email:</p></label>
-            <input class="regular-input" type="email" name="email" value={{user.email}}><br><br>
-            <input type="submit" class="regular-button" value="Update">
-        </form>
-        <h4><a href="/changepw">Change your password</a></h4>
     </div>
 
-    <div>
-        {% if not attributes %}
-            <a href="/attributes/new"><h4>Add your preferences</h4></a>
-        {% endif %}
-        {% if attributes %}
-            <a href="/attributes/edit"><h4>Update your preferences</h4></a>
-        {% endif %}
+
 
     </div>
-
 
 </body>
 </html>

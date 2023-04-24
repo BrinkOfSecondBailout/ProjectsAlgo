@@ -20,6 +20,7 @@ class User:
         self.hearts_sent = []
         self.hearts_received = []
         self.messages = []
+        self.matches = []
         
 
 
@@ -194,6 +195,12 @@ class User:
             }
             user.hearts_received.append(cls(user_data))
 
+        # this will check our hearts_sent and hearts_received and see which matches we actually have and add it to self.matches
+        for recipient in user.hearts_sent:
+            for sender in user.hearts_received:
+                if recipient.id == sender.id:
+                    user.matches.append(recipient)
+
         return user
     
     @classmethod
@@ -205,5 +212,4 @@ class User:
                     print("Congrats! It's a match!")
                     return True
         return False
-    
 

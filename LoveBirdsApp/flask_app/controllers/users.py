@@ -50,12 +50,17 @@ def dashboard():
     
     all_users = user.User.get_all_users()
     
+    data2 = {
+        'id': session['user_id']
+    }
+    user_with_matches = user.User.get_me_with_all_my_hearts(data2)
+
     for pic in all_pics:
         if(pic.profile == "yes"):
             profile_pic = pic
-            return render_template('dashboard.html', all_users=all_users, user=user.User.get_info_by_id(data), profile=profile_pic)
+            return render_template('dashboard.html', all_users=all_users, user=user.User.get_info_by_id(data), profile=profile_pic, user_with_matches=user_with_matches)
 
-    return render_template('dashboard.html', all_users=all_users, user=user.User.get_info_by_id(data))
+    return render_template('dashboard.html', all_users=all_users, user=user.User.get_info_by_id(data), user_with_matches=user_with_matches)
 
 
 
@@ -124,20 +129,20 @@ def show_profile(id):
         'id': session['user_id']
     }
     attributes = attribute.Attribute.get_attribute_by_user_id(data)
-    user_with_hearts = user.User.get_me_with_all_my_hearts(data1)
+    # user_with_hearts = user.User.get_me_with_all_my_hearts(data1)
     all_pics = image.Photo.query.filter_by(user=id).all()
 
 
     if not all_pics:
         flash('This user has not uploaded any pics yet!', 'upload')
-        return render_template('display_profile.html', user=user.User.get_info_by_id(data), attributes=attributes, user_with_hearts=user_with_hearts)
+        return render_template('display_profile.html', user=user.User.get_info_by_id(data), attributes=attributes)
     
     for pic in all_pics:
         if(pic.profile == "yes"):
             profile_pic = pic
-            return render_template('display_profile.html', user=user.User.get_info_by_id(data), pics=all_pics, profile=profile_pic, attributes=attributes, user_with_hearts=user_with_hearts)
+            return render_template('display_profile.html', user=user.User.get_info_by_id(data), pics=all_pics, profile=profile_pic, attributes=attributes)
         
-    return render_template('display_profile.html', user=user.User.get_info_by_id(data), pics=all_pics, attributes=attributes, user_with_hearts=user_with_hearts)
+    return render_template('display_profile.html', user=user.User.get_info_by_id(data), pics=all_pics, attributes=attributes)
 
 
 @app.route('/sendheart/<int:id>')
@@ -174,7 +179,7 @@ def unsend_a_heart(id):
     }
     user.User.unsend_heart(data)
 
-    return redirect('/users/' + str(session['user_id']))
+    return redirect('/dashboard')
 
 @app.route('/users/inbox')
 def inbox_folder():

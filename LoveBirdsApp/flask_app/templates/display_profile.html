@@ -14,13 +14,15 @@
     <title>Show Profile</title>
 </head>
 <body>
+
+    <div>
     
-    <h1>{{user.first_name}} {{user.last_name}}</h1>
+    <h1>Hi, my name is {{user.first_name}} {{user.last_name}}</h1>
 
     <div>
         <h4><a href="/dashboard">Back to dashboard</a></h4>
     </div>
-
+    
     <div class="red">
         {% with messages = get_flashed_messages(category_filter=['upload']) %}
             {% if messages %}
@@ -47,10 +49,21 @@
         {% endwith %}
     </div>
 
-    <div>
-        {% if profile %}
-            <img src="/pics/{{profile.id}}" alt="profile-pic" class="photo-profile">
-        {% endif %}
+    <div class="flex">
+        <div>
+            {% if profile %}
+                <img src="/pics/{{profile.id}}" alt="profile-pic" class="photo-profile">
+            {% endif %}
+        </div>
+
+        <div>
+            {% if session.user_id != user.id %}
+                <div class="heart-set">
+                <h5>SEND A HEART</h5>
+                <a href="/sendheart/{{user.id}}"><img class="heart-shape" src="../static/files/heart2.png"></a>
+                </div>
+            {% endif %}
+        </div>
     </div>
 
 
@@ -62,52 +75,27 @@
         {% endif %}
     </div>
 
-    <h2>A little bit about myself:</h2>
+    
 
-    <div>
-        {% if attributes %}
+    {% if attributes %}
+        <div class="total-box">
+        <div class="bio-box">
+            <h2>A little bit about myself:</h2>
             <p>{{attributes.description}}</p>
-            <p>I am {{attributes.age}} years of age</p>
-            <p>My gender is {{attributes.gender}}</p>
+            <p>{{attributes.age}} years of age</p>
+            <p>Gender is {{attributes.gender}}</p>
             <p>I {{attributes.smoker}} smoke</p>
             <p>I {{attributes.drinker}} drink</p>
-            <p>I am looking for {{attributes.dating_goal}}</p>
+            <p>Looking for {{attributes.dating_goal}}</p>
             <p>My favorite hobby would have to be {{attributes.hobbies}}</p>
             <p>My body type is {{attributes.body_type}} ;)</p>
-        {% endif %}
+        </div>
+        </div>
+    {% endif %}
+
+    
+    
     </div>
-
-    <div>
-        {% if session.user_id != user.id %}
-            <a href="/sendheart/{{user.id}}"><button class="heart-button">Send {{user.first_name}} a heart</button></a>
-        {% endif %}
-    </div>
-
-    <div>
-        {% if session.user_id == user.id %}
-            <h3>Hearts I've Sent Out To:</h3>
-            {% for receiver in user_with_hearts.hearts_sent %}
-                {% if receiver.id %}
-                <div class="hearts_list">
-                    <h4><a href="/users/{{receiver.id}}">{{receiver.first_name}}</a></h4>
-                    <a href="/unsend/{{receiver.id}}"><button class="delete-button">Unsend</button></a>
-                </div>
-                {% endif %}
-            {% endfor %}
-
-            <h3>My Matches:</h3>
-            
-
-            <!-- <h3>Those Who Sent Me Hearts:</h3>
-            {% for sender in user_with_hearts.hearts_received %}
-                {% if sender.id %}
-                    <a href="/users/{{sender.id}}"><h5>{{sender.first_name}}</h5></a>
-                {% endif %}
-            {% endfor %} -->
-        {% endif %}
-    </div>
-
-
 
 </body>
 </html>

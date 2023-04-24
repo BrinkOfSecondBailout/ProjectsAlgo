@@ -1,12 +1,22 @@
 * {
     margin: 0 auto;
-    padding: 0;
-    width: 90%;
+    padding: 5px;
+    width: 85%;
 }
+
+body {
+    background-image: url(../static/files/mountain.png);
+    background-repeat: no-repeat;
+    background-color: black;
+    z-index: -1;
+}
+
+
+
 
 .back-video {
     position: absolute;
-    opacity: 0.8;
+    opacity: 1;
     right: 0;
     bottom: 0;
     z-index: -1;
@@ -55,13 +65,48 @@ p {
 
 a {
     text-decoration: none;
-    color: rgba(34, 126, 218, 0.759);
+    color: white;
 }
 
 .container {
     display: flex;
 }
 
+.flex {
+    display: flex;
+    padding: 5px;
+}
+
+.total-box {
+    width: 500px;
+    padding: 20px;
+    /* background-color:red; */
+    
+}
+
+.upload-box {
+    width: 500px;
+    padding: 20px;
+}
+
+.bio-box {
+    background-color: rgb(245, 195, 120);
+    opacity: 0.9;
+    width: 100%;
+    box-shadow: 4px 4px 5px 0px black;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+.lovebirds-box {
+    background-color: rgb(36, 172, 230);
+    opacity: 0.9;
+    width: 100%;
+    box-shadow: 4px 4px 5px 0px black;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+}
 
 .profile-bar {
     display: flex;
@@ -72,37 +117,33 @@ a {
 
 .red {
     color: red;
-    padding: 5px;
+    text-shadow: 1px 1px 1px black;
 }
 
 .small-input {
     width: 100px;
-    padding: 5px;
 }
 
 .regular-input {
     width: 300px;
     border-radius: 10px;
-    padding: 5px;
 }
 
 .long-button {
     width: 50%;
     border-radius: 20px;
-    padding: 5px;
 }
 
 .regular-button {
     width: 20%;
     border-radius: 20px;
-    padding: 5px;
 }
 
 .photo-profile {
     width: 250px;
     height: 250px;
     border-radius: 50%;
-    box-shadow: 4px 4px 5px 0px rgba(0, 95, 168, 0.861);
+    box-shadow: 4px 4px 5px 0px black;
     padding: 3px;
 }
 
@@ -110,7 +151,7 @@ a {
     width: 200px;
     height: 200px;
     border-radius: 50%;
-    box-shadow: 2px 2px 5px 0px rgba(0, 95, 168, 0.861);
+    box-shadow: 2px 2px 5px 0px black;
     padding: 3px;
 }
 
@@ -120,32 +161,64 @@ a {
     width: 140px;
     height: 100px;
     border-radius: 20px;
-    box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.861);
+    box-shadow: 2px 2px 5px 0px black;
     padding: 3px;
 }
 
+.flex-column {
+    width: 450px;
+}
+.flex-column2 {
+    width: 750px;
+    text-align: center;
+    padding: 20px;
+}
+
 .all-photos {
-    display: flex;
+    /* display:inline-block; */
+    height: 300px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    direction: rtl;
+    
 }
 
 .one-photo {
     display: flex;
     flex-direction: column;
+    width: 300px;
+    height: 170px;
+    text-align: center;
 }
 
 .delete-button {
-    width: 70px;
+    width: 80px;
     border-radius: 10px;
-    padding: 5px;
+    box-shadow: 2px 2px 5px 0px black;
 }
 
 .heart-button {
-    color: red;
     width: 100px;
-    padding: 5px;
+    border-radius: 50px;
 }
 
-.hearts-list {
-    display: flex;
-    padding: 5px;
+.heart-shape {
+    width: 20%;
+}
+
+.heart-set {
+    text-align: center;
+    color: white;
+}
+
+.message-box {
+    background-color: rgb(36, 172, 230);
+    opacity: 0.9;
+    border-radius: 20px;
+    box-shadow: 4px 4px 5px 0px black;
+    padding: 10px;
+    width: 300px;
+    margin-left: 15px;
+    margin-bottom: 10px;
+    color: black;
 }

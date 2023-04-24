@@ -8,9 +8,13 @@
     <title>You matched!</title>
 </head>
 <body>
-    <h1>Congratulations! You found a match!</h1>
-    <h3>Don't let us keep you! Send {{match.first_name}} the first message! :)</h3>
-    <a href="/messages/new/{{match.id}}"><button class="regular-button">Message {{match.first_name}}</button></a>
-    <a href="/users/{{session.user_id}}">Not now :(</a>
+    <div class="flex-column2">
+        <h1>Congratulations! You found a match!</h1>
+        <h3>Don't let us keep you! Send {{match.first_name}} the first message! :)</h3>
+        <div>
+            <a href="/messages/new/{{match.id}}"><button class="delete-button">Message {{match.first_name}}</button></a>
+            <a href="/dashboard"><button class="delete-button">Not right now :(</button></a>
+        </div>
+    </div>
 </body>
 </html>
