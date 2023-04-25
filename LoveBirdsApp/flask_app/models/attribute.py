@@ -16,8 +16,12 @@ class Attribute:
         self.hobbies = data['hobbies']
         self.body_type = data['body_type']
         self.user_id = data['user_id']
+        self.instagram = data['instagram']
+        self.facebook = data['facebook']
+        self.twitter = data['twitter']
         self.created_at = data['created_at']
         self.updated_at = data['updated_at']
+
 
 
     @staticmethod
@@ -34,7 +38,7 @@ class Attribute:
 
     @classmethod
     def save_attribute(cls, data):
-        query = 'INSERT INTO attributes(description, age, gender, smoker, drinker, dating_goal, hobbies, body_type, user_id, created_at, updated_at) VALUES ( %(description)s, %(age)s, %(gender)s, %(smoker)s, %(drinker)s, %(dating_goal)s, %(hobbies)s, %(body_type)s, %(user_id)s, NOW(), NOW() );'
+        query = 'INSERT INTO attributes(description, age, gender, smoker, drinker, dating_goal, hobbies, body_type, user_id, created_at, updated_at, instagram, facebook, twitter) VALUES ( %(description)s, %(age)s, %(gender)s, %(smoker)s, %(drinker)s, %(dating_goal)s, %(hobbies)s, %(body_type)s, %(user_id)s, NOW(), NOW(), %(instagram)s, %(facebook)s, %(twitter)s );'
         return connectToMySQL('lovebirds_schema').query_db(query, data)
     
     @classmethod
@@ -47,5 +51,5 @@ class Attribute:
     
     @classmethod
     def update_attribute(cls, data):
-        query = 'UPDATE attributes SET description=%(description)s, age=%(age)s, gender=%(gender)s,  smoker=%(smoker)s, drinker=%(drinker)s, dating_goal=%(dating_goal)s, hobbies=%(hobbies)s, body_type=%(body_type)s WHERE user_id = %(user_id)s;'
+        query = 'UPDATE attributes SET description=%(description)s, age=%(age)s, gender=%(gender)s,  smoker=%(smoker)s, drinker=%(drinker)s, dating_goal=%(dating_goal)s, hobbies=%(hobbies)s, body_type=%(body_type)s, instagram=%(instagram)s, facebook=%(facebook)s, twitter=%(twitter)s WHERE user_id = %(user_id)s;'
         return connectToMySQL('lovebirds_schema').query_db(query, data)

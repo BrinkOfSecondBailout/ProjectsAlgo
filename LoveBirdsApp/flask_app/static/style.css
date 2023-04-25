@@ -11,7 +11,20 @@ body {
     z-index: -1;
 }
 
+.icons {
+    text-align: center;
+    background-color: rgb(36, 172, 230);
+    opacity: 0.9;
+    border-radius: 20px;
+    box-shadow: 4px 4px 5px 0px black;
+    padding: 5px;
+    width: 300px;
+}
 
+.icon {
+    width: 40px;
+    height: 40px;
+}
 
 
 .back-video {
@@ -166,7 +179,7 @@ a:hover {
     width: 100%;
     box-shadow: 4px 4px 5px 0px black;
     border-radius: 10px;
-    
+    padding: 5px;
     margin-bottom: 10px;
     text-align: center;
 }

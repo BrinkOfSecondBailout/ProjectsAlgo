@@ -23,6 +23,9 @@ def create_attributes():
         'hobbies': request.form['hobbies'],
         'body_type': request.form['body_type'],
         'user_id': session['user_id'],
+        'instagram': request.form['instagram'],
+        'facebook': request.form['facebook'],
+        'twitter': request.form['twitter']
     }
     attribute.Attribute.save_attribute(data)
     return redirect('/users/edit')
@@ -50,6 +53,9 @@ def process_update_attributes():
         'hobbies': request.form['hobbies'],
         'body_type': request.form['body_type'],
         'user_id': session['user_id'],
+        'instagram': request.form['instagram'],
+        'facebook': request.form['facebook'],
+        'twitter': request.form['twitter']
     }
     attribute.Attribute.update_attribute(data)
     return redirect('/users/edit')

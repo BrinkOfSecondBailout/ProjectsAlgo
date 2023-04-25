@@ -96,7 +96,7 @@
                                 </a>{{note.text}}</h5>
                                 </span>
                             </div>
-                            <h5>{{note.created_at.strftime("%I:%M %p - %b %d")}}</h5>
+                            <h5>{{note.created_at.strftime("%I:%M %a - %b %d")}}</h5>
                             {% if note.creator.id == session.user_id %}
                                 <a href="wall/delete/{{note.id}}"><button class="delete-button">delete</button></a>
                             {% endif %}
