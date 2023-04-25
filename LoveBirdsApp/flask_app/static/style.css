@@ -185,6 +185,15 @@ a:hover {
     text-align: center;
 }
 
+.notifications {
+    color: red;
+    text-shadow: 2px 2px 2px rgb(0, 0, 0);
+    font-size: x-large;
+    font-weight: bold;
+    -webkit-animation: pulsate 0.5s ease-in;
+    -webkit-animation-iteration-count: infinite;
+}
+
 .results-box {
     background-color: rgb(245, 195, 120);
     opacity: 0.9;
@@ -332,6 +341,10 @@ a:hover {
 .bottom-navi {
     display: flex;
     width: 600px;
+    background-color: rgb(245, 195, 120);
+    opacity: 0.9;
+    border-radius: 20px;
+    box-shadow: 4px 4px 5px 0px black;
 }
 
 @-webkit-keyframes pulsate {

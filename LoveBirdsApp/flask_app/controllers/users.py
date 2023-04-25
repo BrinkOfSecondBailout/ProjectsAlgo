@@ -334,4 +334,8 @@ def filter_by_body():
 
 @app.route('/suspended')
 def suspended_user():
+    data = {
+        'user_id': session['user_id']
+    }
+    user.User.delete_user(data)
     return render_template('suspended.html')

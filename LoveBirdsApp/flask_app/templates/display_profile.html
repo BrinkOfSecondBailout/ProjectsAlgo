@@ -30,6 +30,9 @@
             {% if profile %}
                 <img src="/pics/{{profile.id}}" alt="profile-pic" class="photo-profile">
             {% endif %}
+            {% if not profile %}
+                <img src="../static/files/noprofile.png" alt="no-profile-pic" class="photo-profile-main">
+            {% endif %}
         </div>
         <div>
             {% if pics %}
@@ -102,8 +105,8 @@
 
     </div>
     <div class="bottom">
-        <div class="bottom-navi">
-            {% if session.user_id != user.id %}
+        {% if session.user_id != user.id %}
+            <div class="bottom-navi">
                 <div class="heart-set">
                     <h5 class="heart-text">SEND A HEART</h5>
                     <a href="/sendheart/{{user.id}}"><img class="heart-shape" src="../static/files/heart2.png"></a>
@@ -112,8 +115,8 @@
                     <h5 class="heart-text">BLOCK AND REPORT</h5>
                     <a href="/block/{{user.id}}"><img class="block-button" src="../static/files/block.png"></a>
                 </div>
-            {% endif %}
-        </div>
+            </div>
+        {% endif %}
     </div>
     
 </body>

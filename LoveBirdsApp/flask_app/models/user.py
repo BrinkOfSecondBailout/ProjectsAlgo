@@ -120,7 +120,7 @@ class User:
     
     @classmethod
     def delete_user(cls, data):
-        query = 'DELETE FROM users WHERE id=%(id)s;'
+        query = 'DELETE FROM users WHERE id=%(user_id)s;'
         return connectToMySQL('lovebirds_schema').query_db(query, data)
     
     @classmethod
@@ -172,7 +172,7 @@ class User:
     
     @classmethod
     def check_if_im_blocked(cls, data):
-        query = 'SELECT * FROM blocks WHERE blocker_id = %(blocker_id) AND blocked_id = %(blocked_id)s ;'
+        query = 'SELECT * FROM blocks WHERE blocker_id = %(blocker_id)s AND blocked_id = %(blocked_id)s ;'
         results = connectToMySQL('lovebirds_schema').query_db(query, data)
         if results:
             return True

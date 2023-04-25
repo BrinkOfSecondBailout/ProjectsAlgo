@@ -22,11 +22,14 @@
             {% if profile %}
                 <a href="/pics/{{profile.id}}"><img src="/pics/{{profile.id}}" alt="profile-pic" class="photo-profile-main"></a>
             {% endif %}
+            {% if not profile %}
+                <img src="../static/files/noprofile.png" alt="no-profile-pic" class="photo-profile-main">
+            {% endif %}
         </div>
         <div class="nav-links">
             <h4><a href="/logout">Logout</a></h4>
             <h4><a href="/users/edit">Edit profile</a></h4>
-            <h4>You have <span class="red">{{user.new_message}}</span> new message</h4>
+            <h4>You have <span class="notifications">{{user.new_message}}</span> new message</h4>
             <h4><a href="/users/inbox">Inbox</a></h4>
         </div>
     </div>
