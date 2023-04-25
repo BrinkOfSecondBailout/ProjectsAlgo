@@ -43,7 +43,10 @@ class Wallnote:
                 'email': None,
                 'password': None,
                 'created_at': None,
-                'updated_at': None
+                'updated_at': None,
+                'num_of_blocks': None,
+                'new_message': None,
+                'suspended': None
             }
             one_note.creator = user.User(one_notes_creator_info)
             all_notes.append(one_note)

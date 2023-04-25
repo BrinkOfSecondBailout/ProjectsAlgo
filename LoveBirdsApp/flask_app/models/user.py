@@ -18,10 +18,15 @@ class User:
         self.password = data['password']
         self.created_at = data['created_at']
         self.updated_at = data['updated_at']
+        self.num_of_blocks = data['num_of_blocks']
+        self.new_message = data['new_message']
+        self.suspended = data['suspended']
         self.hearts_sent = []
         self.hearts_received = []
         self.messages = []
         self.matches = []
+        self.blocks = []
+        self.new_message = 0
         
 
 
@@ -83,7 +88,7 @@ class User:
 
     @classmethod
     def save_user(cls, data):
-        query = 'INSERT INTO users(first_name, last_name, email, password, created_at, updated_at) VALUES ( %(first_name)s, %(last_name)s, %(email)s, %(password)s , NOW(), NOW() );'
+        query = 'INSERT INTO users(first_name, last_name, email, password, created_at, updated_at, num_of_blocks, new_message, suspended) VALUES ( %(first_name)s, %(last_name)s, %(email)s, %(password)s , NOW(), NOW(), 0, 0, "no" );'
         return connectToMySQL('lovebirds_schema').query_db(query, data)
 
     @classmethod
@@ -138,12 +143,40 @@ class User:
                 'email': None,
                 'password': None,
                 'created_at': None,
-                'updated_at': None
+                'updated_at': None,
+                'num_of_blocks': None,
+                'new_message': None,
+                'suspended': None
             }
             one_message.sender = cls(one_message_sender_info)
             all_messages.append(one_message)
         return all_messages
 
+    @classmethod
+    def block_user(cls, data):
+        query = 'INSERT INTO blocks(reason, blocker_id, blocked_id) VALUES (%(reason)s, %(user_id)s, %(id)s );'
+        connectToMySQL('lovebirds_schema').query_db(query, data)
+        query = 'UPDATE users SET num_of_blocks = num_of_blocks + 1 WHERE id = %(id)s;'
+        connectToMySQL('lovebirds_schema').query_db(query, data)
+        query = 'SELECT num_of_blocks FROM users WHERE id = %(id)s;'
+        results = connectToMySQL('lovebirds_schema').query_db(query, data)
+        print(results[0]['num_of_blocks'])
+        if (results[0]['num_of_blocks']) == 3:
+            query = 'UPDATE users SET suspended = "yes" WHERE id = %(id)s;'
+            return connectToMySQL('lovebirds_schema').query_db(query, data)
+        return True
+    
+    @classmethod
+    def check_if_im_blocked(cls, data):
+        query = 'SELECT * FROM blocks WHERE blocker_id = %(blocker_id) AND blocked_id = %(blocked_id)s ;'
+        results = connectToMySQL('lovebirds_schema').query_db(query, data)
+        if results:
+            return True
+        query = 'SELECT * FROM blocks WHERE blocked_id = %(blocker_id)s AND blocker_id = %(blocked_id)s ;'
+        results = connectToMySQL('lovebirds_schema').query_db(query, data)
+        if results:
+            return True
+        return False
 
 
     @classmethod
@@ -177,7 +210,10 @@ class User:
                 'email': row['m.email'],
                 'password': row['m.password'],
                 'created_at': row['m.created_at'],
-                'updated_at': row['m.updated_at']
+                'updated_at': row['m.updated_at'], 
+                'num_of_blocks': None,
+                'new_message': None,
+                'suspended': None
             }
             user.hearts_sent.append(cls(user_data))
 
@@ -192,7 +228,10 @@ class User:
                 'email': row['m.email'],
                 'password': row['m.password'],
                 'created_at': row['m.created_at'],
-                'updated_at': row['m.updated_at']
+                'updated_at': row['m.updated_at'],
+                'num_of_blocks': None,
+                'new_message': None,
+                'suspended': None
             }
             user.hearts_received.append(cls(user_data))
 
@@ -229,7 +268,10 @@ class User:
                 'email': None,
                 'password': None,
                 'created_at': None,
-                'updated_at': None
+                'updated_at': None,
+                'num_of_blocks': None,
+                'new_message': None,
+                'suspended': None
             }
             one_user = cls(user_data)
             all_users.append(one_user)
@@ -250,7 +292,10 @@ class User:
                 'email': None,
                 'password': None,
                 'created_at': None,
-                'updated_at': None
+                'updated_at': None,
+                'num_of_blocks': None,
+                'new_message': None,
+                'suspended': None
             }
             one_user = cls(user_data)
             all_users.append(one_user)
@@ -271,7 +316,10 @@ class User:
                 'email': None,
                 'password': None,
                 'created_at': None,
-                'updated_at': None
+                'updated_at': None,
+                'num_of_blocks': None,
+                'new_message': None,
+                'suspended': None
             }
             one_user = cls(user_data)
             all_users.append(one_user)
@@ -292,7 +340,10 @@ class User:
                 'email': None,
                 'password': None,
                 'created_at': None,
-                'updated_at': None
+                'updated_at': None,
+                'num_of_blocks': None,
+                'new_message': None,
+                'suspended': None
             }
             one_user = cls(user_data)
             all_users.append(one_user)
@@ -313,7 +364,10 @@ class User:
                 'email': None,
                 'password': None,
                 'created_at': None,
-                'updated_at': None
+                'updated_at': None,
+                'num_of_blocks': None,
+                'new_message': None,
+                'suspended': None
             }
             one_user = cls(user_data)
             all_users.append(one_user)
@@ -334,7 +388,10 @@ class User:
                 'email': None,
                 'password': None,
                 'created_at': None,
-                'updated_at': None
+                'updated_at': None,
+                'num_of_blocks': None,
+                'new_message': None,
+                'suspended': None
             }
             one_user = cls(user_data)
             all_users.append(one_user)
@@ -355,7 +412,10 @@ class User:
                 'email': None,
                 'password': None,
                 'created_at': None,
-                'updated_at': None
+                'updated_at': None,
+                'num_of_blocks': None,
+                'new_message': None,
+                'suspended': None
             }
             one_user = cls(user_data)
             all_users.append(one_user)
@@ -376,8 +436,12 @@ class User:
                 'email': None,
                 'password': None,
                 'created_at': None,
-                'updated_at': None
+                'updated_at': None,
+                'num_of_blocks': None,
+                'new_message': None,
+                'suspended': None
             }
             one_user = cls(user_data)
             all_users.append(one_user)
         return all_users
+    

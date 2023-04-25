@@ -102,12 +102,16 @@
 
     </div>
     <div class="bottom">
-        <div>
+        <div class="bottom-navi">
             {% if session.user_id != user.id %}
-            <div class="heart-set">
-                <h5 class="heart-text">CLICK TO SEND A HEART</h5>
-                <a href="/sendheart/{{user.id}}"><img class="heart-shape" src="../static/files/heart2.png"></a>
-            </div>
+                <div class="heart-set">
+                    <h5 class="heart-text">SEND A HEART</h5>
+                    <a href="/sendheart/{{user.id}}"><img class="heart-shape" src="../static/files/heart2.png"></a>
+                </div>
+                <div class="heart-set">
+                    <h5 class="heart-text">BLOCK AND REPORT</h5>
+                    <a href="/block/{{user.id}}"><img class="block-button" src="../static/files/block.png"></a>
+                </div>
             {% endif %}
         </div>
     </div>

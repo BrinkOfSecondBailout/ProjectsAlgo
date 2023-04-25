@@ -6,6 +6,14 @@ from flask_app.models import user, message
 def new_message(id):
     if not session:
         return redirect('/logout')
+
+    data1 = {
+        'blocker_id': session['user_id'],
+        'blocked_id': id
+    }
+    if user.User.check_if_im_blocked(data1):
+        return redirect('/dashboard')
+
     data = {
         'user_id': id
     }

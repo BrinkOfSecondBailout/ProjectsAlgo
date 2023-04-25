@@ -14,7 +14,7 @@ body {
 .icons {
     text-align: center;
     background-color: rgb(36, 172, 230);
-    opacity: 0.9;
+    opacity: 0.8;
     border-radius: 20px;
     box-shadow: 4px 4px 5px 0px black;
     padding: 5px;
@@ -140,12 +140,9 @@ a:hover {
     height: 200px;
     overflow-x: hidden;
     overflow-y: auto;
-    direction: rtl;
+    direction: ltr;
 }
 
-.one-note {
-
-}
 
 .wall-text {
     background-color: rgb(255, 86, 86);
@@ -313,7 +310,11 @@ a:hover {
     -webkit-animation: pulsate 1s ease-out;
     -webkit-animation-iteration-count: infinite;
     opacity: 1.5;
-    width: 10%;
+    width: 70px;
+}
+
+.block-button {
+    width: 70px;
 }
 
 .heart-set {
@@ -328,6 +329,10 @@ a:hover {
     opacity: 0.9;
 }
 
+.bottom-navi {
+    display: flex;
+    width: 600px;
+}
 
 @-webkit-keyframes pulsate {
     0% {
@@ -372,9 +377,7 @@ a:hover {
     text-align:left;
 }
 
-.bottom {
-    
-}
+
 
 .form-bg {
     background-color: rgb(245, 195, 120);

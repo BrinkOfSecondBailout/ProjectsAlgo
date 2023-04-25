@@ -34,6 +34,9 @@ def process_login():
         return redirect('/')
     else:
         session['user_id'] = user1['id']
+        data = {
+            'user_id': session['user_id']
+        }
         return redirect('/dashboard')
     
 @app.route('/dashboard')
@@ -44,7 +47,6 @@ def dashboard():
         'user_id': session['user_id']
     }
     id = session['user_id']
-    
 
     all_pics = image.Photo.query.filter_by(user=id).all()
     
@@ -57,12 +59,16 @@ def dashboard():
 
     wall_notes = wallnote.Wallnote.get_all_notes_with_users()
 
+    user1 = user.User.get_info_by_id(data)
+    if user1.suspended == "yes":
+        return redirect('/suspended')
+
     for pic in all_pics:
         if(pic.profile == "yes"):
             profile_pic = pic
-            return render_template('dashboard.html', all_users=all_users, user=user.User.get_info_by_id(data), profile=profile_pic, user_with_matches=user_with_matches, wall_notes = wall_notes)
+            return render_template('dashboard.html', all_users=all_users, profile=profile_pic, user=user1, user_with_matches=user_with_matches, wall_notes = wall_notes)
 
-    return render_template('dashboard.html', all_users=all_users, user=user.User.get_info_by_id(data), user_with_matches=user_with_matches, wall_notes=wall_notes)
+    return render_template('dashboard.html', all_users=all_users, user=user1, user_with_matches=user_with_matches, wall_notes=wall_notes)
 
 
 
@@ -124,16 +130,22 @@ def update_pw():
 def show_profile(id):
     if not session:
         return redirect('/logout')
+
+    data1 = {
+        'blocker_id': session['user_id'],
+        'blocked_id': id
+    }
+    if user.User.check_if_im_blocked(data1):
+        return redirect('/dashboard')
+
     data = {
         'user_id': id
     }
-    data1 = {
-        'id': session['user_id']
-    }
+    
     attributes = attribute.Attribute.get_attribute_by_user_id(data)
-    # user_with_hearts = user.User.get_me_with_all_my_hearts(data1)
     all_pics = image.Photo.query.filter_by(user=id).all()
 
+    
 
     if not all_pics:
         flash('This user has not uploaded any pics yet!', 'upload')
@@ -192,6 +204,35 @@ def inbox_folder():
     }
     messages = user.User.get_all_messages_for_me(data)
     return render_template('inbox.html', messages=messages)
+
+@app.route('/block/<int:id>')
+def block_user(id):
+    if not session:
+        return redirect('/logout')
+    data = {
+        'user_id': id
+    }
+    user1 = user.User.get_info_by_id(data)
+    return render_template('block_user.html', user=user1)
+
+@app.route('/block/confirmed/<int:id>', methods=['POST'])
+def confirmed_block(id):
+    if not session:
+        return redirect('/logout')
+    if not (request.form.get('reason')):
+        flash('Please provide a reason, minimum 10 characters please...', 'block')
+        return redirect('/block/' + str(id))
+    if len(request.form.get('reason')) < 10:
+        flash('Please provide a reason, minimum 10 characters please...', 'block')
+        return redirect('/block/' + str(id))
+    data = {
+        'reason': request.form['reason'],
+        'user_id': session['user_id'],
+        'id': request.form['id']
+    }
+    user.User.block_user(data)
+    return redirect('/dashboard')
+
 
 @app.route('/filter')
 def filter_out():
@@ -289,3 +330,7 @@ def filter_by_body():
     }
     users = user.User.get_users_by_body_filter(data)
     return render_template('filter_results.html', users=users)
+
+@app.route('/suspended')
+def suspended_user():
+    return render_template('suspended.html')
