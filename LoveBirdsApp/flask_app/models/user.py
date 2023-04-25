@@ -26,7 +26,6 @@ class User:
         self.messages = []
         self.matches = []
         self.blocks = []
-        self.new_message = 0
         
 
 
@@ -151,6 +150,11 @@ class User:
             one_message.sender = cls(one_message_sender_info)
             all_messages.append(one_message)
         return all_messages
+    
+    @classmethod
+    def reset_new_message_count(cls, data):
+        query = 'UPDATE users SET new_message = 0 WHERE id = %(user_id)s;'
+        return connectToMySQL('lovebirds_schema').query_db(query, data)
 
     @classmethod
     def block_user(cls, data):

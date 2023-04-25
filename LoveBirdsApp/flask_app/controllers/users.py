@@ -203,6 +203,7 @@ def inbox_folder():
         'user_id': session['user_id']
     }
     messages = user.User.get_all_messages_for_me(data)
+    user.User.reset_new_message_count(data)
     return render_template('inbox.html', messages=messages)
 
 @app.route('/block/<int:id>')

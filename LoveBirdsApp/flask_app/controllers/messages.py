@@ -27,6 +27,7 @@ def process_message(id):
     if not message.Message.validate_message(request.form):
         return redirect('/messages/new/' + str(id))
     message.Message.save_message(request.form)
+    
     return redirect('/users/' + str(id))
 
 @app.route('/messages/delete/<int:id>')

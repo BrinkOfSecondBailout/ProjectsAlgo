@@ -24,6 +24,8 @@ class Message:
     @classmethod
     def save_message(cls, data):
         query = 'INSERT INTO messages (text, created_at, updated_at, sender_id, receiver_id) VALUES ( %(text)s , NOW() , NOW() , %(sender_id)s , %(receiver_id)s );'
+        connectToMySQL('lovebirds_schema').query_db(query, data)
+        query = 'UPDATE users SET new_message = new_message + 1 WHERE id = %(receiver_id)s;'
         return connectToMySQL('lovebirds_schema').query_db(query, data)
     
     @classmethod
