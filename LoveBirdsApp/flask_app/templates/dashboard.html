@@ -89,14 +89,17 @@
                 <div class="wall-box">
                     {% for note in wall_notes %}
                         <div class="one-note">
-                            <div class="wall-text"><p>{{note.text}}</p></div>
-                            <a href="/users/{{note.creator.id}}"><p>{{note.creator.first_name}}</p></a>
-                            <div>
-                                <p>{{note.created_at.strftime("%I:%M %p - %b %d")}}</p>
-                                {% if note.creator.id == session.user_id %}
-                                    <a href="wall/delete/{{note.id}}"><button class="delete-button">delete</button></a>
-                                {% endif %}
+                            <div class="wall-text">
+                                <span class="wall-span">
+                                <a href="/users/{{note.creator.id}}">
+                                <h5>{{note.creator.first_name}}: 
+                                </a>{{note.text}}</h5>
+                                </span>
                             </div>
+                            <h5>{{note.created_at.strftime("%I:%M %p - %b %d")}}</h5>
+                            {% if note.creator.id == session.user_id %}
+                                <a href="wall/delete/{{note.id}}"><button class="delete-button">delete</button></a>
+                            {% endif %}
                         </div>
                     {% endfor %}
                 </div>
@@ -107,6 +110,15 @@
                     <textarea class="regular-input" rows="3" cols="20" name="text"></textarea>
                     <input type="submit" value="Post it!" class="delete-button">
                 </form>
+                <div>
+                    {% with messages = get_flashed_messages(category_filter=['wall']) %}
+                        {% if messages %}
+                            {% for message in messages %}
+                                <h4>*{{message}}</h4>
+                            {% endfor %}
+                        {% endif %}
+                    {% endwith %}
+                </div>
             </div>
         </div>
     </div>

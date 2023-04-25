@@ -8,7 +8,7 @@ def process_wall_note():
     if not session:
         return redirect('/logout')
     if not wallnote.Wallnote.validate_note(request.form):
-        return redirect('/wall/new')
+        return redirect('/dashboard')
     data = {
         'text': request.form['text'],
         'user_id': session['user_id']

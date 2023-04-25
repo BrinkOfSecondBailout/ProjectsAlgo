@@ -19,6 +19,9 @@ class Wallnote:
         if  not (data.get('text')):
             flash('Please write something on the wall!', 'wall')
             is_valid = False
+        if len(data['text']) > 25:
+            flash('Maximum 25 words, sorry!', 'wall')
+            is_valid = False
         return is_valid
     
     @classmethod

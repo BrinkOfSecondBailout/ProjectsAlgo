@@ -118,12 +118,11 @@ a:hover {
 }
 
 .wall-box {
-    background-color: rgb(245, 195, 120);
+    background-image: url(../static/files/blue.jpg);
     opacity: 0.9;
     width: 300px;
     box-shadow: 4px 4px 5px 0px black;
     border-radius: 10px;
-    margin-bottom: 10px;
     text-align: center;
     height: 200px;
     overflow-x: hidden;
@@ -136,13 +135,25 @@ a:hover {
 }
 
 .wall-text {
-    background-color: rgb(255, 255, 255);
+    background-color: rgb(255, 86, 86);
     opacity: 0.9;
-    width: 200px;
+    width: 220px;
     box-shadow: 4px 4px 5px 0px black;
     border-radius: 10px;
     text-align: center;
+    margin-top: -5px;
+    height: 50px;
+    /* overflow-x: hidden;
+    overflow-y: auto;
+    direction: rtl; */
+    
 }
+
+.wall-span {
+    position: relative;
+    top: -20px;
+}
+
 
 .upload-box {
     width: 500px;
