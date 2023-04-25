@@ -1,6 +1,6 @@
 from flask_app import app
 from flask import render_template, redirect, request, session, flash
-from flask_app.models import user, image, attribute
+from flask_app.models import user, image, attribute, wallnote
 from flask_bcrypt import Bcrypt
 
 bcrypt = Bcrypt(app)
@@ -55,12 +55,14 @@ def dashboard():
     }
     user_with_matches = user.User.get_me_with_all_my_hearts(data2)
 
+    wall_notes = wallnote.Wallnote.get_all_notes_with_users()
+
     for pic in all_pics:
         if(pic.profile == "yes"):
             profile_pic = pic
-            return render_template('dashboard.html', all_users=all_users, user=user.User.get_info_by_id(data), profile=profile_pic, user_with_matches=user_with_matches)
+            return render_template('dashboard.html', all_users=all_users, user=user.User.get_info_by_id(data), profile=profile_pic, user_with_matches=user_with_matches, wall_notes = wall_notes)
 
-    return render_template('dashboard.html', all_users=all_users, user=user.User.get_info_by_id(data), user_with_matches=user_with_matches)
+    return render_template('dashboard.html', all_users=all_users, user=user.User.get_info_by_id(data), user_with_matches=user_with_matches, wall_notes=wall_notes)
 
 
 
@@ -200,3 +202,90 @@ def filter_out():
 def logout():
     session.clear()
     return redirect('/')
+
+@app.route('/filter/age', methods=['POST'])
+def filter_by_age():
+    if not session:
+        return redirect('/logout')
+    if request.form.get('param') == None or request.form['age'] == None:
+        flash("Please check a box and pick an age")
+        return redirect('/filter')
+    if request.form['param'] == 'above':
+        data = {
+            'age': int(request.form['age'])
+        }
+        users = user.User.get_users_by_age_higher_filter(data)
+        return render_template('filter_results.html', users=users)
+    if request.form['param'] == 'below':
+        data = {
+            'age': int(request.form['age'])
+        }
+        users = user.User.get_users_by_age_lower_filter(data)
+        return render_template('filter_results.html', users=users)
+    return redirect('/filter')
+
+
+@app.route('/filter/gender', methods=['POST'])
+def filter_by_gender():
+    if not session:
+        return redirect('/logout')
+    data = {
+        'gender': request.form['gender']
+    }
+    users = user.User.get_users_by_gender_filter(data)
+    return render_template('filter_results.html', users=users)
+
+
+@app.route('/filter/smoker', methods=['POST'])
+def filter_by_smoker():
+    if not session:
+        return redirect('/logout')
+    data = {
+        'smoker': request.form['smoker']
+    }
+    users = user.User.get_users_by_smoker_filter(data)
+    return render_template('filter_results.html', users=users)
+
+
+@app.route('/filter/drinker', methods=['POST'])
+def filter_by_drinker():
+    if not session:
+        return redirect('/logout')
+    data = {
+        'drinker': request.form['drinker']
+    }
+    users = user.User.get_users_by_drinker_filter(data)
+    return render_template('filter_results.html', users=users)
+
+
+@app.route('/filter/goal', methods=['POST'])
+def filter_by_goal():
+    if not session:
+        return redirect('/logout')
+    data = {
+        'dating_goal': request.form['dating_goal']
+    }
+    users = user.User.get_users_by_goal_filter(data)
+    return render_template('filter_results.html', users=users)
+
+
+@app.route('/filter/hobbies', methods=['POST'])
+def filter_by_hobbies():
+    if not session:
+        return redirect('/logout')
+    data = {
+        'hobbies': request.form['hobbies']
+    }
+    users = user.User.get_users_by_hobbies_filter(data)
+    return render_template('filter_results.html', users=users)
+
+
+@app.route('/filter/body', methods=['POST'])
+def filter_by_body():
+    if not session:
+        return redirect('/logout')
+    data = {
+        'body_type': request.form['body_type']
+    }
+    users = user.User.get_users_by_body_filter(data)
+    return render_template('filter_results.html', users=users)

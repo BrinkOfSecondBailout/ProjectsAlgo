@@ -4,6 +4,7 @@ from flask_bcrypt import Bcrypt
 from flask_app import app
 from flask import flash
 from flask_app.models.message import Message
+from flask_app.models.attribute import Attribute
 bcrypt = Bcrypt(app)
 EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$')
 
@@ -212,4 +213,171 @@ class User:
                     print("Congrats! It's a match!")
                     return True
         return False
+    
+    @classmethod
+    def get_users_by_age_higher_filter(cls, data):
+        query = 'SELECT * FROM users JOIN attributes ON users.id = attributes.user_id WHERE age >= %(age)s;'
+        results = connectToMySQL('lovebirds_schema').query_db(query, data)
+        if not results:
+            return False
+        all_users = []
+        for row in results:
+            user_data = {
+                'id': row['id'],
+                'first_name': row['first_name'],
+                'last_name': row['last_name'],
+                'email': None,
+                'password': None,
+                'created_at': None,
+                'updated_at': None
+            }
+            one_user = cls(user_data)
+            all_users.append(one_user)
+        return all_users
+    
+    @classmethod
+    def get_users_by_age_lower_filter(cls, data):
+        query = 'SELECT * FROM users JOIN attributes ON users.id = attributes.user_id WHERE age <= %(age)s;'
+        results = connectToMySQL('lovebirds_schema').query_db(query, data)
+        if not results:
+            return False
+        all_users = []
+        for row in results:
+            user_data = {
+                'id': row['id'],
+                'first_name': row['first_name'],
+                'last_name': row['last_name'],
+                'email': None,
+                'password': None,
+                'created_at': None,
+                'updated_at': None
+            }
+            one_user = cls(user_data)
+            all_users.append(one_user)
+        return all_users
 
+    @classmethod
+    def get_users_by_gender_filter(cls, data):
+        query = 'SELECT * FROM users JOIN attributes ON users.id = attributes.user_id WHERE gender = %(gender)s;'
+        results = connectToMySQL('lovebirds_schema').query_db(query, data)
+        if not results:
+            return False
+        all_users = []
+        for row in results:
+            user_data = {
+                'id': row['id'],
+                'first_name': row['first_name'],
+                'last_name': row['last_name'],
+                'email': None,
+                'password': None,
+                'created_at': None,
+                'updated_at': None
+            }
+            one_user = cls(user_data)
+            all_users.append(one_user)
+        return all_users
+    
+    @classmethod
+    def get_users_by_smoker_filter(cls, data):
+        query = 'SELECT * FROM users JOIN attributes ON users.id = attributes.user_id WHERE smoker = %(smoker)s;'
+        results = connectToMySQL('lovebirds_schema').query_db(query, data)
+        if not results:
+            return False
+        all_users = []
+        for row in results:
+            user_data = {
+                'id': row['id'],
+                'first_name': row['first_name'],
+                'last_name': row['last_name'],
+                'email': None,
+                'password': None,
+                'created_at': None,
+                'updated_at': None
+            }
+            one_user = cls(user_data)
+            all_users.append(one_user)
+        return all_users
+    
+    @classmethod
+    def get_users_by_drinker_filter(cls, data):
+        query = 'SELECT * FROM users JOIN attributes ON users.id = attributes.user_id WHERE drinker = %(drinker)s;'
+        results = connectToMySQL('lovebirds_schema').query_db(query, data)
+        if not results:
+            return False
+        all_users = []
+        for row in results:
+            user_data = {
+                'id': row['id'],
+                'first_name': row['first_name'],
+                'last_name': row['last_name'],
+                'email': None,
+                'password': None,
+                'created_at': None,
+                'updated_at': None
+            }
+            one_user = cls(user_data)
+            all_users.append(one_user)
+        return all_users
+    
+    @classmethod
+    def get_users_by_goal_filter(cls, data):
+        query = 'SELECT * FROM users JOIN attributes ON users.id = attributes.user_id WHERE dating_goal = %(dating_goal)s;'
+        results = connectToMySQL('lovebirds_schema').query_db(query, data)
+        if not results:
+            return False
+        all_users = []
+        for row in results:
+            user_data = {
+                'id': row['id'],
+                'first_name': row['first_name'],
+                'last_name': row['last_name'],
+                'email': None,
+                'password': None,
+                'created_at': None,
+                'updated_at': None
+            }
+            one_user = cls(user_data)
+            all_users.append(one_user)
+        return all_users
+    
+    @classmethod
+    def get_users_by_hobbies_filter(cls, data):
+        query = 'SELECT * FROM users JOIN attributes ON users.id = attributes.user_id WHERE hobbies = %(hobbies)s;'
+        results = connectToMySQL('lovebirds_schema').query_db(query, data)
+        if not results:
+            return False
+        all_users = []
+        for row in results:
+            user_data = {
+                'id': row['id'],
+                'first_name': row['first_name'],
+                'last_name': row['last_name'],
+                'email': None,
+                'password': None,
+                'created_at': None,
+                'updated_at': None
+            }
+            one_user = cls(user_data)
+            all_users.append(one_user)
+        return all_users
+
+    @classmethod
+    def get_users_by_body_filter(cls, data):
+        query = 'SELECT * FROM users JOIN attributes ON users.id = attributes.user_id WHERE body_type = %(body_type)s;'
+        results = connectToMySQL('lovebirds_schema').query_db(query, data)
+        if not results:
+            return False
+        all_users = []
+        for row in results:
+            user_data = {
+                'id': row['id'],
+                'first_name': row['first_name'],
+                'last_name': row['last_name'],
+                'email': None,
+                'password': None,
+                'created_at': None,
+                'updated_at': None
+            }
+            one_user = cls(user_data)
+            all_users.append(one_user)
+        return all_users

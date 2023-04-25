@@ -111,8 +111,37 @@ a:hover {
 .total-box {
     width: 500px;
     padding: 20px;
-    /* background-color:red; */
-    
+}
+
+.center {
+    text-align: center;
+}
+
+.wall-box {
+    background-color: rgb(245, 195, 120);
+    opacity: 0.9;
+    width: 300px;
+    box-shadow: 4px 4px 5px 0px black;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    text-align: center;
+    height: 200px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    direction: rtl;
+}
+
+.one-note {
+
+}
+
+.wall-text {
+    background-color: rgb(255, 255, 255);
+    opacity: 0.9;
+    width: 200px;
+    box-shadow: 4px 4px 5px 0px black;
+    border-radius: 10px;
+    text-align: center;
 }
 
 .upload-box {
@@ -126,8 +155,25 @@ a:hover {
     width: 100%;
     box-shadow: 4px 4px 5px 0px black;
     border-radius: 10px;
+    
     margin-bottom: 10px;
     text-align: center;
+}
+
+.results {
+    text-align: center;
+}
+
+.results-box {
+    background-color: rgb(245, 195, 120);
+    opacity: 0.9;
+    width: 500px;
+    margin-top: 20px;
+    box-shadow: 4px 4px 5px 0px black;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    text-align: center;
+    display: flex;
 }
 
 .lovebirds-box {
@@ -138,6 +184,12 @@ a:hover {
     border-radius: 10px;
     margin-bottom: 10px;
     padding-bottom: 10px;
+    text-align: center;
+}
+
+.radio-boxes {
+    display: flex;
+    width: 550px;
     text-align: center;
 }
 
@@ -166,6 +218,7 @@ a:hover {
 .long-button {
     width: 50%;
     border-radius: 20px;
+    box-shadow: 2px 2px 5px 0px black;
 }
 
 .regular-button {
@@ -177,7 +230,7 @@ a:hover {
     width: 250px;
     height: 250px;
     border-radius: 50%;
-    box-shadow: 4px 4px 5px 0px black;
+    box-shadow: 4px 4px 5px 5px black;
     padding: 3px;
 }
 
@@ -185,7 +238,7 @@ a:hover {
     width: 200px;
     height: 200px;
     border-radius: 50%;
-    box-shadow: 2px 2px 5px 0px black;
+    box-shadow: 2px 2px 5px 5px black;
     padding: 3px;
 }
 
@@ -195,7 +248,7 @@ a:hover {
     width: 140px;
     height: 100px;
     border-radius: 20px;
-    box-shadow: 2px 2px 5px 0px black;
+    box-shadow: 2px 2px 5px 2px black;
     padding: 3px;
 }
 
@@ -274,6 +327,7 @@ a:hover {
     padding: 10px;
     width: 300px;
     margin-left: 15px;
+    margin-top: 10px;
     margin-bottom: 10px;
     color: black;
 }
@@ -304,6 +358,7 @@ a:hover {
     width: 100%;
     box-shadow: 4px 4px 5px 0px black;
     border-radius: 10px;
+    margin-top: 10px;
     margin-bottom: 10px;
     text-align: center;
 }

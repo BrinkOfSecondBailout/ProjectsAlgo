@@ -23,7 +23,7 @@
                 <p>{{message.text}}</p>
                 <p>{{message.created_at.strftime("%I:%M %p %a - %b %d, %y")}}</p>
                 <a href="/messages/new/{{message.sender.id}}"><button class="delete-button">Reply</button></a>
-                <a href="/messages/delete/{{message.id}}"><button class="delete-button">Delete</button></a>
+                <a href="/messages/delete/{{message.id}}"><button class="delete-button">Delete</button></a><br><br>
             </div>
         {% endfor %}
     {% endif %}

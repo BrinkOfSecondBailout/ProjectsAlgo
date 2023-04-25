@@ -16,8 +16,8 @@
 <body>
 
     <div>
-    <h1>Hello, <a href="/users/{{session.user_id}}">{{user.first_name}}</a></h1>
-    <div class="profile-bar">
+        <h1>Hello, <a href="/users/{{session.user_id}}">{{user.first_name}}</a></h1>
+        <div class="profile-bar">
         <div class="profile-pic">
             {% if profile %}
                 <a href="/pics/{{profile.id}}"><img src="/pics/{{profile.id}}" alt="profile-pic" class="photo-profile-main"></a>
@@ -30,59 +30,85 @@
         </div>
     </div>
 
-    <div class="total-box">
+    <div class="total">
+        <div class="left">
+            <div class="total-box">
+                <div class="lovebirds-box">
+                        <h2>Browse All Lovebirds</h2>
+                        <div class="flex2">
+                            {% for user in all_users %}
+                                {% if session.user_id != user.id %}
+                                    <h4><a href="/users/{{user.id}}">{{user.first_name}} {{user.last_name}}</a></h4>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                        <a href="/filter"><button class="delete-button">Filter</button></a>
+                </div>
 
-    <div class="lovebirds-box">
-        
-            <h2>Browse All Lovebirds</h2>
-            <div class="flex2">
-                {% for user in all_users %}
-                    {% if session.user_id != user.id %}
-                        <h4><a href="/users/{{user.id}}">{{user.first_name}} {{user.last_name}}</a></h4>
+                <div class="bio-box">
+                    <h2>All My Matches:</h2>
+                    {% if not user_with_matches.matches %}
+                        <p>No matches yet... you got work to do!</p>
                     {% endif %}
-                {% endfor %}
+
+                    {% if user_with_matches.matches %}
+                        {% for match in user_with_matches.matches %}
+                            {% if match.first_name == None %}
+                                <p>No matches yet... you got work to do!</p>
+                            {% endif %}
+                            <div class="flex">
+                                {% if match.first_name != None %}
+                                    <h4><a href="/users/{{match.id}}">{{ match.first_name }}</a></h4>
+                                    <a href="/messages/new/{{match.id}}"><button class="delete-button">Message</button></a>
+                                {% endif %}
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+
+                <div class="bio-box">
+                    <h3>Hearts I've Sent Out To:</h3>
+                    {% for receiver in user_with_matches.hearts_sent %}
+                        {% if not receiver.id%}
+                            <p>No hearts yet... send out more hearts!</p>
+                        {% endif %}
+                        {% if receiver.id %}
+                            <div class="flex">
+                                <h4><a href="/users/{{receiver.id}}">{{receiver.first_name}}</a></h4>
+                                <a href="/unsend/{{receiver.id}}"><button class="delete-button">Unsend</button></a>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
             </div>
-            <a href="/filter"><button class="delete-button">Filter</button></a>
-        
-    </div>
+        </div>
 
-
-    <div class="bio-box">
-        <h2>All My Matches:</h2>
-        {% if not user_with_matches.matches %}
-            <p>No matches yet... you got work to do!</p>
-        {% endif %}
-
-        {% if user_with_matches.matches %}
-            {% for match in user_with_matches.matches %}
-                {% if match.first_name == None %}
-                    <p>No matches yet... you got work to do!</p>
-                {% endif %}
-                <div class="flex">
-                    {% if match.first_name != None %}
-                        <h4><a href="/users/{{match.id}}">{{ match.first_name }}</a></h4>
-                        <a href="/messages/new/{{match.id}}"><button class="delete-button">Message</button></a>
-                    {% endif %}
+        <div class="right">
+            <div class="center">
+                <h2>Wall Scribbles:</h2>
+                <div class="wall-box">
+                    {% for note in wall_notes %}
+                        <div class="one-note">
+                            <div class="wall-text"><p>{{note.text}}</p></div>
+                            <a href="/users/{{note.creator.id}}"><p>{{note.creator.first_name}}</p></a>
+                            <div>
+                                <p>{{note.created_at.strftime("%I:%M %p - %b %d")}}</p>
+                                {% if note.creator.id == session.user_id %}
+                                    <a href="wall/delete/{{note.id}}"><button class="delete-button">delete</button></a>
+                                {% endif %}
+                            </div>
+                        </div>
+                    {% endfor %}
                 </div>
-            {% endfor %}
-        {% endif %}
-    </div>
-
-    <div class="bio-box">
-        <h3>Hearts I've Sent Out To:</h3>
-        {% for receiver in user_with_matches.hearts_sent %}
-            {% if not receiver.id%}
-                <p>No hearts yet... send out more hearts!</p>
-            {% endif %}
-            {% if receiver.id %}
-                <div class="flex">
-                    <h4><a href="/users/{{receiver.id}}">{{receiver.first_name}}</a></h4>
-                    <a href="/unsend/{{receiver.id}}"><button class="delete-button">Unsend</button></a>
-                </div>
-            {% endif %}
-        {% endfor %}
-    </div>
-
+                <form action="/wall/create" method="post">
+                    <label for="text">
+                        <h4>Write on the wall:</h4>
+                    </label>
+                    <textarea class="regular-input" rows="3" cols="20" name="text"></textarea>
+                    <input type="submit" value="Post it!" class="delete-button">
+                </form>
+            </div>
+        </div>
     </div>
 
     </div>
