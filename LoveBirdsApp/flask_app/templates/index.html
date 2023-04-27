@@ -25,6 +25,7 @@
 
     <div class="container">
         <div class="left">
+            <div class="glass-box">
             <h2 class="header-text">Register</h2>
             <div class="red">
                 {% with messages = get_flashed_messages(category_filter=['registration']) %}
@@ -48,8 +49,10 @@
                 <input class="regular-input" type="password" name="confirm_password"><br><br>
                 <input class="regular-button" type="submit" value="Submit">
             </form>
+            </div>
         </div>
         <div class="right">
+            <div class="glass-box">
             <h2 class="header-text">Log in</h2>
             <div class="red">
                 {% with messages = get_flashed_messages(category_filter=['login']) %}
@@ -67,6 +70,7 @@
                 <input class="regular-input" type="password" name="password"><br><br>
                 <input class="regular-button" type="submit" value="Submit">
             </form>
+            </div>
         </div>
     </div>
     </div>

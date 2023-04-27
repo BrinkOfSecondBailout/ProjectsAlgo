@@ -194,6 +194,34 @@ a:hover {
     -webkit-animation-iteration-count: infinite;
 }
 
+.nav-links {
+    text-align: right;
+}
+
+.glass-box {
+    position: relative;
+    background: transparent;
+    border: 2px solid rgba(255, 255, 255, .5);
+    border-radius: 20px;
+    backdrop-filter: blur(15px);
+    box-shadow: 0 0 30px rgba(0, 0, 0, .5);
+    padding-top: 20px;
+    padding-bottom: 20px;
+
+}
+
+.bottom-nav-glass {
+    position: relative;
+    background: transparent;
+    border: 2px solid rgba(255, 255, 255, .5);
+    border-radius: 20px;
+    backdrop-filter: blur(30px);
+    box-shadow: 0 0 30px rgba(0, 0, 0, .5);
+    padding-top: 20px;
+    padding-bottom: 20px;
+    display: flex;
+}
+
 .results-box {
     background-color: rgb(245, 195, 120);
     opacity: 0.9;

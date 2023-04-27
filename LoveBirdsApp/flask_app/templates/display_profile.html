@@ -77,17 +77,17 @@
             <div class="bio-box">
                 <h2>A little bit about myself:</h2>
                 {% if attributes %}
-                    <p>{{attributes.description}}</p>
-                    <p>{{attributes.age}} years of age</p>
-                    <p>Gender is {{attributes.gender}}</p>
-                    <p>I {{attributes.smoker}} smoke</p>
-                    <p>I {{attributes.drinker}} drink</p>
-                    <p>Looking for {{attributes.dating_goal}}</p>
-                    <p>My favorite hobby would have to be {{attributes.hobbies}}</p>
-                    <p>My body type is {{attributes.body_type}} ;)</p>
+                    <h4>{{attributes.description}}</h4>
+                    <h4>{{attributes.age}} years of age</h4>
+                    <h4>Gender is {{attributes.gender}}</h4>
+                    <h4>I {{attributes.smoker}} smoke</h4>
+                    <h4>I {{attributes.drinker}} drink</h4>
+                    <h4>Looking for {{attributes.dating_goal}}</h4>
+                    <h4>My favorite hobby would have to be {{attributes.hobbies}}</h4>
+                    <h4>My body type is {{attributes.body_type}} ;)</h4>
                 {% endif %}
                 {% if not attributes %}
-                    <p>No details for this user yet... :(</p>
+                    <h4>No details for this user yet... :(</h4>
                 {% endif %}
             </div>
         </div>
@@ -106,7 +106,7 @@
     </div>
     <div class="bottom">
         {% if session.user_id != user.id %}
-            <div class="bottom-navi">
+            <div class="bottom-nav-glass">
                 <div class="heart-set">
                     <h5 class="heart-text">SEND A HEART</h5>
                     <a href="/sendheart/{{user.id}}"><img class="heart-shape" src="../static/files/heart2.png"></a>

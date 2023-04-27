@@ -28,6 +28,9 @@
         {% if profile %}
             <img src="/pics/{{profile.id}}" alt="profile-pic" class="photo-profile">
         {% endif %}
+        {% if not profile %}
+            <img src="../static/files/noprofile.png" alt="no-profile-pic" class="photo-profile-main">
+        {% endif %}
     </div>
     <div>
         <h4><a href="/changepw">Change your password</a></h4>

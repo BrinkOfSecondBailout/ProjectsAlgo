@@ -16,23 +16,27 @@
 <body>
 
     <div>
+
         <h1>Hello, <a href="/users/{{session.user_id}}">{{user.first_name}}</a></h1>
         <div class="profile-bar">
-        <div class="profile-pic">
-            {% if profile %}
-                <a href="/pics/{{profile.id}}"><img src="/pics/{{profile.id}}" alt="profile-pic" class="photo-profile-main"></a>
-            {% endif %}
-            {% if not profile %}
-                <img src="../static/files/noprofile.png" alt="no-profile-pic" class="photo-profile-main">
-            {% endif %}
+            <div class="profile-pic">
+                {% if profile %}
+                    <a href="/pics/{{profile.id}}"><img src="/pics/{{profile.id}}" alt="profile-pic" class="photo-profile-main"></a>
+                {% endif %}
+                {% if not profile %}
+                    <img src="../static/files/noprofile.png" alt="no-profile-pic" class="photo-profile-main">
+                {% endif %}
+            </div>
+            <div class="nav-links">
+                <div class="glass-box">
+                <h4><a href="/logout">Logout</a></h4>
+                <h4><a href="/users/edit">Edit profile</a></h4>
+                <h4>You have <span class="notifications">{{user.new_message}}</span> new message</h4>
+                <h4><a href="/users/inbox">Inbox</a></h4>
+                </div>
+            </div>
         </div>
-        <div class="nav-links">
-            <h4><a href="/logout">Logout</a></h4>
-            <h4><a href="/users/edit">Edit profile</a></h4>
-            <h4>You have <span class="notifications">{{user.new_message}}</span> new message</h4>
-            <h4><a href="/users/inbox">Inbox</a></h4>
-        </div>
-    </div>
+    
 
     <div class="total">
         <div class="left">
@@ -107,6 +111,7 @@
                         </div>
                     {% endfor %}
                 </div>
+                
                 <form action="/wall/create" method="post">
                     <label for="text">
                         <h4>Write on the wall:</h4>
@@ -114,7 +119,7 @@
                     <textarea class="regular-input" rows="3" cols="20" name="text"></textarea>
                     <input type="submit" value="Post it!" class="delete-button">
                 </form>
-                <div>
+
                     {% with messages = get_flashed_messages(category_filter=['wall']) %}
                         {% if messages %}
                             {% for message in messages %}
