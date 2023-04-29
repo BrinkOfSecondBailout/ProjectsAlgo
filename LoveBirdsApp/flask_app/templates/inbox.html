@@ -17,15 +17,17 @@
     <div class="flex-column">
     <h1>All My Messages:</h1>
     {% if messages %}
+        <div class="message-scroll">
         {% for message in messages %}
             <div class="message-box">
-                <h4>From: {{message.sender.first_name}}</h4>
-                <h4>{{message.text}}</h4>
+                <h4>From: <a href="/users/{{message.sender.id}}">{{message.sender.first_name}}</a></h4>
+                <h4><u>{{message.text}}</u></h4>
                 <p>{{message.created_at.strftime("%I:%M %a - %b %d")}}</p>
                 <a href="/messages/new/{{message.sender.id}}"><button class="delete-button">Reply</button></a>
                 <a href="/messages/delete/{{message.id}}"><button class="delete-button">Delete</button></a><br><br>
             </div>
         {% endfor %}
+        </div>
     {% endif %}
 
     {% if not messages %}

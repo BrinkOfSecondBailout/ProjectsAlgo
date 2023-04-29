@@ -14,60 +14,60 @@
 </head>
 <body>
 
-    <div>
+
     <div class="top">
         <h1>Edit Your Profile, {{user.first_name}}</h1>
         <h4><a href="/dashboard">Back to dashboard</a></h4>
     </div>
     
     <div class="total">
-    
-    <div class="left">
-
-    <div>
-        {% if profile %}
-            <img src="/pics/{{profile.id}}" alt="profile-pic" class="photo-profile">
-        {% endif %}
-        {% if not profile %}
-            <img src="../static/files/noprofile.png" alt="no-profile-pic" class="photo-profile-main">
-        {% endif %}
-    </div>
-    <div>
-        <h4><a href="/changepw">Change your password</a></h4>
-        {% if not attributes %}
-            <a href="/attributes/new">
-                <h4>Add your bio/preferences</h4>
-            </a>
-        {% endif %}
-        {% if attributes %}
-            <a href="/attributes/edit">
-                <h4>Update your bio/preferences</h4>
-            </a>
-        {% endif %}
-    </div>
-
-    <div>
-        <h4>Click on the photo you want as your profile picture!</h4>
-        <h4>(Scroll if needed)</h4>
-        <div class="flex">
-            <div class="flex-column">
-                <div class="all-photos">
-                    {% if pics %}
-                    {% for pic in pics %}
-                    <div class="one-photo">
-                        <a href="/makeprofile/{{pic.id}}">
-                            <img src="/pics/{{pic.id}}" alt="image {{pic.id}}" class="photo-list">
-                        </a>
-                        <a href="/pics/delete/{{pic.id}}"><button class="delete-button">Delete</button></a>
-                    </div>
-                    {% endfor %}
+        <div class="left">
+            <div class="glass-box">
+                <div>
+                    {% if profile %}
+                        <img src="/pics/{{profile.id}}" alt="profile-pic" class="photo-profile">
                     {% endif %}
-    
+                    {% if not profile %}
+                        <img src="../static/files/noprofile.png" alt="no-profile-pic" class="photo-profile-main">
+                    {% endif %}
+                </div>
+                <div>
+                    <h4><a href="/changepw">Change your password</a></h4>
+                    {% if not attributes %}
+                        <a href="/attributes/new">
+                            <h4>Add your bio/preferences</h4>
+                        </a>
+                    {% endif %}
+                    {% if attributes %}
+                        <a href="/attributes/edit">
+                            <h4>Update your bio/preferences</h4>
+                        </a>
+                    {% endif %}
+                </div>
+            
+
+                <div>
+                    <h4>Click on the photo you want as your profile picture!</h4>
+                    <h4>(Scroll if needed)</h4>
+                    <div class="flex">
+                        <div class="flex-column">
+                            <div class="all-photos">
+                                {% if pics %}
+                                {% for pic in pics %}
+                                <div class="one-photo">
+                                    <a href="/makeprofile/{{pic.id}}">
+                                        <img src="/pics/{{pic.id}}" alt="image {{pic.id}}" class="photo-list">
+                                    </a>
+                                    <a href="/pics/delete/{{pic.id}}"><button class="delete-button">Delete</button></a>
+                                </div>
+                                {% endfor %}
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    </div>
     <div class="right">
 
         <div class="upload-box">
@@ -107,15 +107,15 @@
                     </div>
                     <form action="/users/update" method="post">
                         <label for="first_name">
-                            <p>First Name:</p>
+                            <h4>First Name:</h4>
                         </label>
                         <input class="regular-input" type="text" name="first_name" value={{user.first_name}}><br>
                         <label for="last_name">
-                            <p>Last Name:</p>
+                            <h4>Last Name:</h4>
                         </label>
                         <input class="regular-input" type="text" name="last_name" value={{user.last_name}}><br>
                         <label for="email">
-                            <p>Email:</p>
+                            <h4>Email:</h4>
                         </label>
                         <input class="regular-input" type="email" name="email" value={{user.email}}><br><br>
                         <input type="submit" class="delete-button" value="Update"><br><br><br>
@@ -125,13 +125,6 @@
         </div>
 
     </div>
-
-    <div class="bottom"></div>
-    </div>
-
-    </div>
-
-
 
 
 

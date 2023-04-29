@@ -4,6 +4,22 @@
     width: 85%;
 }
 
+::-webkit-scrollbar {
+    width: 0.5em;
+}
+::-webkit-scrollbar-track {
+    background: rgb(0, 0, 0);
+    border-radius: 100vw;
+}
+::-webkit-scrollbar-thumb {
+    background: rgb(255, 144, 54);
+    border-radius: 100vw;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: rgb(232, 109, 8);
+    border-radius: 100vw;
+}
+
 body {
     background-image: url(../static/files/mountain.png);
     background-repeat: no-repeat;
@@ -122,11 +138,16 @@ a:hover {
 }
 
 .total-box {
-    width: 500px;
+    /* width: 500px; */
     padding: 20px;
 }
 
 .center {
+    text-align: center;
+}
+
+.center-bottom {
+    width: 400px;
     text-align: center;
 }
 
@@ -179,6 +200,8 @@ a:hover {
     padding: 5px;
     margin-bottom: 10px;
     text-align: center;
+    border: 2px solid rgba(255, 255, 255, .5);
+    
 }
 
 .results {
@@ -209,6 +232,16 @@ a:hover {
     padding-bottom: 20px;
 
 }
+
+.links-glass-box {
+    position: relative;
+    background: transparent;
+    border: 2px solid rgba(255, 255, 255, .5);
+    border-radius: 20px;
+    backdrop-filter: blur(15px);
+    box-shadow: 0 0 30px rgba(0, 0, 0, .5);
+}
+
 
 .bottom-nav-glass {
     position: relative;
@@ -285,8 +318,8 @@ a:hover {
 }
 
 .photo-profile {
-    width: 250px;
-    height: 250px;
+    width: 220px;
+    height: 220px;
     border-radius: 50%;
     box-shadow: 4px 4px 5px 5px black;
     padding: 3px;
@@ -309,6 +342,18 @@ a:hover {
     box-shadow: 2px 2px 5px 2px black;
     padding: 3px;
 }
+
+.all-photos1 {
+    display:grid;
+    justify-content: center;
+    height: 250px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    direction: rtl;
+    width: 300px;
+    /* background-color: cadetblue; */
+}
+
 
 .flex-column {
     width: 450px;
@@ -402,20 +447,36 @@ a:hover {
     color: black;
 }
 
+.message-scroll {
+    height: 600px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    direction: ltr;
+    background: transparent;
+    border: 2px solid rgba(255, 255, 255, .5);
+    border-radius: 20px;
+    backdrop-filter: blur(30px);
+    box-shadow: 0 0 30px rgba(0, 0, 0, .5);
+}
+
 .top {
 
 }
 
 .total {
     display: flex;
+    width: 80%;
 }
 
 .left {
-
+    /* margin-left: 20px; */
 }
 
 .right {
-    text-align:left;
+    /* text-align:left; */
+    /* margin-right: 20px; */
+    /* background-color: aqua; */
+    /* text-align: center; */
 }
 
 
@@ -429,4 +490,10 @@ a:hover {
     margin-top: 10px;
     margin-bottom: 10px;
     text-align: center;
+}
+
+.cheers-video {
+    margin-top: 10px;
+    border-radius: 20px;
+    opacity: 0.9;
 }

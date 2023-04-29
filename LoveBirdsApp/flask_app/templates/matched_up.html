@@ -4,16 +4,30 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk&family=Titillium+Web:ital,wght@0,300;1,200&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Schibsted+Grotesk&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
     <title>You matched!</title>
 </head>
 <body>
     <div class="flex-column2">
-        <h1>Congratulations! You found a match!</h1>
-        <h3>Don't let us keep you! Send {{match.first_name}} the first message! :)</h3>
+        <div class="center">
+            <h1>Congratulations!</h1>
+            <h1>You found a match!</h1>
+            <h3>Don't let us keep you! Send {{match.first_name}} the first message! :)</h3>
+        </div>
+        <div class="glass-box">
+            <a href="/messages/new/{{match.id}}"><button class="long-button"><p>Message {{match.first_name}}</p></button></a>
+            <a href="/dashboard"><button class="long-button"><p>Not right now :(</p></button></a>
+        </div>
         <div>
-            <a href="/messages/new/{{match.id}}"><button class="delete-button">Message {{match.first_name}}</button></a>
-            <a href="/dashboard"><button class="delete-button">Not right now :(</button></a>
+            <video class="cheers-video" autoplay loop muted plays-inline class="cheers">
+                <source src="../static/files/cheers.mp4" type="video/mp4">
+            </video>
         </div>
     </div>
 </body>
