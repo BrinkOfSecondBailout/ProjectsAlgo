@@ -1,22 +1,22 @@
 const {User} = require('../models/user.model');
 const bcrypt = require('bcryptjs');
+const ErrorResponse = require('../utils/errorResponse');
 
-module.exports.create = async (request, response) => {
+module.exports.register = async (request, response, next) => {
     try {
-        const encryptedPassword = await bcrypt.hash(request.body.password, 10);
         await User.create({
             firstName: request.body.firstName,
             lastName: request.body.lastName,
             email: request.body.email,
-            password: encryptedPassword
+            password: request.body.password
         })
         response.json({status: 'ok', user: true})
     } catch (err) {
-        response.json({status: 'error', error: 'That email already exists'})
+        next(err);
     }
 }
 
-module.exports.login = async (request, response) => {
+module.exports.login = async (request, response, next) => {
     const user = await User.findOne({
         email: request.body.email
     })
@@ -26,9 +26,9 @@ module.exports.login = async (request, response) => {
         if (isMatching) {
             return response.json({status: 'ok', user: true})
         } else {
-            return response.json({status: 'error', error: "Incorrect password"})
+            return next(new ErrorResponse("Please make sure your password is correct", 401))
         }
     } else {
-        return response.json({status: 'error', error: "Email doesn't exist in the database"})
+        return next(new ErrorResponse("Email does not exist in the database", 401))
     }
 }

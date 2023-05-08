@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import {Link, useNavigate} from 'react-router-dom';
+import axios from 'axios';
 
 const Register = () => {
 
@@ -7,26 +8,26 @@ const Register = () => {
     const [lastName, setLastName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [errors, setErrors] = useState([]);
     const navigate = useNavigate();
 
     async function registerUser(e) {
         e.preventDefault();
-        const response = await fetch('http://localhost:8000/api/register', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                firstName, lastName, email, password
-            }),
-        })
-
-        const data = await response.json()
-        if(data.user) {
-            navigate('/dashboard')
-        }
-
-        console.log(data);
+        axios.post('http://localhost:8000/api/register', {
+                firstName, 
+                lastName, 
+                email, 
+                password
+            })
+            .then(response => {
+                console.log(response.data)
+                navigate('/dashboard')
+            })
+            .catch(err => {
+                const errorReponse = err.response.data.error;
+                console.log(err.response.data.error);
+                setErrors(errorReponse);
+            })
     }
 
 
@@ -35,6 +36,7 @@ const Register = () => {
             <h1>Register Account</h1>
             <form onSubmit={registerUser} method="POST">
                 <div>
+                    {errors ? <p>{errors}</p> : null}
                     <label>First Name:</label>
                     <input type="text" name="firstName" onChange={(e) => setFirstName(e.target.value)}/>
                 </div>

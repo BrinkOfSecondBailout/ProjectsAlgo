@@ -1,31 +1,29 @@
 import React, {useState} from 'react'
 import {Link, useNavigate} from 'react-router-dom';
-
+import axios from 'axios';
 
 const Login = () => {
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [errors, setErrors] = useState([]);
     const navigate = useNavigate();
 
     async function loginUser(e) {
         e.preventDefault();
-        const response = await fetch('http://localhost:8000/api/login', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                email, password
-            }),
+        axios.post('http://localhost:8000/api/login', {
+            email, 
+            password
         })
-
-        const data = await response.json()
-
-        if(data.user) {
-            navigate('/dashboard')
-        }
-        console.log(data);
+            .then(response=>{
+                console.log(response.data)
+                navigate('/dashboard')
+            })
+            .catch(err => {
+                const errorReponse = err.response.data.error;
+                console.log(err.response.data.error);
+                setErrors(errorReponse);
+            })
     }
 
 
@@ -34,6 +32,7 @@ const Login = () => {
             <h1>Login</h1>
             <form onSubmit={loginUser} method="POST">
                 <div>
+                    {errors ? <p>{errors}</p> : null}
                     <label>Email:</label>
                     <input type="email" name="email" onChange={(e) => setEmail(e.target.value)}/>
                 </div>
