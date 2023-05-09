@@ -17,8 +17,7 @@ module.exports.register = async (request, response) => {
         password: request.body.password
     })
         .then (user => {
-            localStorage.setItem('isLoggedIn', true);
-            localStorage.setItem('userId', user._id);
+            console.log(user._id)
             response.json(user)
         })
         .catch(err => {
@@ -40,8 +39,6 @@ module.exports.login = async (request, response) => {
     if (user) {
         const isMatching = await bcrypt.compare(request.body.password, user.password);
         if (isMatching) {
-            localStorage.setItem('isLoggedIn', true);
-            localStorage.setItem('userId', user._id);
             return response.json({status: 'ok', user: true})
         } else {
             return response.status(401).json("Please make sure your password is correct")
