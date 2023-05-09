@@ -16,6 +16,7 @@ const Login = () => {
             password
         })
             .then(response=>{
+                window.localStorage.setItem('isLogged', true)
                 console.log(response.data)
                 navigate('/dashboard')
             })
