@@ -11,12 +11,12 @@ const Register = () => {
     const [errors, setErrors] = useState([]);
     const navigate = useNavigate();
 
-    async function registerUser(e) {
+    const registerUser = (e) => {
         e.preventDefault();
         axios.post('http://localhost:8000/api/register', {
-                firstName, 
-                lastName, 
-                email, 
+                firstName,
+                lastName,
+                email,
                 password
             })
             .then(response => {
@@ -24,8 +24,8 @@ const Register = () => {
                 navigate('/dashboard')
             })
             .catch(err => {
-                const errorReponse = err.response.data.error;
-                console.log(err.response.data.error);
+                const errorReponse = err.response.data.errors;
+                console.log(err.response.data.errors);
                 setErrors(errorReponse);
             })
     }
@@ -34,9 +34,12 @@ const Register = () => {
     return (
         <div>
             <h1>Register Account</h1>
+            {errors.firstName? <p>{errors.firstName.message}</p> : null}
+            {errors.lastName? <p>{errors.lastName.message}</p> : null}
+            {errors.email? <p>{errors.email.message}</p> : null}
+            {errors.password? <p>{errors.password.message}</p> : null}
             <form onSubmit={registerUser} method="POST">
                 <div>
-                    {errors ? <p>{errors}</p> : null}
                     <label>First Name:</label>
                     <input type="text" name="firstName" onChange={(e) => setFirstName(e.target.value)}/>
                 </div>

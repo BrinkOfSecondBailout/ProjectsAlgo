@@ -20,8 +20,8 @@ const Login = () => {
                 navigate('/dashboard')
             })
             .catch(err => {
-                const errorReponse = err.response.data.error;
-                console.log(err.response.data.error);
+                const errorReponse = err.response.data;
+                console.log(err.response.data);
                 setErrors(errorReponse);
             })
     }
@@ -30,9 +30,9 @@ const Login = () => {
     return (
         <div>
             <h1>Login</h1>
+            {errors ? <p>{errors}</p> : null}
             <form onSubmit={loginUser} method="POST">
                 <div>
-                    {errors ? <p>{errors}</p> : null}
                     <label>Email:</label>
                     <input type="email" name="email" onChange={(e) => setEmail(e.target.value)}/>
                 </div>
