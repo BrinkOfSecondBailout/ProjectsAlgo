@@ -22,6 +22,7 @@ const Register = () => {
             .then(response => {
                 console.log(response.data)
                 window.localStorage.setItem('isLogged', true)
+                window.localStorage.setItem('userId', response.data.id)
                 navigate('/dashboard')
             })
             .catch(err => {
