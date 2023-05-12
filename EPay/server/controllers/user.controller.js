@@ -58,3 +58,9 @@ module.exports.getOneUser = (request, response) => {
         .then(user => response.json(user))
         .catch(err => response.json(err))
 }
+
+module.exports.updatePicture = async (request, response) => {
+    User.findOneAndUpdate({_id: request.params.id}, request.body, {new:true})
+        .then(updatedUser => response.json(updatedUser))
+        .catch(err => response.json(err))
+}

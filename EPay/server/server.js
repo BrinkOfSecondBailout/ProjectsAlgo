@@ -1,11 +1,12 @@
 const express = require('express');
 const cors = require('cors') 
 const app = express();
+const bodyParser = require('body-parser');
 
 app.use(cors());
 
-app.use(express.json());
-app.use(express.urlencoded({extended: true}));
+app.use(bodyParser.json({ limit: '10mb' }));
+app.use(bodyParser.urlencoded({ extended: true, limit: '10mb' }));
 require('./config/mongoose.config');
 require('./routes/user.route')(app);
 

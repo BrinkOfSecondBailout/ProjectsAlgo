@@ -22,7 +22,13 @@ const UserSchema = new mongoose.Schema({
         type: String,
         required: [true, "Password is required"],
         minlength: [5, "Password must be 5 characters or longer"]
+    },
+    myFile: {
+        type: String,
+        required: false,
+        default: ""
     }
+
 }, {timestamps: true});
 
 UserSchema.pre("save", async function(next) {
