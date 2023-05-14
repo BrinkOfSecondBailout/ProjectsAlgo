@@ -84,6 +84,9 @@ const NewItem = (props) => {
                 <div>
                     <label>Condition:</label>
                     <select name="condition" onChange={(e) => setCondition(e.target.value)}>
+                        <option value="" selected disabled hidden>
+                            Select an Option
+                        </option>
                         <option value="New">New</option>
                         <option value="Used">Used</option>
                         <option value="Old">Old</option>

@@ -10,7 +10,8 @@ const ItemSchema = new mongoose.Schema({
         required: [true, "Listing price is required"]
     },
     condition: {
-        type: String
+        type: String,
+        required: [true, "Please specify the item's condition"]
     },
     description: {
         type: String,

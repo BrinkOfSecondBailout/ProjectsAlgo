@@ -23,3 +23,13 @@ module.exports.getAll = async (request, response) => {
             response.json(err)
         })
 }
+
+module.exports.getOne = async (request, response) => {
+    Item.findOne({_id: request.params.id})
+        .then(item => {
+            response.json(item)
+        })
+        .catch(err => {
+            response.json(err)
+        })
+}

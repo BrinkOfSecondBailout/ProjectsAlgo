@@ -8,6 +8,7 @@ import {useState, useEffect} from 'react';
 import axios from 'axios';
 import EditProfile from './components/EditProfile';
 import NewItem from './components/NewItem';
+import ItemDetail from './components/ItemDetail';
 
 function App() {
     const isLogged = window.localStorage.getItem('isLogged');
@@ -43,6 +44,7 @@ function App() {
               <Route path="/register" element={<Register/>} />
               <Route path="/users/edit" element={isLogged? <EditProfile user={user}/> : <Login/>} />
               <Route path="/items/new" element={isLogged? <NewItem items={items} setItems={setItems}/> : <Login/>} />
+              <Route path="/items/:id" element={isLogged? <ItemDetail/> : <Login/>} />
             </Routes>
           </div>
         </BrowserRouter>
