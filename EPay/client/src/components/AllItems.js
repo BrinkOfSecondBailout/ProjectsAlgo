@@ -8,17 +8,13 @@ const AllItems = (props) => {
         <div className={Css.allItems}>
             { items.map((item, index) => {
                 return (
-                    <div className={Css.oneItem}>
-                        <h3 key={index}>
-                            <Link to={`/items/${item._id}`}>{item.name} ${item.price}</Link>
-                            { item.myFile1 ?
-                            <div>
-                                <img className={Css.itemMainPic} src={item.myFile1} alt="item-pic"/>
-                            </div>
-                            : null
-                            }
-                        </h3>
-                    </div>
+                    <h3 key={index}>
+                        <Link to={`/items/${item._id}`}>{item.name} ${item.price}</Link>
+                        { item.myFile1 ?
+                            <img className={Css.itemMainPic} src={item.myFile1} alt="item-pic"/>
+                        : null
+                        }
+                    </h3>
                 )
             })
             }

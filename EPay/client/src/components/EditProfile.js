@@ -1,14 +1,15 @@
-import React, {useState} from 'react'
-import {Link, useNavigate} from 'react-router-dom';
+import React, {useState, useEffect} from 'react'
+import {Link} from 'react-router-dom';
 import avatar from '../assets/avatar.png';
 import axios from 'axios';
 import Css from './EditProfile.module.css'
 
 const EditProfile = (props) => {
-    const navigate = useNavigate();
+
     const {user} = props;
     const [postImage, setPostImage] = useState({myFile: user.myFile});
     const [message, setMessage] = useState("");
+
 
     const createPost = async (newImage) => {
         try {

@@ -1,11 +1,21 @@
-import React from 'react';
+import React , {useState, useEffect} from 'react';
 import {Link} from 'react-router-dom';
 import axios from 'axios';
 import Css from './Dashboard.module.css'
 import AllItems from './AllItems';
 
 const Dashboard = (props) => {
-    const {user, items} = props;
+    const {items} = props;
+    const id = localStorage.getItem('userId');
+    const [user, setUser] = useState({});
+
+    useEffect(() => {
+        axios.get('http://localhost:8000/api/users/' + id)
+            .then(response => {
+                setUser(response.data);
+            })
+            .catch(err => console.log(err));
+    }, []);
 
     return ( 
         <div>

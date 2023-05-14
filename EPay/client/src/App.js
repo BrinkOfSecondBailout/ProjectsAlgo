@@ -25,6 +25,7 @@ function App() {
             .catch(err => console.log(err));
     }, []);
 
+
     useEffect(() => {
         axios.get('http://localhost:8000/api/items')
           .then(response => {
@@ -39,7 +40,7 @@ function App() {
         <BrowserRouter>
           <div className="App">
             <Routes>
-              <Route path="/" element={isLogged? <Dashboard user={user} items={items}/> : <Login/>} />
+              <Route path="/" element={isLogged? <Dashboard items={items}/> : <Login/>} />
               <Route path='/logout' element={<Logout/>} />
               <Route path="/register" element={<Register/>} />
               <Route path="/users/edit" element={isLogged? <EditProfile user={user}/> : <Login/>} />
