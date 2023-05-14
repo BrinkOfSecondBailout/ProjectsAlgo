@@ -6,7 +6,7 @@ const ItemSchema = new mongoose.Schema({
         required: [true, "Item name is required"]
     },
     price: {
-        type: float,
+        type: Number,
         required: [true, "Listing price is required"]
     },
     condition: {
@@ -16,6 +16,21 @@ const ItemSchema = new mongoose.Schema({
         type: String,
         minlength: [10, "Description must be least 10 characters"],
         required: [true, "Please type a description"]
+    },
+    myFile1: {
+        type: String,
+        required: false,
+        default: ""
+    },
+    myFile2: {
+        type: String,
+        required: false,
+        default: ""
+    },
+    myFile3: {
+        type: String,
+        required: false,
+        default: ""
     }
 }, {timestamps: true})
 

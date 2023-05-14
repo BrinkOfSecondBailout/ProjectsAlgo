@@ -12,7 +12,7 @@ const Login = () => {
     async function loginUser(e) {
         e.preventDefault();
         axios.post('http://localhost:8000/api/login', {
-            email, 
+            email,
             password
         })
             .then(response=>{
