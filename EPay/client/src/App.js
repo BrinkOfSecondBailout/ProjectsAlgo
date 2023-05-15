@@ -57,7 +57,7 @@ function App() {
               <Route path="/register" element={<Register/>} />
               <Route path="/users/edit" element={isLogged? <EditProfile user={user}/> : <Login/>} />
               <Route path="/users/:id" element={isLogged? <UserDetail /> : <Login/>} />
-              <Route path="/items/new" element={isLogged? <NewItem user={user} items={items} setItems={setItems} myItems={myItems} setMyItems={setMyItems} /> : <Login/>} />
+              <Route path="/items/new" element={isLogged? <NewItem user={user} myItems={myItems} setMyItems={setMyItems} /> : <Login/>} />
               <Route path="/items/:id" element={isLogged? <ItemDetail/> : <Login/>} />
             </Routes>
           </div>

@@ -39,6 +39,7 @@ const ItemDetail = (props) => {
                 item.myFile3 ? <img className={Css.itemPicture} src={item.myFile3} alt="item-pic"/>
                 : null
             }
+            <Link to='/'>Back to dashboard</Link>
         </div>
     )
 }
