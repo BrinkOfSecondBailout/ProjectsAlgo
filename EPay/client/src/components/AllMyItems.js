@@ -1,13 +1,13 @@
-import React from 'react'
-import Css from '../components/AllItem.module.css'
+import React from 'react';
+import Css from '../components/AllItem.module.css';
 import {Link} from 'react-router-dom';
 
-const AllItems = (props) => {
-    const {items} = props;
+const AllMyItems = (props) => {
+    const {myItems} = props;
 
     return (
         <div className={Css.allItems}>
-            { items.map((item, index) => {
+            { myItems.map((item, index) => {
                 return (
                     <h3 key={index}>
                         <Link to={`/items/${item._id}`}>{item.name} ${item.price}</Link>
@@ -23,4 +23,4 @@ const AllItems = (props) => {
     )
 }
 
-export default AllItems
+export default AllMyItems

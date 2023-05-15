@@ -6,7 +6,7 @@ import axios from 'axios';
 
 const NewItem = (props) => {
     const navigate = useNavigate();
-    const {items, setItems} = props;
+    const {items, setItems, myItems, setMyItems, user} = props;
     const [name, setName] = useState("")
     const [price, setPrice] = useState(0)
     const [condition, setCondition] = useState("")
@@ -22,10 +22,12 @@ const NewItem = (props) => {
             price: price,
             condition: condition,
             description: description,
+            userId: user._id,
             myFile1: postImage1.myFile,
             myFile2: postImage2.myFile,
             myFile3: postImage3.myFile
         }) .then (response => {
+            setMyItems([...myItems, response.data])
             setItems([...items, response.data])
             console.log(response.data)
             navigate('/')

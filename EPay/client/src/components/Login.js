@@ -19,7 +19,7 @@ const Login = () => {
                 window.localStorage.setItem('isLogged', true)
                 window.localStorage.setItem('userId', response.data.id)
                 console.log(response.data)
-                navigate('/dashboard')
+                navigate('/')
             })
             .catch(err => {
                 const errorReponse = err.response.data;

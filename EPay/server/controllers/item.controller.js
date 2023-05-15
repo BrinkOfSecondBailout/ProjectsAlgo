@@ -6,6 +6,7 @@ module.exports.newItem = async (request, response) => {
         price: request.body.price,
         condition: request.body.condition,
         description: request.body.description,
+        userId: request.body.userId,
         myFile1: request.body.myFile1,
         myFile2: request.body.myFile2,
         myFile3: request.body.myFile3
@@ -28,6 +29,26 @@ module.exports.getOne = async (request, response) => {
     Item.findOne({_id: request.params.id})
         .then(item => {
             response.json(item)
+        })
+        .catch(err => {
+            response.json(err)
+        })
+}
+
+module.exports.getAllByUser = async (request, response) => {
+    Item.find({userId: request.params.userId})
+        .then(items => {
+            response.json(items)
+        })
+        .catch(err => {
+            response.json(err)
+        })
+}
+
+module.exports.getAllNotByUser = async (request, response) => {
+    Item.find({ userId: { $ne: request.params.userId} })
+        .then(items => {
+            response.json(items)
         })
         .catch(err => {
             response.json(err)

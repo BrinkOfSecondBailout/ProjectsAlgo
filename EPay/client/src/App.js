@@ -14,7 +14,8 @@ function App() {
     const isLogged = window.localStorage.getItem('isLogged');
     const id = localStorage.getItem('userId');
     const [user, setUser] = useState({});
-    const [items, setItems] = useState([])
+    const [items, setItems] = useState([]);
+    const [myItems, setMyItems] = useState([]);
 
     useEffect(() => {
         axios.get('http://localhost:8000/api/users/' + id)
@@ -27,7 +28,7 @@ function App() {
 
 
     useEffect(() => {
-        axios.get('http://localhost:8000/api/items')
+        axios.get('http://localhost:8000/api/items/shownot/' + id)
           .then(response => {
             setItems(response.data)
           })
@@ -36,15 +37,26 @@ function App() {
           })
     }, [])
 
+    useEffect(() => {
+        axios.get('http://localhost:8000/api/items/show/' + id)
+            .then(response => {
+                setMyItems(response.data)
+            })
+            .catch(err => {
+              console.log(err)
+            })
+    }, [])
+
     return (
         <BrowserRouter>
           <div className="App">
             <Routes>
-              <Route path="/" element={isLogged? <Dashboard items={items}/> : <Login/>} />
+              <Route path="/" element={isLogged? <Dashboard items={items} myItems={myItems} /> : <Login/>} />
+              {/* <Route path="/dashboard" element={isLogged? <Dashboard items={items} myItems={myItems} /> : <Login/>} /> */}
               <Route path='/logout' element={<Logout/>} />
               <Route path="/register" element={<Register/>} />
               <Route path="/users/edit" element={isLogged? <EditProfile user={user}/> : <Login/>} />
-              <Route path="/items/new" element={isLogged? <NewItem items={items} setItems={setItems}/> : <Login/>} />
+              <Route path="/items/new" element={isLogged? <NewItem user={user} items={items} setItems={setItems} myItems={myItems} setMyItems={setMyItems} /> : <Login/>} />
               <Route path="/items/:id" element={isLogged? <ItemDetail/> : <Login/>} />
             </Routes>
           </div>

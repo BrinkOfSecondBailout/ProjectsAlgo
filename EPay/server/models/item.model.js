@@ -18,6 +18,10 @@ const ItemSchema = new mongoose.Schema({
         minlength: [10, "Description must be least 10 characters"],
         required: [true, "Please type a description"]
     },
+    userId: {
+        type: String,
+        required: true
+    },
     myFile1: {
         type: String,
         required: false,
