@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const {User} = require('../models/user.model');
 
 const ItemSchema = new mongoose.Schema({
     name: {
@@ -20,6 +21,11 @@ const ItemSchema = new mongoose.Schema({
     },
     userId: {
         type: String,
+        required: true
+    },
+    user: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
         required: true
     },
     myFile1: {

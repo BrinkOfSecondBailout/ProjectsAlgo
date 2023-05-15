@@ -23,6 +23,7 @@ const NewItem = (props) => {
             condition: condition,
             description: description,
             userId: user._id,
+            user: user,
             myFile1: postImage1.myFile,
             myFile2: postImage2.myFile,
             myFile3: postImage3.myFile

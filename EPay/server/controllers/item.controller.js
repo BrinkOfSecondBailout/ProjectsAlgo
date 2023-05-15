@@ -7,6 +7,7 @@ module.exports.newItem = async (request, response) => {
         condition: request.body.condition,
         description: request.body.description,
         userId: request.body.userId,
+        user: request.body.user,
         myFile1: request.body.myFile1,
         myFile2: request.body.myFile2,
         myFile3: request.body.myFile3
@@ -26,7 +27,7 @@ module.exports.getAll = async (request, response) => {
 }
 
 module.exports.getOne = async (request, response) => {
-    Item.findOne({_id: request.params.id})
+    Item.findOne({_id: request.params.id}).populate('user')
         .then(item => {
             response.json(item)
         })

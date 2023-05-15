@@ -28,11 +28,12 @@ const Dashboard = (props) => {
                 : <img className={Css.profilepic} src={avatar} alt="no-avatar"/>
             }
             <Link to='/logout'>logout</Link>
+            <Link to='/items/new'>List a new item</Link>
             <h1>My Items</h1>
             <AllMyItems myItems={myItems}/>
-            <h1>All Listed Items</h1>
+            <h1>Shop All Items</h1>
             <AllItems items={items}/>
-            <Link to='/items/new'>List a new item</Link>
+            
         </div>
     )
 }

@@ -9,6 +9,7 @@ import axios from 'axios';
 import EditProfile from './components/EditProfile';
 import NewItem from './components/NewItem';
 import ItemDetail from './components/ItemDetail';
+import UserDetail from './components/UserDetail';
 
 function App() {
     const isLogged = window.localStorage.getItem('isLogged');
@@ -52,10 +53,10 @@ function App() {
           <div className="App">
             <Routes>
               <Route path="/" element={isLogged? <Dashboard items={items} myItems={myItems} /> : <Login/>} />
-              {/* <Route path="/dashboard" element={isLogged? <Dashboard items={items} myItems={myItems} /> : <Login/>} /> */}
               <Route path='/logout' element={<Logout/>} />
               <Route path="/register" element={<Register/>} />
               <Route path="/users/edit" element={isLogged? <EditProfile user={user}/> : <Login/>} />
+              <Route path="/users/:id" element={isLogged? <UserDetail /> : <Login/>} />
               <Route path="/items/new" element={isLogged? <NewItem user={user} items={items} setItems={setItems} myItems={myItems} setMyItems={setMyItems} /> : <Login/>} />
               <Route path="/items/:id" element={isLogged? <ItemDetail/> : <Login/>} />
             </Routes>
