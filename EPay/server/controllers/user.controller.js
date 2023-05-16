@@ -70,15 +70,15 @@ module.exports.addItemToCart = async (request, response) => {
     const id = request.params.id;
     try {
         const user = await User.findById(id).populate('cart')
+        console.log(request.body)
         user.cart.push(request.body)
         user.skipPasswordHashing=true;
-        
-        // the function stops here
+
         await user.save();
 
         response.json("Item successfully added")
     } catch(err) {
-        response.json("An error occured while adding item to cart")
+        response.json(err)
     }
 }
 

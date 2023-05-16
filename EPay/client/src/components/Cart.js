@@ -18,15 +18,17 @@ const Cart = (props) => {
 
     return (
         <div>
-            { cart?.map((item, index) => {
+            { cart?.map((cartItem, index) => {
                 return (
-                    <h3 key={index}>
-                        {item.name}
-                        { item.myFile1 ?
-                            <img src={item.myFile1} alt="item-pic"/>
+                    <div key={index}>
+                        <h3>{cartItem.item}</h3>
+                        <h3>{cartItem.item.price}</h3>
+                        <h3>{cartItem.quantity}</h3>
+                        { cartItem.item.myFile1 ?
+                            <img src={cartItem.item.myFile1} alt="item-pic"/>
                         : null
                         }
-                    </h3>
+                    </div>
                 )
             })
 
