@@ -10,6 +10,7 @@ import EditProfile from './components/EditProfile';
 import NewItem from './components/NewItem';
 import ItemDetail from './components/ItemDetail';
 import UserDetail from './components/UserDetail';
+import Cart from './components/Cart';
 
 function App() {
     const isLogged = window.localStorage.getItem('isLogged');
@@ -59,6 +60,7 @@ function App() {
               <Route path="/users/:id" element={isLogged? <UserDetail /> : <Login/>} />
               <Route path="/items/new" element={isLogged? <NewItem user={user} myItems={myItems} setMyItems={setMyItems} /> : <Login/>} />
               <Route path="/items/:id" element={isLogged? <ItemDetail/> : <Login/>} />
+              <Route path="/cart" element={isLogged? <Cart /> : <Login/>} />
             </Routes>
           </div>
         </BrowserRouter>

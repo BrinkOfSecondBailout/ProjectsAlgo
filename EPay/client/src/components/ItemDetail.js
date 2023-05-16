@@ -8,6 +8,7 @@ const ItemDetail = (props) => {
     const [item, setItem] = useState({});
     const {id} = useParams();
     const {user} = item;
+    const userId = localStorage.getItem('userId');
 
     useEffect(() => {
         axios.get('http://localhost:8000/api/items/' + id)
@@ -20,26 +21,40 @@ const ItemDetail = (props) => {
             })
     }, [])
 
+    const addToCart = async (item) => {
+        axios.post('http://localhost:8000/api/users/addItem/' + userId, {item})
+            .then(response => {
+                console.log(response.data)
+            })
+            .catch(err => {
+                console.log(err)
+            })
+    }
+
     return (
         <div>
+            <Link to='/'>Back to dashboard</Link>
             <h1>{item.name}</h1>
             <h2>${item.price}</h2>
             <h2>{item.condition}</h2>
             <p>{item.description}</p>
             <p>Sold By: <Link to={`/users/${user?._id}`}>{user?.firstName}</Link></p>
             {
-                item.myFile1 ? <img className={Css.itemPicture} src={item.myFile1} alt="item-pic"/>
+                item.myFile1 ?
+                    <img className={Css.itemPicture} src={item.myFile1}/>
                 : null
             }
             {
-                item.myFile2 ? <img className={Css.itemPicture} src={item.myFile2} alt="item-pic"/>
+                item.myFile2 ? <img className={Css.itemPicture} src={item.myFile2} />
                 : null
             }
             {
-                item.myFile3 ? <img className={Css.itemPicture} src={item.myFile3} alt="item-pic"/>
+                item.myFile3 ? <img className={Css.itemPicture} src={item.myFile3} />
                 : null
             }
-            <Link to='/'>Back to dashboard</Link>
+
+            <button onClick={() => {addToCart(item)}}>Add to cart</button>
+            
         </div>
     )
 }

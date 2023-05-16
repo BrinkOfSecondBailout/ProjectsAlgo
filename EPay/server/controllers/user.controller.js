@@ -64,3 +64,27 @@ module.exports.updatePicture = async (request, response) => {
         .then(updatedUser => response.json(updatedUser))
         .catch(err => response.json(err))
 }
+
+module.exports.addItemToCart = async (request, response) => {
+
+    const id = request.params.id;
+    try {
+        const user = await User.findById(id).populate('cart')
+        user.cart.push(request.body)
+        user.skipPasswordHashing=true;
+        
+        // the function stops here
+        await user.save();
+
+        response.json("Item successfully added")
+    } catch(err) {
+        response.json("An error occured while adding item to cart")
+    }
+}
+
+
+module.exports.getMyCart = async (request, response) => {
+    User.findOne({_id: request.params.id}).populate('cart')
+        .then(user => response.json(user))
+        .catch(err => response.json(err))
+}

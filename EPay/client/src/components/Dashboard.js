@@ -28,6 +28,7 @@ const Dashboard = (props) => {
                 : <img className={Css.profilepic} src={avatar} alt="no-avatar"/>
             }
             <Link to='/logout'>logout</Link>
+            <Link to='/cart'>Cart</Link>
             <Link to='/items/new'>List a new item</Link>
             <h1>My Items</h1>
             <AllMyItems myItems={myItems}/>

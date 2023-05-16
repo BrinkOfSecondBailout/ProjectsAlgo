@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
+// const {Item} = require('../models/item.model');
 
 const UserSchema = new mongoose.Schema({
     firstName: {
@@ -27,13 +28,28 @@ const UserSchema = new mongoose.Schema({
         type: String,
         required: false,
         default: ""
-    }
+    },
+    cart: [
+        {
+            item: {
+                type: mongoose.Schema.Types.ObjectId,
+                ref: "Item",
+                required: true
+            },
+            quantity: {
+                type: Number,
+                default: 1
+            }
+        }
+    ]
 
 }, {timestamps: true});
 
 UserSchema.pre("save", async function(next) {
-    const salt = await bcrypt.genSalt(10);
-    this.password = await bcrypt.hash(this.password, salt)
+    if (!this.skipPasswordHashing) {
+        const salt = await bcrypt.genSalt(10);
+        this.password = await bcrypt.hash(this.password, salt)
+    }
     next();
 })
 
