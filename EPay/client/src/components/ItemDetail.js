@@ -22,7 +22,7 @@ const ItemDetail = (props) => {
     }, [])
 
     const addToCart = async (item) => {
-        axios.post('http://localhost:8000/api/users/addItem/' + userId, {item})
+        axios.post('http://localhost:8000/api/cart/add/' + userId, {item})
             .then(response => {
                 console.log(response.data)
             })

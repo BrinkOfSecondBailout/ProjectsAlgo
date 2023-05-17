@@ -1,4 +1,5 @@
 const {User} = require('../models/user.model');
+const {Cart} = require('../models/cart.model');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
@@ -24,6 +25,14 @@ module.exports.register = async (request, response) => {
     })
         .then (user => {
             const token = createToken(user._id)
+            const cart = Cart.create({
+                userId: user._id
+            })
+            // user.cart = cart._id
+            // console.log(cart._id)
+            // user.skipPasswordHashing=true;
+            // user.save()
+            // console.log(user.cart)
             response.json({id: user._id, token})
         })
         .catch(err => {
@@ -65,22 +74,21 @@ module.exports.updatePicture = async (request, response) => {
         .catch(err => response.json(err))
 }
 
-module.exports.addItemToCart = async (request, response) => {
+// module.exports.addItemToCart = async (request, response) => {
 
-    const id = request.params.id;
-    try {
-        const user = await User.findById(id).populate('cart')
-        console.log(request.body)
-        user.cart.push(request.body)
-        user.skipPasswordHashing=true;
-
-        await user.save();
-
-        response.json("Item successfully added")
-    } catch(err) {
-        response.json(err)
-    }
-}
+//     const id = request.params.id;
+//     try {
+//         const user = await User.findById(id).populate('cart')
+//         console.log(user.cart)
+//         user.cart.push(request.body)
+//         user.skipPasswordHashing=true;
+//         await user.save();
+//         console.log(user.cart[0].item)
+//         response.json("Item successfully added")
+//     } catch(err) {
+//         response.json(err)
+//     }
+// }
 
 
 module.exports.getMyCart = async (request, response) => {

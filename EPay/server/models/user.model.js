@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
-const {Item} = require('../models/item.model');
 
 const UserSchema = new mongoose.Schema({
     firstName: {
@@ -24,19 +23,9 @@ const UserSchema = new mongoose.Schema({
         required: [true, "Password is required"],
         minlength: [5, "Password must be 5 characters or longer"]
     },
-    cart: [
-        {
-            item: {
-                type: mongoose.Schema.Types.ObjectId,
-                ref: 'Item',
-                required: true
-            },
-            quantity: {
-                type: Number,
-                default: 1
-            }
-        }
-    ],
+    cart: {
+        type: String
+    },
     myFile: {
         type: String,
         required: false,
