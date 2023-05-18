@@ -58,9 +58,25 @@ const Cart = (props) => {
         }
     }
 
+    const deleteFromCart = async (itemId) => {
+        try {
+            axios.delete(`http://localhost:8000/api/cart/removeItem/${id}/${itemId}`)
+                .then(response => {
+                    console.log('Successfully removed item')
+                    // removeFromDom(itemId)
+                })
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    // const removeFromDom = itemId => {
+    //     setCart(cart.filter(item => item._id !== itemId));
+    // }
+
     const decreaseQuantity = (itemId, itemQuantity) => {
         if (itemQuantity === 1) {
-            return false;
+            deleteFromCart(itemId);
         } else {
             const newQuantity = itemQuantity - 1;
             quantityChange(itemId, newQuantity);
@@ -84,8 +100,9 @@ const Cart = (props) => {
                         <form>
                             <label><h4>Quantity:</h4></label>
                             <button onClick={() => decreaseQuantity(item._id, item.quantity)}>-</button>
-                            <input class={Css.smallInput} type="text" value={item.quantity} readOnly/>
+                            <input className={Css.smallInput} type="text" value={item.quantity} readOnly/>
                             <button onClick={() => increaseQuantity(item._id, item.quantity)}>+</button>
+                            <button onClick={() => deleteFromCart(item._id)}>Remove</button>
                         </form>
                         { item.item.myFile1 ?
                             <img className={Css.itemPicture} src={item.item.myFile1} alt="item-pic"/>

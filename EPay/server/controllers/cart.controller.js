@@ -34,12 +34,23 @@ module.exports.updateQuantity = async (request, response) => {
         cart.items[itemIndex].quantity = request.body.quantity
         await cart.save();
         response.json("Quantity successfully updated")
+    } catch(err) {
+        response.json(err)
+    }
+}
 
-        // const cartItem = cartItems.findOne({_id: request.body.itemId})
-        // console.log(cartItem.quantity)
-        // cartItem.quantity = request.body.quantity
-        // cartItems.save()
-        // response.json("Item successfully added")
+module.exports.removeFromCart = async (request, response) => {
+    const id = request.params.id;
+    const itemId = request.params.itemId;
+    try {
+        const cart = await Cart.findOne({userId: id}).populate('items')
+        const itemIndex = cart.items.findIndex(item => item._id.toString() === itemId)
+        if (itemIndex === -1) {
+            return response.json("Item not found in cart")
+        }
+        cart.items.splice(itemIndex, 1);
+        await cart.save()
+        response.json("Item successfully removed")
     } catch(err) {
         response.json(err)
     }
