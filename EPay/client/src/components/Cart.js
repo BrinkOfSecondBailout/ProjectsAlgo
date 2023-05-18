@@ -40,21 +40,38 @@ const Cart = (props) => {
         return total;
     }
 
-    const quantityChange = async (e, itemId) => {
+    const quantityChange = async (itemId, newQuantity) => {
         try {
-            const newQuantity = e.target.value
-            console.log(id)
-            console.log(itemId)
-            console.log(newQuantity)
+            // const newQuantity = e.target.value
+            // console.log(id)
+            // console.log(itemId)
+            // console.log(newQuantity)
             axios.patch('http://localhost:8000/api/cart/update/' + id, {
                 itemId: itemId,
                 quantity: newQuantity
             })
             console.log('Quantity successfully updated')
+            calculateTotal(items);
+            window.location.reload();
         } catch (error) {
             console.log(error)
         }
     }
+
+    const decreaseQuantity = (itemId, itemQuantity) => {
+        if (itemQuantity === 1) {
+            return false;
+        } else {
+            const newQuantity = itemQuantity - 1;
+            quantityChange(itemId, newQuantity);
+        }
+    };
+
+    const increaseQuantity = (itemId, itemQuantity) => {
+        const newQuantity = itemQuantity + 1;
+        quantityChange(itemId, newQuantity);
+    };
+
 
     return (
         <div>
@@ -66,11 +83,9 @@ const Cart = (props) => {
                         <h3>${item.item.price}</h3>
                         <form>
                             <label><h4>Quantity:</h4></label>
-                            <select onChange={(e) => {quantityChange(e, item._id)}}>
-                                <option selected="selected" value={item.quantity}>{item.quantity}</option>
-                                <option value={item.quantity + 1}>{item.quantity + 1}</option>
-                                <option value={item.quantity + 2}>{item.quantity + 2}</option>
-                            </select>
+                            <button onClick={() => decreaseQuantity(item._id, item.quantity)}>-</button>
+                            <input class={Css.smallInput} type="text" value={item.quantity} readOnly/>
+                            <button onClick={() => increaseQuantity(item._id, item.quantity)}>+</button>
                         </form>
                         { item.item.myFile1 ?
                             <img className={Css.itemPicture} src={item.item.myFile1} alt="item-pic"/>
