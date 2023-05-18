@@ -1,12 +1,23 @@
 const {Cart} = require('../models/cart.model');
+const {User} = require('../models/user.model');
 
 module.exports.addToCart = async (request, response) => {
     const id = request.params.id;
     try {
         const cart = await Cart.findOne({userId: id})
-        cart.items.push({item: request.body.item})
-        cart.save()
-        response.json("Item successfully added")
+        const itemIndex = cart.items.findIndex(item => item.item._id.toString() === request.body.item._id)
+        if (itemIndex === -1) {
+            cart.items.push({item: request.body.item})
+            cart.save()
+            const user = await User.findOne({_id: id})
+            user.cart += 1
+            user.save()
+            response.json("Item successfully added")
+        } else {
+            cart.items[itemIndex].quantity += 1;
+            await cart.save();
+            response.json("Quantity successfully updated")
+        }
     } catch(err) {
         response.json(err)
     }
@@ -50,6 +61,9 @@ module.exports.removeFromCart = async (request, response) => {
         }
         cart.items.splice(itemIndex, 1);
         await cart.save()
+        const user = await User.findOne({_id: id})
+        user.cart -= 1
+        user.save()
         response.json("Item successfully removed")
     } catch(err) {
         response.json(err)

@@ -24,7 +24,8 @@ const UserSchema = new mongoose.Schema({
         minlength: [5, "Password must be 5 characters or longer"]
     },
     cart: {
-        type: String
+        type: Number,
+        default: 0
     },
     myFile: {
         type: String,

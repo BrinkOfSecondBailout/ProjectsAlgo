@@ -3,3 +3,16 @@
     height: 200px;
     border-radius: 50%;
 }
+
+.cartPic {
+    width: 45px;
+    height: 40px;
+}
+
+.cartButton {
+    background: none;
+    border: none;
+    text-align: center;
+    font-size: 25px;
+    text-decoration-style: dashed;
+}

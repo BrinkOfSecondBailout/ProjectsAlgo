@@ -5,6 +5,7 @@ import Css from './Dashboard.module.css'
 import AllItems from './AllItems';
 import AllMyItems from './AllMyItems';
 import avatar from '../assets/avatar.png';
+import cart from '../assets/cart.png';
 
 const Dashboard = (props) => {
     const {items, myItems} = props;
@@ -28,7 +29,7 @@ const Dashboard = (props) => {
                 : <img className={Css.profilepic} src={avatar} alt="no-avatar"/>
             }
             <Link to='/logout'>logout</Link>
-            <Link to='/cart'>Cart</Link>
+            <Link to='/cart'><button className={Css.cartButton}><img className={Css.cartPic} src={cart} alt="cart"/>{user.cart}</button></Link>
             <Link to='/items/new'>List a new item</Link>
             <h1>My Items</h1>
             <AllMyItems myItems={myItems}/>
