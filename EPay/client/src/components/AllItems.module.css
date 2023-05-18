@@ -5,7 +5,7 @@
 
 .allItems {
     display: flex;
-    width: 800px;
+    width: 70%;
     height: 500px;
     overflow-x: hidden;
     overflow-y: auto;
@@ -13,4 +13,9 @@
 }
 
 .oneItem {
+}
+
+.noItems {
+    height: 400px;
+    width: 70%;
 }

@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {useParams, Link} from 'react-router-dom';
 import axios from 'axios';
-import Css from '../components/AllItem.module.css'
+import Css from '../components/AllItems.module.css'
 
 const UserDetail = (props) => {
     const [user, setUser] = useState({});
@@ -34,13 +34,13 @@ const UserDetail = (props) => {
             <div>
                 { items.map((item, index) => {
                 return (
-                    <h3 key={index}>
-                        <Link to={`/items/${item._id}`}>{item.name} ${item.price}</Link>
+                    <div key={index}>
+                        <Link to={`/items/${item._id}`}><h3>{item.name} ${item.price}</h3></Link>
                         { item.myFile1 ?
                             <img className={Css.itemMainPic} src={item.myFile1} alt="item-pic"/>
                         : null
                         }
-                    </h3>
+                    </div>
                 )
             })
             }

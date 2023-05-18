@@ -96,3 +96,9 @@ module.exports.getMyCart = async (request, response) => {
         .then(user => response.json(user))
         .catch(err => response.json(err))
 }
+
+module.exports.getAllUsers = async (request, response) => {
+    User.find({})
+        .then(users => response.json(users))
+        .catch(err => response.json(err))
+}

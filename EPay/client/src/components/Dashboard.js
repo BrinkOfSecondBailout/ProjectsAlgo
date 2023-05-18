@@ -6,6 +6,7 @@ import AllItems from './AllItems';
 import AllMyItems from './AllMyItems';
 import avatar from '../assets/avatar.png';
 import cart from '../assets/cart.png';
+import AllSellers from './AllSellers';
 
 const Dashboard = (props) => {
     const {items, myItems} = props;
@@ -35,6 +36,8 @@ const Dashboard = (props) => {
             <AllMyItems myItems={myItems}/>
             <h1>Shop All Items</h1>
             <AllItems items={items}/>
+            <h1>Browse By Sellers</h1>
+            <AllSellers />
             
         </div>
     )

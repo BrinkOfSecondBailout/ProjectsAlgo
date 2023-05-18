@@ -11,6 +11,7 @@ module.exports.addToCart = async (request, response) => {
             cart.save()
             const user = await User.findOne({_id: id})
             user.cart += 1
+            user.skipPasswordHashing=true;
             user.save()
             response.json("Item successfully added")
         } else {
@@ -63,6 +64,7 @@ module.exports.removeFromCart = async (request, response) => {
         await cart.save()
         const user = await User.findOne({_id: id})
         user.cart -= 1
+        user.skipPasswordHashing=true;
         user.save()
         response.json("Item successfully removed")
     } catch(err) {
