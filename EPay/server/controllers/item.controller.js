@@ -6,6 +6,7 @@ module.exports.newItem = async (request, response) => {
         price: request.body.price,
         condition: request.body.condition,
         description: request.body.description,
+        inventory: request.body.inventory,
         userId: request.body.userId,
         user: request.body.user,
         myFile1: request.body.myFile1,

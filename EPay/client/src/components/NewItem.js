@@ -11,6 +11,7 @@ const NewItem = (props) => {
     const [price, setPrice] = useState(0)
     const [condition, setCondition] = useState("")
     const [description, setDescription] = useState("")
+    const [inventory, setInventory] = useState("")
     const [postImage1, setPostImage1] = useState({})
     const [postImage2, setPostImage2] = useState({})
     const [postImage3, setPostImage3] = useState({})
@@ -22,6 +23,7 @@ const NewItem = (props) => {
             price: price,
             condition: condition,
             description: description,
+            inventory: inventory,
             userId: user._id,
             user: user,
             myFile1: postImage1.myFile,
@@ -98,6 +100,11 @@ const NewItem = (props) => {
                     <label>Description:</label>
                     <textarea rows="7" cols="25" type="text" name="description" onChange={(e) => setDescription(e.target.value)}/>
                 </div>
+                <div>
+                    <label>Inventory:</label>
+                    <input type="number" name="inventory" onChange={(e) => setInventory(e.target.value)}/>
+                </div>
+
                 <div className={Css.uploadIcons}>
                     <div>
                         <label htmlFor="file-upload1"><img className={Css.uploadIcon} src={postImage1.myFile || upload} alt="file-upload"/></label>

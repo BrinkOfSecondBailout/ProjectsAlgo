@@ -39,6 +39,12 @@ const ItemDetail = (props) => {
             <h2>{item.condition}</h2>
             <p>{item.description}</p>
             <p>Sold By: <Link to={`/users/${user?._id}`}>{user?.firstName}</Link></p>
+            <div>
+                { item.inventory >= 1 ?
+                    <button onClick={() => {addToCart(item)}}>Add to cart</button>
+                    : <h4>Currently Sold Out! :(</h4>
+                }
+            </div>
             {
                 item.myFile1 ?
                     <img className={Css.itemPicture} src={item.myFile1}/>
@@ -52,8 +58,6 @@ const ItemDetail = (props) => {
                 item.myFile3 ? <img className={Css.itemPicture} src={item.myFile3} />
                 : null
             }
-
-            <button onClick={() => {addToCart(item)}}>Add to cart</button>
             
         </div>
     )
