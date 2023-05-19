@@ -25,6 +25,7 @@ const ItemDetail = (props) => {
         axios.post('http://localhost:8000/api/cart/add/' + userId, {item})
             .then(response => {
                 console.log(response.data)
+                window.location.reload();
             })
             .catch(err => {
                 console.log(err)
