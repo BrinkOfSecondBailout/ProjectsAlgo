@@ -73,13 +73,17 @@ module.exports.updateQuantity = async (request, response) => {
 
 module.exports.removeFromCart = async (request, response) => {
     const id = request.params.id;
+    const cartId = request.params.cartId;
     const itemId = request.params.itemId;
+    const item = await Item.findOne({_id: itemId})
     try {
         const cart = await Cart.findOne({userId: id}).populate('items')
-        const itemIndex = cart.items.findIndex(item => item._id.toString() === itemId)
+        const itemIndex = cart.items.findIndex(item => item._id.toString() === cartId)
         if (itemIndex === -1) {
             return response.json("Item not found in cart")
         }
+        item.inventory += cart.items[itemIndex].quantity
+        item.save()
         cart.items.splice(itemIndex, 1);
         await cart.save()
         const user = await User.findOne({_id: id})
