@@ -40,10 +40,13 @@ const ItemDetail = (props) => {
             <p>{item.description}</p>
             <p>Sold By: <Link to={`/users/${user?._id}`}>{user?.firstName}</Link></p>
             <div>
-                { item.inventory >= 1 ?
+                { item.inventory >= 1 && item.userId !== userId ?
                     <button onClick={() => {addToCart(item)}}>Add to cart</button>
-                    : <h4>Currently Sold Out! :(</h4>
-                }
+                    : item.userId === userId ? (
+                        null
+                    )
+                    : ( <h4>Currently Sold Out! :(</h4>
+                )}
             </div>
             {
                 item.myFile1 ?
