@@ -69,7 +69,7 @@ const Cart = (props) => {
 
     const decreaseQuantity = (item, itemId, itemQuantity) => {
         if (itemQuantity === 1) {
-            deleteFromCart(item._id, itemId);
+            deleteFromCart(itemId, item.item._id);
         } else {
             const newQuantity = itemQuantity - 1;
             quantityChange(item, itemId, newQuantity, "down");

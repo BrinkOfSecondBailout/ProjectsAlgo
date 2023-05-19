@@ -47,24 +47,26 @@ module.exports.updateQuantity = async (request, response) => {
         const itemIndex = cart.items.findIndex(item => item._id.toString() === request.body.itemId)
         if (itemIndex === -1) {
             return response.json("Item not found in cart")
-        }
-        if (request.body.direction === "up" && item.inventory >= 1) {
-            cart.items[itemIndex].quantity = request.body.quantity
-            await cart.save();
-            console.log(item.inventory)
-            item.inventory -= 1;
-            item.save();
-            response.json("Quantity successfully updated")
-        } 
-        if (request.body.direction === "up" && item.inventory < 1) {
-            response.json("Seller don't have enough inventory to fulfill this purchase")
-        }
-        if (request.body.direction === "down") {
-            cart.items[itemIndex].quantity = request.body.quantity
-            await cart.save();
-            item.inventory += 1;
-            await item.save();
-            response.json("Quantity successfully updated")
+        } else {
+            if (request.body.direction === "up" && item.inventory >= 1) {
+                cart.items[itemIndex].quantity = request.body.quantity
+                await cart.save();
+                item.inventory -= 1;
+                item.save();
+                response.json("Quantity successfully updated")
+            } else {
+                if (request.body.direction === "up" && item.inventory < 1) {
+                    response.json("Seller don't have enough inventory to fulfill this purchase")
+                } else {
+                    if (request.body.direction === "down") {
+                        cart.items[itemIndex].quantity = request.body.quantity
+                        await cart.save();
+                        item.inventory += 1;
+                        await item.save();
+                        response.json("Quantity successfully updated")
+                    }
+                }
+            }
         }
     } catch(err) {
         response.json(err)
