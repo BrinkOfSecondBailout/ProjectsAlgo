@@ -23,6 +23,11 @@ const ItemSchema = new mongoose.Schema({
         type: Number,
         required: [true, "Please specify inventory"]
     },
+    category: {
+        type: String,
+        enum: ['Electronics', 'Collectibles', 'Clothings/Accessories', 'Toys/Games', 'Furniture', 'Others/Misc'],
+        required: true
+    },
     userId: {
         type: String,
         required: true

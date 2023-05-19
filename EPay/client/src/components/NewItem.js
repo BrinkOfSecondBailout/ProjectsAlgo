@@ -12,6 +12,7 @@ const NewItem = (props) => {
     const [condition, setCondition] = useState("")
     const [description, setDescription] = useState("")
     const [inventory, setInventory] = useState("")
+    const [category, setCategory] = useState("")
     const [postImage1, setPostImage1] = useState({})
     const [postImage2, setPostImage2] = useState({})
     const [postImage3, setPostImage3] = useState({})
@@ -24,6 +25,7 @@ const NewItem = (props) => {
             condition: condition,
             description: description,
             inventory: inventory,
+            category: category,
             userId: user._id,
             user: user,
             myFile1: postImage1.myFile,
@@ -103,6 +105,17 @@ const NewItem = (props) => {
                 <div>
                     <label>Inventory:</label>
                     <input type="number" name="inventory" onChange={(e) => setInventory(e.target.value)}/>
+                </div>
+                <div>
+                    <label>Category:</label>
+                    <select onChange={(e) => setCategory(e.target.value)} name="category">
+                        <option value="Electronics">Electronics</option>
+                        <option value="Collectibles">Collectibles</option>
+                        <option value="Clothings/Accessories">Clothings/Accessories</option>
+                        <option value="Toys/Games">Toys/Games</option>
+                        <option value="Furniture">Furniture</option>
+                        <option value="Others/Misc">Others/Misc</option>
+                    </select>
                 </div>
 
                 <div className={Css.uploadIcons}>

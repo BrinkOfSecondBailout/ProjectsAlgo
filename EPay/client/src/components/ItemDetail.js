@@ -39,6 +39,7 @@ const ItemDetail = (props) => {
             <h2>${item.price}</h2>
             <h2>{item.condition}</h2>
             <p>{item.description}</p>
+            <p>{item.category}</p>
             <p>Sold By: <Link to={`/users/${user?._id}`}>{user?.firstName}</Link></p>
             <div>
                 { item.inventory >= 1 && item.userId !== userId ?
