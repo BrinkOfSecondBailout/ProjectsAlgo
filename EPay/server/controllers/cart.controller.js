@@ -1,5 +1,6 @@
 const {Cart} = require('../models/cart.model');
 const {User} = require('../models/user.model');
+const {Item} = require('../models/item.model');
 
 module.exports.addToCart = async (request, response) => {
     const id = request.params.id;
@@ -7,6 +8,9 @@ module.exports.addToCart = async (request, response) => {
         const cart = await Cart.findOne({userId: id})
         const itemIndex = cart.items.findIndex(item => item.item._id.toString() === request.body.item._id)
         if (itemIndex === -1) {
+            const item = await Item.findOne({_id: request.body.item._id})
+            item.inventory -= 1
+            await item.save()
             cart.items.push({item: request.body.item})
             cart.save()
             const user = await User.findOne({_id: id})
