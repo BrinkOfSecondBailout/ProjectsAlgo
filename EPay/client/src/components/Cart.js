@@ -40,15 +40,13 @@ const Cart = (props) => {
         return total;
     }
 
-    const quantityChange = async (itemId, newQuantity) => {
+    const quantityChange = async (item, itemId, newQuantity, direction) => {
         try {
-            // const newQuantity = e.target.value
-            // console.log(id)
-            // console.log(itemId)
-            // console.log(newQuantity)
             axios.patch('http://localhost:8000/api/cart/update/' + id, {
+                item: item,
                 itemId: itemId,
-                quantity: newQuantity
+                quantity: newQuantity,
+                direction: direction
             })
             console.log('Quantity successfully updated')
             calculateTotal(items);
@@ -63,29 +61,24 @@ const Cart = (props) => {
             axios.delete(`http://localhost:8000/api/cart/removeItem/${id}/${itemId}`)
                 .then(response => {
                     console.log('Successfully removed item')
-                    // removeFromDom(itemId)
                 })
         } catch (error) {
             console.log(error)
         }
     }
 
-    // const removeFromDom = itemId => {
-    //     setCart(cart.filter(item => item._id !== itemId));
-    // }
-
-    const decreaseQuantity = (itemId, itemQuantity) => {
+    const decreaseQuantity = (item, itemId, itemQuantity) => {
         if (itemQuantity === 1) {
-            deleteFromCart(itemId);
+            deleteFromCart(item._id);
         } else {
             const newQuantity = itemQuantity - 1;
-            quantityChange(itemId, newQuantity);
+            quantityChange(item, itemId, newQuantity, "down");
         }
     };
 
-    const increaseQuantity = (itemId, itemQuantity) => {
+    const increaseQuantity = (item, itemId, itemQuantity) => {
         const newQuantity = itemQuantity + 1;
-        quantityChange(itemId, newQuantity);
+        quantityChange(item, itemId, newQuantity, "up");
     };
 
 
@@ -99,9 +92,9 @@ const Cart = (props) => {
                         <h3>${item.item.price}</h3>
                         <form>
                             <label><h4>Quantity:</h4></label>
-                            <button onClick={() => decreaseQuantity(item._id, item.quantity)}>-</button>
+                            <button onClick={() => decreaseQuantity(item.item, item._id, item.quantity)}>-</button>
                             <input className={Css.smallInput} type="text" value={item.quantity} readOnly/>
-                            <button onClick={() => increaseQuantity(item._id, item.quantity)}>+</button>
+                            <button onClick={() => increaseQuantity(item.item, item._id, item.quantity)}>+</button>
                             <button onClick={() => deleteFromCart(item._id)}>Remove</button>
                         </form>
                         { item.item.myFile1 ?
