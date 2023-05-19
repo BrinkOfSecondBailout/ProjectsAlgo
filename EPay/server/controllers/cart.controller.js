@@ -7,10 +7,10 @@ module.exports.addToCart = async (request, response) => {
     try {
         const cart = await Cart.findOne({userId: id})
         const itemIndex = cart.items.findIndex(item => item.item._id.toString() === request.body.item._id)
+        const item = await Item.findOne({_id: request.body.item._id})
+        item.inventory -= 1
+        await item.save()
         if (itemIndex === -1) {
-            const item = await Item.findOne({_id: request.body.item._id})
-            item.inventory -= 1
-            await item.save()
             cart.items.push({item: request.body.item})
             cart.save()
             const user = await User.findOne({_id: id})
