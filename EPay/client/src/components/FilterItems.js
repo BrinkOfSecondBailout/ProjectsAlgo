@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import axios from 'axios';
 import {Link} from 'react-router-dom';
 import Css from '../components/FilterItems.module.css'
@@ -7,16 +7,21 @@ const FilterItems = () => {
 
     const [category, setCategory] = useState("")
     const [items, setItems] = useState([])
+    const userId = localStorage.getItem('userId')
 
     const filterByCategory = async (e) => {
         e.preventDefault();
         try {
-            await axios.get('http://localhost:8000/api/items/show/' + category)
-                .then(response => setItems(response.data))
+            await axios.get('http://localhost:8000/api/items/filter/' + category)
+                .then(response => {
+                    const filteredItems = (response.data.filter(item => item.userId !== userId))
+                    setItems(filteredItems)
+                })
         } catch (err) {
             console.log(err)
         }
     }
+
 
     return (
         <div>
