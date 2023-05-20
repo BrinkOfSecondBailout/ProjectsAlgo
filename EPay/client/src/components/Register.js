@@ -24,6 +24,7 @@ const Register = () => {
                 window.localStorage.setItem('isLogged', true)
                 window.localStorage.setItem('userId', response.data.id)
                 navigate('/')
+                window.location.reload();
             })
             .catch(err => {
                 const errorReponse = err.response.data.errors;

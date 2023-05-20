@@ -18,7 +18,7 @@ const Login = () => {
             .then(response=>{
                 window.localStorage.setItem('isLogged', true)
                 window.localStorage.setItem('userId', response.data.id)
-                console.log(response.data)
+                window.location.reload();
                 navigate('/')
             })
             .catch(err => {
