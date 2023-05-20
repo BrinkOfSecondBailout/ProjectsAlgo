@@ -1,27 +1,28 @@
 import React, {useState} from 'react'
 import axios from 'axios';
 import {Link} from 'react-router-dom';
+import Css from '../components/FilterItems.module.css'
 
 const FilterItems = () => {
 
     const [category, setCategory] = useState("")
     const [items, setItems] = useState([])
 
-    const filterByCategory = (e) => {
+    const filterByCategory = async (e) => {
         e.preventDefault();
-        axios.get(`http://localhost:8000/api/items/${category}`)
-            .then(response => {
-                setItems(response.data)
-            })
-            .catch(err => {
-                console.log(err)
-            })
+        try {
+            await axios.get('http://localhost:8000/api/items/show/' + category)
+                .then(response => setItems(response.data))
+        } catch (err) {
+            console.log(err)
+        }
     }
 
     return (
         <div>
             <form onSubmit={filterByCategory}>
                 <select onChange={(e) => setCategory(e.target.value)} name="category">
+                    <option value="" selected disabled hidden>Select One</option>
                     <option value="electronics">Electronics</option>
                     <option value="collectibles">Collectibles</option>
                     <option value="clothings">Clothings/Accessories</option>
@@ -34,14 +35,16 @@ const FilterItems = () => {
 
             <div>
                 {items?.length !== 0 ?
-                    <div>
+                    <div className={Css.flex}>
                         { items?.map((item, index) => {
                             return (
                                 <div key={index}>
-                                    <Link to={`/items/${item._id}`}>{item.name} ${item.price}</Link>
+
+                                    <Link to={`/items/${item._id}`}><div>{item.name} ${item.price}</div></Link>
                                     { item.myFile1 ?
-                                    <img src={item.myFile1} alt="item-pic"/>
+                                    <img className={Css.itemPictureSmall} src={item.myFile1} alt="item-pic"/>
                                     : null
+                                    
                                 }
                                 </div>
                             )
