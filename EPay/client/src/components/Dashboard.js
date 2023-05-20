@@ -7,6 +7,7 @@ import AllMyItems from './AllMyItems';
 import avatar from '../assets/avatar.png';
 import cart from '../assets/cart.png';
 import AllSellers from './AllSellers';
+import FilterItems from './FilterItems';
 
 const Dashboard = (props) => {
     const {items, myItems} = props;
@@ -22,6 +23,7 @@ const Dashboard = (props) => {
     }, []);
 
 
+
     return ( 
         <div>
             <h1>Hi, <Link to='/users/edit/'>{user.firstName}!</Link></h1>
@@ -34,6 +36,7 @@ const Dashboard = (props) => {
             <Link to='/items/new'>List a new item</Link>
             <h1>My Items</h1>
             <AllMyItems myItems={myItems}/>
+            <FilterItems />
             <h1>Shop All Items</h1>
             <AllItems items={items}/>
             <h1>Browse By Sellers</h1>

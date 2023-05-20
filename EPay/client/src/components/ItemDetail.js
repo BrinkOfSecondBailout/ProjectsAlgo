@@ -1,10 +1,12 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
-import { useParams , Link } from 'react-router-dom';
+import { useParams , Link , useNavigate } from 'react-router-dom';
 import Css from '../components/ItemDetail.module.css'
 
 
 const ItemDetail = (props) => {
+    const {removeFromDom} = props;
+    const navigate = useNavigate();
     const [item, setItem] = useState({});
     const {id} = useParams();
     const {user} = item;
@@ -32,6 +34,17 @@ const ItemDetail = (props) => {
             })
     }
 
+    const unlistItem = async (itemId) => {
+        axios.delete('http://localhost:8000/api/items/delete/' + itemId)
+            .then(response => {
+                removeFromDom(itemId)
+                navigate('/')
+            })
+            .catch(err => {
+                console.log(err)
+            })
+    }
+
     return (
         <div>
             <Link to='/'>Back to dashboard</Link>
@@ -43,9 +56,9 @@ const ItemDetail = (props) => {
             <p>Sold By: <Link to={`/users/${user?._id}`}>{user?.firstName}</Link></p>
             <div>
                 { item.inventory >= 1 && item.userId !== userId ?
-                    <button onClick={() => {addToCart(item)}}>Add to cart</button>
+                    <button onClick={() => {addToCart(item._id)}}>Add to cart</button>
                     : item.userId === userId ? (
-                        null
+                        <button onClick={() => {unlistItem(item._id)}}>Unlist Item</button>
                     )
                     : ( <h4>Currently Sold Out! :(</h4>
                 )}

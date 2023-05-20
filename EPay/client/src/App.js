@@ -23,7 +23,6 @@ function App() {
         axios.get('http://localhost:8000/api/users/' + id)
             .then(response => {
                 setUser(response.data);
-                console.log(response.data);
             })
             .catch(err => console.log(err));
     }, []);
@@ -49,6 +48,9 @@ function App() {
             })
     }, [])
 
+    const removeFromDom = itemId => {
+        setMyItems(myItems.filter(item => item._id != itemId));
+    }
 
     return (
         <BrowserRouter>
@@ -59,8 +61,8 @@ function App() {
               <Route path="/register" element={<Register/>} />
               <Route path="/users/edit" element={isLogged? <EditProfile user={user}/> : <Login/>} />
               <Route path="/users/:id" element={isLogged? <UserDetail /> : <Login/>} />
-              <Route path="/items/new" element={isLogged? <NewItem user={user} myItems={myItems} setMyItems={setMyItems} /> : <Login/>} />
-              <Route path="/items/:id" element={isLogged? <ItemDetail/> : <Login/>} />
+              <Route path="/items/new" element={isLogged? <NewItem user={user} myItems={myItems} setMyItems={setMyItems}/> : <Login/>} />
+              <Route path="/items/:id" element={isLogged? <ItemDetail removeFromDom={removeFromDom} /> : <Login/>} />
               <Route path="/cart" element={isLogged? <Cart /> : <Login/>} />
             </Routes>
           </div>

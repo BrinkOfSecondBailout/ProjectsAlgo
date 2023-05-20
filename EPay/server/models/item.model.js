@@ -25,7 +25,7 @@ const ItemSchema = new mongoose.Schema({
     },
     category: {
         type: String,
-        enum: ['Electronics', 'Collectibles', 'Clothings/Accessories', 'Toys/Games', 'Furniture', 'Others/Misc'],
+        enum: ['electronics', 'collectibles', 'clothings', 'toys', 'furniture', 'others'],
         required: true
     },
     userId: {

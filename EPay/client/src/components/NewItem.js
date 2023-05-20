@@ -36,7 +36,7 @@ const NewItem = (props) => {
             console.log(response.data)
             navigate('/')
         }) .catch (err => {
-            console.log(err.response.data)
+            console.log(err)
         })
     }
 
@@ -109,12 +109,13 @@ const NewItem = (props) => {
                 <div>
                     <label>Category:</label>
                     <select onChange={(e) => setCategory(e.target.value)} name="category">
-                        <option value="Electronics">Electronics</option>
-                        <option value="Collectibles">Collectibles</option>
-                        <option value="Clothings/Accessories">Clothings/Accessories</option>
-                        <option value="Toys/Games">Toys/Games</option>
-                        <option value="Furniture">Furniture</option>
-                        <option value="Others/Misc">Others/Misc</option>
+                        <option value="" selected disabled hidden>Select One</option>
+                        <option value="electronics">Electronics</option>
+                        <option value="collectibles">Collectibles</option>
+                        <option value="clothings">Clothings/Accessories</option>
+                        <option value="toys">Toys/Games</option>
+                        <option value="furniture">Furniture</option>
+                        <option value="others">Others/Misc</option>
                     </select>
                 </div>
 

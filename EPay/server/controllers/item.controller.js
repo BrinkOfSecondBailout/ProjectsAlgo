@@ -57,3 +57,19 @@ module.exports.getAllNotByUser = async (request, response) => {
             response.json(err)
         })
 }
+
+module.exports.getAllByCategory = async (request, response) => {
+    Item.find({category: request.params.category})
+        .then(items => {
+            response.json(items)
+        })
+        .catch(err => {
+            response.json(err)
+        })
+}
+
+module.exports.deleteItem = async (request, response) => {
+    Item.deleteOne({_id: request.params.itemId})
+        .then(deleteConfirmation => response.json(deleteConfirmation))
+        .catch(err => response.json(err))
+}
