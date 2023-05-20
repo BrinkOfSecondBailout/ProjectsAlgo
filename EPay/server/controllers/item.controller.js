@@ -73,3 +73,17 @@ module.exports.deleteItem = async (request, response) => {
         .then(deleteConfirmation => response.json(deleteConfirmation))
         .catch(err => response.json(err))
 }
+
+module.exports.getAllBySearch = async (request, response) => {
+    const query = request.params.searchQuery
+    try {
+        const items = await Item.find({ $or: [
+            {name: {$regex: query, $options: 'i'}},
+            {description: {$regex: query, $options: 'i'}}
+        ]
+        });
+        response.json(items)
+    } catch (err) {
+        response.json("Internal server error")
+    }
+}

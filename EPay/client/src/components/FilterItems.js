@@ -7,12 +7,26 @@ const FilterItems = () => {
 
     const [category, setCategory] = useState("")
     const [items, setItems] = useState([])
+    const [searchQuery, setSearchQuery] = useState("")
     const userId = localStorage.getItem('userId')
 
     const filterByCategory = async (e) => {
         e.preventDefault();
         try {
             await axios.get('http://localhost:8000/api/items/filter/' + category)
+                .then(response => {
+                    const filteredItems = (response.data.filter(item => item.userId !== userId))
+                    setItems(filteredItems)
+                })
+        } catch (err) {
+            console.log(err)
+        }
+    }
+
+    const searchByName = async (e) => {
+        e.preventDefault();
+        try {
+            await axios.get('http://localhost:8000/api/items/search/' + searchQuery)
                 .then(response => {
                     const filteredItems = (response.data.filter(item => item.userId !== userId))
                     setItems(filteredItems)
@@ -36,6 +50,10 @@ const FilterItems = () => {
                     <option value="others">Others/Misc</option>
                 </select>
                 <input type='submit' value='Filter'/>
+            </form>
+            <form onSubmit={searchByName}>
+                <input type="text" onChange={(e) => setSearchQuery(e.target.value)}/>
+                <input type='submit' value='Search'/>
             </form>
 
             <div>
