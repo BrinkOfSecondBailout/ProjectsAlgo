@@ -102,3 +102,9 @@ module.exports.getAllUsers = async (request, response) => {
         .then(users => response.json(users))
         .catch(err => response.json(err))
 }
+
+module.exports.updateProfile = async (request, response) => {
+    User.findOneAndUpdate({_id: request.params.id}, request.body, {new:true})
+        .then(updatedUser => response.json(updatedPerson))
+        .catch(err => response.json(err))
+}

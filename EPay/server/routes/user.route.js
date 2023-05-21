@@ -6,4 +6,5 @@ module.exports = function(app) {
     app.get('/api/users/:id', UserController.getOneUser);
     app.get('/api/users', UserController.getAllUsers);
     app.patch('/api/users/profile/:id', UserController.updatePicture);
+    app.patch('/api/users/update/:id', UserController.updateProfile);
 }

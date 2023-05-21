@@ -56,7 +56,7 @@ const ItemDetail = (props) => {
             <p>Sold By: <Link to={`/users/${user?._id}`}>{user?.firstName}</Link></p>
             <div>
                 { item.inventory >= 1 && item.userId !== userId ?
-                    <button onClick={() => {addToCart(item._id)}}>Add to cart</button>
+                    <button onClick={() => {addToCart(item)}}>Add to cart</button>
                     : item.userId === userId ? (
                         <button onClick={() => {unlistItem(item._id)}}>Unlist Item</button>
                     )

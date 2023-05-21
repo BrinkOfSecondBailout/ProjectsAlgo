@@ -26,13 +26,19 @@ const Dashboard = (props) => {
 
     return ( 
         <div>
-            <h1>Hi, <Link to='/users/edit/'>{user.firstName}!</Link></h1>
-            { user.myFile ?
-                <img className={Css.profilepic} src={user.myFile} alt="avatar"/>
-                : <img className={Css.profilepic} src={avatar} alt="no-avatar"/>
-            }
-            <Link to='/logout'>logout</Link>
-            <Link to='/cart'><button className={Css.cartButton}><img className={Css.cartPic} src={cart} alt="cart"/>{user.cart}</button></Link>
+            <div className={Css.topNav}>
+                <div className={Css.topLeft}>
+                    <h1>Hi, <Link to='/users/edit/'>{user.firstName}!</Link></h1>
+                    { user.myFile ?
+                        <img className={Css.profilepic} src={user.myFile} alt="avatar"/>
+                        : <img className={Css.profilepic} src={avatar} alt="no-avatar"/>
+                    }
+                </div>
+                <div className={Css.topRight}>
+                    <Link to='/cart'><button className={Css.cartButton}><img className={Css.cartPic} src={cart} alt="cart"/>{user.cart}</button></Link>
+                    <Link to='/logout'>logout</Link>
+                </div>
+            </div>
             <Link to='/items/new'>List a new item</Link>
             <h1>My Items</h1>
             <AllMyItems myItems={myItems}/>
