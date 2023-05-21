@@ -1,14 +1,15 @@
 import React, {useState, useEffect} from 'react'
-import {Link} from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
 import avatar from '../assets/avatar.png';
 import axios from 'axios';
 import Css from './EditProfile.module.css'
 
 const EditProfile = (props) => {
-
+    const navigate = useNavigate();
     const {user} = props;
     const [postImage, setPostImage] = useState({myFile: user.myFile});
     const [message, setMessage] = useState("");
+    const [errors, setErrors] = useState([]);
     const [firstName, setFirstName] = useState(user.firstName);
     const [lastName, setLastName] = useState(user.lastName);
     const [email, setEmail] = useState(user.email);
@@ -58,9 +59,13 @@ const EditProfile = (props) => {
             })
                 .then(response => {
                     console.log(response);
-
+                    navigate('/')
                 })
-                .catch(err => console.log(err))
+                .catch(err => {
+                    const errorReponse = err.response.data.errors;
+                    console.log(err.response.data.errors);
+                    setErrors(errorReponse);
+                })
 
         } catch (error) {
             console.log(error)
@@ -86,6 +91,10 @@ const EditProfile = (props) => {
             </div>
 
             <div>
+                {errors.firstName? <p>{errors.firstName.message}</p> : null}
+                {errors.lastName? <p>{errors.lastName.message}</p> : null}
+                {errors.email? <p>{errors.email.message}</p> : null}
+                {errors.password? <p>{errors.password.message}</p> : null}
                 <form onSubmit={updateUser}>
                     <div>
                         <label>First Name:</label>

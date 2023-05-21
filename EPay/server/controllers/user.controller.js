@@ -28,11 +28,6 @@ module.exports.register = async (request, response) => {
             const cart = Cart.create({
                 userId: user._id
             })
-            // user.cart = cart._id
-            // console.log(cart._id)
-            // user.skipPasswordHashing=true;
-            // user.save()
-            // console.log(user.cart)
             response.json({id: user._id, token})
         })
         .catch(err => {
@@ -74,22 +69,6 @@ module.exports.updatePicture = async (request, response) => {
         .catch(err => response.json(err))
 }
 
-// module.exports.addItemToCart = async (request, response) => {
-
-//     const id = request.params.id;
-//     try {
-//         const user = await User.findById(id).populate('cart')
-//         console.log(user.cart)
-//         user.cart.push(request.body)
-//         user.skipPasswordHashing=true;
-//         await user.save();
-//         console.log(user.cart[0].item)
-//         response.json("Item successfully added")
-//     } catch(err) {
-//         response.json(err)
-//     }
-// }
-
 
 module.exports.getMyCart = async (request, response) => {
     User.findOne({_id: request.params.id}).populate('cart')
@@ -104,7 +83,7 @@ module.exports.getAllUsers = async (request, response) => {
 }
 
 module.exports.updateProfile = async (request, response) => {
-    User.findOneAndUpdate({_id: request.params.id}, request.body, {new:true})
-        .then(updatedUser => response.json(updatedPerson))
-        .catch(err => response.json(err))
+    User.findOneAndUpdate({_id: request.params.id}, request.body, {new:true, runValidators: true})
+        .then(updatedUser => response.json(updatedUser))
+        .catch(err => response.status(400).json(err));
 }
