@@ -34,6 +34,16 @@ const ItemDetail = (props) => {
             })
     }
 
+    const watchList = async (item) => {
+        axios.post('http://localhost:8000/api/watchlist/add/' + userId, {item})
+            .then(response => {
+                console.log(response.data)
+            })
+            .catch(err => {
+                console.log(err)
+            })
+    }
+
     const unlistItem = async (itemId) => {
         axios.delete('http://localhost:8000/api/items/delete/' + itemId)
             .then(response => {
@@ -56,7 +66,10 @@ const ItemDetail = (props) => {
             <p>Sold By: <Link to={`/users/${user?._id}`}>{user?.firstName}</Link></p>
             <div>
                 { item.inventory >= 1 && item.userId !== userId ?
-                    <button onClick={() => {addToCart(item)}}>Add to cart</button>
+                    <div>
+                        <button onClick={() => {addToCart(item)}}>Add to Cart</button>
+                        <button onClick={() => {watchList(item)}}>Watchlist</button>
+                    </div>
                     : item.userId === userId ? (
                         <button onClick={() => {unlistItem(item._id)}}>Unlist Item</button>
                     )

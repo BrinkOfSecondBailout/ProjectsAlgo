@@ -8,7 +8,7 @@ const Cart = (props) => {
     const navigate = useNavigate();
     const [cart, setCart] = useState([]);
     const [total, setTotal] = useState(0);
-    const {items} = cart;
+    const {items} = cart || {};
     const id = localStorage.getItem('userId');
 
     useEffect(() => {

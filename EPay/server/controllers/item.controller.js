@@ -1,4 +1,7 @@
 const {Item} = require('../models/item.model');
+const {Watchlist} = require('../models/watchlist.model');
+const {Cart} = require('../models/cart.model');
+
 
 module.exports.newItem = async (request, response) => {
     Item.create({
@@ -68,11 +71,25 @@ module.exports.getAllByCategory = async (request, response) => {
         })
 }
 
+// module.exports.deleteItem = async (request, response) => {
+//     Item.deleteOne({_id: request.params.itemId})
+//         .then(deleteConfirmation => response.json(deleteConfirmation))
+//         .catch(err => response.json(err))
+// }
+
 module.exports.deleteItem = async (request, response) => {
-    Item.deleteOne({_id: request.params.itemId})
-        .then(deleteConfirmation => response.json(deleteConfirmation))
-        .catch(err => response.json(err))
-}
+    const itemId = request.params.itemId;
+
+    try {
+        await Item.deleteOne({_id: itemId})
+        await Watchlist.deleteMany({ 'items.item': itemId });
+        await Cart.deleteMany({ 'items.item': itemId });
+        return response.json({ message: 'Item deleted successfully' });
+    } catch (error) {
+        console.error(error);
+        return response.status(500).json({ error: 'Internal server error' });
+    }
+};
 
 module.exports.getAllBySearch = async (request, response) => {
     const query = request.params.searchQuery

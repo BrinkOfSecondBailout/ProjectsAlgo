@@ -3,7 +3,6 @@ const {User} = require('../models/user.model');
 const {Item} = require('../models/item.model');
 
 module.exports.addToCart = async (request, response) => {
-    
     const id = request.params.id;
     try {
         const cart = await Cart.findOne({userId: id})
