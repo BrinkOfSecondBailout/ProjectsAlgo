@@ -5,6 +5,10 @@ const CartSchema = new mongoose.Schema({
         type: String,
         required: [true, "Please add userId"]
     },
+    count: {
+        type: Number,
+        default: 0
+    },
     items: [
         {
             item: {

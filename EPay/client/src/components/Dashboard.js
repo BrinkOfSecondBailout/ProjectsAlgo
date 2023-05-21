@@ -35,7 +35,7 @@ const Dashboard = (props) => {
                     }
                 </div>
                 <div className={Css.topRight}>
-                    <Link to='/cart'><button className={Css.cartButton}><img className={Css.cartPic} src={cart} alt="cart"/>{user.cart}</button></Link>
+                    <Link to='/cart'><button className={Css.cartButton}><img className={Css.cartPic} src={cart} alt="cart"/></button></Link>
                     <Link to='/favorites'>watchlist</Link>
                     <Link to='/logout'>logout</Link>
                 </div>

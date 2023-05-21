@@ -11,14 +11,16 @@ module.exports.addToCart = async (request, response) => {
         item.inventory -= 1
         await item.save()
         if (itemIndex === -1) {
+            cart.count += 1
             cart.items.push({item: request.body.item})
-            cart.save()
-            const user = await User.findOne({_id: id})
-            user.cart += 1
-            user.skipPasswordHashing=true;
-            user.save()
+            await cart.save()
+            // const user = await User.findOne({_id: id})
+            // user.cart += 1
+            // user.skipPasswordHashing=true;
+            // user.save()
             response.json("Item successfully added")
         } else {
+            cart.count += 1
             cart.items[itemIndex].quantity += 1;
             await cart.save();
             response.json("Quantity successfully updated")
@@ -49,6 +51,7 @@ module.exports.updateQuantity = async (request, response) => {
             return response.json("Item not found in cart")
         } else {
             if (request.body.direction === "up" && item.inventory >= 1) {
+                cart.count += 1
                 cart.items[itemIndex].quantity = request.body.quantity
                 await cart.save();
                 item.inventory -= 1;
@@ -59,6 +62,7 @@ module.exports.updateQuantity = async (request, response) => {
                     response.json("Seller don't have enough inventory to fulfill this purchase")
                 } else {
                     if (request.body.direction === "down") {
+                        cart.count -= 1
                         cart.items[itemIndex].quantity = request.body.quantity
                         await cart.save();
                         item.inventory += 1;
@@ -86,12 +90,13 @@ module.exports.removeFromCart = async (request, response) => {
         }
         item.inventory += cart.items[itemIndex].quantity
         item.save()
+        cart.count -= cart.items[itemIndex].quantity
         cart.items.splice(itemIndex, 1);
         await cart.save()
-        const user = await User.findOne({_id: id})
-        user.cart -= 1
-        user.skipPasswordHashing=true;
-        user.save()
+        // const user = await User.findOne({_id: id})
+        // user.cart -= 1
+        // user.skipPasswordHashing=true;
+        // user.save()
         response.json("Item successfully removed")
     } catch(err) {
         response.json(err)

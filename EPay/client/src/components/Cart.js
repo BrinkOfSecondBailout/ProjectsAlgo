@@ -5,7 +5,6 @@ import Css from '../components/Cart.module.css'
 
 const Cart = (props) => {
     const [user, setUser] = useState({});
-    const navigate = useNavigate();
     const [cart, setCart] = useState([]);
     const [total, setTotal] = useState(0);
     const {items} = cart || {};
