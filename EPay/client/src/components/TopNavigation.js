@@ -12,8 +12,8 @@ const TopNavigation = (props) => {
             <div className={Css.topLeft}>
                 <h1>Hi, {user.firstName}!</h1>
                 { user.myFile ?
-                    <img className={Css.profilepic} src={user.myFile} alt="avatar"/>
-                    : <img className={Css.profilepic} src={avatar} alt="no-avatar"/>
+                    <Link to='/'><img className={Css.profilepic} src={user.myFile} alt="avatar"/></Link>
+                    : <Link to='/'><img className={Css.profilepic} src={avatar} alt="no-avatar"/></Link>
                 }
             </div>
             <div className={Css.topRight}>

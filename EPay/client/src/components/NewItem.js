@@ -3,10 +3,11 @@ import { Link , useNavigate } from 'react-router-dom'
 import upload from '../assets/upload.png';
 import Css from './NewItem.module.css';
 import axios from 'axios';
+import TopNavigation from './TopNavigation';
 
 const NewItem = (props) => {
     const navigate = useNavigate();
-    const {myItems, setMyItems, user} = props;
+    const {myItems, setMyItems, user, cart} = props;
     const [name, setName] = useState("")
     const [price, setPrice] = useState(0)
     const [condition, setCondition] = useState("")
@@ -73,70 +74,71 @@ const NewItem = (props) => {
 
     return (
         <div>
-            <h1>List a New Item</h1>
             <div>
-                <Link to='/'>Back to dashboard</Link>
-                <Link to='/logout'>logout</Link>
+                <TopNavigation cart={cart} user={user}/>
             </div>
-            <form onSubmit={newItemHandler} method="POST">
-                <div>
-                    <label>Item Name:</label>
-                    <input type="text" name="name" onChange={(e) => setName(e.target.value)}/>
-                </div>
-                <div>
-                    <label>Price:</label>
-                    <input type="number" name="price" onChange={(e) => setPrice(e.target.value)}/>
-                </div>
-                <div>
-                    <label>Condition:</label>
-                    <select name="condition" onChange={(e) => setCondition(e.target.value)}>
-                        <option value="" selected disabled hidden>
-                            Select an Option
-                        </option>
-                        <option value="New">New</option>
-                        <option value="Used">Used</option>
-                        <option value="Old">Old</option>
-                    </select>
-                </div>
-                <div>
-                    <label>Description:</label>
-                    <textarea rows="7" cols="25" type="text" name="description" onChange={(e) => setDescription(e.target.value)}/>
-                </div>
-                <div>
-                    <label>Inventory:</label>
-                    <input type="number" name="inventory" onChange={(e) => setInventory(e.target.value)}/>
-                </div>
-                <div>
-                    <label>Category:</label>
-                    <select onChange={(e) => setCategory(e.target.value)} name="category">
-                        <option value="" selected disabled hidden>Select One</option>
-                        <option value="electronics">Electronics</option>
-                        <option value="collectibles">Collectibles</option>
-                        <option value="clothings">Clothings/Accessories</option>
-                        <option value="toys">Toys/Games</option>
-                        <option value="furniture">Furniture</option>
-                        <option value="others">Others/Misc</option>
-                    </select>
-                </div>
+            <div>
+                <h1>List a New Item</h1>
+                <form onSubmit={newItemHandler} method="POST">
+                    <div>
+                        <label>Item Name:</label>
+                        <input type="text" name="name" onChange={(e) => setName(e.target.value)}/>
+                    </div>
+                    <div>
+                        <label>Price:</label>
+                        <input type="number" name="price" onChange={(e) => setPrice(e.target.value)}/>
+                    </div>
+                    <div>
+                        <label>Condition:</label>
+                        <select name="condition" onChange={(e) => setCondition(e.target.value)}>
+                            <option value="" selected disabled hidden>
+                                Select an Option
+                            </option>
+                            <option value="New">New</option>
+                            <option value="Used">Used</option>
+                            <option value="Old">Old</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label>Description:</label>
+                        <textarea rows="7" cols="25" type="text" name="description" onChange={(e) => setDescription(e.target.value)}/>
+                    </div>
+                    <div>
+                        <label>Inventory:</label>
+                        <input type="number" name="inventory" onChange={(e) => setInventory(e.target.value)}/>
+                    </div>
+                    <div>
+                        <label>Category:</label>
+                        <select onChange={(e) => setCategory(e.target.value)} name="category">
+                            <option value="" selected disabled hidden>Select One</option>
+                            <option value="electronics">Electronics</option>
+                            <option value="collectibles">Collectibles</option>
+                            <option value="clothings">Clothings/Accessories</option>
+                            <option value="toys">Toys/Games</option>
+                            <option value="furniture">Furniture</option>
+                            <option value="others">Others/Misc</option>
+                        </select>
+                    </div>
 
-                <div className={Css.uploadIcons}>
-                    <div>
-                        <label htmlFor="file-upload1"><img className={Css.uploadIcon} src={postImage1.myFile || upload} alt="file-upload"/></label>
-                        <input  type="file" accept="image/*" name="myFile1" id="file-upload1" onChange={(e) => handleFileUpload1(e)}/>
+                    <div className={Css.uploadIcons}>
+                        <div>
+                            <label htmlFor="file-upload1"><img className={Css.uploadIcon} src={postImage1.myFile || upload} alt="file-upload"/></label>
+                            <input  type="file" accept="image/*" name="myFile1" id="file-upload1" onChange={(e) => handleFileUpload1(e)}/>
+                        </div>
+                        <div>
+                            <label htmlFor="file-upload2"><img className={Css.uploadIcon} src={postImage2.myFile || upload} alt="file-upload"/></label>
+                            <input type="file" accept="image/*" name="myFile2" id="file-upload2" onChange={(e) => handleFileUpload2(e)}/>
+                        </div>
+                        <div>
+                            <label htmlFor="file-upload3"><img className={Css.uploadIcon} src={postImage3.myFile || upload} alt="file-upload"/></label>
+                            <input type="file" accept="image/*" name="myFile3" id="file-upload3" onChange={(e) => handleFileUpload3(e)}/>
+                        </div>
                     </div>
                     <div>
-                        <label htmlFor="file-upload2"><img className={Css.uploadIcon} src={postImage2.myFile || upload} alt="file-upload"/></label>
-                        <input type="file" accept="image/*" name="myFile2" id="file-upload2" onChange={(e) => handleFileUpload2(e)}/>
+                        <input type="submit" value="List Item!"/>
                     </div>
-                    <div>
-                        <label htmlFor="file-upload3"><img className={Css.uploadIcon} src={postImage3.myFile || upload} alt="file-upload"/></label>
-                        <input type="file" accept="image/*" name="myFile3" id="file-upload3" onChange={(e) => handleFileUpload3(e)}/>
-                    </div>
-                </div>
-                <div>
-                    <input type="submit" value="List Item!"/>
-                </div>
-            </form>
+                </form>
+            </div>
         </div>
     )
 }

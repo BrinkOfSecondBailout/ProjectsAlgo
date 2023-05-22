@@ -2,9 +2,10 @@ import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import {Link, useNavigate} from 'react-router-dom';
 import Css from '../components/Cart.module.css'
+import TopNavigation from './TopNavigation';
 
 const Cart = (props) => {
-    const [user, setUser] = useState({});
+    const {user} = props;
     const [cart, setCart] = useState([]);
     const [total, setTotal] = useState(0);
     const {items} = cart || {};
@@ -86,29 +87,32 @@ const Cart = (props) => {
 
     return (
         <div>
-            <Link to='/'>Back to dashboard</Link>
-            { items?.map((item, index) => {
-                return (
-                    <div key={index}>
-                        <h3>{item.item.name}</h3>
-                        <h3>${item.item.price}</h3>
-                        <form>
-                            <label><h4>Quantity:</h4></label>
-                            <button onClick={() => decreaseQuantity(item.item, item._id, item.quantity)}>-</button>
-                            <input className={Css.smallInput} type="text" value={item.quantity} readOnly/>
-                            <button onClick={() => increaseQuantity(item.item, item._id, item.quantity)}>+</button>
-                            <button onClick={() => deleteFromCart(item._id, item.item._id)}>Remove</button>
-                        </form>
-                        { item.item.myFile1 ?
-                            <img className={Css.itemPicture} src={item.item.myFile1} alt="item-pic"/>
-                        : null
-                        }
-                    </div>
-                )
-            })
-
-            }
-            <h2>Total: ${total}</h2>
+            <div>
+                <TopNavigation user={user} cart={cart}/>
+            </div>
+            <div>
+                { items?.map((item, index) => {
+                    return (
+                        <div key={index}>
+                            <h3>{item.item.name}</h3>
+                            <h3>${item.item.price}</h3>
+                            <form>
+                                <label><h4>Quantity:</h4></label>
+                                <button onClick={() => decreaseQuantity(item.item, item._id, item.quantity)}>-</button>
+                                <input className={Css.smallInput} type="text" value={item.quantity} readOnly/>
+                                <button onClick={() => increaseQuantity(item.item, item._id, item.quantity)}>+</button>
+                                <button onClick={() => deleteFromCart(item._id, item.item._id)}>Remove</button>
+                            </form>
+                            { item.item.myFile1 ?
+                                <img className={Css.itemPicture} src={item.item.myFile1} alt="item-pic"/>
+                            : null
+                            }
+                        </div>
+                    )
+                })
+                }
+                <h2>Total: ${total}</h2>
+            </div>
         </div>
     )
 }

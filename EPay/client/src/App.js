@@ -70,10 +70,10 @@ function App() {
               <Route path='/logout' element={<Logout/>} />
               <Route path="/register" element={<Register/>} />
               <Route path="/users/edit" element={isLogged? <EditProfile user1={user} cart={cart}/> : <Login/>} />
-              <Route path="/users/:id" element={isLogged? <UserDetail /> : <Login/>} />
-              <Route path="/items/new" element={isLogged? <NewItem user={user} myItems={myItems} setMyItems={setMyItems}/> : <Login/>} />
-              <Route path="/items/:id" element={isLogged? <ItemDetail removeFromDom={removeFromDom} /> : <Login/>} />
-              <Route path="/cart" element={isLogged? <Cart /> : <Login/>} />
+              <Route path="/users/:id" element={isLogged? <UserDetail user1={user} cart={cart} /> : <Login/>} />
+              <Route path="/items/new" element={isLogged? <NewItem user={user} cart={cart} myItems={myItems} setMyItems={setMyItems}/> : <Login/>} />
+              <Route path="/items/:id" element={isLogged? <ItemDetail user1={user} cart={cart} removeFromDom={removeFromDom} /> : <Login/>} />
+              <Route path="/cart" element={isLogged? <Cart user={user} /> : <Login/>} />
               <Route path="/favorites" element={isLogged? <Watchlist user={user} cart={cart}/> : <Login/>} />
             </Routes>
           </div>

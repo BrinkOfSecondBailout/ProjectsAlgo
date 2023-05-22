@@ -1,0 +1,17 @@
+.itemMainPic {
+    width: 200px;
+    height: 200px;
+}
+
+.profilePic {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    box-shadow: 1px 2px 2px 2px rgb(61, 61, 61);
+    padding: 3px;
+}
+
+.flex {
+    display: flex;
+    width: 70%;
+}
