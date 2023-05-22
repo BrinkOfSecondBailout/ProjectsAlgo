@@ -1,5 +1,4 @@
 const {Cart} = require('../models/cart.model');
-const {User} = require('../models/user.model');
 const {Item} = require('../models/item.model');
 
 module.exports.addToCart = async (request, response) => {
@@ -14,10 +13,6 @@ module.exports.addToCart = async (request, response) => {
             cart.count += 1
             cart.items.push({item: request.body.item})
             await cart.save()
-            // const user = await User.findOne({_id: id})
-            // user.cart += 1
-            // user.skipPasswordHashing=true;
-            // user.save()
             response.json("Item successfully added")
         } else {
             cart.items[itemIndex].quantity += 1;
@@ -90,10 +85,6 @@ module.exports.removeFromCart = async (request, response) => {
         cart.count -= 1
         cart.items.splice(itemIndex, 1);
         await cart.save()
-        // const user = await User.findOne({_id: id})
-        // user.cart -= 1
-        // user.skipPasswordHashing=true;
-        // user.save()
         response.json("Item successfully removed")
     } catch(err) {
         response.json(err)

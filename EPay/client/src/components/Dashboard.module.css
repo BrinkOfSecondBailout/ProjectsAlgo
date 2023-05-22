@@ -1,15 +1,65 @@
+* {
+    padding: 2px;
+}
+
+h1, h2, h3, h4, p {
+    /* font-family: 'Abel', sans-serif; */
+    font-family: 'Wix Madefor Display', sans-serif;
+}
+
 .topNav {
     display: flex;
     width: 70%;
     height: 300px;
 }
 
-.topRight {
-    display: flex;
-    flex-direction: column;
-    position: relative;
-    top: 25%;
+.topLeft {
+    flex: 2;
+}
 
+.topRight {
+    display:grid;
+    position: relative;
+    top: 10%;
+    right: 12%;
+    height: 100px;
+    flex: 3;
+    justify-content:right;
+}
+
+.body {
+    display: flex;
+    width: 70%;
+}
+
+.bottom {
+    display: flex;
+    width: 70%;
+}
+
+.topLeftBody {
+    height: 600px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    direction: rtl;
+}
+
+.bottomLeftBody {
+    height: 600px;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.leftBody {
+    flex: 2;
+}
+
+.rightBody {
+    flex: 3;
+    overflow-x: hidden;
+    overflow-y: auto;
+    direction: ltr;
+    
 }
 
 .profilepic {
@@ -31,4 +81,20 @@
     text-align: center;
     font-size: 25px;
     text-decoration-style: dashed;
+}
+
+::-webkit-scrollbar {
+    width: 0.5em;
+}
+::-webkit-scrollbar-track {
+    background: rgb(0, 0, 0);
+    border-radius: 100vw;
+}
+::-webkit-scrollbar-thumb {
+    background: rgb(255, 144, 54);
+    border-radius: 100vw;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: rgb(232, 109, 8);
+    border-radius: 100vw;
 }

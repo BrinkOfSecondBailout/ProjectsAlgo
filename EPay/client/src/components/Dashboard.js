@@ -8,6 +8,7 @@ import avatar from '../assets/avatar.png';
 import cartIcon from '../assets/cart.png';
 import AllSellers from './AllSellers';
 import FilterItems from './FilterItems';
+import TopNavigation from './TopNavigation';
 
 const Dashboard = (props) => {
     const {items, myItems} = props;
@@ -35,8 +36,8 @@ const Dashboard = (props) => {
 
     return ( 
         <div>
-            <div className={Css.topNav}>
-                <div className={Css.topLeft}>
+            <div>
+                {/* <div className={Css.topLeft}>
                     <h1>Hi, <Link to='/users/edit/'>{user.firstName}!</Link></h1>
                     { user.myFile ?
                         <img className={Css.profilepic} src={user.myFile} alt="avatar"/>
@@ -45,19 +46,29 @@ const Dashboard = (props) => {
                 </div>
                 <div className={Css.topRight}>
                     <Link to='/cart'><button className={Css.cartButton}><img className={Css.cartPic} src={cartIcon} alt="cart"/>{cart.count}</button></Link>
-                    <Link to='/favorites'>watchlist</Link>
-                    <Link to='/logout'>logout</Link>
+                    <Link to='/favorites'><h4>watchlist</h4></Link>
+                    <Link to='/logout'><h4>logout</h4></Link>
+                </div> */}
+                <TopNavigation user={user} cart={cart}/>
+            </div>
+            <div className={Css.body}>
+                <div className={Css.leftBody}>
+                    <div className={Css.topLeftBody}>
+                        <h1>My Items</h1>
+                        <Link to='/items/new'>List a new item</Link>
+                        <AllMyItems myItems={myItems}/>
+                    </div>
+                    <div className={Css.bottomLeftBody}>
+                        <FilterItems />
+                        <h1>Browse By Sellers</h1>
+                        <AllSellers />
+                    </div>
+                </div>
+                <div className={Css.rightBody}>
+                    <h1>Shop All Items</h1>
+                    <AllItems items={items}/>
                 </div>
             </div>
-            <Link to='/items/new'>List a new item</Link>
-            <h1>My Items</h1>
-            <AllMyItems myItems={myItems}/>
-            <FilterItems />
-            <h1>Shop All Items</h1>
-            <AllItems items={items}/>
-            <h1>Browse By Sellers</h1>
-            <AllSellers />
-            
         </div>
     )
 }

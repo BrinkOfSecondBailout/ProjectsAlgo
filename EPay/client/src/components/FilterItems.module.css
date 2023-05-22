@@ -6,3 +6,12 @@
 .flex {
     display: flex;
 }
+
+button {
+    width: 80px;
+    border-radius: 5px;
+}
+
+select {
+    width: 200px;
+}

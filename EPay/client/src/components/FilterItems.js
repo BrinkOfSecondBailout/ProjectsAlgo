@@ -49,11 +49,11 @@ const FilterItems = () => {
                     <option value="furniture">Furniture</option>
                     <option value="others">Others/Misc</option>
                 </select>
-                <input type='submit' value='Filter'/>
+                <button>Filter</button>
             </form>
             <form onSubmit={searchByName}>
                 <input type="text" onChange={(e) => setSearchQuery(e.target.value)}/>
-                <input type='submit' value='Search'/>
+                <button>Search</button>
             </form>
 
             <div>
