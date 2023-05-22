@@ -10,7 +10,7 @@ const TopNavigation = (props) => {
     return (
         <div className={Css.topNav}>
             <div className={Css.topLeft}>
-                <h1>Hi, <Link to='/users/edit/'>{user.firstName}!</Link></h1>
+                <h1>Hi, {user.firstName}!</h1>
                 { user.myFile ?
                     <img className={Css.profilepic} src={user.myFile} alt="avatar"/>
                     : <img className={Css.profilepic} src={avatar} alt="no-avatar"/>
@@ -19,6 +19,7 @@ const TopNavigation = (props) => {
             <div className={Css.topRight}>
                 <Link to='/cart'><button className={Css.cartButton}><img className={Css.cartPic} src={cartIcon} alt="cart"/>{cart.count}</button></Link>
                 <Link to='/'><h4>dashboard</h4></Link>
+                <Link to='/users/edit'><h4>edit profile</h4></Link>
                 <Link to='/favorites'><h4>watchlist</h4></Link>
                 <Link to='/logout'><h4>logout</h4></Link>
             </div>

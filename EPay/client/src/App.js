@@ -19,6 +19,7 @@ function App() {
     const [user, setUser] = useState({});
     const [items, setItems] = useState([]);
     const [myItems, setMyItems] = useState([]);
+    const [cart, setCart] = useState({});
 
     useEffect(() => {
         axios.get('http://localhost:8000/api/users/' + id)
@@ -49,6 +50,14 @@ function App() {
             })
     }, [])
 
+    useEffect(() => {
+        axios.get('http://localhost:8000/api/cart/show/' + id)
+            .then(response => {
+                setCart(response.data);
+            })
+            .catch(err => console.log(err));
+    }, []);
+
     const removeFromDom = itemId => {
         setMyItems(myItems.filter(item => item._id != itemId));
     }
@@ -57,15 +66,15 @@ function App() {
         <BrowserRouter>
           <div className="App">
             <Routes>
-              <Route path="/" element={isLogged? <Dashboard items={items} myItems={myItems} /> : <Login/>} />
+              <Route path="/" element={isLogged? <Dashboard cart={cart} items={items} myItems={myItems} /> : <Login/>} />
               <Route path='/logout' element={<Logout/>} />
               <Route path="/register" element={<Register/>} />
-              <Route path="/users/edit" element={isLogged? <EditProfile user={user}/> : <Login/>} />
+              <Route path="/users/edit" element={isLogged? <EditProfile user1={user} cart={cart}/> : <Login/>} />
               <Route path="/users/:id" element={isLogged? <UserDetail /> : <Login/>} />
               <Route path="/items/new" element={isLogged? <NewItem user={user} myItems={myItems} setMyItems={setMyItems}/> : <Login/>} />
               <Route path="/items/:id" element={isLogged? <ItemDetail removeFromDom={removeFromDom} /> : <Login/>} />
               <Route path="/cart" element={isLogged? <Cart /> : <Login/>} />
-              <Route path="/favorites" element={isLogged? <Watchlist/> : <Login/>} />
+              <Route path="/favorites" element={isLogged? <Watchlist user={user} cart={cart}/> : <Login/>} />
             </Routes>
           </div>
         </BrowserRouter>

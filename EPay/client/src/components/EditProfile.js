@@ -3,22 +3,42 @@ import {Link, useNavigate} from 'react-router-dom';
 import avatar from '../assets/avatar.png';
 import axios from 'axios';
 import Css from './EditProfile.module.css'
+import TopNavigation from './TopNavigation';
 
 const EditProfile = (props) => {
     const navigate = useNavigate();
-    const {user} = props;
+    // user1 is pulled from the parent in order to pre-populate the form, 
+    // the user is for the profilepicture. this is the only way to go around it
+    const {user1, cart} = props;
+    const [user, setUser] = useState({})
     const [postImage, setPostImage] = useState({myFile: user.myFile});
     const [message, setMessage] = useState("");
     const [errors, setErrors] = useState([]);
-    const [firstName, setFirstName] = useState(user.firstName);
-    const [lastName, setLastName] = useState(user.lastName);
-    const [email, setEmail] = useState(user.email);
+    const [firstName, setFirstName] = useState(user1.firstName);
+    const [lastName, setLastName] = useState(user1.lastName);
+    const [email, setEmail] = useState(user1.email);
     const userId = localStorage.getItem('userId');
+
+    useEffect(() => {
+        const fetchUser = async () => {
+            try {
+                axios.get('http://localhost:8000/api/users/' + userId)
+                .then(response => {
+                    setUser(response.data);
+                })
+                .catch(err => console.log(err));
+            } catch (err) {
+                console.log(err)
+            }
+        };
+        fetchUser();
+    }, []);
 
     const createPost = async (newImage) => {
         try {
             await axios.patch('http://localhost:8000/api/users/profile/' + userId, newImage)
             setMessage("Success! Profile photo updated!")
+            navigate('/')
         } catch (error) {
             console.log(error)
         }
@@ -75,42 +95,45 @@ const EditProfile = (props) => {
     return (
 
         <div>
-            <h1>Edit Your Profile, {user.firstName}</h1>
             <div>
-                <Link to='/'>Back to dashboard</Link>
-                <Link to='/logout'>logout</Link>
+                <TopNavigation user={user} cart={cart}/>
             </div>
             <div>
-                <h3>Upload profile picture</h3>
-                <form onSubmit={uploadImage} encType="multipart/form-data">
-                    <div><label htmlFor="file-upload"><img className={Css.customUpload} src={postImage.myFile || avatar} alt=""/></label></div>
-                    <input type="file" accept="image/*" name="myFile" id="file-upload" required  onChange={(e) => handleFileUpload(e)}/>
-                    <input type="submit" value="Upload"/>
-                </form>
-                { message ? <p>{message}</p> : null }
-            </div>
-
-            <div>
-                {errors.firstName? <p>{errors.firstName.message}</p> : null}
-                {errors.lastName? <p>{errors.lastName.message}</p> : null}
-                {errors.email? <p>{errors.email.message}</p> : null}
-                {errors.password? <p>{errors.password.message}</p> : null}
-                <form onSubmit={updateUser}>
-                    <div>
-                        <label>First Name:</label>
-                        <input type="text" name="firstName" value={firstName} onChange={(e) => setFirstName(e.target.value)}/>
-                    </div>
-                    <div>
-                        <label>Last Name:</label>
-                        <input type="text" name="lastName" value={lastName} onChange={(e) => setLastName(e.target.value)}/>
-                    </div>
-                    <div>
-                        <label>Email:</label>
-                        <input type="email" name="email" value={email} onChange={(e) => setEmail(e.target.value)}/>
-                    </div>
-                    <input type="submit" value="Update"/>
+                <h1>Edit Your Profile, {user.firstName}</h1>
+                <div>
+                    <h3>Upload profile picture</h3>
+                    <form onSubmit={uploadImage} encType="multipart/form-data">
+                        <div><label htmlFor="file-upload"><img className={Css.customUpload} src={postImage.myFile || avatar} alt=""/></label></div>
+                        <input type="file" accept="image/*" name="myFile" id="file-upload" required  onChange={(e) => handleFileUpload(e)}/>
+                        <input type="submit" value="Upload"/>
                     </form>
+                    { message ? <p>{message}</p> : null }
+                </div>
+
+                <div>
+                    {errors.firstName? <p>{errors.firstName.message}</p> : null}
+                    {errors.lastName? <p>{errors.lastName.message}</p> : null}
+                    {errors.email? <p>{errors.email.message}</p> : null}
+                    {errors.password? <p>{errors.password.message}</p> : null}
+                    <form onSubmit={updateUser}>
+                        <div>
+                            <label>First Name:</label>
+                            <input type="text" name="firstName" value={firstName} onChange={(e) => setFirstName(e.target.value)}/>
+                        </div>
+                        <div>
+                            <label>Last Name:</label>
+                            <input type="text" name="lastName" value={lastName} onChange={(e) => setLastName(e.target.value)}/>
+                        </div>
+                        <div>
+                            <label>Email:</label>
+                            <input type="email" name="email" value={email} onChange={(e) => setEmail(e.target.value)}/>
+                        </div>
+                        <input type="submit" value="Update"/>
+                    </form>
+                </div>
+
             </div>
+            
         </div>
     )
 }
