@@ -31,7 +31,7 @@ const Dashboard = (props) => {
                 <div className={Css.leftBody}>
                     <div className={Css.topLeftBody}>
                         <h1>My Items</h1>
-                        <Link to='/items/new'>List a new item</Link>
+                        <Link to='/items/new'><button className={Css.listButton}><h4>List a new item</h4></button></Link>
                         <AllMyItems myItems={myItems}/>
                     </div>
                     <div className={Css.bottomLeftBody}>

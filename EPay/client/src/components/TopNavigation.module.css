@@ -1,0 +1,45 @@
+* {
+    padding: 2px;
+}
+
+
+.topNav {
+    display: flex;
+    width: 70%;
+    height: 300px;
+}
+
+.topLeft {
+    flex: 2;
+}
+
+.topRight {
+    display: grid;
+    position: relative;
+    top: 10%;
+    right: 12%;
+    height: 100px;
+    flex: 3;
+    justify-content: right;
+}
+
+.profilepic {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    box-shadow: 1px 2px 2px 2px rgb(61, 61, 61);
+    padding: 3px;
+}
+
+.cartPic {
+    width: 45px;
+    height: 40px;
+}
+
+.cartButton {
+    background: none;
+    border: none;
+    text-align: center;
+    font-size: 25px;
+    text-decoration-style: dashed;
+}

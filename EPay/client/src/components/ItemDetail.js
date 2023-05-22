@@ -62,21 +62,20 @@ const ItemDetail = (props) => {
                 <TopNavigation user={user1} cart={cart}/>
             </div>
             <div>
-                <Link to='/'>Back to dashboard</Link>
                 <h1>{item.name}</h1>
                 <h2>${item.price}</h2>
                 <h2>{item.condition}</h2>
-                <p>{item.description}</p>
-                <p>{item.category}</p>
-                <p>Sold By: <Link to={`/users/${user?._id}`}>{user?.firstName}</Link></p>
+                <h4>{item.description}</h4>
+                <h4>Category: {item.category}</h4>
+                <h4>Sold By: <Link to={`/users/${user?._id}`}>{user?.firstName}</Link></h4>
                 <div>
                     { item.inventory >= 1 && item.userId !== userId ?
                         <div>
-                            <button onClick={() => {addToCart(item)}}>Add to Cart</button>
-                            <button onClick={() => {watchList(item)}}>Watchlist</button>
+                            <button className={Css.itemButton} onClick={() => {addToCart(item)}}><h4>Add to Cart</h4></button>
+                            <button className={Css.itemButton} onClick={() => {watchList(item)}}><h4>Watchlist</h4></button>
                         </div>
                         : item.userId === userId ? (
-                            <button onClick={() => {unlistItem(item._id)}}>Unlist Item</button>
+                            <button className={Css.itemButton} onClick={() => {unlistItem(item._id)}}><h4>Unlist Item</h4></button>
                         )
                         : ( <h4>Currently Sold Out! :(</h4>
                     )}

@@ -1,30 +1,14 @@
 * {
     padding: 2px;
+    margin: 0 auto;
 }
 
-h1, h2, h3, h4, p {
-    /* font-family: 'Abel', sans-serif; */
+h1, h2, h3, h4 {
     font-family: 'Wix Madefor Display', sans-serif;
 }
 
-.topNav {
-    display: flex;
-    width: 70%;
-    height: 300px;
-}
-
-.topLeft {
-    flex: 2;
-}
-
-.topRight {
-    display:grid;
-    position: relative;
-    top: 10%;
-    right: 12%;
-    height: 100px;
-    flex: 3;
-    justify-content:right;
+p {
+    font-family: 'Abel', sans-serif;
 }
 
 .body {
@@ -62,25 +46,10 @@ h1, h2, h3, h4, p {
     
 }
 
-.profilepic {
-    width: 200px;
-    height: 200px;
-    border-radius: 50%;
-    box-shadow: 1px 2px 2px 2px rgb(61, 61, 61);
-    padding: 3px;
-}
-
-.cartPic {
-    width: 45px;
-    height: 40px;
-}
-
-.cartButton {
-    background: none;
-    border: none;
-    text-align: center;
-    font-size: 25px;
-    text-decoration-style: dashed;
+.listButton {
+    width: 180px;
+    height: 30px;
+    border-radius: 20px;
 }
 
 ::-webkit-scrollbar {

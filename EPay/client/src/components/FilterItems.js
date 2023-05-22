@@ -40,7 +40,7 @@ const FilterItems = () => {
     return (
         <div>
             <form onSubmit={filterByCategory}>
-                <select onChange={(e) => setCategory(e.target.value)} name="category">
+                <select className={Css.selectField} onChange={(e) => setCategory(e.target.value)} name="category">
                     <option value="" selected disabled hidden>Select One</option>
                     <option value="electronics">Electronics</option>
                     <option value="collectibles">Collectibles</option>
@@ -49,11 +49,11 @@ const FilterItems = () => {
                     <option value="furniture">Furniture</option>
                     <option value="others">Others/Misc</option>
                 </select>
-                <button>Filter</button>
+                <button className={Css.filterButton}><h4>Filter</h4></button>
             </form>
             <form onSubmit={searchByName}>
                 <input type="text" onChange={(e) => setSearchQuery(e.target.value)}/>
-                <button>Search</button>
+                <button className={Css.filterButton}><h4>Search</h4></button>
             </form>
 
             <div>

@@ -54,7 +54,8 @@ const Watchlist = (props) => {
                             }
                         </div>
                     )
-                })
+                }) 
+                
                 }
             </div>
         </div>

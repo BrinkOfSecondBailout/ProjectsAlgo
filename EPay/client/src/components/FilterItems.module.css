@@ -7,11 +7,11 @@
     display: flex;
 }
 
-/* button {
+.filterButton {
     width: 80px;
     border-radius: 5px;
 }
 
-select {
+.selectField {
     width: 200px;
-} */
+}

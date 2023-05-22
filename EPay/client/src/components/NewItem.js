@@ -77,20 +77,20 @@ const NewItem = (props) => {
             <div>
                 <TopNavigation cart={cart} user={user}/>
             </div>
-            <div>
                 <h1>List a New Item</h1>
+            <div className={Css.newItemForm}>
                 <form onSubmit={newItemHandler} method="POST">
+                    <label>Item Name:</label>
                     <div>
-                        <label>Item Name:</label>
-                        <input type="text" name="name" onChange={(e) => setName(e.target.value)}/>
+                        <input className={Css.inputField} type="text" name="name" onChange={(e) => setName(e.target.value)}/>
                     </div>
-                    <div>
                         <label>Price:</label>
-                        <input type="number" name="price" onChange={(e) => setPrice(e.target.value)}/>
-                    </div>
                     <div>
+                        <input className={Css.inputField} type="number" name="price" onChange={(e) => setPrice(e.target.value)}/>
+                    </div>
                         <label>Condition:</label>
-                        <select name="condition" onChange={(e) => setCondition(e.target.value)}>
+                    <div>
+                        <select className={Css.inputField} name="condition" onChange={(e) => setCondition(e.target.value)}>
                             <option value="" selected disabled hidden>
                                 Select an Option
                             </option>
@@ -99,17 +99,17 @@ const NewItem = (props) => {
                             <option value="Old">Old</option>
                         </select>
                     </div>
-                    <div>
                         <label>Description:</label>
-                        <textarea rows="7" cols="25" type="text" name="description" onChange={(e) => setDescription(e.target.value)}/>
-                    </div>
                     <div>
+                        <textarea className={Css.inputField} rows="5" type="text" name="description" onChange={(e) => setDescription(e.target.value)}/>
+                    </div>
                         <label>Inventory:</label>
-                        <input type="number" name="inventory" onChange={(e) => setInventory(e.target.value)}/>
-                    </div>
                     <div>
+                        <input className={Css.inputField} type="number" name="inventory" onChange={(e) => setInventory(e.target.value)}/>
+                    </div>
                         <label>Category:</label>
-                        <select onChange={(e) => setCategory(e.target.value)} name="category">
+                    <div>
+                        <select className={Css.inputField} onChange={(e) => setCategory(e.target.value)} name="category">
                             <option value="" selected disabled hidden>Select One</option>
                             <option value="electronics">Electronics</option>
                             <option value="collectibles">Collectibles</option>
@@ -135,7 +135,7 @@ const NewItem = (props) => {
                         </div>
                     </div>
                     <div>
-                        <input type="submit" value="List Item!"/>
+                        <button className={Css.listButton}><h4>List</h4></button>
                     </div>
                 </form>
             </div>

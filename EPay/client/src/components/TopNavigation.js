@@ -2,7 +2,7 @@ import React from 'react'
 import {Link} from 'react-router-dom'
 import avatar from '../assets/avatar.png';
 import cartIcon from '../assets/cart.png';
-import Css from './Dashboard.module.css'
+import Css from './TopNavigation.module.css'
 
 const TopNavigation = (props) => {
     const {user, cart} = props;
