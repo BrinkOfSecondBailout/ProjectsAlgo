@@ -7,3 +7,8 @@
     width: 100px;
     height: 50px;
 }
+
+.buttons {
+    display: flex;
+    width: 220px;
+}

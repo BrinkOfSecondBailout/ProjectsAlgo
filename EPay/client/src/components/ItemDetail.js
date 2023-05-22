@@ -11,18 +11,43 @@ const ItemDetail = (props) => {
     const [item, setItem] = useState({});
     const {id} = useParams();
     const {user} = item;
+    const [watchlist, setWatchlist] = useState([])
+    const {items} = watchlist || {};
+    const [watched, setWatched] = useState(false)
     const userId = localStorage.getItem('userId');
 
     useEffect(() => {
         axios.get('http://localhost:8000/api/items/' + id)
-            .then(response => {
-                console.log(response.data)
-                setItem(response.data)
-            })
-            .catch(err => {
-                console.log(err)
-            })
+            .then(response => setItem(response.data))
+            .catch(err => console.log(err))
+        
     }, [])
+
+    useEffect(() => {
+        axios.get('http://localhost:8000/api/watchlist/show/' + userId)
+            .then(response => setWatchlist(response.data))
+            .catch(err => console.log(err))
+    }, [])
+
+    useEffect(() => {
+        if (items && item) {
+            isItemAlreadyWatched(items, item)
+        }
+    }, [items, item])
+
+
+    const isItemAlreadyWatched = async (items, thisItem) => {
+        try {
+            const itemIndex = items.findIndex(item => item.item._id === thisItem._id)
+            if (itemIndex === -1) {
+                setWatched(false);
+            } else {
+                setWatched(true);
+            }
+        } catch (err) {
+            console.log(err)
+        }
+    }
 
     const addToCart = async (item) => {
         axios.post('http://localhost:8000/api/cart/add/' + userId, {item})
@@ -35,15 +60,31 @@ const ItemDetail = (props) => {
             })
     }
 
-    const watchList = async (item) => {
+    const addWatchList = async (item) => {
         axios.post('http://localhost:8000/api/watchlist/add/' + userId, {item})
             .then(response => {
                 console.log(response.data)
+                setWatched(true);
             })
             .catch(err => {
                 console.log(err)
             })
     }
+
+    const removeFromWatch = async (itemId) => {
+        try {
+            axios.delete(`http://localhost:8000/api/watchlist/remove/${userId}/${itemId}`)
+                .then(response => {
+                    console.log('Successfully removed item')
+                    setWatched(false);
+                    window.location.reload();
+                })
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+
 
     const unlistItem = async (itemId) => {
         axios.delete('http://localhost:8000/api/items/delete/' + itemId)
@@ -70,9 +111,12 @@ const ItemDetail = (props) => {
                 <h4>Sold By: <Link to={`/users/${user?._id}`}>{user?.firstName}</Link></h4>
                 <div>
                     { item.inventory >= 1 && item.userId !== userId ?
-                        <div>
+                        <div className={Css.buttons}>
                             <button className={Css.itemButton} onClick={() => {addToCart(item)}}><h4>Add to Cart</h4></button>
-                            <button className={Css.itemButton} onClick={() => {watchList(item)}}><h4>Watchlist</h4></button>
+                            { watched ?
+                                <button className={Css.itemButton} onClick={() => removeFromWatch(item._id)}><h4>Remove from Watch</h4></button>
+                                : <button className={Css.itemButton} onClick={() => {addWatchList(item)}}><h4>Watchlist</h4></button>
+                            }
                         </div>
                         : item.userId === userId ? (
                             <button className={Css.itemButton} onClick={() => {unlistItem(item._id)}}><h4>Unlist Item</h4></button>

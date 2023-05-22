@@ -52,7 +52,7 @@ const FilterItems = () => {
                 <button className={Css.filterButton}><h4>Filter</h4></button>
             </form>
             <form onSubmit={searchByName}>
-                <input type="text" onChange={(e) => setSearchQuery(e.target.value)}/>
+                <input placeholder="Search by name or keywords" type="text" onChange={(e) => setSearchQuery(e.target.value)}/>
                 <button className={Css.filterButton}><h4>Search</h4></button>
             </form>
 
