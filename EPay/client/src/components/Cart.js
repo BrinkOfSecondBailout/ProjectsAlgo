@@ -123,7 +123,14 @@ const Cart = (props) => {
                 })
             }
             <div className={Css.totalDiv}><h2>Total: ${total}</h2></div>
-            <div className={Css.checkoutDiv}><button className={Css.checkoutButton}><h3>Checkout</h3></button></div>
+            
+            {   total > 0 ? 
+                (<div className={Css.checkoutDiv}>
+                    <button className={Css.checkoutButton}><h3>Checkout</ h3></button>
+                </div>)
+                : null
+            }
+
             </div>
             </div>
             

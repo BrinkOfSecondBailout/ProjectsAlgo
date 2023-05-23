@@ -4,6 +4,7 @@ import axios from 'axios';
 import Css from '../components/UserDetail.module.css'
 import TopNavigation from './TopNavigation';
 import avatar from '../assets/avatar.png';
+import noImg from '../assets/noimage.jpg';
 
 const UserDetail = (props) => {
     const {user1, cart} = props;
@@ -49,8 +50,8 @@ const UserDetail = (props) => {
                             <div key={index}>
                                 <Link to={`/items/${item._id}`}><h3>{item.name} ${item.price}</h3></Link>
                                 { item.myFile1 ?
-                                    <img className={Css.itemMainPic} src={item.myFile1} alt="item-pic"/>
-                                : null
+                                    <Link to={`/items/${item._id}`}><img className={Css.itemMainPic} src={item.myFile1} alt="item-pic"/></Link>
+                                : <Link to={`/items/${item._id}`}><img className={Css.itemMainPic} src={noImg} alt="no-img"/></Link>
                                 }
                             </div>
                         )

@@ -17,7 +17,9 @@ const TopNavigation = (props) => {
                 }
             </div>
             <div className={Css.topRight}>
-                <Link to='/cart'><button className={Css.cartButton}><img className={Css.cartPic} src={cartIcon} alt="cart"/>{cart.count}</button></Link>
+                <div className={Css.totalCart}>
+                    <Link to='/cart'><button className={Css.cartButton}><img className={Css.cartPic} src={cartIcon} alt="cart"/><div className={Css.cartTotal}><h6>{cart.count}</h6></div></button></Link>
+                </div>
                 <Link to='/'><h4>dashboard</h4></Link>
                 <Link to='/users/edit'><h4>edit profile</h4></Link>
                 <Link to='/favorites'><h4>watchlist</h4></Link>
