@@ -26,7 +26,8 @@ p {
 }
 
 .topLeftBody {
-    height: 600px;
+    height: 550px;
+    width: 400px;
     overflow-x: hidden;
     overflow-y: auto;
     direction: rtl;
@@ -39,15 +40,17 @@ p {
 }
 
 .leftBody {
-    flex: 2;
+    /* flex: 2; */
 }
 
 .rightBody {
-    flex: 3;
-    overflow-x: hidden;
-    overflow-y: auto;
-    direction: ltr;
-    
+    /* width: 700px;
+    display: inline; */
+}
+
+.allItemsDiv {
+    max-width: 700px;
+    display: flex;
 }
 
 .listButton {

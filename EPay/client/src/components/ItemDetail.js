@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useParams , Link , useNavigate } from 'react-router-dom';
 import Css from '../components/ItemDetail.module.css'
 import TopNavigation from './TopNavigation';
-
+import noImg from '../assets/noimage.jpg';
 
 const ItemDetail = (props) => {
     const {user1, cart, removeFromDom} = props;
@@ -128,7 +128,7 @@ const ItemDetail = (props) => {
                 {
                     item.myFile1 ?
                         <img className={Css.itemPicture} src={item.myFile1}/>
-                    : null
+                    : <img className={Css.itemPicture} src={noImg}/>
                 }
                 {
                     item.myFile2 ? <img className={Css.itemPicture} src={item.myFile2} />

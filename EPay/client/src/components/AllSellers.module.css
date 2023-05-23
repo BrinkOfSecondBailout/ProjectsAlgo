@@ -1,6 +1,9 @@
 .flex {
     display: flex;
     width: 70%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    direction: ltr;
 }
 
 .profilepic {

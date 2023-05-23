@@ -1,23 +1,29 @@
 import React from 'react';
 import Css from '../components/AllItems.module.css';
 import {Link} from 'react-router-dom';
+import noImg from '../assets/noimage.jpg';
 
 const AllMyItems = (props) => {
     const {myItems} = props;
 
     return (
-        <div>
+        <div className={Css.myItemsDiv}>
             { myItems.length !== 0
-                ? <div className={Css.allItems}>
+                ? <div className={Css.allMyItems}>
                     { myItems.map((item, index) => {
                         return (
-                            <h3 key={index}>
-                                <Link to={`/items/${item._id}`}>{item.name} ${item.price}</Link>
+                            <div key={index}>
+                                <div>
+                                <h4><Link to={`/items/${item._id}`}>{item.name}</Link></h4>
+                                <h4>${item.price}</h4>
+                                <div>
                                 { item.myFile1 ?
                                     <img className={Css.itemMainPic} src={item.myFile1} alt="item-pic"/>
-                                : null
+                                : <Link to={`/items/${item._id}`}><img className={Css.itemMainPic} src={noImg} alt="no-img"/></Link>
                                 }
-                            </h3>
+                                </div>
+                                </div>
+                            </div>
                         )
                     })
                     }

@@ -5,6 +5,11 @@
 
 .flex {
     display: flex;
+    height: 200px;
+    width: 300px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    direction: ltr;
 }
 
 .filterButton {
@@ -15,3 +20,8 @@
 .selectField {
     width: 200px;
 }
+
+.oneItem {
+    width: 150px;
+}
+

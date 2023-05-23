@@ -62,13 +62,15 @@ const FilterItems = () => {
                         { items?.map((item, index) => {
                             return (
                                 <div key={index}>
-
-                                    <Link to={`/items/${item._id}`}><div>{item.name} ${item.price}</div></Link>
+                                    <div className={Css.oneItem}>
+                                    <h4><Link to={`/items/${item._id}`}>{item.name}</Link></h4>
+                                    <p>${item.price}</p>
                                     { item.myFile1 ?
                                     <img className={Css.itemPictureSmall} src={item.myFile1} alt="item-pic"/>
                                     : null
-                                    
                                 }
+                                </div>
+
                                 </div>
                             )
                         }) 

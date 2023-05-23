@@ -42,7 +42,9 @@ const Dashboard = (props) => {
                 </div>
                 <div className={Css.rightBody}>
                     <h1>Shop All Items</h1>
-                    <AllItems items={items}/>
+                    <div className={Css.allItemsDiv}>
+                        <AllItems items={items}/>
+                    </div>
                 </div>
             </div>
         </div>

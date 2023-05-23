@@ -1,18 +1,35 @@
 .itemMainPic {
     width: 200px;
     height: 200px;
+    border-radius: 10px;
+}
+
+.totalAllItems {
+    max-width: 700px;
+    display: contents
 }
 
 .allItems {
-    display: flex;
-    width: 70%;
-    height: 500px;
+    display: flex ;
+    flex-wrap: wrap;
+    width: 800px;
+    height: 900px;
     overflow-x: hidden;
     overflow-y: auto;
-    direction: ltr;
+    direction:ltr;
+}
+
+.oneItem {
+
 }
 
 .noItems {
     height: 400px;
     width: 70%;
+}
+
+.allMyItems {
+    display: inline-block;
+    width: 70%;
+    height: 500px;
 }
