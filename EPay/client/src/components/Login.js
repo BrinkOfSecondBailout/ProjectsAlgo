@@ -34,12 +34,12 @@ const Login = () => {
             <h1>Login</h1>
             {errors ? <p>{errors}</p> : null}
             <form onSubmit={loginUser} method="POST">
-                <div>
                     <label>Email:</label>
+                <div>
                     <input type="email" name="email" onChange={(e) => setEmail(e.target.value)}/>
                 </div>
-                <div>
                     <label>Password</label>
+                <div>
                     <input type="password" name="password" onChange={(e) => setPassword(e.target.value)}/>
                 </div>
                 <input type="submit" value="Login"/>

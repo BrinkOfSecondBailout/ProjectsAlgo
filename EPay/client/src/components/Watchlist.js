@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
-import Css from '../components/Cart.module.css'
+import {Link} from 'react-router-dom';
+import Css from '../components/Watchlist.module.css'
 import TopNavigation from './TopNavigation';
 
 const Watchlist = (props) => {
@@ -38,15 +39,15 @@ const Watchlist = (props) => {
             <div>
                 <TopNavigation user={user} cart={cart}/>
             </div>
-            <div>
-                <h1>Watchlist</h1>
+            <h1>Watchlist</h1>
+            <div className={Css.watchItems}>
                 { items?.map((item, index) => {
                     return (
-                        <div key={index}>
+                        <div key={index} >
                             <div>
-                                <h3>{item.item.name}</h3>
+                                <h3><Link to={`/items/${item.item._id}`}>{item.item.name}</Link></h3>
                                 <h3>${item.item.price}</h3>
-                                <button onClick={() => removeFromWatchlist(item.item._id)}>Remove</button>
+                                <button className={Css.removeButton} onClick={() => removeFromWatchlist(item.item._id)}><h4>Remove</h4></button>
                             </div>
                             { item.item.myFile1 ?
                                 <img className={Css.itemPicture} src={item.item.myFile1} alt="item-pic"/>

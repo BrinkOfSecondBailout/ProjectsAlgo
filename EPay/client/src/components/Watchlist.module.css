@@ -1,0 +1,14 @@
+.itemPicture {
+    width: 200px;
+    height: 200px;
+}
+
+.removeButton {
+    width: 100px;
+    height: 30px;
+}
+
+.watchItems {
+    display: flex;
+    width: 60%;
+}

@@ -3,6 +3,10 @@
     margin: 0 auto;
 }
 
+input {
+    padding: 3px;
+}
+
 h1, h2, h3, h4 {
     font-family: 'Wix Madefor Display', sans-serif;
 }

@@ -37,25 +37,29 @@ const Register = () => {
     return (
         <div>
             <h1>Register Account</h1>
-            {errors.firstName? <p>{errors.firstName.message}</p> : null}
-            {errors.lastName? <p>{errors.lastName.message}</p> : null}
-            {errors.email? <p>{errors.email.message}</p> : null}
-            {errors.password? <p>{errors.password.message}</p> : null}
+            
+            
+            
+            
             <form onSubmit={registerUser} method="POST">
-                <div>
+                    {errors.firstName? <p>{errors.firstName.message}</p> : null}
                     <label>First Name:</label>
+                <div>
                     <input type="text" name="firstName" onChange={(e) => setFirstName(e.target.value)}/>
                 </div>
-                <div>
+                    {errors.lastName? <p>{errors.lastName.message}</p> : null}
                     <label>Last Name:</label>
+                <div>
                     <input type="text" name="lastName" onChange={(e) => setLastName(e.target.value)}/>
                 </div>
-                <div>
+                    {errors.email? <p>{errors.email.message}</p> : null}
                     <label>Email:</label>
+                <div>
                     <input type="email" name="email" onChange={(e) => setEmail(e.target.value)}/>
                 </div>
-                <div>
+                    {errors.password? <p>{errors.password.message}</p> : null}
                     <label>Password</label>
+                <div>
                     <input type="password" name="password" onChange={(e) => setPassword(e.target.value)}/>
                 </div>
                 <input type="submit" value="Register"/>

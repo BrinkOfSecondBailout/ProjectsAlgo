@@ -1,48 +1,52 @@
-import React, {useState} from 'react'
-import { Link , useNavigate } from 'react-router-dom'
-import upload from '../assets/upload.png';
-import Css from './NewItem.module.css';
-import axios from 'axios';
+import React, {useState, useEffect} from 'react'
 import TopNavigation from './TopNavigation';
+import {useParams, useNavigate} from 'react-router-dom';
+import axios from 'axios';
+import Css from '../components/EditItem.module.css'
+import upload from '../assets/upload.png';
 
-const NewItem = (props) => {
+const EditItem = (props) => {
     const navigate = useNavigate();
-    const {myItems, setMyItems, user, cart} = props;
+    const {user, cart} = props;
+    const {id} = useParams();
+    const [item, setItem] = useState({})
     const [name, setName] = useState("")
     const [price, setPrice] = useState(null)
     const [condition, setCondition] = useState("")
     const [description, setDescription] = useState("")
     const [inventory, setInventory] = useState("")
     const [category, setCategory] = useState("")
-    const [postImage1, setPostImage1] = useState({})
-    const [postImage2, setPostImage2] = useState({})
-    const [postImage3, setPostImage3] = useState({})
+    const [postImage1, setPostImage1] = useState("")
+    const [postImage2, setPostImage2] = useState("")
+    const [postImage3, setPostImage3] = useState("")
     const [errors, setErrors] = useState([])
-    
-    const newItemHandler = (e) => {
-        e.preventDefault();
-        axios.post('http://localhost:8000/api/items', {
-            name: name,
-            price: price,
-            condition: condition,
-            description: description,
-            inventory: inventory,
-            category: category,
-            userId: user._id,
-            user: user,
-            myFile1: postImage1.myFile,
-            myFile2: postImage2.myFile,
-            myFile3: postImage3.myFile
-        }) .then (response => {
-            setMyItems([...myItems, response.data])
-            console.log(response.data)
-            navigate('/')
-        }) .catch (err => {
-            const errorReponse = err.response.data.errors;
-            console.log(errorReponse)
-            setErrors(errorReponse)
-        })
-    }
+
+
+    useEffect(() => {
+        const fetchItem = async () => {
+            try {
+                axios.get('http://localhost:8000/api/items/' + id)
+                .then(response => {
+                    setItem(response.data)
+                })
+                .catch(err => console.log(err))
+            } catch (err) {
+                console.log(err)
+            }
+        };
+        fetchItem();
+    }, [])
+
+    useEffect(() => {
+        setName(item.name || "");
+        setPrice(item.price || "");
+        setDescription(item.description || "");
+        setInventory(item.inventory || "");
+        setPostImage1({myFile: item.myFile1} || "");
+        setPostImage2({myFile: item.myFile2} || "");
+        setPostImage3({myFile: item.myFile3} || "");
+    }, [item]);
+
 
     const handleFileUpload1 = async (e) => {
         const file1 = e.target.files[0];
@@ -75,23 +79,50 @@ const NewItem = (props) => {
         })
     }
 
+    const updateItem = (e) => {
+        e.preventDefault();
+        axios.patch('http://localhost:8000/api/items/' + id, {
+            name: name,
+            price: price,
+            condition: condition,
+            description: description,
+            inventory: inventory,
+            category: category,
+            userId: user._id,
+            user: user,
+            myFile1: postImage1.myFile,
+            myFile2: postImage2.myFile,
+            myFile3: postImage3.myFile
+        })
+            .then(response => {
+                console.log(response)
+                navigate('/')
+                window.location.reload()
+            })
+            .catch(err => {
+                const errorReponse = err.response.data.errors;
+                console.log(errorReponse)
+                setErrors(errorReponse)
+            })
+    }
+
     return (
         <div>
             <div>
-                <TopNavigation cart={cart} user={user}/>
+                <TopNavigation user={user} cart={cart}/>
             </div>
-                <h1>List a New Item</h1>
-            <div className={Css.newItemForm}>
-                <form onSubmit={newItemHandler} method="POST">
+            <div>
+                <form onSubmit={updateItem} method="POST">
+                    <h1>{item.name}</h1>
                     {errors.name? <p>{errors.name.message}</p> : null}
                     <label>Item Name:</label>
                     <div>
-                        <input className={Css.inputField} type="text" name="name" onChange={(e) => setName(e.target.value)}/>
+                        <input className={Css.inputField} type="text" name="name" value={name} onChange={(e) => setName(e.target.value)}/>
                     </div>
                         {errors.price? <p>{errors.price.message}</p> : null}
                         <label>Price:</label>
                     <div>
-                        <input className={Css.inputField} type="number" name="price" onChange={(e) => setPrice(e.target.value)}/>
+                        <input className={Css.inputField} type="number" name="price" value={price} onChange={(e) => setPrice(e.target.value)}/>
                     </div>
                         {errors.condition? <p>{errors.condition.message}</p> : null}
                         <label>Condition:</label>
@@ -108,12 +139,12 @@ const NewItem = (props) => {
                         {errors.description? <p>{errors.description.message}</p> : null}
                         <label>Description:</label>
                     <div>
-                        <textarea className={Css.inputField} rows="5" type="text" name="description" onChange={(e) => setDescription(e.target.value)}/>
+                        <textarea className={Css.inputField} rows="5" type="text" name="description" value={description} onChange={(e) => setDescription(e.target.value)}/>
                     </div>
                         {errors.inventory? <p>{errors.inventory.message}</p> : null}
                         <label>Inventory:</label>
                     <div>
-                        <input className={Css.inputField} type="number" name="inventory" onChange={(e) => setInventory(e.target.value)}/>
+                        <input className={Css.inputField} type="number" name="inventory" value={inventory} onChange={(e) => setInventory(e.target.value)}/>
                     </div>
                         {errors.category? <p>{errors.category.message}</p> : null}
                         <label>Category:</label>
@@ -144,7 +175,7 @@ const NewItem = (props) => {
                         </div>
                     </div>
                     <div>
-                        <button className={Css.listButton}><h4>List</h4></button>
+                        <button className={Css.listButton}><h4>Update</h4></button>
                     </div>
                 </form>
             </div>
@@ -152,4 +183,4 @@ const NewItem = (props) => {
     )
 }
 
-export default NewItem
+export default EditItem

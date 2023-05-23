@@ -12,6 +12,7 @@ import ItemDetail from './components/ItemDetail';
 import UserDetail from './components/UserDetail';
 import Cart from './components/Cart';
 import Watchlist from './components/Watchlist';
+import EditItem from './components/EditItem';
 
 function App() {
     const isLogged = window.localStorage.getItem('isLogged');
@@ -73,6 +74,7 @@ function App() {
               <Route path="/users/:id" element={isLogged? <UserDetail user1={user} cart={cart} /> : <Login/>} />
               <Route path="/items/new" element={isLogged? <NewItem user={user} cart={cart} myItems={myItems} setMyItems={setMyItems}/> : <Login/>} />
               <Route path="/items/:id" element={isLogged? <ItemDetail user1={user} cart={cart} removeFromDom={removeFromDom} /> : <Login/>} />
+              <Route path="/items/edit/:id" element={isLogged? <EditItem user={user} cart={cart} /> : <Login/>} />
               <Route path="/cart" element={isLogged? <Cart user={user} /> : <Login/>} />
               <Route path="/favorites" element={isLogged? <Watchlist user={user} cart={cart}/> : <Login/>} />
             </Routes>

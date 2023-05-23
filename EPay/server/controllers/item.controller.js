@@ -21,6 +21,12 @@ module.exports.newItem = async (request, response) => {
         .catch(err => response.status(400).json(err))
 }
 
+module.exports.editItem = async (request, response) => {
+    Item.findOneAndUpdate({_id: request.params.id}, request.body, {new:true, runValidators: true})
+        .then(updatedItem => response.json(updatedItem))
+        .catch(err => response.status(400).json(err))
+}
+
 module.exports.getAll = async (request, response) => {
     Item.find({})
         .then(items => {

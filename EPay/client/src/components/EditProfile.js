@@ -39,6 +39,7 @@ const EditProfile = (props) => {
             await axios.patch('http://localhost:8000/api/users/profile/' + userId, newImage)
             setMessage("Success! Profile photo updated!")
             navigate('/')
+            window.location.reload()
         } catch (error) {
             console.log(error)
         }
@@ -105,30 +106,29 @@ const EditProfile = (props) => {
                     <form onSubmit={uploadImage} encType="multipart/form-data">
                         <div><label htmlFor="file-upload"><img className={Css.customUpload} src={postImage.myFile || avatar} alt=""/></label></div>
                         <input type="file" accept="image/*" name="myFile" id="file-upload" required  onChange={(e) => handleFileUpload(e)}/>
-                        <input type="submit" value="Upload"/>
+                        <button className={Css.updateButton}><h4>Upload</h4></button>
                     </form>
                     { message ? <p>{message}</p> : null }
                 </div>
 
                 <div>
-                    {errors.firstName? <p>{errors.firstName.message}</p> : null}
-                    {errors.lastName? <p>{errors.lastName.message}</p> : null}
-                    {errors.email? <p>{errors.email.message}</p> : null}
-                    {errors.password? <p>{errors.password.message}</p> : null}
                     <form onSubmit={updateUser}>
-                        <div>
+                            {errors.firstName? <p>{errors.firstName.message}</p> : null}
                             <label>First Name:</label>
+                        <div>
                             <input type="text" name="firstName" value={firstName} onChange={(e) => setFirstName(e.target.value)}/>
                         </div>
-                        <div>
+                            {errors.lastName? <p>{errors.lastName.message}</p> : null}
                             <label>Last Name:</label>
+                        <div>
                             <input type="text" name="lastName" value={lastName} onChange={(e) => setLastName(e.target.value)}/>
                         </div>
-                        <div>
+                            {errors.email? <p>{errors.email.message}</p> : null}
                             <label>Email:</label>
+                        <div>
                             <input type="email" name="email" value={email} onChange={(e) => setEmail(e.target.value)}/>
                         </div>
-                        <input type="submit" value="Update"/>
+                        <button className={Css.updateButton}><h4>Update</h4></button>
                     </form>
                 </div>
 

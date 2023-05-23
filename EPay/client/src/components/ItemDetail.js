@@ -20,7 +20,6 @@ const ItemDetail = (props) => {
         axios.get('http://localhost:8000/api/items/' + id)
             .then(response => setItem(response.data))
             .catch(err => console.log(err))
-        
     }, [])
 
     useEffect(() => {
@@ -85,7 +84,6 @@ const ItemDetail = (props) => {
     }
 
 
-
     const unlistItem = async (itemId) => {
         axios.delete('http://localhost:8000/api/items/delete/' + itemId)
             .then(response => {
@@ -119,7 +117,10 @@ const ItemDetail = (props) => {
                             }
                         </div>
                         : item.userId === userId ? (
-                            <button className={Css.itemButton} onClick={() => {unlistItem(item._id)}}><h4>Unlist Item</h4></button>
+                            <div>
+                                <button className={Css.itemButton} onClick={() => {unlistItem(item._id)}}><h4>Unlist </h4></button>
+                                <Link to={`/items/edit/${item._id}`}><button className={Css.itemButton}><h4>Edit</h4></button></Link>
+                            </div>
                         )
                         : ( <h4>Currently Sold Out! :(</h4>
                     )}
