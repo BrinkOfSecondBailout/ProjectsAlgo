@@ -14,11 +14,11 @@ const AllMyItems = (props) => {
                         return (
                             <div key={index}>
                                 <div>
-                                <h4><Link to={`/items/${item._id}`}>{item.name}</Link></h4>
-                                <h4>${item.price}</h4>
+                                    <h4><Link to={`/items/${item._id}`}>{item.name}</Link></h4>
+                                    <h4>${item.price}</h4>
                                 <div>
                                 { item.myFile1 ?
-                                    <img className={Css.itemMainPic} src={item.myFile1} alt="item-pic"/>
+                                    <Link to={`/items/${item._id}`}><img className={Css.itemMainPic} src={item.myFile1} alt="item-pic"/></Link>
                                 : <Link to={`/items/${item._id}`}><img className={Css.itemMainPic} src={noImg} alt="no-img"/></Link>
                                 }
                                 </div>

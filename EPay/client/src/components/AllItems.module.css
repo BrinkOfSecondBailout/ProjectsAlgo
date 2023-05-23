@@ -5,23 +5,18 @@
 }
 
 .totalAllItems {
-    max-width: 700px;
     display: contents
 }
 
 .allItems {
     display: flex ;
     flex-wrap: wrap;
-    width: 800px;
     height: 900px;
     overflow-x: hidden;
     overflow-y: auto;
     direction:ltr;
 }
 
-.oneItem {
-
-}
 
 .noItems {
     height: 400px;

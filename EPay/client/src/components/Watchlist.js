@@ -3,6 +3,7 @@ import axios from 'axios';
 import {Link} from 'react-router-dom';
 import Css from '../components/Watchlist.module.css'
 import TopNavigation from './TopNavigation';
+import noImg from '../assets/noimage.jpg';
 
 const Watchlist = (props) => {
     const {user, cart} = props;
@@ -50,8 +51,8 @@ const Watchlist = (props) => {
                                 <button className={Css.removeButton} onClick={() => removeFromWatchlist(item.item._id)}><h4>Remove</h4></button>
                             </div>
                             { item.item.myFile1 ?
-                                <img className={Css.itemPicture} src={item.item.myFile1} alt="item-pic"/>
-                            : null
+                                <Link to={`/items/${item.item._id}`}><img className={Css.itemPicture} src={item.item.myFile1} alt="item-pic"/></Link>
+                            : <Link to={`/items/${item.item._id}`}><img className={Css.itemPicture} src={noImg} alt="no-img"/></Link>
                             }
                         </div>
                     )

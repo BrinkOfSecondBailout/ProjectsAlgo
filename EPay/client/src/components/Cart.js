@@ -3,6 +3,7 @@ import axios from 'axios';
 import {Link, useNavigate} from 'react-router-dom';
 import Css from '../components/Cart.module.css'
 import TopNavigation from './TopNavigation';
+import noImg from '../assets/noimage.jpg';
 
 const Cart = (props) => {
     const {user} = props;
@@ -90,29 +91,42 @@ const Cart = (props) => {
             <div>
                 <TopNavigation user={user} cart={cart}/>
             </div>
-            <div>
+            <div className={Css.body}>
+                <h1>Shopping Cart</h1>
+                <div className={Css.allCartItems} >
                 { items?.map((item, index) => {
                     return (
-                        <div key={index}>
-                            <h3>{item.item.name}</h3>
-                            <h3>${item.item.price}</h3>
-                            <form>
-                                <label><h4>Quantity:</h4></label>
-                                <button onClick={() => decreaseQuantity(item.item, item._id, item.quantity)}>-</button>
-                                <input className={Css.smallInput} type="text" value={item.quantity} readOnly/>
-                                <button onClick={() => increaseQuantity(item.item, item._id, item.quantity)}>+</button>
-                                <button onClick={() => deleteFromCart(item._id, item.item._id)}>Remove</button>
-                            </form>
-                            { item.item.myFile1 ?
-                                <img className={Css.itemPicture} src={item.item.myFile1} alt="item-pic"/>
-                            : null
-                            }
+                        <div>
+                            <div className={Css.oneItem} key={index}>
+                                { item.item.myFile1 ?
+                                    <Link to={`/items/${item.item._id}`}><img className={Css.itemPicture} src={item.item.myFile1} alt="item-pic"/></Link>
+                                : <Link to={`/items/${item.item._id}`}><img className={Css.itemPicture} src={noImg} alt="no-img"/></Link>
+                                }
+                                <div className={Css.nameDiv}>
+                                    <h3><Link to={`/items/${item.item._id}`}>{item.item.name}</Link></h3>
+                                    <h3>${item.item.price}</h3>
+                                </div>
+                                <div className={Css.quantityDiv}>
+                                    <form>
+                                        <h4>Quantity:</h4>
+                                        <button className={Css.quantityButton} onClick={() => decreaseQuantity(item.item, item._id, item.quantity)}><h4>-</h4></button>
+                                        <input className={Css.smallInput} type="text" value={item.quantity} readOnly/>
+                                        <button className={Css.quantityButton} onClick={() => increaseQuantity(item.item, item._id, item.quantity)}><h4>+</h4></button>
+                                        <div>
+                                            <button className={Css.removeButton} onClick={() => deleteFromCart(item._id, item.item._id)}><h4>Remove</h4></button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
                         </div>
                     )
                 })
-                }
-                <h2>Total: ${total}</h2>
+            }
+            <div className={Css.totalDiv}><h2>Total: ${total}</h2></div>
+            <div className={Css.checkoutDiv}><button className={Css.checkoutButton}><h3>Checkout</h3></button></div>
             </div>
+            </div>
+            
         </div>
     )
 }

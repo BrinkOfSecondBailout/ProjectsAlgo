@@ -1,10 +1,74 @@
+.body {
+    text-align: center;
+}
+
 .itemPicture {
     width: 200px;
     height: 200px;
+    border-radius: 10px;
 }
 
 .smallInput {
-    width: 20px;
-    height: 20px;
+    width: 40px;
+    height: 22px;
     text-align: center;
+    font-size: medium;
+}
+
+.allCartItems {
+    width: 70%;
+    height: 900px;
+}
+
+.oneItem {
+    display: flex;
+    width: 70%;
+    padding: 5px;
+    border-top: 1px solid rgb(182, 182, 182);
+}
+
+.nameDiv {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 700px;
+    height: 200px;
+}
+
+.quantityDiv {
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.totalDiv {
+    text-decoration: underline;
+    text-align: end;
+    max-width: 65%;
+}
+
+.checkoutDiv {
+    text-align: end;
+    max-width: 65%;
+}
+
+
+
+.quantityButton {
+    width: 40px;
+    height: 30px;
+    
+}
+
+.checkoutButton {
+    width: 120px;
+    height: 40px;
+}
+
+.removeButton {
+    width: 120px;
+    height: 40px;
 }

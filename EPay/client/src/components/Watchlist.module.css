@@ -1,6 +1,7 @@
 .itemPicture {
     width: 200px;
     height: 200px;
+    border-radius: 10px;
 }
 
 .removeButton {
@@ -10,5 +11,6 @@
 
 .watchItems {
     display: flex;
-    width: 60%;
+    flex-wrap: wrap;
+    width: 50%;
 }
