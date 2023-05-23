@@ -40,7 +40,9 @@ p {
 }
 
 .leftBody {
-    /* flex: 2; */
+    display: flex;
+    flex-direction: column;
+    width: 90%;
 }
 
 .rightBody {
