@@ -84,17 +84,17 @@ const NewItem = (props) => {
             <div className={Css.newItemForm}>
                 <form onSubmit={newItemHandler} method="POST">
                     {errors.name? <p>{errors.name.message}</p> : null}
-                    <label>Item Name:</label>
+                    <h5>Item Name:</h5>
                     <div>
                         <input className={Css.inputField} type="text" name="name" onChange={(e) => setName(e.target.value)}/>
                     </div>
                         {errors.price? <p>{errors.price.message}</p> : null}
-                        <label>Price:</label>
+                        <h5>Price:</h5>
                     <div>
                         <input className={Css.inputField} type="number" name="price" onChange={(e) => setPrice(e.target.value)}/>
                     </div>
                         {errors.condition? <p>{errors.condition.message}</p> : null}
-                        <label>Condition:</label>
+                        <h5>Condition:</h5>
                     <div>
                         <select className={Css.inputField} name="condition" onChange={(e) => setCondition(e.target.value)}>
                             <option value="" selected disabled hidden>
@@ -106,17 +106,17 @@ const NewItem = (props) => {
                         </select>
                     </div>
                         {errors.description? <p>{errors.description.message}</p> : null}
-                        <label>Description:</label>
+                        <h5>Description:</h5>
                     <div>
                         <textarea className={Css.inputField} rows="5" type="text" name="description" onChange={(e) => setDescription(e.target.value)}/>
                     </div>
                         {errors.inventory? <p>{errors.inventory.message}</p> : null}
-                        <label>Inventory:</label>
+                        <h5>Inventory:</h5>
                     <div>
                         <input className={Css.inputField} type="number" name="inventory" onChange={(e) => setInventory(e.target.value)}/>
                     </div>
                         {errors.category? <p>{errors.category.message}</p> : null}
-                        <label>Category:</label>
+                        <h5>Category:</h5>
                     <div>
                         <select className={Css.inputField} onChange={(e) => setCategory(e.target.value)} name="category">
                             <option value="" selected disabled hidden>Select One</option>

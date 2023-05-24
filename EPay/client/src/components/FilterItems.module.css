@@ -17,6 +17,12 @@
     border-radius: 5px;
 }
 
+.filterButton:hover {
+    width: 80px;
+    border-radius: 5px;
+    background-color: rgb(217, 217, 217);
+}
+
 .selectField {
     width: 200px;
 }

@@ -7,6 +7,17 @@
 .removeButton {
     width: 100px;
     height: 30px;
+    background-color: rgb(255, 44, 79);
+    color: white;
+    border-radius: 10px;
+}
+
+.removeButton:hover {
+    width: 100px;
+    height: 30px;
+    background-color: rgb(201, 9, 41);
+    color: white;
+    border-radius: 10px;
 }
 
 .watchItems {

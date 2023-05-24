@@ -7,6 +7,15 @@ input {
     padding: 3px;
 }
 
+a {
+    text-decoration: none;
+    color: rgb(29, 123, 224);
+}
+
+a:hover {
+    color:rgb(0, 58, 119);
+}
+
 h1, h2, h3, h4, h5, h6 {
     font-family: 'Wix Madefor Display', sans-serif;
 }
@@ -46,8 +55,6 @@ p {
 }
 
 .rightBody {
-    /* width: 700px;
-    display: inline; */
 }
 
 .allItemsDiv {
@@ -59,7 +66,17 @@ p {
     width: 180px;
     height: 30px;
     border-radius: 20px;
+    background-color: rgb(248, 212, 167);
 }
+
+.listButton:hover {
+    width: 180px;
+    height: 30px;
+    border-radius: 20px;
+    background-color: rgb(250, 164, 58);
+}
+
+
 
 ::-webkit-scrollbar {
     width: 0.5em;
@@ -69,10 +86,10 @@ p {
     border-radius: 100vw;
 }
 ::-webkit-scrollbar-thumb {
-    background: rgb(255, 144, 54);
+    background: rgb(29, 123, 224);
     border-radius: 100vw;
 }
 ::-webkit-scrollbar-thumb:hover {
-    background: rgb(232, 109, 8);
+    background: rgb(86, 168, 255);
     border-radius: 100vw;
 }

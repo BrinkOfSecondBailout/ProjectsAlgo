@@ -3,6 +3,7 @@ import {Link} from 'react-router-dom'
 import avatar from '../assets/avatar.png';
 import cartIcon from '../assets/cart.png';
 import Css from './TopNavigation.module.css'
+import saleIcon from '../assets/sale.png';
 
 const TopNavigation = (props) => {
     const {user, cart} = props;
@@ -10,11 +11,12 @@ const TopNavigation = (props) => {
     return (
         <div className={Css.topNav}>
             <div className={Css.topLeft}>
-                <h1>Hi, {user.firstName}!</h1>
+                <div className={Css.wholeLogo}><img className={Css.saleIcon} src={saleIcon} /><h1 className={Css.logo}>ShopStop</h1></div>
                 { user.myFile ?
                     <Link to='/'><img className={Css.profilepic} src={user.myFile} alt="avatar"/></Link>
                     : <Link to='/'><img className={Css.profilepic} src={avatar} alt="no-avatar"/></Link>
                 }
+                <h4><Link to='/users/edit'>{user.firstName} {user.lastName}</Link></h4>
             </div>
             <div className={Css.topRight}>
                 <div className={Css.totalCart}>

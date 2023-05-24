@@ -66,9 +66,31 @@
 .checkoutButton {
     width: 120px;
     height: 40px;
+    background-color: rgba(39, 113, 250, 0.817);
+    color: white;
+    border-radius: 10px;
+}
+
+.checkoutButton:hover {
+    width: 120px;
+    height: 40px;
+    background-color: rgba(1, 84, 238, 0.817);
+    color: white;
+    border-radius: 10px;
 }
 
 .removeButton {
-    width: 120px;
-    height: 40px;
+    width: 100px;
+    height: 35px;
+    background-color: rgb(255, 44, 79);
+    color: white;
+    border-radius: 10px;
+}
+
+.removeButton:hover {
+    width: 100px;
+    height: 35px;
+    background-color: rgb(201, 9, 41);
+    color: white;
+    border-radius: 10px;
 }

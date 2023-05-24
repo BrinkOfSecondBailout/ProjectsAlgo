@@ -1,5 +1,26 @@
-* {
-    padding: 2px;
+
+
+.logo {
+    font-family: 'Cinzel', serif;
+    font-size: xx-large;
+    color: rgb(29, 123, 224);
+    width: 200px;
+    position: relative;
+    right: 5px;
+    text-shadow: 1px 1px rgb(1, 74, 233);
+}
+
+.saleIcon {
+    width: 50px;
+    height: 50px;
+    position: relative;
+    left: 18px;
+    top: 17px;
+    z-index: -1;
+}
+.wholeLogo {
+    display: flex;
+    width: 250px;
 }
 
 .cartTotal {
@@ -7,6 +28,16 @@
     bottom: 20px;
     left: 20px;
     background-color: red;
+    border-radius: 100%;
+    width: 30px;
+    color: white;
+}
+
+.cartTotal:hover {
+    position: relative;
+    bottom: 20px;
+    left: 20px;
+    background-color: rgb(181, 0, 0);
     border-radius: 100%;
     width: 30px;
     color: white;
@@ -47,6 +78,12 @@
 .cartPic {
     width: 45px;
     height: 40px;
+}
+
+.cartPic:hover {
+    width: 45px;
+    height: 40px;
+    opacity: 50%;
 }
 
 .cartButton {
