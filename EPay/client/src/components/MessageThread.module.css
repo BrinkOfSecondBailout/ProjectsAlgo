@@ -1,9 +1,11 @@
 .totalMessages {
-    width: 70%;
+    width: 60%;
 }
 
 .leftMessage {
     display: flex;
+    
+    text-align: left;
 }
 
 .rightEmpty {
@@ -16,6 +18,8 @@
 
 .rightMessage {
     display: flex;
+    text-align: right;
+    
 }
 
 .incoming {
@@ -32,4 +36,8 @@
     font-size: 1.25em;
     border-radius: 1rem;
     box-shadow: 0 0.125rem 0.5rem rgba(0, 0, 0, .3), 0 0.0625rem 0.125rem rgba(0, 0, 0, .2);
+}
+
+.dateFont {
+    font-size: small;
 }

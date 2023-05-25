@@ -42,6 +42,7 @@ const MessageThread = (props) => {
             <div className={Css.totalMessages}>
                 {
                     messages?.map((message, index) => {
+                        const formattedDate = format(new Date(message.message.createdAt), 'MM/dd');
                         return (
                             <div>
                                 <div key={index}>
@@ -50,14 +51,17 @@ const MessageThread = (props) => {
                                         <div className={Css.leftMessage}>
                                             <div className={Css.incoming}>
                                                 <p>{message.message.message}</p>
-                                                <p>{message.message.createdAt}</p>
+                                                <p className={Css.dateFont}>{formattedDate}</p>
                                             </div>
                                             <div className={Css.rightEmpty}></div>
                                         </div>
                                         : 
                                         <div className={Css.rightMessage}>
                                             <div className={Css.leftEmpty}></div>
-                                            <div className={Css.outgoing}><p>{message.message.message}</p></div>
+                                            <div className={Css.outgoing}>
+                                                <p>{message.message.message}</p>
+                                                <p className={Css.dateFont}>{formattedDate}</p>
+                                            </div>
                                         </div>
                                     }
                                     
@@ -67,6 +71,9 @@ const MessageThread = (props) => {
                     })
                 }
             </div>
+            <form>
+                <h3>Reply</h3>
+            </form>
         </div>
 
     )

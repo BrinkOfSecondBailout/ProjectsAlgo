@@ -33,7 +33,7 @@ const NewMessage = (props) => {
             user: user
         }) .then(response => {
             console.log(response.data)
-            // navigate('/')
+            navigate('/')
         }) .catch(err => {
             console.log(err)
         })

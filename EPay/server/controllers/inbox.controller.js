@@ -6,13 +6,16 @@ module.exports.addToInbox = async(request, response) => {
     const id = request.params.id;
     try {
         const inbox = await Inbox.findOne({userId: id})
-        const itemIndex = inbox.messageThreads.findIndex(thread => thread.correspondence._id === request.body.user._id)
+        const itemIndex = inbox.messageThreads.findIndex(thread => thread.correspondence._id == request.body.user._id)
         const message = await Message.create({message: request.body.message})
 
         const inbox2 = await Inbox.findOne({userId: request.body.user._id})
         
 
         if (itemIndex === -1) {
+            // console.log(inbox.messageThreads[0].correspondence._id)
+            // console.log(request.body.user._id)
+            // console.log(itemIndex)
             const correspondence = await User.findOne({_id: request.body.user._id})
             inbox.messageThreads.push({correspondence: correspondence})
             inbox.messageThreads[0].messages.push({path: "in", message: message})
@@ -26,9 +29,17 @@ module.exports.addToInbox = async(request, response) => {
 
             response.json("New message thread successfully added")
         } else {
-            inbox.messageThreads[itemIndex].messages.push({message: message})
+            // console.log('correct')
+            // console.log(itemIndex)
+            inbox.messageThreads[itemIndex].messages.push({path: "in", message: message})
             inbox.newMessageCount += 1
             await inbox.save();
+
+            
+            const itemIndex2 = inbox2.messageThreads.findIndex(thread => thread.correspondence._id == id)
+            inbox2.messageThreads[itemIndex2].messages.push({path: "out", message: message})
+            await inbox2.save();
+
             response.json("New message successfully added to existing thread")
         }
     } catch(err) {
