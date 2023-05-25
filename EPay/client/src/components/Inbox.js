@@ -45,11 +45,15 @@ const Inbox = (props) => {
                             <div key={index}>
                                 <div className={Css.oneCorr}>
                                     <div className={Css.logoAndName}>
-                                        { thread.correspondence.myFile ?
-                                            <img className={Css.profilePic} src={user.myFile} alt="avatar"/>
-                                            : <img className={Css.profilePic} src={avatar} alt="no-avatar"/>
-                                        }
-                                        <h3><Link to={`/inbox/correspondence/${thread.correspondence._id}/${userId}`}>{thread.correspondence.firstName} {thread.correspondence.lastName}</Link></h3>
+                                        <div className={Css.logo}>
+                                            { thread.correspondence.myFile ?
+                                                <img className={Css.profilePic} src={user.myFile} alt="avatar"/>
+                                                : <img className={Css.profilePic} src={avatar} alt="no-avatar"/>
+                                            }
+                                        </div>
+                                        <div className={Css.name}>
+                                            <h3><Link to={`/inbox/correspondence/${thread.correspondence._id}/${userId}`}>{thread.correspondence.firstName} {thread.correspondence.lastName}</Link></h3>
+                                        </div>
                                     </div>
                                     <div className={Css.messagePreview}>
                                         <p>{thread.messages && thread.messages.length > 0 ? 

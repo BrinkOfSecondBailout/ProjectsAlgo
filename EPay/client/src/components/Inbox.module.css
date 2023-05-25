@@ -16,9 +16,14 @@
     width: 300px;
 }
 
-.messagePreview {
+
+.logo {
+    width: 70px;
 }
 
 .profilePic {
     width: 50px;
+}
+
+.messagePreview {
 }

@@ -33,14 +33,16 @@ img:hover {
     width: 70%;
 }
 
-.bottom {
+.leftBody {
     display: flex;
-    width: 70%;
+    flex-direction: column;
+    /* width: 90%; */
 }
 
 .topLeftBody {
     height: 550px;
-    width: 400px;
+    width: 350px;
+    
     overflow-x: hidden;
     overflow-y: auto;
     direction: rtl;
@@ -53,13 +55,14 @@ img:hover {
     overflow-y: auto;
 }
 
-.leftBody {
-    display: flex;
-    flex-direction: column;
-    width: 90%;
-}
 
 .rightBody {
+    width: 50%;
+}
+
+.bottom {
+    display: flex;
+    width: 70%;
 }
 
 .allItemsDiv {
