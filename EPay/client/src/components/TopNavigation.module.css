@@ -1,4 +1,6 @@
-
+.inboxIcon {
+    width: 40px;
+}
 
 .logo {
     font-family: 'Cinzel', serif;
@@ -42,8 +44,22 @@
     box-shadow: 1px 2px 2px black;
 }
 
+.inboxTotal {
+    position: relative;
+    bottom: 20px;
+    left: 20px;
+    background-color: red;
+    border-radius: 100%;
+    width: 30px;
+    color: white;
+    box-shadow: 1px 2px 2px black;
+}
 
 .totalCart {
+    height: 60px;
+}
+
+.totalInbox {
     height: 60px;
 }
 
@@ -87,6 +103,15 @@
 } */
 
 .cartButton {
+    background: none;
+    border: none;
+    text-align: center;
+    font-size: 25px;
+    width: 80px;
+    height: 70px;
+}
+
+.inboxButton {
     background: none;
     border: none;
     text-align: center;

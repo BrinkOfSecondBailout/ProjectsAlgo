@@ -5,7 +5,7 @@ import Css from '../components/NewMessage.module.css'
 import axios from 'axios';
 
 const NewMessage = (props) => {
-    const {user, cart} = props;
+    const {inbox, user, cart} = props;
     const [message, setMessage] = useState("");
     const [receiver, setReceiver] = useState({});
     const {id} = useParams();
@@ -43,7 +43,7 @@ const NewMessage = (props) => {
     return (
         <div>
             <div>
-                <TopNavigation user={user} cart={cart}/>
+                <TopNavigation inbox={inbox} user={user} cart={cart}/>
             </div>
             <div>
                 <h1>Send {receiver.firstName} a message</h1>

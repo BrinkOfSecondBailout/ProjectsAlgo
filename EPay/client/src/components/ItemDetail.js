@@ -6,7 +6,7 @@ import TopNavigation from './TopNavigation';
 import noImg from '../assets/noimage.jpg';
 
 const ItemDetail = (props) => {
-    const {user1, cart, removeFromDom} = props;
+    const {inbox, user1, cart, removeFromDom} = props;
     const navigate = useNavigate();
     const [item, setItem] = useState({});
     const {id} = useParams();
@@ -98,7 +98,7 @@ const ItemDetail = (props) => {
     return (
         <div>
             <div>
-                <TopNavigation user={user1} cart={cart}/>
+                <TopNavigation inbox={inbox} user={user1} cart={cart}/>
             </div>
             <div>
                 <h1>{item.name}</h1>

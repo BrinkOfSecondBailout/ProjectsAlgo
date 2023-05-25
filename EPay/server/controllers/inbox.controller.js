@@ -27,10 +27,12 @@ module.exports.addToInbox = async(request, response) => {
 
             const correspondence2 = await User.findOne({_id: id})
             inbox2.messageThreads.push({correspondence: correspondence2})
-            inbox2.messageThreads[0].messages.push({path: "out", message: message})
+            const newItemIndex2 = inbox2.messageThreads.findIndex(thread => thread.correspondence._id == id)
+            inbox2.messageThreads[newItemIndex2].messages.push({path: "out", message: message})
             await inbox2.save();
 
             response.json("New message thread successfully added")
+
         } else {
             
             inbox.messageThreads[itemIndex].messages.push({path: "in", message: message})
@@ -82,6 +84,18 @@ module.exports.allMessagesByCorrespondence = async(request, response) => {
         // console.log(itemIndex)
         const allMessages = inbox.messageThreads[itemIndex].messages
         response.json(allMessages)
+    } catch (err) {
+        response.json(err)
+    }
+}
+
+module.exports.resetNewMessageCount = async (request, response) => {
+    const id = request.params.id;
+    try {
+        const inbox = await Inbox.findOne({userId: id})
+        inbox.newMessageCount = 0;
+        inbox.save();
+        response.json("Reset successful")
     } catch (err) {
         response.json(err)
     }

@@ -6,7 +6,7 @@ import TopNavigation from './TopNavigation';
 import noImg from '../assets/noimage.jpg';
 
 const Cart = (props) => {
-    const {user} = props;
+    const {inbox, user} = props;
     const [cart, setCart] = useState([]);
     const [total, setTotal] = useState(0);
     const {items} = cart || {};
@@ -89,7 +89,7 @@ const Cart = (props) => {
     return (
         <div>
             <div>
-                <TopNavigation user={user} cart={cart}/>
+                <TopNavigation inbox={inbox} user={user} cart={cart}/>
             </div>
             <div className={Css.body}>
                 <h1>Shopping Cart</h1>

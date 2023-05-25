@@ -6,7 +6,7 @@ import TopNavigation from './TopNavigation';
 import noImg from '../assets/noimage.jpg';
 
 const Watchlist = (props) => {
-    const {user, cart} = props;
+    const {inbox, user, cart} = props;
     const id = localStorage.getItem('userId');
     const [watchlist, setWatchlist] = useState([])
     const {items} = watchlist || {};
@@ -38,7 +38,7 @@ const Watchlist = (props) => {
     return (
         <div>
             <div>
-                <TopNavigation user={user} cart={cart}/>
+                <TopNavigation inbox={inbox} user={user} cart={cart}/>
             </div>
             <h1>Watchlist</h1>
             <div className={Css.watchItems}>

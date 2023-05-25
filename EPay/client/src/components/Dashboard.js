@@ -9,7 +9,7 @@ import TopNavigation from './TopNavigation';
 import axios from 'axios';
 
 const Dashboard = (props) => {
-    const {cart, items, myItems} = props;
+    const {inbox, cart, items, myItems} = props;
     const id = localStorage.getItem('userId');
     const [user, setUser] = useState({})
 
@@ -25,7 +25,7 @@ const Dashboard = (props) => {
     return ( 
         <div>
             <div>
-                <TopNavigation user={user} cart={cart}/>
+                <TopNavigation inbox={inbox} user={user} cart={cart}/>
             </div>
             <div className={Css.body}>
                 <div className={Css.leftBody}>

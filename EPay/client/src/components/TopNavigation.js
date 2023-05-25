@@ -4,9 +4,10 @@ import avatar from '../assets/avatar.png';
 import cartIcon from '../assets/cart.png';
 import Css from './TopNavigation.module.css'
 import saleIcon from '../assets/sale.png';
+import inboxIcon from '../assets/inbox.png';
 
 const TopNavigation = (props) => {
-    const {user, cart} = props;
+    const {inbox, user, cart} = props;
 
     return (
         <div className={Css.topNav}>
@@ -22,8 +23,10 @@ const TopNavigation = (props) => {
                 <div className={Css.totalCart}>
                     <Link to='/cart'><button className={Css.cartButton}><img className={Css.cartPic} src={cartIcon} alt="cart"/><div className={Css.cartTotal}><h6>{cart.count}</h6></div></button></Link>
                 </div>
+                <div className={Css.totalInbox}>
+                    <Link to={`/inbox/${user._id}`}><button className={Css.inboxButton}><img className={Css.inboxIcon} src={inboxIcon} alt='inbox'/><div className={Css.inboxTotal}><h6>{inbox.newMessageCount}</h6></div></button></Link>
+                </div>
                 <div className={Css.navLinks}>
-                    <Link to={`/inbox/${user._id}`}><h4>inbox</h4></Link>
                     <Link to='/'><h4>dashboard</h4></Link>
                     <Link to='/users/edit'><h4>edit profile</h4></Link>
                     <Link to='/favorites'><h4>watchlist</h4></Link>

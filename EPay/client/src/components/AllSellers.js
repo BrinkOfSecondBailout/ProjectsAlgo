@@ -19,11 +19,13 @@ const AllSellers = () => {
             { users.filter(user => user._id !== userId).map((user, index) => {
                 return (
                     <div key={index}>
-                        <Link to={`/users/${user._id}`}><h3>{user.firstName} {user.lastName}</h3></Link>
-                        { user.myFile ?
-                            <Link to={`/users/${user._id}`}><img className={Css.profilepic} src={user.myFile} alt="avatar"/></Link>
-                            : <Link to={`/users/${user._id}`}><img className={Css.profilepic} src={avatar} alt="no-avatar"/></Link>
-                        }
+                        <div className={Css.oneUser}>
+                            <Link to={`/users/${user._id}`}><h3>{user.firstName} {user.lastName}</h3></Link>
+                            { user.myFile ?
+                                <Link to={`/users/${user._id}`}><img className={Css.profilepic} src={user.myFile} alt="avatar"/></Link>
+                                : <Link to={`/users/${user._id}`}><img className={Css.profilepic} src={avatar} alt="no-avatar"/></Link>
+                            }
+                        </div>
                     </div>
                 )
             })

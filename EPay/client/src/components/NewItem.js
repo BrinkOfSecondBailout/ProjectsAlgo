@@ -7,7 +7,7 @@ import TopNavigation from './TopNavigation';
 
 const NewItem = (props) => {
     const navigate = useNavigate();
-    const {myItems, setMyItems, user, cart} = props;
+    const {inbox, myItems, setMyItems, user, cart} = props;
     const [name, setName] = useState("")
     const [price, setPrice] = useState(null)
     const [condition, setCondition] = useState("")
@@ -78,7 +78,7 @@ const NewItem = (props) => {
     return (
         <div>
             <div>
-                <TopNavigation cart={cart} user={user}/>
+                <TopNavigation inbox={inbox} cart={cart} user={user}/>
             </div>
                 <h1>List a New Item</h1>
             <div className={Css.newItemForm}>

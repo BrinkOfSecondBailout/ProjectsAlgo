@@ -22,11 +22,20 @@ const Inbox = (props) => {
             })
     }, [])
 
+    useEffect(() => {
+        axios.get('http://localhost:8000/api/inbox/reset/' + id)
+            .then(response => {
+                console.log(response.data);
+                
+            })
+            .catch(err => console.log(err))
+    }, [])
+
 
     return (
         <div>
             <div>
-                <TopNavigation user={user} cart={cart}/>
+                <TopNavigation inbox={inbox} user={user} cart={cart}/>
             </div>
             <div className={Css.container}>
                 <h1>Inbox</h1>

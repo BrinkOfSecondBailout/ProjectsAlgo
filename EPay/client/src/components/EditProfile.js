@@ -9,7 +9,7 @@ const EditProfile = (props) => {
     const navigate = useNavigate();
     // user1 is pulled from the parent in order to pre-populate the form, 
     // the user is for the profilepicture. this is the only way to go around it
-    const {user1, cart} = props;
+    const {inbox, user1, cart} = props;
     const [user, setUser] = useState({})
     const [postImage, setPostImage] = useState({myFile: user.myFile});
     const [message, setMessage] = useState("");
@@ -97,7 +97,7 @@ const EditProfile = (props) => {
 
         <div>
             <div>
-                <TopNavigation user={user} cart={cart}/>
+                <TopNavigation inbox={inbox} user={user} cart={cart}/>
             </div>
             <div>
                 <h1>Edit Your Profile, {user.firstName}</h1>

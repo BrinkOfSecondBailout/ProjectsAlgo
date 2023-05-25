@@ -8,7 +8,7 @@ import noImg from '../assets/noimage.jpg';
 import message from '../assets/message.png';
 
 const UserDetail = (props) => {
-    const {user1, cart} = props;
+    const {inbox, user1, cart} = props;
     const [user, setUser] = useState({});
     const [items, setItems] = useState([]);
     const {id} = useParams();
@@ -35,7 +35,7 @@ const UserDetail = (props) => {
     return (
         <div>
             <div>
-                <TopNavigation user={user1} cart={cart}/>
+                <TopNavigation inbox={inbox} user={user1} cart={cart}/>
             </div>
             <div>
                 <h1>{user.firstName} {user.lastName}</h1>

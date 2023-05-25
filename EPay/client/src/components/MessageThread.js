@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react'
-import {useParams, Link} from 'react-router-dom';
+import {useParams, useNavigate, Link} from 'react-router-dom';
 import TopNavigation from './TopNavigation';
 import axios from 'axios';
 import Css from '../components/MessageThread.module.css'
@@ -7,12 +7,13 @@ import { format } from 'date-fns';
 import avatar from '../assets/avatar.png';
 
 const MessageThread = (props) => {
-    const {user, cart} = props;
+    const {inbox, user, cart} = props;
     const [messages, setMessages] = useState([]);
     const [message, setMessage] = useState("");
     const userId = localStorage.getItem('userId');
     const {id} = useParams();
-    const [correspondence, setCorrespondence] = useState({})
+    const [correspondence, setCorrespondence] = useState({});
+    const navigate = useNavigate();
 
     useEffect(() => {
         axios.get(`http://localhost:8000/api/inbox/show/${id}/${userId}`)
@@ -35,10 +36,23 @@ const MessageThread = (props) => {
             })
     }, [])
 
+    const replyHandler = (e) => {
+        e.preventDefault();
+        axios.post('http://localhost:8000/api/inbox/new/' + id, {
+            message: message,
+            user: user
+        }) .then(response => {
+            console.log(response.data)
+            window.location.reload();
+        }) .catch(err => {
+            console.log(err)
+        })
+    }
+
     return (
         <div>
             <div>
-                <TopNavigation user={user} cart={cart}/>
+                <TopNavigation inbox={inbox} user={user} cart={cart}/>
             </div>
             <h2><Link to={`/users/${correspondence._id}`}>{correspondence.firstName} {correspondence.lastName}</Link></h2>
             { user.myFile ?
@@ -77,7 +91,7 @@ const MessageThread = (props) => {
                     })
                 }
             </div>
-            <form>
+            <form onSubmit={replyHandler} method="POST">
                 <div className={Css.replyBox}>
                 <textarea className={Css.messageBox} rows="6" type="text" name="description" onChange={(e) => setMessage(e.target.value)}/>
                 <div>

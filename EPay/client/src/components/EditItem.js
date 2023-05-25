@@ -7,7 +7,7 @@ import upload from '../assets/upload.png';
 
 const EditItem = (props) => {
     const navigate = useNavigate();
-    const {user, cart} = props;
+    const {inbox, user, cart} = props;
     const {id} = useParams();
     const [item, setItem] = useState({})
     const [name, setName] = useState("")
@@ -109,7 +109,7 @@ const EditItem = (props) => {
     return (
         <div>
             <div>
-                <TopNavigation user={user} cart={cart}/>
+                <TopNavigation inbox={inbox} user={user} cart={cart}/>
             </div>
             <div>
                 <form onSubmit={updateItem} method="POST">
