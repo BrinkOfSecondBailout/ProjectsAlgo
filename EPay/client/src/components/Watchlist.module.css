@@ -23,3 +23,12 @@
     flex-wrap: wrap;
     width: 50%;
 }
+
+.body {
+    display: flex;
+    width: 63%;
+}
+
+.rightBody {
+    width: 70%;
+}

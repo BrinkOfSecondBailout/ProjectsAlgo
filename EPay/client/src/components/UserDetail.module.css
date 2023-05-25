@@ -26,3 +26,12 @@
 .sendMessage:hover {
     opacity: 60%;
 }
+
+.body {
+    display: flex;
+    width: 63%;
+}
+
+.rightBody {
+    width: 70%;
+}

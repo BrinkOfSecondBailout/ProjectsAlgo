@@ -4,9 +4,10 @@ import {Link, useNavigate} from 'react-router-dom';
 import Css from '../components/Cart.module.css'
 import TopNavigation from './TopNavigation';
 import noImg from '../assets/noimage.jpg';
+import SideBar from './SideBar';
 
 const Cart = (props) => {
-    const {inbox, user} = props;
+    const {myItems, inbox, user} = props;
     const [cart, setCart] = useState([]);
     const [total, setTotal] = useState(0);
     const {items} = cart || {};
@@ -92,6 +93,10 @@ const Cart = (props) => {
                 <TopNavigation inbox={inbox} user={user} cart={cart}/>
             </div>
             <div className={Css.body}>
+                <div>
+                    <SideBar myItems={myItems}/>
+                </div>
+                <div className={Css.rightBody}>
                 <h1>Shopping Cart</h1>
                 <div className={Css.allCartItems} >
                 { items?.map((item, index) => {
@@ -130,6 +135,7 @@ const Cart = (props) => {
                 </div>)
                 : null
             }
+            </div>
 
             </div>
             </div>

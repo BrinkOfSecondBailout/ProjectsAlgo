@@ -19,3 +19,12 @@ input[type="file"] {
 .form {
     padding: 10px;
 }
+
+.body {
+    display: flex;
+    width: 63%;
+}
+
+.rightBody {
+    width: 70%;
+}

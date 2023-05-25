@@ -28,10 +28,7 @@ img:hover {
     opacity: 90%;
 }
 
-.body {
-    display: flex;
-    width: 70%;
-}
+
 
 .leftBody {
     display: flex;
@@ -55,9 +52,13 @@ img:hover {
     overflow-y: auto;
 }
 
+.body {
+    display: flex;
+    width: 63%;
+}
 
 .rightBody {
-    width: 50%;
+    width: 70%;
 }
 
 .bottom {

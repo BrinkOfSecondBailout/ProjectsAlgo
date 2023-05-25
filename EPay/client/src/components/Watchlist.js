@@ -4,9 +4,10 @@ import {Link} from 'react-router-dom';
 import Css from '../components/Watchlist.module.css'
 import TopNavigation from './TopNavigation';
 import noImg from '../assets/noimage.jpg';
+import SideBar from './SideBar';
 
 const Watchlist = (props) => {
-    const {inbox, user, cart} = props;
+    const {myItems, inbox, user, cart} = props;
     const id = localStorage.getItem('userId');
     const [watchlist, setWatchlist] = useState([])
     const {items} = watchlist || {};
@@ -40,25 +41,32 @@ const Watchlist = (props) => {
             <div>
                 <TopNavigation inbox={inbox} user={user} cart={cart}/>
             </div>
-            <h1>Watchlist</h1>
-            <div className={Css.watchItems}>
-                { items?.map((item, index) => {
-                    return (
-                        <div key={index} >
-                            <div>
-                                <h3><Link to={`/items/${item.item._id}`}>{item.item.name}</Link></h3>
-                                <h3>${item.item.price}</h3>
-                                <button className={Css.removeButton} onClick={() => removeFromWatchlist(item.item._id)}><h4>Remove</h4></button>
-                            </div>
-                            { item.item.myFile1 ?
-                                <Link to={`/items/${item.item._id}`}><img className={Css.itemPicture} src={item.item.myFile1} alt="item-pic"/></Link>
-                            : <Link to={`/items/${item.item._id}`}><img className={Css.itemPicture} src={noImg} alt="no-img"/></Link>
-                            }
-                        </div>
-                    )
-                }) 
-                
-                }
+            <div className={Css.body}>
+                <div>
+                    <SideBar myItems={myItems}/>
+                </div>
+                <div className={Css.rightBody}>
+                    <h1>Watchlist</h1>
+                    <div className={Css.watchItems}>
+                        { items?.map((item, index) => {
+                            return (
+                                <div key={index} >
+                                    <div>
+                                        <h3><Link to={`/items/${item.item._id}`}>{item.item.name}</Link></h3>
+                                        <h3>${item.item.price}</h3>
+                                        <button className={Css.removeButton} onClick={() => removeFromWatchlist(item.item._id)}><h4>Remove</h4></button>
+                                    </div>
+                                    { item.item.myFile1 ?
+                                        <Link to={`/items/${item.item._id}`}><img className={Css.itemPicture} src={item.item.myFile1} alt="item-pic"/></Link>
+                                    : <Link to={`/items/${item.item._id}`}><img className={Css.itemPicture} src={noImg} alt="no-img"/></Link>
+                                    }
+                                </div>
+                            )
+                        }) 
+                        
+                        }
+                    </div>
+                </div>
             </div>
         </div>
     )

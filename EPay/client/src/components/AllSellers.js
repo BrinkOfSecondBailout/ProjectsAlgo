@@ -12,7 +12,7 @@ const AllSellers = () => {
         axios.get('http://localhost:8000/api/users')
             .then(response => setUsers(response.data))
             .catch(err => console.log(err))
-    })
+    }, [])
 
     return (
         <div className={Css.flex}>

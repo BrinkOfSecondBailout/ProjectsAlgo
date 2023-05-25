@@ -90,3 +90,12 @@
 .removeButton:hover {
     background-color: rgb(201, 9, 41);
 }
+
+.body {
+    display: flex;
+    width: 63%;
+}
+
+.rightBody {
+    width: 70%;
+}

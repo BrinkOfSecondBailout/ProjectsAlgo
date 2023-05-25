@@ -27,3 +27,12 @@
 
 .messagePreview {
 }
+
+.body {
+    display: flex;
+    width: 63%;
+}
+
+.rightBody {
+    width: 70%;
+}

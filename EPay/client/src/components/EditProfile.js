@@ -4,12 +4,13 @@ import avatar from '../assets/avatar.png';
 import axios from 'axios';
 import Css from './EditProfile.module.css'
 import TopNavigation from './TopNavigation';
+import SideBar from './SideBar';
 
 const EditProfile = (props) => {
     const navigate = useNavigate();
     // user1 is pulled from the parent in order to pre-populate the form, 
     // the user is for the profilepicture. this is the only way to go around it
-    const {inbox, user1, cart} = props;
+    const {myItems, inbox, user1, cart} = props;
     const [user, setUser] = useState({})
     const [postImage, setPostImage] = useState({myFile: user.myFile});
     const [message, setMessage] = useState("");
@@ -99,42 +100,42 @@ const EditProfile = (props) => {
             <div>
                 <TopNavigation inbox={inbox} user={user} cart={cart}/>
             </div>
-            <div>
-                <h1>Edit Your Profile, {user.firstName}</h1>
+            <div className={Css.body}>
                 <div>
-                    <h3>Upload profile picture</h3>
-                    <form onSubmit={uploadImage} encType="multipart/form-data">
-                        <div><label htmlFor="file-upload"><img className={Css.customUpload} src={postImage.myFile || avatar} alt=""/></label></div>
-                        <input type="file" accept="image/*" name="myFile" id="file-upload" required  onChange={(e) => handleFileUpload(e)}/>
-                        <button className={Css.updateButton}><h4>Upload</h4></button>
-                    </form>
-                    { message ? <p>{message}</p> : null }
+                    <SideBar myItems={myItems} />
                 </div>
+                <div className={Css.rightBody}>
+                    <h1>Edit Your Profile, {user.firstName}</h1>
+                        <h3>Upload profile picture</h3>
+                        <form onSubmit={uploadImage} encType="multipart/form-data">
+                            <div><label htmlFor="file-upload"><img className={Css.customUpload} src={postImage.myFile || avatar} alt=""/></label></div>
+                            <input type="file" accept="image/*" name="myFile" id="file-upload" required  onChange={(e) => handleFileUpload(e)}/>
+                            <button className={Css.updateButton}><h4>Upload</h4></button>
+                        </form>
+                        { message ? <p>{message}</p> : null }
 
-                <div>
-                    <form className={Css.form} onSubmit={updateUser}>
-                            {errors.firstName? <p>{errors.firstName.message}</p> : null}
-                            <h5>First Name:</h5>
-                        <div>
-                            <input type="text" name="firstName" value={firstName} onChange={(e) => setFirstName(e.target.value)}/>
-                        </div>
-                            {errors.lastName? <p>{errors.lastName.message}</p> : null}
-                            <h5>Last Name:</h5>
-                        <div>
-                            <input type="text" name="lastName" value={lastName} onChange={(e) => setLastName(e.target.value)}/>
-                        </div>
-                            {errors.email? <p>{errors.email.message}</p> : null}
-                            <h5>Email:</h5>
-                        <div>
-                            <input type="email" name="email" value={email} onChange={(e) => setEmail(e.target.value)}/>
-                        </div>
-                        <div>
-                            <button className={Css.updateButton}><h4>Update</h4></button>
-                        </div>
-                    </form>
+                        <form className={Css.form} onSubmit={updateUser}>
+                                {errors.firstName? <p>{errors.firstName.message}</p> : null}
+                                <h5>First Name:</h5>
+                            <div>
+                                <input type="text" name="firstName" value={firstName} onChange={(e) => setFirstName(e.target.value)}/>
+                            </div>
+                                {errors.lastName? <p>{errors.lastName.message}</p> : null}
+                                <h5>Last Name:</h5>
+                            <div>
+                                <input type="text" name="lastName" value={lastName} onChange={(e) => setLastName(e.target.value)}/>
+                            </div>
+                                {errors.email? <p>{errors.email.message}</p> : null}
+                                <h5>Email:</h5>
+                            <div>
+                                <input type="email" name="email" value={email} onChange={(e) => setEmail(e.target.value)}/>
+                            </div>
+                            <div>
+                                <button className={Css.updateButton}><h4>Update</h4></button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
-
-            </div>
             
         </div>
     )

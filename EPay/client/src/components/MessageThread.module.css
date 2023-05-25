@@ -1,5 +1,5 @@
 .totalMessages {
-    width: 60%;
+    /* width: 60%; */
 }
 
 .leftMessage {
@@ -61,4 +61,13 @@
     width: 100px;
     height: 30px;
     border-radius: 10px;
+}
+
+.body {
+    display: flex;
+    width: 63%;
+}
+
+.rightBody {
+    width: 70%;
 }
