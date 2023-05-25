@@ -69,14 +69,12 @@
     background-color: rgba(39, 113, 250, 0.817);
     color: white;
     border-radius: 10px;
+    box-shadow: 1px 2px 2px black;
+    border: none;
 }
 
 .checkoutButton:hover {
-    width: 120px;
-    height: 40px;
     background-color: rgba(1, 84, 238, 0.817);
-    color: white;
-    border-radius: 10px;
 }
 
 .removeButton {
@@ -85,12 +83,10 @@
     background-color: rgb(255, 44, 79);
     color: white;
     border-radius: 10px;
+    box-shadow: 1px 2px 2px black;
+    border: none;
 }
 
 .removeButton:hover {
-    width: 100px;
-    height: 35px;
     background-color: rgb(201, 9, 41);
-    color: white;
-    border-radius: 10px;
 }

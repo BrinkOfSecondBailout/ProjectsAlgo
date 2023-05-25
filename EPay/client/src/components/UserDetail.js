@@ -5,6 +5,7 @@ import Css from '../components/UserDetail.module.css'
 import TopNavigation from './TopNavigation';
 import avatar from '../assets/avatar.png';
 import noImg from '../assets/noimage.jpg';
+import message from '../assets/message.png';
 
 const UserDetail = (props) => {
     const {user1, cart} = props;
@@ -42,6 +43,9 @@ const UserDetail = (props) => {
                     <img className={Css.profilePic} src={user.myFile} alt="avatar"/>
                     : <img className={Css.profilePic} src={avatar} alt="no-avatar"/>
                 }
+                <div className={Css.messageTotal}>
+                    <Link to={`/message/${user._id}`}><img className={Css.sendMessage} src={message} alt="send-message"/></Link>
+                </div>
 
                 <h2>Listed Items</h2>
                 <div className={Css.flex}>

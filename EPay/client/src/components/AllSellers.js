@@ -21,8 +21,8 @@ const AllSellers = () => {
                     <div key={index}>
                         <Link to={`/users/${user._id}`}><h3>{user.firstName} {user.lastName}</h3></Link>
                         { user.myFile ?
-                            <img className={Css.profilepic} src={user.myFile} alt="avatar"/>
-                            : <img className={Css.profilepic} src={avatar} alt="no-avatar"/>
+                            <Link to={`/users/${user._id}`}><img className={Css.profilepic} src={user.myFile} alt="avatar"/></Link>
+                            : <Link to={`/users/${user._id}`}><img className={Css.profilepic} src={avatar} alt="no-avatar"/></Link>
                         }
                     </div>
                 )

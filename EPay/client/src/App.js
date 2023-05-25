@@ -13,6 +13,9 @@ import UserDetail from './components/UserDetail';
 import Cart from './components/Cart';
 import Watchlist from './components/Watchlist';
 import EditItem from './components/EditItem';
+import Inbox from './components/Inbox';
+import NewMessage from './components/NewMessage';
+import MessageThread from './components/MessageThread';
 
 function App() {
     const isLogged = window.localStorage.getItem('isLogged');
@@ -77,6 +80,9 @@ function App() {
               <Route path="/items/edit/:id" element={isLogged? <EditItem user={user} cart={cart} /> : <Login/>} />
               <Route path="/cart" element={isLogged? <Cart user={user} /> : <Login/>} />
               <Route path="/favorites" element={isLogged? <Watchlist user={user} cart={cart}/> : <Login/>} />
+              <Route path="/message/:id" element={isLogged? <NewMessage user={user} cart={cart}/> : <Login/>} />
+              <Route path="/inbox/:id" element={isLogged? <Inbox user={user} cart={cart}/> : <Login/>} />
+              <Route path="/inbox/correspondence/:id/:userId" element={isLogged? <MessageThread user={user} cart={cart}/> : <Login/>} />
             </Routes>
           </div>
         </BrowserRouter>

@@ -22,10 +22,13 @@ const TopNavigation = (props) => {
                 <div className={Css.totalCart}>
                     <Link to='/cart'><button className={Css.cartButton}><img className={Css.cartPic} src={cartIcon} alt="cart"/><div className={Css.cartTotal}><h6>{cart.count}</h6></div></button></Link>
                 </div>
-                <Link to='/'><h4>dashboard</h4></Link>
-                <Link to='/users/edit'><h4>edit profile</h4></Link>
-                <Link to='/favorites'><h4>watchlist</h4></Link>
-                <Link to='/logout'><h4>logout</h4></Link>
+                <div className={Css.navLinks}>
+                    <Link to={`/inbox/${user._id}`}><h4>inbox</h4></Link>
+                    <Link to='/'><h4>dashboard</h4></Link>
+                    <Link to='/users/edit'><h4>edit profile</h4></Link>
+                    <Link to='/favorites'><h4>watchlist</h4></Link>
+                    <Link to='/logout'><h4>logout</h4></Link>
+                </div>
             </div>
         </div>
     )

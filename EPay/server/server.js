@@ -12,6 +12,7 @@ require('./routes/user.route')(app);
 require('./routes/item.route')(app);
 require('./routes/cart.route')(app);
 require('./routes/watchlist.route')(app);
+require('./routes/inbox.route')(app);
 
 
 

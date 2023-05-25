@@ -1,6 +1,7 @@
 const {User} = require('../models/user.model');
 const {Cart} = require('../models/cart.model');
 const {Watchlist} = require('../models/watchlist.model');
+const {Inbox} = require('../models/inbox.model');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
@@ -30,6 +31,9 @@ module.exports.register = async (request, response) => {
                 userId: user._id
             })
             const watchlist = Watchlist.create({
+                userId: user._id
+            })
+            const inbox = Inbox.create({
                 userId: user._id
             })
             response.json({id: user._id, token})
