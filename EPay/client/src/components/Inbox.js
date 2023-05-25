@@ -32,7 +32,7 @@ const Inbox = (props) => {
                     return (
                         <div>
                             <div key={index}>
-                                <h3><Link to={`/inbox/correspondence/${thread.correspondence._id}/${userId}`}>{thread.correspondence.firstName}</Link></h3>
+                                <h3><Link to={`/inbox/correspondence/${thread.correspondence._id}/${userId}`}>{thread.correspondence.firstName} {thread.correspondence.lastName}</Link></h3>
                             </div>
                         </div>
                     )

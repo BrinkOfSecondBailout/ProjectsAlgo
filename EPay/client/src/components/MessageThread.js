@@ -1,21 +1,32 @@
 import React, {useEffect, useState} from 'react'
-import {useParams} from 'react-router-dom';
+import {useParams, Link} from 'react-router-dom';
 import TopNavigation from './TopNavigation';
 import axios from 'axios';
+import Css from '../components/MessageThread.module.css'
+import { format } from 'date-fns';
 
 const MessageThread = (props) => {
     const {user, cart} = props;
     const [messages, setMessages] = useState([]);
     const userId = localStorage.getItem('userId');
     const {id} = useParams();
+    const [correspondence, setCorrespondence] = useState({})
 
     useEffect(() => {
-        console.log(id)
-        console.log(userId)
         axios.get(`http://localhost:8000/api/inbox/show/${id}/${userId}`)
             .then(response => {
-                console.log(response.data)
                 setMessages(response.data)
+            })
+            .catch(err => {
+                console.log(err)
+            })
+    }, [])
+
+    useEffect(() => {
+        axios.get(`http://localhost:8000/api/users/${id}`)
+            .then(response => {
+                console.log(response.data)
+                setCorrespondence(response.data)
             })
             .catch(err => {
                 console.log(err)
@@ -27,13 +38,29 @@ const MessageThread = (props) => {
             <div>
                 <TopNavigation user={user} cart={cart}/>
             </div>
-            <div>
+            <h2><Link to={`/users/${correspondence._id}`}>{correspondence.firstName} {correspondence.lastName}</Link></h2>
+            <div className={Css.totalMessages}>
                 {
                     messages?.map((message, index) => {
                         return (
                             <div>
                                 <div key={index}>
-                                    <h3>{message.message.message}</h3>
+                                    {
+                                        message.path === "in" ? 
+                                        <div className={Css.leftMessage}>
+                                            <div className={Css.incoming}>
+                                                <p>{message.message.message}</p>
+                                                <p>{message.message.createdAt}</p>
+                                            </div>
+                                            <div className={Css.rightEmpty}></div>
+                                        </div>
+                                        : 
+                                        <div className={Css.rightMessage}>
+                                            <div className={Css.leftEmpty}></div>
+                                            <div className={Css.outgoing}><p>{message.message.message}</p></div>
+                                        </div>
+                                    }
+                                    
                                 </div>
                             </div>
                         )
