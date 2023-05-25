@@ -45,3 +45,20 @@
     width: 60px;
     border-radius: 100%;
 }
+
+.messageBox {
+    width: 250px;
+    border-radius: 20px;
+    padding: 10px;
+    
+}
+
+.replyBox {
+    width: 300px;
+}
+
+.replyButton {
+    width: 100px;
+    height: 30px;
+    border-radius: 10px;
+}

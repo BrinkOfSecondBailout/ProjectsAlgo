@@ -1,5 +1,7 @@
 .messageBox {
     width: 400px;
+    border-radius: 20px;
+    padding: 10px;
 }
 
 .sendButton {

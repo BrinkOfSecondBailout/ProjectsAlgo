@@ -9,6 +9,7 @@ import avatar from '../assets/avatar.png';
 const MessageThread = (props) => {
     const {user, cart} = props;
     const [messages, setMessages] = useState([]);
+    const [message, setMessage] = useState("");
     const userId = localStorage.getItem('userId');
     const {id} = useParams();
     const [correspondence, setCorrespondence] = useState({})
@@ -77,7 +78,12 @@ const MessageThread = (props) => {
                 }
             </div>
             <form>
-                <h3>Reply</h3>
+                <div className={Css.replyBox}>
+                <textarea className={Css.messageBox} rows="6" type="text" name="description" onChange={(e) => setMessage(e.target.value)}/>
+                <div>
+                    <button className={Css.replyButton}>Reply</button>
+                </div>
+                </div>
             </form>
         </div>
 

@@ -15,10 +15,13 @@ module.exports.addToInbox = async(request, response) => {
         if (itemIndex === -1) {
             // console.log(inbox.messageThreads[0].correspondence._id)
             // console.log(request.body.user._id)
-            // console.log(itemIndex)
+
             const correspondence = await User.findOne({_id: request.body.user._id})
             inbox.messageThreads.push({correspondence: correspondence})
-            inbox.messageThreads[0].messages.push({path: "in", message: message})
+
+            const newItemIndex = inbox.messageThreads.findIndex(thread => thread.correspondence._id == request.body.user._id)
+
+            inbox.messageThreads[newItemIndex].messages.push({path: "in", message: message})
             inbox.newMessageCount += 1
             await inbox.save();
 
@@ -29,8 +32,7 @@ module.exports.addToInbox = async(request, response) => {
 
             response.json("New message thread successfully added")
         } else {
-            // console.log('correct')
-            // console.log(itemIndex)
+            
             inbox.messageThreads[itemIndex].messages.push({path: "in", message: message})
             inbox.newMessageCount += 1
             await inbox.save();
