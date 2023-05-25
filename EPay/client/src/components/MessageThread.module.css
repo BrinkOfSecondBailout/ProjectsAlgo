@@ -4,7 +4,6 @@
 
 .leftMessage {
     display: flex;
-    
     text-align: left;
 }
 
@@ -24,20 +23,25 @@
 
 .incoming {
     background-color: #f2f2f2cc;
-    padding: 1.125em 1.5em;
+    padding: 1em 1.5em;
     font-size: 1.25em;
     border-radius: 1rem;
     box-shadow: 0 0.125rem 0.5rem rgba(0, 0, 0, .3), 0 0.0625rem 0.125rem rgba(0, 0, 0, .2);
 }
 
 .outgoing {
-    background-color: #31aafacc;
-    padding: 1.125em 1.5em;
+    background-color: #48b6ffcc;
+    padding: 1em 1.5em;
     font-size: 1.25em;
     border-radius: 1rem;
     box-shadow: 0 0.125rem 0.5rem rgba(0, 0, 0, .3), 0 0.0625rem 0.125rem rgba(0, 0, 0, .2);
 }
 
 .dateFont {
-    font-size: small;
+    font-size: x-small;
+}
+
+.profilePic {
+    width: 60px;
+    border-radius: 100%;
 }

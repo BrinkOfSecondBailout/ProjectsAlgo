@@ -4,6 +4,7 @@ import TopNavigation from './TopNavigation';
 import axios from 'axios';
 import Css from '../components/MessageThread.module.css'
 import { format } from 'date-fns';
+import avatar from '../assets/avatar.png';
 
 const MessageThread = (props) => {
     const {user, cart} = props;
@@ -39,10 +40,14 @@ const MessageThread = (props) => {
                 <TopNavigation user={user} cart={cart}/>
             </div>
             <h2><Link to={`/users/${correspondence._id}`}>{correspondence.firstName} {correspondence.lastName}</Link></h2>
+            { user.myFile ?
+                    <Link to={`/users/${correspondence._id}`}><img className={Css.profilePic} src={user.myFile} alt="avatar"/></Link>
+                    : <Link to={`/users/${correspondence._id}`}><img className={Css.profilePic} src={avatar} alt="no-avatar"/></Link>
+            }
             <div className={Css.totalMessages}>
                 {
                     messages?.map((message, index) => {
-                        const formattedDate = format(new Date(message.message.createdAt), 'MM/dd');
+                        const formattedDate = format(new Date(message.message.createdAt), 'MM/dd HH:mm');
                         return (
                             <div>
                                 <div key={index}>

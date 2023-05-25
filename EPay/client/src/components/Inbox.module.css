@@ -1,0 +1,15 @@
+.container {
+    width: 70%;
+}
+
+.oneCorr {
+    display: flex;
+    width: 700px;
+    height: 60px;
+    align-items: center;
+    border-top: 1px solid rgb(189, 189, 189);
+}
+
+.profilePic {
+    width: 50px;
+}

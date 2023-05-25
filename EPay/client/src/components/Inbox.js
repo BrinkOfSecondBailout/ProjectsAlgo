@@ -2,6 +2,8 @@ import React, {useState, useEffect} from 'react';
 import {Link, useParams} from 'react-router-dom';
 import axios from 'axios';
 import TopNavigation from './TopNavigation';
+import avatar from '../assets/avatar.png';
+import Css from '../components/Inbox.module.css'
 
 const Inbox = (props) => {
     const {user, cart} = props;
@@ -26,13 +28,24 @@ const Inbox = (props) => {
             <div>
                 <TopNavigation user={user} cart={cart}/>
             </div>
-            <div>
+            <div className={Css.container}>
                 <h1>Inbox</h1>
                 { messageThreads?.map((thread, index) => {
                     return (
                         <div>
                             <div key={index}>
-                                <h3><Link to={`/inbox/correspondence/${thread.correspondence._id}/${userId}`}>{thread.correspondence.firstName} {thread.correspondence.lastName}</Link></h3>
+                                <div className={Css.oneCorr}>
+                                    { thread.correspondence.myFile ?
+                                        <img className={Css.profilePic} src={user.myFile} alt="avatar"/>
+                                        : <img className={Css.profilePic} src={avatar} alt="no-avatar"/>
+                                    }
+                                    <h3><Link to={`/inbox/correspondence/${thread.correspondence._id}/${userId}`}>{thread.correspondence.firstName} {thread.correspondence.lastName}</Link></h3>
+                                    <div>
+                                    </div>
+                                    <div>
+                                        <p>{thread.messages[thread.messages.length - 1].message.message}</p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     )
