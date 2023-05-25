@@ -53,7 +53,7 @@ const Inbox = (props) => {
                                             <div className={Css.logoAndName}>
                                                 <div className={Css.logo}>
                                                     { thread.correspondence.myFile ?
-                                                        <img className={Css.profilePic} src={user.myFile} alt="avatar"/>
+                                                        <img className={Css.profilePic} src={thread.correspondence.myFile} alt="avatar"/>
                                                         : <img className={Css.profilePic} src={avatar} alt="no-avatar"/>
                                                     }
                                                 </div>

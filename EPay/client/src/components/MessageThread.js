@@ -61,8 +61,8 @@ const MessageThread = (props) => {
                 </div>
             <div className={Css.rightBody}>
                 <h2><Link to={`/users/${correspondence._id}`}>{correspondence.firstName} {correspondence.lastName}</Link></h2>
-                { user.myFile ?
-                        <Link to={`/users/${correspondence._id}`}><img className={Css.profilePic} src={user.myFile} alt="avatar"/></Link>
+                { correspondence.myFile ?
+                        <Link to={`/users/${correspondence._id}`}><img className={Css.profilePic} src={correspondence.myFile} alt="avatar"/></Link>
                         : <Link to={`/users/${correspondence._id}`}><img className={Css.profilePic} src={avatar} alt="no-avatar"/></Link>
                 }
                 <div className={Css.totalMessages}>

@@ -3,9 +3,10 @@ import { useParams , useNavigate} from 'react-router-dom';
 import TopNavigation from './TopNavigation'
 import Css from '../components/NewMessage.module.css'
 import axios from 'axios';
+import SideBar from './SideBar';
 
 const NewMessage = (props) => {
-    const {inbox, user, cart} = props;
+    const {myItems, inbox, user, cart} = props;
     const [message, setMessage] = useState("");
     const [receiver, setReceiver] = useState({});
     const {id} = useParams();
@@ -45,7 +46,12 @@ const NewMessage = (props) => {
             <div>
                 <TopNavigation inbox={inbox} user={user} cart={cart}/>
             </div>
-            <div>
+            <div className={Css.body}>
+                <div>
+                    <SideBar myItems={myItems}/>
+                </div>
+            
+            <div className={Css.rightBody}>
                 <h1>Send {receiver.firstName} a message</h1>
                 <form onSubmit={newMessageHandler} method="POST">
                     <textarea className={Css.messageBox} rows="10" type="text" name="description" onChange={(e) => setMessage(e.target.value)}/>
@@ -53,6 +59,7 @@ const NewMessage = (props) => {
                         <button className={Css.sendButton}>Send</button>
                     </div>
                 </form>
+            </div>
             </div>
         </div>
     )

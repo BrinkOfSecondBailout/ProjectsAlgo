@@ -91,7 +91,7 @@ function App() {
               <Route path="/items/edit/:id" element={isLogged? <EditItem inbox={inbox}  user={user} cart={cart} /> : <Login/>} />
               <Route path="/cart" element={isLogged? <Cart myItems={myItems} inbox={inbox}  user={user} /> : <Login/>} />
               <Route path="/favorites" element={isLogged? <Watchlist myItems={myItems} inbox={inbox} user={user} cart={cart}/> : <Login/>} />
-              <Route path="/message/:id" element={isLogged? <NewMessage inbox={inbox} user={user} cart={cart}/> : <Login/>} />
+              <Route path="/message/:id" element={isLogged? <NewMessage myItems={myItems} inbox={inbox} user={user} cart={cart}/> : <Login/>} />
               <Route path="/inbox/:id" element={isLogged? <Inbox myItems={myItems} inbox={inbox} user={user} cart={cart}/> : <Login/>} />
               <Route path="/inbox/correspondence/:id/:userId" element={isLogged? <MessageThread myItems={myItems}inbox={inbox}  user={user} cart={cart}/> : <Login/>} />
             </Routes>

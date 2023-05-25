@@ -16,8 +16,9 @@
 }
 
 .allCartItems {
-    width: 70%;
     height: 900px;
+    overflow-x: hidden;
+    overflow-y: auto;
 }
 
 .oneItem {

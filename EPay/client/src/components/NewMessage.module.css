@@ -9,3 +9,12 @@
     height: 40px;
     border-radius: 10px;
 }
+
+.body {
+    display: flex;
+    width: 63%;
+}
+
+.rightBody {
+    width: 70%;
+}
