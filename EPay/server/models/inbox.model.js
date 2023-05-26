@@ -28,7 +28,11 @@ const InboxSchema = new mongoose.Schema({
                         required: [true, "Please enter a message"]
                     }
                 }
-            ]
+            ],
+            updatedAt: {
+                type: Date,
+                default: Date.now()
+            }
         }
     ]
 })

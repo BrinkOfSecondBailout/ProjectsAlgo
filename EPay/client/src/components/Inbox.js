@@ -45,7 +45,9 @@ const Inbox = (props) => {
                 <div className={Css.rightBody}>
                     <div>
                         <h1>Inbox</h1>
-                        { messageThreads?.map((thread, index) => {
+                        { messageThreads
+                            ?.sort((a, b) => new Date(b.updatedAt) - new Date(a.updatedAt))
+                            .map((thread, index) => {
                             return (
                                 <div>
                                     <div key={index}>

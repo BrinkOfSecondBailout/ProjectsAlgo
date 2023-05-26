@@ -22,6 +22,7 @@ module.exports.addToInbox = async(request, response) => {
             const newItemIndex = inbox.messageThreads.findIndex(thread => thread.correspondence._id == request.body.user._id)
 
             inbox.messageThreads[newItemIndex].messages.push({path: "in", message: message})
+            inbox.messageThreads[newItemIndex].updatedAt = Date.now()
             inbox.newMessageCount += 1
             await inbox.save();
 
@@ -29,6 +30,7 @@ module.exports.addToInbox = async(request, response) => {
             inbox2.messageThreads.push({correspondence: correspondence2})
             const newItemIndex2 = inbox2.messageThreads.findIndex(thread => thread.correspondence._id == id)
             inbox2.messageThreads[newItemIndex2].messages.push({path: "out", message: message})
+            inbox2.messageThreads[newItemIndex2].updatedAt = Date.now()
             await inbox2.save();
 
             response.json("New message thread successfully added")
@@ -36,12 +38,14 @@ module.exports.addToInbox = async(request, response) => {
         } else {
             
             inbox.messageThreads[itemIndex].messages.push({path: "in", message: message})
+            inbox.messageThreads[itemIndex].updatedAt = Date.now()
             inbox.newMessageCount += 1
             await inbox.save();
 
             
             const itemIndex2 = inbox2.messageThreads.findIndex(thread => thread.correspondence._id == id)
             inbox2.messageThreads[itemIndex2].messages.push({path: "out", message: message})
+            inbox2.messageThreads[itemIndex2].updatedAt = Date.now()
             await inbox2.save();
 
             response.json("New message successfully added to existing thread")
