@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react'
-import { useParams , useNavigate} from 'react-router-dom';
+import { Link, useParams , useNavigate} from 'react-router-dom';
 import TopNavigation from './TopNavigation'
 import Css from '../components/NewMessage.module.css'
 import axios from 'axios';
@@ -60,14 +60,14 @@ const NewMessage = (props) => {
                 </div>
             
             <div className={Css.rightBody}>
-                <h1>Send {receiver.firstName} a message</h1>
+                <h1>Message {receiver.firstName}</h1>
                 { receiver.myFile ?
-                    <img className={Css.profilePic} src={receiver.myFile} alt="avatar"/>
-                    : <img className={Css.profilePic} src={avatar} alt="no-avatar"/>
+                    <Link to={`/users/${receiver._id}`}><img className={Css.profilePic} src={receiver.myFile} alt="avatar"/></Link>
+                    : <Link to={`/users/${receiver._id}`}><img className={Css.profilePic} src={avatar} alt="no-avatar"/></Link>
                 }
                 <form onSubmit={newMessageHandler} method="POST">
                     {errors? <p>{errors}</p> : null}
-                    <textarea className={Css.messageBox} rows="10" type="text" name="description" onChange={(e) => setMessage(e.target.value)}/>
+                    <textarea placeholder='Type something...' className={Css.messageBox} rows="10" type="text" name="description" onChange={(e) => setMessage(e.target.value)}/>
                     <div>
                         <button className={Css.sendButton}><img className={Css.sendMessage} src={messageIcon} alt="send" /></button>
                     </div>

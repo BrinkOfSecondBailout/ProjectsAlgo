@@ -4,10 +4,18 @@
 
 .oneCorr {
     display: flex;
-    width: 700px;
-    height: 60px;
+    width: 600px;
+    /* height: 60px; */
     align-items: center;
     border-top: 1px solid rgb(189, 189, 189);
+}
+
+.profilePic {
+    border-radius: 100%;
+    width: 50px;
+    height: 50px;
+    box-shadow: 1px 2px 2px 2px rgb(61, 61, 61);
+    padding: 3px;
 }
 
 .logoAndName {
@@ -18,11 +26,15 @@
 
 
 .logo {
-    width: 70px;
+    width: 100px;
 }
 
+.name {
+    width: 100px;
+}
 
 .messagePreview {
+    width: 300px;
 }
 
 .body {
@@ -34,10 +46,3 @@
     width: 70%;
 }
 
-.profilePic {
-    border-radius: 100%;
-    width: 50px;
-    height: 50px;
-    box-shadow: 1px 2px 2px 2px rgb(61, 61, 61);
-    padding: 3px;
-}

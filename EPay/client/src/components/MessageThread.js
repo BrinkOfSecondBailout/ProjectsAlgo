@@ -7,6 +7,7 @@ import { format } from 'date-fns';
 import avatar from '../assets/avatar.png';
 import SideBar from './SideBar';
 import messageIcon from '../assets/message.png';
+import backArrow from '../assets/backarrow.png';
 
 
 const MessageThread = (props) => {
@@ -72,7 +73,10 @@ const MessageThread = (props) => {
                         <Link to={`/users/${correspondence._id}`}><img className={Css.profilePic} src={correspondence.myFile} alt="avatar"/></Link>
                         : <Link to={`/users/${correspondence._id}`}><img className={Css.profilePic} src={avatar} alt="no-avatar"/></Link>
                 }
-                <div className={Css.totalMessages}>
+                <div>
+                    <Link to={`/inbox/${userId}`}><img className={Css.backArrow} src={backArrow} alt='go-back'/></Link>
+                    <div className={Css.totalMessages}>
+                </div>
                     {
                         messages?.map((message, index) => {
                             const formattedDate = format(new Date(message.message.createdAt), 'MM/dd HH:mm');
@@ -106,11 +110,11 @@ const MessageThread = (props) => {
                 </div>
                 <form onSubmit={replyHandler} method="POST">
                     <div className={Css.replyBox}>
-                    <textarea className={Css.messageBox} rows="6" type="text" name="description" onChange={(e) => setMessage(e.target.value)}/>
-                    <div>
-                        {errors? <p>{errors}</p> : null}
-                        <button className={Css.sendButton}><img className={Css.sendMessage} src={messageIcon} alt="send" /></button>
-                    </div>
+                        <textarea placeholder='Type something...' className={Css.messageBox} rows="6" type="text" name="description" onChange={(e) => setMessage(e.target.value)}/>
+                        <div>
+                            {errors? <p>{errors}</p> : null}
+                            <button className={Css.sendButton}><img className={Css.sendMessage} src={messageIcon} alt="send" /></button>
+                        </div>
                     </div>
                 </form>
                 </div>

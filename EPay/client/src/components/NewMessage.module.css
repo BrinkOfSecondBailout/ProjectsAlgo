@@ -2,10 +2,12 @@
     width: 400px;
     border-radius: 20px;
     padding: 10px;
+    border: 2px solid rgb(128, 128, 128);
+    margin-top: 10px;
 }
 
 .sendButton {
-    background-color: none;
+    background-color: white;
     border: none;
     border-radius: 100%;
     width: 60px;
