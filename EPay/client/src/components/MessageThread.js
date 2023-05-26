@@ -11,14 +11,14 @@ import backArrow from '../assets/backarrow.png';
 
 
 const MessageThread = (props) => {
-    const {myItems, inbox, user, cart} = props;
+    const {myItems, user, cart} = props;
     const [messages, setMessages] = useState([]);
     const [message, setMessage] = useState("");
     const userId = localStorage.getItem('userId');
     const {id} = useParams();
     const [correspondence, setCorrespondence] = useState({});
-    const navigate = useNavigate();
     const [errors, setErrors] = useState([])
+    const [inbox, setInbox] = useState([])
 
     useEffect(() => {
         axios.get(`http://localhost:8000/api/inbox/show/${id}/${userId}`)
@@ -30,7 +30,15 @@ const MessageThread = (props) => {
             })
     }, [])
 
-    
+    useEffect(() => {
+        axios.get('http://localhost:8000/api/inbox/' + id)
+            .then(response => {
+                setInbox(response.data)
+            })
+            .catch(err => {
+                console.log(err)
+            })
+    }, [])
 
     useEffect(() => {
         axios.get(`http://localhost:8000/api/users/${id}`)
@@ -89,7 +97,7 @@ const MessageThread = (props) => {
                                             message.path === "in" ? 
                                             <div className={Css.leftMessage}>
                                                 <div className={Css.incoming}>
-                                                    <p>{message.message.message}</p>
+                                                    <h6>{message.message.message}</h6>
                                                     <p className={Css.dateFont}>{formattedDate}</p>
                                                 </div>
                                                 <div className={Css.rightEmpty}></div>
@@ -98,7 +106,7 @@ const MessageThread = (props) => {
                                             <div className={Css.rightMessage}>
                                                 <div className={Css.leftEmpty}></div>
                                                 <div className={Css.outgoing}>
-                                                    <p>{message.message.message}</p>
+                                                    <h6>{message.message.message}</h6>
                                                     <p className={Css.dateFont}>{formattedDate}</p>
                                                 </div>
                                             </div>
