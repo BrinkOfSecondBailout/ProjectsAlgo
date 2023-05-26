@@ -88,7 +88,7 @@ function App() {
               <Route path="/users/:id" element={isLogged? <UserDetail myItems={myItems} inbox={inbox}  user1={user} cart={cart} /> : <Login/>} />
               <Route path="/items/new" element={isLogged? <NewItem inbox={inbox}  user={user} cart={cart} myItems={myItems} setMyItems={setMyItems}/> : <Login/>} />
               <Route path="/items/:id" element={isLogged? <ItemDetail myItems={myItems} inbox={inbox} user1={user} cart={cart} removeFromDom={removeFromDom} /> : <Login/>} />
-              <Route path="/items/edit/:id" element={isLogged? <EditItem inbox={inbox}  user={user} cart={cart} /> : <Login/>} />
+              <Route path="/items/edit/:id" element={isLogged? <EditItem myItems={myItems} inbox={inbox}  user={user} cart={cart} /> : <Login/>} />
               <Route path="/cart" element={isLogged? <Cart myItems={myItems} inbox={inbox}  user={user} /> : <Login/>} />
               <Route path="/favorites" element={isLogged? <Watchlist myItems={myItems} inbox={inbox} user={user} cart={cart}/> : <Login/>} />
               <Route path="/message/:id" element={isLogged? <NewMessage myItems={myItems} inbox={inbox} user={user} cart={cart}/> : <Login/>} />
