@@ -5,7 +5,7 @@
 .leftMessage {
     display: flex;
     text-align: left;
-    max-width: 400px;
+    max-width: 500px;
 }
 
 .rightEmpty {
@@ -19,7 +19,7 @@
 .rightMessage {
     display: flex;
     text-align: right;
-    max-width: 400px;
+    max-width: 500px;
     
 }
 
@@ -60,7 +60,7 @@
     border-radius: 20px;
     padding: 10px;
     margin-top: 10px;
-    border: 2px solid rgb(128, 128, 128);
+    border: 2px solid rgb(0, 0, 0);
 }
 
 .replyBox {
@@ -83,15 +83,16 @@
 }
 
 .sendButton {
-    background-color: white;
-    border: none;
-    border-radius: 100%;
-    width: 60px;
-    height: 60px;
-    position: relative;
+    background-color: rgb(11, 165, 11);
+    border: 2px solid rgb(255, 255, 255);
+    width: 80px;
+    height: 30px;
+    color: white;
+    border-radius: 10px;
 }
 
 .sendMessage {
+    
     width: 50px;
     height: 50px;
 }

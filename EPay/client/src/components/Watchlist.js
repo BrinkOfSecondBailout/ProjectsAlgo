@@ -52,9 +52,9 @@ const Watchlist = (props) => {
                             return (
                                 <div key={index} >
                                     <div>
-                                        <h3><Link to={`/items/${item.item._id}`}>{item.item.name}</Link></h3>
-                                        <h3>${item.item.price}</h3>
-                                        <button className={Css.removeButton} onClick={() => removeFromWatchlist(item.item._id)}><h4>Remove</h4></button>
+                                        <h4><Link to={`/items/${item.item._id}`}>{item.item.name}</Link></h4>
+                                        <h4>${item.item.price}</h4>
+                                        <button className={Css.removeButton} onClick={() => removeFromWatchlist(item.item._id)}><h5>Remove</h5></button>
                                     </div>
                                     { item.item.myFile1 ?
                                         <Link to={`/items/${item.item._id}`}><img className={Css.itemPicture} src={item.item.myFile1} alt="item-pic"/></Link>

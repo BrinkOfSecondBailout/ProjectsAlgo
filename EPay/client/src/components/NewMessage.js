@@ -69,7 +69,7 @@ const NewMessage = (props) => {
                     {errors? <p>{errors}</p> : null}
                     <textarea placeholder='Type something...' className={Css.messageBox} rows="10" type="text" name="description" onChange={(e) => setMessage(e.target.value)}/>
                     <div>
-                        <button className={Css.sendButton}><img className={Css.sendMessage} src={messageIcon} alt="send" /></button>
+                        <button className={Css.sendButton}>Send</button>
                     </div>
                 </form>
             </div>

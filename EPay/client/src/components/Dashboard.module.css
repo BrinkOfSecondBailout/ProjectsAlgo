@@ -3,17 +3,28 @@
     margin: 0 auto;
 }
 
+body {
+    background-image: url('../assets/background4.jpg');
+    min-width: 100%;
+    min-height: 100%;
+    background-position: center;
+    /* background-repeat: no-repeat; */
+    background-size: cover;
+    overflow-x: hidden;
+}
+
 input {
     padding: 3px;
 }
 
 a {
     text-decoration: none;
-    color: rgb(29, 123, 224);
+    color: rgb(3, 30, 140);
 }
 
+
 a:hover {
-    color:rgb(0, 58, 119);
+    color:rgb(19, 92, 170);
 }
 
 h1, h2, h3, h4, h5, h6 {

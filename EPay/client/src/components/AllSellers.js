@@ -20,7 +20,7 @@ const AllSellers = () => {
                 return (
                     <div key={index}>
                         <div className={Css.oneUser}>
-                            <Link to={`/users/${user._id}`}><h3>{user.firstName} {user.lastName}</h3></Link>
+                            <Link to={`/users/${user._id}`}><h4>{user.firstName} {user.lastName}</h4></Link>
                             { user.myFile ?
                                 <Link to={`/users/${user._id}`}><img className={Css.profilepic} src={user.myFile} alt="avatar"/></Link>
                                 : <Link to={`/users/${user._id}`}><img className={Css.profilepic} src={avatar} alt="no-avatar"/></Link>

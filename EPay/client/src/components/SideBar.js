@@ -10,7 +10,7 @@ const SideBar = (props) => {
     const {myItems} = props;
     
     return (
-        <div>
+        <div className={Css.totalLeft}>
             <div className={Css.topLeftBody}>
                 <h1>My Items</h1>
                 <Link to='/items/new'><button className={Css.listButton}><h4>List a new item</h4></button></Link>

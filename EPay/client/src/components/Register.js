@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import {Link, useNavigate} from 'react-router-dom';
 import axios from 'axios';
+import Css from '../components/Register.module.css';
 
 const Register = () => {
 
@@ -35,12 +36,8 @@ const Register = () => {
 
 
     return (
-        <div>
+        <div className={Css.registerBody}>
             <h1>Register Account</h1>
-            
-            
-            
-            
             <form onSubmit={registerUser} method="POST">
                     {errors.firstName? <p>{errors.firstName.message}</p> : null}
                     <label>First Name:</label>

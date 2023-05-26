@@ -7,11 +7,20 @@
     direction: rtl;
 }
 
+
 .bottomLeftBody {
     width: 400px;
     height: 600px;
     overflow-x: hidden;
     overflow-y: auto;
+}
+
+.totalLeft {
+    background: transparent;
+    border: 2px solid rgba(255, 255, 255, 0.753);
+    border-radius: 20px;
+    backdrop-filter: blur(15px);
+    box-shadow: 0 0 30px rgba(0, 0, 0, .5);
 }
 
 .listButton {

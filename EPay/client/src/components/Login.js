@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import {Link, useNavigate} from 'react-router-dom';
 import axios from 'axios';
-
+import Css from '../components/Login.module.css';
 const Login = () => {
 
     const [email, setEmail] = useState("");
@@ -30,7 +30,7 @@ const Login = () => {
 
 
     return (
-        <div>
+        <div className={Css.loginBody}>
             <h1>Login</h1>
             {errors ? <p>{errors}</p> : null}
             <form onSubmit={loginUser} method="POST">
