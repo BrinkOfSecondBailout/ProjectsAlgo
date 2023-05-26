@@ -8,13 +8,11 @@ module.exports.addToInbox = async(request, response) => {
         const inbox = await Inbox.findOne({userId: id})
         const itemIndex = inbox.messageThreads.findIndex(thread => thread.correspondence._id == request.body.user._id)
         const message = await Message.create({message: request.body.message})
-
+        const message2 = await Message.create({message: request.body.message, unread: "false"})
         const inbox2 = await Inbox.findOne({userId: request.body.user._id})
         
 
         if (itemIndex === -1) {
-            // console.log(inbox.messageThreads[0].correspondence._id)
-            // console.log(request.body.user._id)
 
             const correspondence = await User.findOne({_id: request.body.user._id})
             inbox.messageThreads.push({correspondence: correspondence})
@@ -29,7 +27,7 @@ module.exports.addToInbox = async(request, response) => {
             const correspondence2 = await User.findOne({_id: id})
             inbox2.messageThreads.push({correspondence: correspondence2})
             const newItemIndex2 = inbox2.messageThreads.findIndex(thread => thread.correspondence._id == id)
-            inbox2.messageThreads[newItemIndex2].messages.push({path: "out", message: message})
+            inbox2.messageThreads[newItemIndex2].messages.push({path: "out", message: message2})
             inbox2.messageThreads[newItemIndex2].updatedAt = Date.now()
             await inbox2.save();
 
@@ -44,7 +42,7 @@ module.exports.addToInbox = async(request, response) => {
 
             
             const itemIndex2 = inbox2.messageThreads.findIndex(thread => thread.correspondence._id == id)
-            inbox2.messageThreads[itemIndex2].messages.push({path: "out", message: message})
+            inbox2.messageThreads[itemIndex2].messages.push({path: "out", message: message2})
             inbox2.messageThreads[itemIndex2].updatedAt = Date.now()
             await inbox2.save();
 
@@ -85,8 +83,12 @@ module.exports.allMessagesByCorrespondence = async(request, response) => {
             model: 'Message'
         })
         const itemIndex = inbox.messageThreads.findIndex(thread => thread.correspondence._id == id)
-        // console.log(itemIndex)
         const allMessages = inbox.messageThreads[itemIndex].messages
+        for (let i = 0; i < allMessages.length; i++) {
+            allMessages[i].message.unread = "false"
+            await allMessages[i].message.save();
+        }
+        await inbox.save()
         response.json(allMessages)
     } catch (err) {
         response.json(err)
@@ -98,7 +100,7 @@ module.exports.resetNewMessageCount = async (request, response) => {
     try {
         const inbox = await Inbox.findOne({userId: id})
         inbox.newMessageCount = 0;
-        inbox.save();
+        await inbox.save();
         response.json("Reset successful")
     } catch (err) {
         response.json(err)

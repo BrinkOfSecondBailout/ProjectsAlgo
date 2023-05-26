@@ -64,10 +64,18 @@ const Inbox = (props) => {
                                                 </div>
                                             </div>
                                             <div className={Css.messagePreview}>
-                                                <p>{thread.messages && thread.messages.length > 0 ? 
-                                                thread.messages[thread.messages.length - 1].message.message
+                                                {thread.messages && thread.messages.length > 0 ? 
+                                                    
+                                                    thread.messages[thread.messages.length - 1].message.unread == "true"
+                                                    ? (<div>
+                                                        <p><b>{thread.messages[thread.messages.length - 1].message.message}</b></p>
+                                                    </div>)
+                                                    : (<div>
+                                                        <p>{thread.messages[thread.messages.length - 1].message.message}</p>
+                                                    </div>)
+                                                    
                                                 : ""
-                                                }</p>
+                                                }
                                             </div>
                                         </div>
                                     </div>

@@ -30,6 +30,8 @@ const MessageThread = (props) => {
             })
     }, [])
 
+    
+
     useEffect(() => {
         axios.get(`http://localhost:8000/api/users/${id}`)
             .then(response => {

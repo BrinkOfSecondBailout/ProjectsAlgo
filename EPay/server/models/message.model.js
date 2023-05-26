@@ -5,6 +5,11 @@ const MessageSchema = new mongoose.Schema({
         {
             type: String,
             required: [true, "Please type something"]
+        },
+    unread :
+        {
+            type: String,
+            default: "true"
         }
     
 }, {timestamps: true})
