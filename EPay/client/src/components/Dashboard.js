@@ -8,9 +8,10 @@ import axios from 'axios';
 import SideBar from './SideBar';
 
 const Dashboard = (props) => {
-    const {inbox, cart, items, myItems} = props;
+    const {cart, items, myItems} = props;
     const id = localStorage.getItem('userId');
     const [user, setUser] = useState({})
+    const [inbox, setInbox] = useState([])
 
     useEffect(() => {
         axios.get('http://localhost:8000/api/users/' + id)
@@ -20,6 +21,15 @@ const Dashboard = (props) => {
             .catch(err => console.log(err));
     }, []);
 
+    useEffect(() => {
+        axios.get('http://localhost:8000/api/inbox/' + id)
+            .then(response => {
+                setInbox(response.data)
+            })
+            .catch(err => {
+                console.log(err)
+            })
+    }, [])
 
     return ( 
         <div>

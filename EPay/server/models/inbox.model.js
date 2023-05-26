@@ -25,7 +25,7 @@ const InboxSchema = new mongoose.Schema({
                     message: {
                         type: mongoose.Schema.Types.ObjectId,
                         ref: "Message",
-                        required: true
+                        required: [true, "Please enter a message"]
                     }
                 }
             ]

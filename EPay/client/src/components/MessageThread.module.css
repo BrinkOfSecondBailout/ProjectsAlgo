@@ -22,19 +22,21 @@
 }
 
 .incoming {
-    background-color: #f2f2f2cc;
+    background-color: #878787cc;
     padding: 1em 1.5em;
     font-size: 1.25em;
     border-radius: 1rem;
     box-shadow: 0 0.125rem 0.5rem rgba(0, 0, 0, .3), 0 0.0625rem 0.125rem rgba(0, 0, 0, .2);
+    color: white;
 }
 
 .outgoing {
-    background-color: #48b6ffcc;
+    background-color: #36aefdcc;
     padding: 1em 1.5em;
     font-size: 1.25em;
     border-radius: 1rem;
     box-shadow: 0 0.125rem 0.5rem rgba(0, 0, 0, .3), 0 0.0625rem 0.125rem rgba(0, 0, 0, .2);
+    color: white;
 }
 
 .dateFont {
@@ -45,6 +47,8 @@
     width: 80px;
     height: 80px;
     border-radius: 100%;
+    box-shadow: 1px 2px 2px 2px rgb(61, 61, 61);
+    padding: 3px;
 }
 
 .messageBox {
@@ -71,4 +75,18 @@
 
 .rightBody {
     width: 70%;
+}
+
+.sendButton {
+    background-color: none;
+    border: none;
+    border-radius: 100%;
+    width: 60px;
+    height: 60px;
+    position: relative;
+}
+
+.sendMessage {
+    width: 60px;
+    height: 60px;
 }

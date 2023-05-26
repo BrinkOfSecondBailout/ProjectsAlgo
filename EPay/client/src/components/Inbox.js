@@ -40,7 +40,7 @@ const Inbox = (props) => {
             </div>
             <div className={Css.body}>
                 <div>
-                    <div><SideBar myItems={myItems}/></div>
+                    <SideBar myItems={myItems}/>
                 </div>
                 <div className={Css.rightBody}>
                     <div>

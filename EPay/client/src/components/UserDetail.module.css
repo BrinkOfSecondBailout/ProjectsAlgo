@@ -15,12 +15,14 @@
 .flex {
     display: flex;
     flex-wrap: wrap;
-    width: 50%;
+    height: 700px;
+    overflow-x: hidden;
+    overflow-y: auto;
 }
 
 
 .sendMessage {
-    width: 50px;
+    width: 60px;
 }
 
 .sendMessage:hover {

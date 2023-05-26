@@ -6,6 +6,8 @@ import Css from '../components/MessageThread.module.css'
 import { format } from 'date-fns';
 import avatar from '../assets/avatar.png';
 import SideBar from './SideBar';
+import messageIcon from '../assets/message.png';
+
 
 const MessageThread = (props) => {
     const {myItems, inbox, user, cart} = props;
@@ -15,6 +17,7 @@ const MessageThread = (props) => {
     const {id} = useParams();
     const [correspondence, setCorrespondence] = useState({});
     const navigate = useNavigate();
+    const [errors, setErrors] = useState([])
 
     useEffect(() => {
         axios.get(`http://localhost:8000/api/inbox/show/${id}/${userId}`)
@@ -39,15 +42,19 @@ const MessageThread = (props) => {
 
     const replyHandler = (e) => {
         e.preventDefault();
-        axios.post('http://localhost:8000/api/inbox/new/' + id, {
-            message: message,
-            user: user
-        }) .then(response => {
-            console.log(response.data)
-            window.location.reload();
-        }) .catch(err => {
-            console.log(err)
-        })
+        if (message.length <= 0) {
+            setErrors("Please type a message")
+        } else {
+            axios.post('http://localhost:8000/api/inbox/new/' + id, {
+                message: message,
+                user: user
+            }) .then(response => {
+                console.log(response.data)
+                window.location.reload();
+            }) .catch(err => {
+                console.log(err)
+            })
+        }
     }
 
     return (
@@ -101,7 +108,8 @@ const MessageThread = (props) => {
                     <div className={Css.replyBox}>
                     <textarea className={Css.messageBox} rows="6" type="text" name="description" onChange={(e) => setMessage(e.target.value)}/>
                     <div>
-                        <button className={Css.replyButton}>Reply</button>
+                        {errors? <p>{errors}</p> : null}
+                        <button className={Css.sendButton}><img className={Css.sendMessage} src={messageIcon} alt="send" /></button>
                     </div>
                     </div>
                 </form>

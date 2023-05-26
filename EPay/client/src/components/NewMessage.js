@@ -4,11 +4,14 @@ import TopNavigation from './TopNavigation'
 import Css from '../components/NewMessage.module.css'
 import axios from 'axios';
 import SideBar from './SideBar';
+import avatar from '../assets/avatar.png';
+import messageIcon from '../assets/message.png';
 
 const NewMessage = (props) => {
     const {myItems, inbox, user, cart} = props;
     const [message, setMessage] = useState("");
     const [receiver, setReceiver] = useState({});
+    const [errors ,setErrors] = useState([])
     const {id} = useParams();
     const navigate = useNavigate();
 
@@ -29,15 +32,20 @@ const NewMessage = (props) => {
 
     const newMessageHandler = (e) => {
         e.preventDefault();
-        axios.post('http://localhost:8000/api/inbox/new/' + id, {
-            message: message,
-            user: user
-        }) .then(response => {
-            console.log(response.data)
-            navigate('/')
-        }) .catch(err => {
-            console.log(err)
-        })
+        console.log(message.length)
+        if (message.length <= 0) {
+            setErrors("Please type a message")
+        } else {
+            axios.post('http://localhost:8000/api/inbox/new/' + id, {
+                message: message,
+                user: user
+            }) .then(response => {
+                console.log(response.data)
+                navigate('/')
+            }) .catch(err => {
+                console.log(err.response.data.errors);
+            })
+        }
     }
 
 
@@ -53,10 +61,15 @@ const NewMessage = (props) => {
             
             <div className={Css.rightBody}>
                 <h1>Send {receiver.firstName} a message</h1>
+                { receiver.myFile ?
+                    <img className={Css.profilePic} src={receiver.myFile} alt="avatar"/>
+                    : <img className={Css.profilePic} src={avatar} alt="no-avatar"/>
+                }
                 <form onSubmit={newMessageHandler} method="POST">
+                    {errors? <p>{errors}</p> : null}
                     <textarea className={Css.messageBox} rows="10" type="text" name="description" onChange={(e) => setMessage(e.target.value)}/>
                     <div>
-                        <button className={Css.sendButton}>Send</button>
+                        <button className={Css.sendButton}><img className={Css.sendMessage} src={messageIcon} alt="send" /></button>
                     </div>
                 </form>
             </div>
