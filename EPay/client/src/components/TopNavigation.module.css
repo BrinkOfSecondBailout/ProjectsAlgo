@@ -6,7 +6,7 @@
     font-family: 'Cinzel', serif;
     font-size: xx-large;
     color: rgb(26, 111, 203);
-    width: 200px;
+    width: 300px;
     position: relative;
     right: 15px;
     text-shadow: 1px 1px rgb(1, 74, 233);
@@ -20,6 +20,10 @@
     top: 20px;
     z-index: -1;
 }
+
+/* .spaceOut {
+    letter-spacing: 2px;
+} */
 
 .smallIcon {
     width: 25px;
@@ -40,6 +44,13 @@
     max-height: 180px;
     text-align: right;
     line-height: 0.7;
+}
+
+.twoTopIcons {
+    display: flex;
+    width: 180px;
+    position: relative;
+    right: 20px;
 }
 
 .cartTotal {
@@ -70,6 +81,8 @@
 
 .totalInbox {
     height: 60px;
+    position: relative;
+    bottom: 2px;
 }
 
 .topNav {
@@ -77,6 +90,8 @@
     width: 70%;
     height: 300px;
 }
+
+
 
 .topLeft {
     flex: 2;
@@ -130,5 +145,9 @@
 }
 
 .cartButton:hover {
+    opacity: 60%;
+}
+
+.inboxButton:hover {
     opacity: 60%;
 }

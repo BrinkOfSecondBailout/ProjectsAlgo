@@ -19,17 +19,19 @@ const TopNavigation = (props) => {
                 }
             </div>
             <div className={Css.topRight}>
-                <div className={Css.totalCart}>
-                    <Link to='/cart'><button className={Css.cartButton}><img className={Css.cartPic} src={cartIcon} alt="cart"/><div className={Css.cartTotal}><h6>{cart.count}</h6></div></button></Link>
-                </div>
-                <div className={Css.totalInbox}>
-                    <Link to={`/inbox/${user._id}`}><button className={Css.inboxButton}><img className={Css.inboxIcon} src={inboxIcon} alt='inbox'/><div className={Css.inboxTotal}><h6>{inbox.newMessageCount}</h6></div></button></Link>
+                <div className={Css.twoTopIcons}>
+                    <div className={Css.totalCart}>
+                        <Link to='/cart'><button className={Css.cartButton}><img className={Css.cartPic} src={cartIcon} alt="cart"/><div className={Css.cartTotal}><h6>{cart.count}</h6></div></button></Link>
+                    </div>
+                    <div className={Css.totalInbox}>
+                        <Link to={`/inbox/${user._id}`}><button className={Css.inboxButton}><img className={Css.inboxIcon} src={inboxIcon} alt='inbox'/><div className={Css.inboxTotal}><h6>{inbox.newMessageCount}</h6></div></button></Link>
+                    </div>
                 </div>
                 <div className={Css.navLinks}>
-                    <Link to='/'><h4>home</h4></Link>
-                    <Link to='/users/edit'><h4>edit profile</h4></Link>
-                    <Link to='/favorites'><h4>watchlist</h4></Link>
-                    <Link to='/logout'><h4>logout</h4></Link>
+                    <Link to='/'><h4 className={Css.spaceOut}>home</h4></Link>
+                    <Link to='/users/edit'><h4 className={Css.spaceOut}>edit profile</h4></Link>
+                    <Link to='/favorites'><h4 className={Css.spaceOut}>watchlist</h4></Link>
+                    <Link to='/logout'><h4 className={Css.spaceOut}>logout</h4></Link>
                 </div>
             </div>
         </div>

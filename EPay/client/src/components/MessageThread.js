@@ -85,9 +85,9 @@ const MessageThread = (props) => {
                 }
                 <div>
                     <Link to={`/inbox/${userId}`}><img className={Css.backArrow} src={backArrow} alt='go-back'/></Link>
-                    <div className={Css.totalMessages}>
                 </div>
-                    {
+                    <div className={Css.totalMessages}>
+                        {
                         messages?.map((message, index) => {
                             const formattedDate = format(new Date(message.message.createdAt), 'MM/dd HH:mm');
                             return (
@@ -115,9 +115,9 @@ const MessageThread = (props) => {
                                     </div>
                                 </div>
                             )
-                        })
-                    }
-                </div>
+                            })
+                        }
+                    </div>
                 <form onSubmit={replyHandler} method="POST">
                     <div className={Css.replyBox}>
                         <textarea placeholder='Type something...' className={Css.messageBox} rows="6" type="text" name="description" onChange={(e) => setMessage(e.target.value)}/>

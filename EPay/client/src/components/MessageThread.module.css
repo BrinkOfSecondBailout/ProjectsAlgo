@@ -1,5 +1,9 @@
 .totalMessages {
     /* width: 60%; */
+    max-height: 800px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    direction: ltr;
 }
 
 .leftMessage {
@@ -24,12 +28,12 @@
 }
 
 .incoming {
-    background-color: #505050cc;
+    background-color: #909090cc;
     padding: 0.5em 1em;
     font-size: 1.25em;
     border-radius: 1rem;
-    box-shadow: 0 0.125rem 0.5rem rgba(0, 0, 0, .3), 0 0.0625rem 0.125rem rgba(0, 0, 0, .2);
-    color: white;
+    box-shadow: 0 0.4rem 0.5rem rgba(0, 0, 0, .3), 0 0.0625rem 0.125rem rgba(0, 0, 0, .2);
+    color: rgb(0, 0, 0);
     border: 1px solid rgb(78, 78, 78);
 }
 
@@ -38,8 +42,8 @@
     padding: 0.5em 1em;
     font-size: 1.25em;
     border-radius: 1rem;
-    box-shadow: 0 0.125rem 0.5rem rgba(0, 0, 0, .3), 0 0.0625rem 0.125rem rgba(0, 0, 0, .2);
-    color: white;
+    box-shadow: 0 0.4rem 0.5rem rgba(0, 0, 0, .3), 0 0.0625rem 0.125rem rgba(0, 0, 0, .2);
+    color: rgb(0, 0, 0);
     border: 1px solid rgba(42, 61, 207, 0.294);
 }
 

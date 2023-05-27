@@ -18,6 +18,16 @@
     padding: 3px;
 }
 
+.preview {
+    max-width: 300px;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    color: black;
+    font-size: medium;
+}
+
 .logoAndName {
     display: flex;
     align-items: center;
@@ -26,7 +36,7 @@
 
 
 .logo {
-    width: 100px;
+    width: 70px;
 }
 
 .name {
@@ -34,7 +44,7 @@
 }
 
 .messagePreview {
-    width: 300px;
+    width: 350px;
 }
 
 .body {
@@ -46,3 +56,21 @@
     width: 70%;
 }
 
+
+.trashIcon {
+    width: 40px;
+    height: 40px;
+}
+
+.trash {
+    
+}
+
+.message {
+    width: 200px;
+}
+
+.messageTotal {
+    display: flex;
+    align-items: center;
+}

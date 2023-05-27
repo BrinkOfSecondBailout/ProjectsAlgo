@@ -5,6 +5,7 @@ import TopNavigation from './TopNavigation';
 import avatar from '../assets/avatar.png';
 import Css from '../components/Inbox.module.css'
 import SideBar from './SideBar';
+import trashIcon from '../assets/trash.png';
 
 const Inbox = (props) => {
     const {myItems, user, cart} = props;
@@ -60,18 +61,28 @@ const Inbox = (props) => {
                                                     }
                                                 </div>
                                                 <div className={Css.name}>
-                                                    <h3><Link to={`/inbox/correspondence/${thread.correspondence._id}/${userId}`}>{thread.correspondence.firstName} {thread.correspondence.lastName}</Link></h3>
+                                                    <h4>{thread.correspondence.firstName} {thread.correspondence.lastName}</h4>
                                                 </div>
                                             </div>
                                             <div className={Css.messagePreview}>
                                                 {thread.messages && thread.messages.length > 0 ? 
                                                     
                                                     thread.messages[thread.messages.length - 1].message.unread == "true"
-                                                    ? (<div>
-                                                        <p><b>{thread.messages[thread.messages.length - 1].message.message}</b></p>
+                                                    ? (<div className={Css.messageTotal}>
+                                                        <div className={Css.message}>
+                                                            <p className={Css.preview}><b><Link to={`/inbox/correspondence/${thread.correspondence._id}/${userId}`}>{thread.messages[thread.messages.length - 1].message.message}</Link></b></p>
+                                                        </div>
+                                                        <div className={Css.trash}>
+                                                            <img className={Css.trashIcon} src={trashIcon} alt='delete-thread'/>
+                                                        </div>
                                                     </div>)
-                                                    : (<div>
-                                                        <p>{thread.messages[thread.messages.length - 1].message.message}</p>
+                                                    : (<div className={Css.messageTotal}>
+                                                        <div className={Css.message}>
+                                                            <p className={Css.preview}><Link to={`/inbox/correspondence/${thread.correspondence._id}/${userId}`}>{thread.messages[thread.messages.length - 1].message.message}</Link></p>
+                                                        </div>
+                                                        <div className={Css.trash}>
+                                                            <img className={Css.trashIcon} src={trashIcon} alt='delete-thread'/>
+                                                        </div>
                                                     </div>)
                                                     
                                                 : ""
