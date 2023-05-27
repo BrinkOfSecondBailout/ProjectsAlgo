@@ -66,6 +66,12 @@
     
 }
 
+.trashButton {
+    background-color: none;
+    border: none;
+    
+}
+
 .message {
     width: 200px;
 }

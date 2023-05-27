@@ -67,13 +67,13 @@ const Inbox = (props) => {
                                             <div className={Css.messagePreview}>
                                                 {thread.messages && thread.messages.length > 0 ? 
                                                     
-                                                    thread.messages[thread.messages.length - 1].message.unread == "true"
+                                                    thread.messages[thread.messages.length - 1].message.unread === "true"
                                                     ? (<div className={Css.messageTotal}>
                                                         <div className={Css.message}>
                                                             <p className={Css.preview}><b><Link to={`/inbox/correspondence/${thread.correspondence._id}/${userId}`}>{thread.messages[thread.messages.length - 1].message.message}</Link></b></p>
                                                         </div>
                                                         <div className={Css.trash}>
-                                                            <img className={Css.trashIcon} src={trashIcon} alt='delete-thread'/>
+                                                            <button classname={Css.trashButton}><img className={Css.trashIcon} src={trashIcon} alt='delete-thread'/></button>
                                                         </div>
                                                     </div>)
                                                     : (<div className={Css.messageTotal}>
@@ -81,7 +81,7 @@ const Inbox = (props) => {
                                                             <p className={Css.preview}><Link to={`/inbox/correspondence/${thread.correspondence._id}/${userId}`}>{thread.messages[thread.messages.length - 1].message.message}</Link></p>
                                                         </div>
                                                         <div className={Css.trash}>
-                                                            <img className={Css.trashIcon} src={trashIcon} alt='delete-thread'/>
+                                                            <button classname={Css.trashButton}><img className={Css.trashIcon} src={trashIcon} alt='delete-thread'/></button>
                                                         </div>
                                                     </div>)
                                                     

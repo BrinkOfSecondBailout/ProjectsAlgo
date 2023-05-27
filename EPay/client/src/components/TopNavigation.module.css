@@ -77,12 +77,15 @@
 
 .totalCart {
     height: 60px;
+    position: relative;
+    left: 15px;
 }
 
 .totalInbox {
     height: 60px;
     position: relative;
     bottom: 2px;
+    right: 10px;
 }
 
 .topNav {
