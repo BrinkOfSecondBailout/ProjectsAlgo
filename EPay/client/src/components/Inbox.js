@@ -33,6 +33,14 @@ const Inbox = (props) => {
             .catch(err => console.log(err))
     }, [])
 
+    const deleteThread = async (threadId) => {
+        axios.delete('http://localhost:8000/api/inbox/delete/' + threadId)
+            .then(response => {
+                console.log(response.data)
+            })
+            .catch(err => console.log(err))
+    }
+
 
     return (
         <div>
@@ -73,7 +81,7 @@ const Inbox = (props) => {
                                                             <p className={Css.preview}><b><Link to={`/inbox/correspondence/${thread.correspondence._id}/${userId}`}>{thread.messages[thread.messages.length - 1].message.message}</Link></b></p>
                                                         </div>
                                                         <div className={Css.trash}>
-                                                            <button classname={Css.trashButton}><img className={Css.trashIcon} src={trashIcon} alt='delete-thread'/></button>
+                                                            <button className={Css.trashButton} onClick={() => {deleteThread(thread._id)}}><img className={Css.trashIcon} src={trashIcon} alt='delete-thread'/></button>
                                                         </div>
                                                     </div>)
                                                     : (<div className={Css.messageTotal}>
@@ -81,7 +89,7 @@ const Inbox = (props) => {
                                                             <p className={Css.preview}><Link to={`/inbox/correspondence/${thread.correspondence._id}/${userId}`}>{thread.messages[thread.messages.length - 1].message.message}</Link></p>
                                                         </div>
                                                         <div className={Css.trash}>
-                                                            <button classname={Css.trashButton}><img className={Css.trashIcon} src={trashIcon} alt='delete-thread'/></button>
+                                                            <button className={Css.trashButton} onClick={() => {deleteThread(thread._id)}}><img className={Css.trashIcon} src={trashIcon} alt='delete-thread'/></button>
                                                         </div>
                                                     </div>)
                                                     

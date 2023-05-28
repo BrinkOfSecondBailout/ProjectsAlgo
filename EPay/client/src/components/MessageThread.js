@@ -123,7 +123,7 @@ const MessageThread = (props) => {
                         <textarea placeholder='Type something...' className={Css.messageBox} rows="6" type="text" name="description" onChange={(e) => setMessage(e.target.value)}/>
                         <div>
                             {errors? <p>{errors}</p> : null}
-                            <button className={Css.sendButton}>Send</button>
+                            <button className={Css.sendButton}><img className={Css.sendMessage} src={messageIcon} alt='send'/></button>
                         </div>
                     </div>
                 </form>
