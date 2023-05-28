@@ -32,7 +32,6 @@ const NewMessage = (props) => {
 
     const newMessageHandler = (e) => {
         e.preventDefault();
-        console.log(message.length)
         if (message.length <= 0) {
             setErrors("Please type a message")
         } else {

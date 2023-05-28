@@ -33,12 +33,20 @@ const Inbox = (props) => {
             .catch(err => console.log(err))
     }, [])
 
-    const deleteThread = async (threadId) => {
-        axios.delete('http://localhost:8000/api/inbox/delete/' + threadId)
+    const deleteThread = async (userId, threadId) => {
+        // console.log(userId)
+        // console.log(threadId)
+        axios.delete(`http://localhost:8000/api/inbox/delete/${userId}/${threadId}`)
             .then(response => {
                 console.log(response.data)
+                removeFromDom(threadId)
+                window.location.reload()
             })
             .catch(err => console.log(err))
+    }
+
+    const removeFromDom = async (threadId) => {
+        setInbox(inbox.messageThreads.filter(thread => thread._id !== threadId))
     }
 
 
@@ -81,7 +89,7 @@ const Inbox = (props) => {
                                                             <p className={Css.preview}><b><Link to={`/inbox/correspondence/${thread.correspondence._id}/${userId}`}>{thread.messages[thread.messages.length - 1].message.message}</Link></b></p>
                                                         </div>
                                                         <div className={Css.trash}>
-                                                            <button className={Css.trashButton} onClick={() => {deleteThread(thread._id)}}><img className={Css.trashIcon} src={trashIcon} alt='delete-thread'/></button>
+                                                            <button className={Css.trashButton} onClick={() => {deleteThread(userId, thread._id)}}><img className={Css.trashIcon} src={trashIcon} alt='delete-thread'/></button>
                                                         </div>
                                                     </div>)
                                                     : (<div className={Css.messageTotal}>
@@ -89,7 +97,7 @@ const Inbox = (props) => {
                                                             <p className={Css.preview}><Link to={`/inbox/correspondence/${thread.correspondence._id}/${userId}`}>{thread.messages[thread.messages.length - 1].message.message}</Link></p>
                                                         </div>
                                                         <div className={Css.trash}>
-                                                            <button className={Css.trashButton} onClick={() => {deleteThread(thread._id)}}><img className={Css.trashIcon} src={trashIcon} alt='delete-thread'/></button>
+                                                            <button className={Css.trashButton} onClick={() => {deleteThread(userId, thread._id)}}><img className={Css.trashIcon} src={trashIcon} alt='delete-thread'/></button>
                                                         </div>
                                                     </div>)
                                                     
