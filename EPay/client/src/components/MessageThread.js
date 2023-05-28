@@ -31,7 +31,7 @@ const MessageThread = (props) => {
     }, [])
 
     useEffect(() => {
-        axios.get('http://localhost:8000/api/inbox/' + id)
+        axios.get('http://localhost:8000/api/inbox/' + userId)
             .then(response => {
                 setInbox(response.data)
             })

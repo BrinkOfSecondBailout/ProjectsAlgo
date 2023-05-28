@@ -47,7 +47,7 @@ module.exports.addToInbox = async(request, response) => {
             inbox.newMessageCount += 1
             await inbox.save();
             if (itemIndex2 === -1) {
-                // if the user does NOT have an existing thread with the opposite party, find the user's inbox and add new thread
+                // if the user does NOT have an existing thread, find the user's inbox and add new thread
                 const correspondence2 = await User.findOne({_id: id})
                 inbox2.messageThreads.push({correspondence: correspondence2})
                 const newItemIndex2 = inbox2.messageThreads.findIndex(thread => thread.correspondence._id == id)
@@ -58,7 +58,7 @@ module.exports.addToInbox = async(request, response) => {
                 response.json("New message thread successfully added")
 
             } else {
-                // if the user ALSO have an existing thread with the opposite party, find the user's inbox and add to the existing thread
+                // if the user ALSO have an existing thread, find the user's inbox and add to the existing thread
                 
                 inbox2.messageThreads[itemIndex2].messages.push({path: "out", message: message2})
                 inbox2.messageThreads[itemIndex2].updatedAt = Date.now()
