@@ -53,15 +53,15 @@
     right: 20px;
     background: transparent;
     background-color: rgba(255, 255, 255, 0.225);
-    border: 2px solid rgba(255, 255, 255, 0.753);
+    border: 2px solid rgba(250, 250, 250, 0.614);
     border-radius: 15px;
     backdrop-filter: blur(15px);
-    box-shadow: 0 0 30px rgba(0, 0, 0, .5);
+    box-shadow: 0 0 30px rgba(255, 255, 255, 0.645);
 }
 
 .cartTotal {
     position: relative;
-    bottom: 20px;
+    bottom: 25px;
     left: 20px;
     background-color: red;
     border-radius: 100%;
@@ -72,7 +72,7 @@
 
 .inboxTotal {
     position: relative;
-    bottom: 20px;
+    bottom: 25px;
     left: 20px;
     background-color: red;
     border-radius: 100%;
