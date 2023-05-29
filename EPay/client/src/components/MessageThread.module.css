@@ -30,7 +30,7 @@
 
 .incoming {
     background-color: #909090cc;
-    padding: 0.5em 1em;
+    padding: 0.5em 0.5em;
     font-size: 1.25em;
     border-radius: 1rem;
     box-shadow: 0 0.4rem 0.5rem rgba(0, 0, 0, .3), 0 0.0625rem 0.125rem rgba(0, 0, 0, .2);
@@ -40,7 +40,7 @@
 
 .outgoing {
     background-color: #13a1ffcc;
-    padding: 0.5em 1em;
+    padding: 0.5em 0.5em;
     font-size: 1.25em;
     border-radius: 1rem;
     box-shadow: 0 0.4rem 0.5rem rgba(0, 0, 0, .3), 0 0.0625rem 0.125rem rgba(0, 0, 0, .2);

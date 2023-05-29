@@ -97,7 +97,7 @@ const Cart = (props) => {
                     <SideBar myItems={myItems}/>
                 </div>
                 <div className={Css.rightBody}>
-                <h1>Shopping Cart</h1>
+                <h1>Cart</h1>
                 <div className={Css.allCartItems} >
                 { items?.map((item, index) => {
                     return (
