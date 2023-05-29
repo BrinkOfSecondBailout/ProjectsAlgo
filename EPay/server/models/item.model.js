@@ -4,7 +4,8 @@ const mongoose = require('mongoose');
 const ItemSchema = new mongoose.Schema({
     name: {
         type: String,
-        required: [true, "Item name is required"]
+        required: [true, "Item name is required"],
+        maxlength: [25, "Name must be less than 25 characters"],
     },
     price: {
         type: Number,
@@ -17,6 +18,7 @@ const ItemSchema = new mongoose.Schema({
     description: {
         type: String,
         minlength: [10, "Description must be least 10 characters"],
+        maxlength: [50, "Description must be below 50 characters"],
         required: [true, "Please type a description"]
     },
     inventory: {

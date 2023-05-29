@@ -2,6 +2,7 @@ import React, {useState} from 'react'
 import axios from 'axios';
 import {Link} from 'react-router-dom';
 import Css from '../components/FilterItems.module.css'
+import noImg from '../assets/noimage.jpg';
 
 const FilterItems = () => {
 
@@ -63,11 +64,11 @@ const FilterItems = () => {
                             return (
                                 <div key={index}>
                                     <div className={Css.oneItem}>
-                                    <h4><Link to={`/items/${item._id}`}>{item.name}</Link></h4>
+                                    <h4 className={Css.shortenedName}><Link to={`/items/${item._id}`}>{item.name}</Link></h4>
                                     <p>${item.price}</p>
                                     { item.myFile1 ?
                                     <img className={Css.itemPictureSmall} src={item.myFile1} alt="item-pic"/>
-                                    : null
+                                    : <img className={Css.itemPictureSmall} src={noImg}/>
                                 }
                                 </div>
 

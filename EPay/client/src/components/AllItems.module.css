@@ -8,6 +8,7 @@
     display: contents
 }
 
+
 .allItems {
     display: flex ;
     flex-wrap: wrap;
@@ -15,6 +16,9 @@
     overflow-x: hidden;
     overflow-y: auto;
     direction:ltr;
+}
+
+.oneItem {
 }
 
 

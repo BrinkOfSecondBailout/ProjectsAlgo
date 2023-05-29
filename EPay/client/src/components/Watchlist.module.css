@@ -21,7 +21,8 @@
 .watchItems {
     display: flex;
     flex-wrap: wrap;
-    height: 900px;
+    max-width: 80%;
+    max-height: 900px;
     overflow-x: hidden;
     overflow-y: auto;
 }
