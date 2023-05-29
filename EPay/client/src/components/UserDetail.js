@@ -58,11 +58,14 @@ const UserDetail = (props) => {
                         { items.map((item, index) => {
                             return (
                                 <div key={index}>
-                                    <Link to={`/items/${item._id}`}><h3>{item.name} ${item.price}</h3></Link>
-                                    { item.myFile1 ?
-                                        <Link to={`/items/${item._id}`}><img className={Css.itemMainPic} src={item.myFile1} alt="item-pic"/></Link>
-                                    : <Link to={`/items/${item._id}`}><img className={Css.itemMainPic} src={noImg} alt="no-img"/></Link>
-                                    }
+                                        
+                                        <h4><Link to={`/items/${item._id}`}>{item.name}</Link></h4>
+                                        <h4>${item.price}</h4>
+                                        
+                                        { item.myFile1 ?
+                                            <Link to={`/items/${item._id}`}><img className={Css.itemMainPic} src={item.myFile1} alt="item-pic"/></Link>
+                                        : <Link to={`/items/${item._id}`}><img className={Css.itemMainPic} src={noImg} alt="no-img"/></Link>
+                                        }
                                 </div>
                             )
                         })

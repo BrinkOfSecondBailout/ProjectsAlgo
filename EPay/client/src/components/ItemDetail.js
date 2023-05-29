@@ -108,11 +108,13 @@ const ItemDetail = (props) => {
             
                 <div className={Css.rightBody}>
                     <h1>{item.name}</h1>
-                    <h2>${item.price}</h2>
-                    <h2>{item.condition}</h2>
-                    <h4>{item.description}</h4>
-                    <h4>Category: {item.category}</h4>
-                    <h4>Sold By: <Link to={`/users/${user?._id}`}>{user?.firstName}</Link></h4>
+                    <h3>${item.price}</h3>
+                    <h3>{item.condition}</h3>
+                    <div className={Css.descriptionBox}>
+                        <h4>{item.description}</h4>
+                        <h4>Category: {item.category}</h4>
+                        <h4>Sold By: <Link to={`/users/${user?._id}`}>{user?.firstName}</Link></h4>
+                    </div>
                     <div>
                         { item.inventory >= 1 && item.userId !== userId ?
                             <div className={Css.buttons}>

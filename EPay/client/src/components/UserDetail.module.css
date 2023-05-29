@@ -15,11 +15,15 @@
 .flex {
     display: flex;
     flex-wrap: wrap;
-    height: 700px;
+    max-width: 600px;
+    max-height: 820px;
     overflow-x: hidden;
     overflow-y: auto;
 }
 
+.oneItem {
+    
+}
 
 .sendMessage {
     width: 60px;
