@@ -99,16 +99,17 @@ img:hover {
 
 ::-webkit-scrollbar {
     width: 0.5em;
+    height: 0.5em;
 }
 ::-webkit-scrollbar-track {
     background: rgb(0, 0, 0);
     border-radius: 100vw;
 }
 ::-webkit-scrollbar-thumb {
-    background: rgb(29, 123, 224);
+    background: rgb(12, 85, 162);
     border-radius: 100vw;
 }
 ::-webkit-scrollbar-thumb:hover {
-    background: rgb(86, 168, 255);
+    background: rgb(56, 134, 218);
     border-radius: 100vw;
 }
