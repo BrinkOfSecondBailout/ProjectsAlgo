@@ -33,9 +33,20 @@
 
 .descriptionBox {
     background-color: rgba(255, 255, 255, 0.652);
-    width: 300px;
+    max-width: 400px;
     border-radius: 10px;
     margin-top: 10px;
     margin-bottom: 10px;
     padding: 10px;
+}
+
+@media all and (max-width: 1000px) {
+    .body {
+        display: flex;
+        flex-direction: column;
+    }
+    .itemPicture {
+        width: 220px;
+        height: 250px;
+    }
 }

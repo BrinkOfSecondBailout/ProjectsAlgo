@@ -107,3 +107,28 @@
     width: 20px;
     height: 20px;
 }
+
+@media all and (max-width: 1200px) {
+    .body {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .rightEmpty {
+        width: 300px;
+    }
+    
+    .leftEmpty {
+        width: 300px;
+    }
+}
+
+@media all and (max-width: 500px) {
+    .rightEmpty {
+        width: 100px;
+    }
+    
+    .leftEmpty {
+        width: 100px;
+    }
+}

@@ -1,5 +1,5 @@
 .messageBox {
-    width: 400px;
+    width:400px;
     border-radius: 20px;
     padding: 10px;
     border: 2px solid rgb(0, 0, 0);
@@ -37,4 +37,14 @@
     position: relative;
     right: 5px;
     bottom: 5px;
+}
+
+@media all and (max-width: 1000px) {
+    .body {
+        display: flex;
+        flex-direction: column;
+    }
+    .messageBox {
+        max-width: 80%;
+    }
 }

@@ -41,3 +41,10 @@
 .rightBody {
     width: 80%;
 }
+
+@media all and (max-width: 1000px) {
+    .body {
+        display: flex;
+        flex-direction: column;
+    }
+}
