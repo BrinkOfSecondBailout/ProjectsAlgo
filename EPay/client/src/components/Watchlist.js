@@ -42,7 +42,7 @@ const Watchlist = (props) => {
                 <TopNavigation inbox={inbox} user={user} cart={cart}/>
             </div>
             <div className={Css.body}>
-                <div>
+                <div className={Css.SideBar}>
                     <SideBar myItems={myItems}/>
                 </div>
                 <div className={Css.rightBody}>

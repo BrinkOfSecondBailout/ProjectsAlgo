@@ -54,7 +54,9 @@ const Inbox = (props) => {
         <div className={Css.container}>
             <TopNavigation inbox={inbox} user={user} cart={cart}/>
             <div className={Css.body}>
-                <SideBar myItems={myItems}/>
+                <div className={Css.SideBar}>
+                    <SideBar myItems={myItems}/>
+                </div>
                 <div className={Css.rightBody}>
                         <h1>Inbox</h1>
                         { messageThreads

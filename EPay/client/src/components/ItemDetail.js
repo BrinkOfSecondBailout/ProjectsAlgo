@@ -102,7 +102,7 @@ const ItemDetail = (props) => {
                 <TopNavigation inbox={inbox} user={user1} cart={cart}/>
             </div>
             <div className={Css.body}>
-                <div>
+                <div className={Css.SideBar}>
                     <SideBar myItems={myItems}/>
                 </div>
             

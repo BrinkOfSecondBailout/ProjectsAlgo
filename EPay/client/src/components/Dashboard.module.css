@@ -118,6 +118,9 @@ img:hover {
 }
 
 @media all and (max-width: 1000px) {
+    body {
+            background-size:auto;
+    }
     .body {
         display: flex;
         flex-direction: column;

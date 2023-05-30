@@ -75,8 +75,14 @@
     .body {
         display: flex;
         flex-direction: column;
+        
     }
+
     .messageTotal {
+        
+    }
+    .SideBar {
+        display: none;
     }
 }
 
@@ -84,9 +90,12 @@
     .rightBody {
         display: flex;
         flex-direction: column;
+        
     }
+
     .oneCorr {
         display: flex;
+        width: 100%;
         /* min-width: 400px; */
     }
     .messageTotal {
@@ -94,10 +103,10 @@
         /* background-color: aquamarine; */
     }
     .name {
-        display: -webkit-box;
+        /* display: -webkit-box;
         -webkit-line-clamp: 1;
         -webkit-box-orient: vertical;
-        overflow: hidden;
+        overflow: hidden; */
     }
     .logoAndName {
     }
@@ -115,6 +124,7 @@
 
 @media all and (max-width: 541px) {
     .oneCorr {
+        width: 100%;
         /* background-color: rgba(0, 255, 255, 0.39); */
     }
 
@@ -129,5 +139,9 @@
     }
     .messagePreview {
         width: 150px;
+    }
+    .preview {
+        width: 100%;
+        text-align: left;
     }
 }

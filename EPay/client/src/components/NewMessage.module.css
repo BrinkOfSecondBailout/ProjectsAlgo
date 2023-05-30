@@ -47,4 +47,7 @@
     .messageBox {
         max-width: 80%;
     }
+    .SideBar {
+        display: none;
+    }
 }

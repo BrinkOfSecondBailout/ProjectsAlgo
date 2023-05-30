@@ -49,4 +49,7 @@
         width: 220px;
         height: 250px;
     }
+    .SideBar {
+        display: none;
+    }
 }

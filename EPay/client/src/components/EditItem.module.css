@@ -34,6 +34,9 @@
         display: flex;
         flex-direction: column;
     }
+    .SideBar {
+        display: none;
+    }
 }
 
 @media all and (max-width: 566px) {
