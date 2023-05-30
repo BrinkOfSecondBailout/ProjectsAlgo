@@ -32,14 +32,12 @@ const Dashboard = (props) => {
     }, [])
 
     return ( 
-        <div>
-            <div>
+        <div className={Css.container}>
+            <div className={Css.TopNav}>
                 <TopNavigation inbox={inbox} user={user} cart={cart}/>
             </div>
             <div className={Css.body}>
-                <div>
                     <SideBar myItems={myItems}/>
-                </div>
                 <div className={Css.rightBody}>
                     <h1>Shop All Items</h1>
                     <div className={Css.allItemsDiv}>

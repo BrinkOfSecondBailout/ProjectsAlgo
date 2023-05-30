@@ -1,6 +1,6 @@
 .topLeftBody {
     height: 550px;
-    width: 350px;
+    /* width: 350px; */
 
     overflow-x: hidden;
     overflow-y: auto;
@@ -9,7 +9,7 @@
 
 
 .bottomLeftBody {
-    width: 400px;
+    max-width: 400px;
     height: 600px;
     overflow-x: hidden;
     overflow-y: auto;
@@ -35,4 +35,16 @@
 
 .listButton:hover {
     background-color: rgb(250, 164, 58);
+}
+
+@media all and (max-width: 467px) {
+    .totalLeft {
+        width: 300px;
+    }
+}
+
+@media all and (max-width: 320px) {
+    .totalLeft {
+        width: 250px;
+    }
 }

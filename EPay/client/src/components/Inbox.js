@@ -51,26 +51,21 @@ const Inbox = (props) => {
 
 
     return (
-        <div>
-            <div>
-                <TopNavigation inbox={inbox} user={user} cart={cart}/>
-            </div>
+        <div className={Css.container}>
+            <TopNavigation inbox={inbox} user={user} cart={cart}/>
             <div className={Css.body}>
-                <div>
-                    <SideBar myItems={myItems}/>
-                </div>
+                <SideBar myItems={myItems}/>
                 <div className={Css.rightBody}>
-                    <div>
                         <h1>Inbox</h1>
                         { messageThreads
                             ?.sort((a, b) => new Date(b.updatedAt) - new Date(a.updatedAt))
                             .map((thread, index) => {
                             return (
                                 <div>
-                                    <div key={index}>
-                                        <div className={Css.oneCorr}>
-                                            <div className={Css.logoAndName}>
-                                                <div className={Css.logo}>
+                                    <div className={Css.oneCorr}>
+                                        <div className={Css.logoAndName}>
+                                            <div className={Css.logo}>
+                                                <div key={index}>
                                                     { thread.correspondence.myFile ?
                                                         <img className={Css.profilePic} src={thread.correspondence.myFile} alt="avatar"/>
                                                         : <img className={Css.profilePic} src={avatar} alt="no-avatar"/>
@@ -107,11 +102,12 @@ const Inbox = (props) => {
                                         </div>
                                     </div>
                                 </div>
+                                
                             )
                         })
                         }
                     </div>
-                </div>
+
             </div>
         </div>
     )

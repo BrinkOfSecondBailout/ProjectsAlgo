@@ -15,7 +15,7 @@
 .flex {
     display: flex;
     flex-wrap: wrap;
-    max-width: 600px;
+    max-width: 90%;
     max-height: 820px;
     overflow-x: hidden;
     overflow-y: auto;
@@ -35,9 +35,9 @@
 
 .body {
     display: flex;
-    width: 63%;
+    width: 95%;
 }
 
 .rightBody {
-    width: 70%;
+    width: 80%;
 }

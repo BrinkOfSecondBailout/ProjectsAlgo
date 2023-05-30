@@ -21,27 +21,18 @@
     z-index: -1;
 }
 
-/* .spaceOut {
-    letter-spacing: 2px;
-} */
 
-.smallIcon {
-    width: 25px;
-}
-
-.flex {
-    display: flex;
-    align-items: center;
-}
 
 .wholeLogo {
     display: flex;
     width: 250px;
+    position: relative;
+    right: 20px;
 }
 
 .navLinks {
-    display: inline;
-    max-height: 180px;
+    /* display: inline; */
+    /* max-height: 180px; */
     text-align: right;
     line-height: 0.7;
 }
@@ -98,23 +89,23 @@
 
 .topNav {
     display: flex;
-    width: 70%;
+    width: 90%;
     height: 300px;
 }
 
 
 
 .topLeft {
-    flex: 2;
+    /* flex: 1; */
 }
 
 .topRight {
     display: grid;
-    position: relative;
+    /* position: relative;
     top: 10%;
-    right: 12%;
+    right: 12%; */
     height: 100px;
-    flex: 3;
+    flex: 3; 
     justify-content: right;
 }
 
@@ -131,11 +122,6 @@
     height: 40px;
 }
 
-/* .cartPic:hover {
-    width: 45px;
-    height: 40px;
-    opacity: 50%;
-} */
 
 .cartButton {
     background: none;
@@ -162,3 +148,30 @@
 .inboxButton:hover {
     opacity: 60%;
 }
+
+@media all and (max-width: 932px) {
+
+    .topNav {
+        display: flex;
+        flex-direction: column;
+        height: 400px;
+
+    }
+    .topLeft {
+    }
+    .topRight {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        position: relative;
+        left: 20px;
+    }
+    .twoTopIcons {
+    }
+
+    .navLinks {
+        display: flex;
+        align-items: center;
+    }
+}
+

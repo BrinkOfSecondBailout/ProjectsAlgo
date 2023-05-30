@@ -44,12 +44,11 @@ img:hover {
 .leftBody {
     display: flex;
     flex-direction: column;
-    /* width: 90%; */
 }
 
 .topLeftBody {
-    height: 550px;
-    width: 350px;
+    max-height: 550px;
+    max-width: 350px;
     
     overflow-x: hidden;
     overflow-y: auto;
@@ -57,34 +56,34 @@ img:hover {
 }
 
 .bottomLeftBody {
-    width: 400px;
-    height: 600px;
+    max-width: 400px;
+    max-height: 600px;
     overflow-x: hidden;
     overflow-y: auto;
 }
 
 .body {
     display: flex;
-    width: 63%;
+    max-width: 95%;
 }
 
 .rightBody {
-    width: 70%;
+    max-width: 80%;
 }
 
 .bottom {
     display: flex;
-    width: 70%;
+    /* max-width: 70%; */
 }
 
 .allItemsDiv {
-    max-width: 80%;
+    max-width: 90%;
     display: flex;
 }
 
 .listButton {
-    width: 180px;
-    height: 30px;
+    max-width: 180px;
+    max-height: 30px;
     border-radius: 20px;
     border: none;
     box-shadow: 1px 2px 2px black;
@@ -113,3 +112,20 @@ img:hover {
     background: rgb(56, 134, 218);
     border-radius: 100vw;
 }
+
+.topNav {
+
+}
+
+@media all and (max-width: 1000px) {
+    .container {
+        /* display: flex; */
+        /* flex-direction: column; */
+    }
+    .body {
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+

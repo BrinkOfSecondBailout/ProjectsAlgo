@@ -80,11 +80,11 @@
 
 .body {
     display: flex;
-    width: 63%;
+    width: 95%;
 }
 
 .rightBody {
-    width: 70%;
+    width: 80%;
 }
 
 .sendButton {

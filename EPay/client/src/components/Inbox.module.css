@@ -1,10 +1,9 @@
 .container {
-    width: 70%;
 }
 
 .oneCorr {
     display: flex;
-    width: 600px;
+    width: 85%;
     /* height: 60px; */
     align-items: center;
     border-top: 1px solid rgb(103, 103, 103);
@@ -31,16 +30,17 @@
 .logoAndName {
     display: flex;
     align-items: center;
-    width: 300px;
+    max-width: 100%
 }
 
 
 .logo {
     width: 70px;
+    display: flex;
 }
 
 .name {
-    width: 100px;
+    width: 100%;
 }
 
 .messagePreview {
@@ -49,11 +49,11 @@
 
 .body {
     display: flex;
-    width: 63%;
+    width: 95%;
 }
 
 .rightBody {
-    width: 70%;
+    width: 80%;
 }
 
 
@@ -78,4 +78,39 @@
 .messageTotal {
     display: flex;
     align-items: center;
+}
+
+@media all and (max-width: 1000px) {
+    .body {
+        display: flex;
+        flex-direction: column;
+    }
+    .messageTotal {
+    }
+}
+
+@media all and (max-width: 671px) {
+    .oneCorr {
+    }
+    .messageTotal {
+        max-width: 80%;
+    }
+    .name {
+        display: -webkit-box;
+        -webkit-line-clamp: 1;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+    .logoAndName {
+        width: 150px;
+    }
+    .message {
+        width: 250px;
+    }
+    .messagePreview {
+        width: 200px;
+    }
+    .trash {
+        width: 50px;
+    }
 }
