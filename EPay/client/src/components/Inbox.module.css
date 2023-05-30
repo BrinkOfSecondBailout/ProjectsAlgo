@@ -1,13 +1,6 @@
 .container {
 }
 
-.oneCorr {
-    display: flex;
-    width: 85%;
-    /* height: 60px; */
-    align-items: center;
-    border-top: 1px solid rgb(103, 103, 103);
-}
 
 .profilePic {
     border-radius: 100%;
@@ -15,6 +8,13 @@
     height: 50px;
     box-shadow: 1px 2px 2px 2px rgb(61, 61, 61);
     padding: 3px;
+}
+
+.oneCorr {
+    display: flex;
+    width: 85%;
+    align-items: center;
+    border-top: 1px solid rgb(103, 103, 103);
 }
 
 .preview {
@@ -30,21 +30,19 @@
 .logoAndName {
     display: flex;
     align-items: center;
-    max-width: 100%
+    /* max-width: 100% */
 }
 
 
 .logo {
-    width: 70px;
-    display: flex;
+    /* width: 70px; */
 }
 
 .name {
-    width: 100%;
 }
 
 .messagePreview {
-    width: 350px;
+    max-width: 350px;
 }
 
 .body {
@@ -56,21 +54,6 @@
     width: 80%;
 }
 
-
-.trashIcon {
-    width: 40px;
-    height: 40px;
-}
-
-.trash {
-    
-}
-
-.trashButton {
-    background-color: transparent;
-    border: none;
-}
-
 .message {
     width: 200px;
 }
@@ -80,6 +63,14 @@
     align-items: center;
 }
 
+.trashIcon {
+    width: 40px;
+    height: 40px;
+}
+.trashButton {
+    background-color: transparent;
+    border: none;
+}
 @media all and (max-width: 1000px) {
     .body {
         display: flex;
@@ -90,10 +81,17 @@
 }
 
 @media all and (max-width: 671px) {
+    .rightBody {
+        display: flex;
+        flex-direction: column;
+    }
     .oneCorr {
+        display: flex;
+        /* min-width: 400px; */
     }
     .messageTotal {
-        max-width: 80%;
+        /* max-width: 80%; */
+        /* background-color: aquamarine; */
     }
     .name {
         display: -webkit-box;
@@ -102,15 +100,34 @@
         overflow: hidden;
     }
     .logoAndName {
-        width: 150px;
     }
     .message {
-        width: 250px;
+        max-width: 250px;
     }
     .messagePreview {
-        width: 200px;
+        max-width: 200px;
+        /* background-color: azure; */
     }
     .trash {
         width: 50px;
+    }
+}
+
+@media all and (max-width: 541px) {
+    .oneCorr {
+        /* background-color: rgba(0, 255, 255, 0.39); */
+    }
+
+    .logoAndName {
+        /* max-width: 300px; */
+    }
+    .messageTotal {
+        /* max-width: 100px; */
+    }
+    .message {
+        width: 100px;
+    }
+    .messagePreview {
+        width: 150px;
     }
 }

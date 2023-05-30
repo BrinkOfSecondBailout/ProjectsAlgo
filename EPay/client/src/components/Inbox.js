@@ -70,45 +70,44 @@ const Inbox = (props) => {
                                                         <img className={Css.profilePic} src={thread.correspondence.myFile} alt="avatar"/>
                                                         : <img className={Css.profilePic} src={avatar} alt="no-avatar"/>
                                                     }
-                                                </div>
                                                 <div className={Css.name}>
                                                     <h4>{thread.correspondence.firstName} {thread.correspondence.lastName}</h4>
                                                 </div>
-                                            </div>
-                                            <div className={Css.messagePreview}>
-                                                {thread.messages && thread.messages.length > 0 ? 
-                                                    
-                                                    thread.messages[thread.messages.length - 1].message.unread === "true"
+                                            </div> 
+                                        </div>
+                                        <div className={Css.messagePreview}>
+                                            {thread.messages && thread.messages.length > 0 ? 
+                                                thread.messages[thread.messages.length - 1].message.unread === "true"
                                                     ? (<div className={Css.messageTotal}>
-                                                        <div className={Css.message}>
-                                                            <p className={Css.preview}><b><Link to={`/inbox/correspondence/${thread.correspondence._id}/${userId}`}>{thread.messages[thread.messages.length - 1].message.message}</Link></b></p>
-                                                        </div>
-                                                        <div className={Css.trash}>
-                                                            <button className={Css.trashButton} onClick={() => {deleteThread(userId, thread._id)}}><img className={Css.trashIcon} src={trashIcon} alt='delete-thread'/></button>
-                                                        </div>
-                                                    </div>)
+                                                            <div className={Css.message}>
+                                                                <p className={Css.preview}><b><Link to={`/inbox/correspondence/${thread.correspondence._id}/${userId}`}>{thread.messages[thread.messages.length - 1].message.message}</Link></b></p>
+                                                            </div>
+                                                            <div className={Css.trash}>
+                                                                <button className={Css.trashButton} onClick={() => {deleteThread(userId, thread._id)}}><img className={Css.trashIcon} src={trashIcon} alt='delete-thread'/></button>
+                                                            </div>
+                                                        </div>)
                                                     : (<div className={Css.messageTotal}>
-                                                        <div className={Css.message}>
-                                                            <p className={Css.preview}><Link to={`/inbox/correspondence/${thread.correspondence._id}/${userId}`}>{thread.messages[thread.messages.length - 1].message.message}</Link></p>
-                                                        </div>
-                                                        <div className={Css.trash}>
-                                                            <button className={Css.trashButton} onClick={() => {deleteThread(userId, thread._id)}}><img className={Css.trashIcon} src={trashIcon} alt='delete-thread'/></button>
-                                                        </div>
-                                                    </div>)
+                                                            <div className={Css.message}>
+                                                                <p className={Css.preview}><Link to={`/inbox/correspondence/${thread.correspondence._id}/${userId}`}>{thread.messages[thread.messages.length - 1].message.message}</Link></p>
+                                                            </div>
+                                                            <div className={Css.trash}>
+                                                                <button className={Css.trashButton} onClick={() => {deleteThread(userId, thread._id)}}><img className={Css.trashIcon} src={trashIcon} alt='delete-thread'/></button>
+                                                            </div>
+                                                        </div>)
                                                     
                                                 : ""
                                                 }
-                                            </div>
                                         </div>
                                     </div>
                                 </div>
+                </div>
                                 
                             )
                         })
                         }
-                    </div>
-
             </div>
+
+        </div>
         </div>
     )
 }
