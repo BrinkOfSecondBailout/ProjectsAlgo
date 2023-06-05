@@ -1,3 +1,5 @@
+
+
 function toggleMenu() {
     const menu = document.querySelector(".menu-links");
     const icon = document.querySelector(".hamburger-icon");
@@ -14,3 +16,10 @@ setInterval(function() {
         counter = 1;
     }
 }, 5000);
+
+var typed = new Typed(".auto-type", {
+    strings: ["Full Stack Developer", "Problem Solver", "Lifelong Learner"],
+    typeSpeed: 80,
+    backSpeed: 50,
+    loop: true
+})
