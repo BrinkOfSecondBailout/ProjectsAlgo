@@ -14,8 +14,33 @@
     <title>Inbox</title>
 </head>
 <body>
+    <div>
+        <div class="top-message home">
+            <h1 class="hello-message">All My Messages:</h1>
+        </div>
+        <div class="profile-bar">
+            <div class="profile-pic">
+                {% if profile %}
+                    <a href="/pics/{{profile.id}}"><img src="/pics/{{profile.id}}" alt="profile-pic" class="photo-profile-main"></a>
+                {% endif %}
+                {% if not profile %}
+                    <img src="../static/files/noprofile.png" alt="no-profile-pic" class="photo-profile-main">
+                {% endif %}
+            </div>
+            <div class="nav-links">
+                <div class="glass-box nav-bar">
+                    <h4><a href="/dashboard">Dashboard</a></h4>
+                    <h4><a href="/logout">Logout</a></h4>
+                    <h4><a href="/users/edit">Edit profile</a></h4>
+                    <h4><a href="/users/inbox">Inbox</a></h4>
+                    <h4>(You have <span class="notifications">{{user.new_message}}</span> new message)</h4>
+                </div>
+            </div>
+        </div>
+    
+
     <div class="flex-column">
-    <h1>All My Messages:</h1>
+    
     {% if messages %}
         <div class="message-scroll">
         {% for message in messages %}
@@ -33,8 +58,7 @@
     {% if not messages %}
         <p>No messages yet...</p>
     {% endif %}
-
-    <h4><a href="/dashboard">Back to dashboard</a></h4>
+    </div>
     </div>
 </body>
 </html>

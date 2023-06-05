@@ -193,7 +193,7 @@ section {
 }
 
 .section__text__p2 {
-    font-size: 1.50rem;
+    font-size: 1.6rem;
     margin-bottom: 1rem;
 }
 
@@ -286,7 +286,6 @@ section {
 .slides {
     width: 500%;
     height: 500px;
-    
     display: flex;
 }
 

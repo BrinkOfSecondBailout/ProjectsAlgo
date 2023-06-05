@@ -1,89 +1,45 @@
 * {
     margin: 0 auto;
-    padding: 5px;
-    width: 85%;
+    /* padding: 5px; */
+    /* width: 85%; */
 }
+
+/* scrollbar styling */
 
 ::-webkit-scrollbar {
     width: 0.5em;
 }
+
 ::-webkit-scrollbar-track {
     background: rgb(0, 0, 0);
     border-radius: 100vw;
 }
+
 ::-webkit-scrollbar-thumb {
     background: rgb(255, 144, 54);
     border-radius: 100vw;
 }
+
 ::-webkit-scrollbar-thumb:hover {
     background: rgb(232, 109, 8);
     border-radius: 100vw;
 }
 
+/* all defaults */
+
 body {
-    background-image: url(../static/files/mountain.png);
-    background-repeat: no-repeat;
-    background-color: black;
-    z-index: -1;
+    /* background-image: url(../static/files/mountain.png); */
+    /* background-repeat: no-repeat; */
+    background-color: rgb(251, 246, 174);
+    /* z-index: -1; */
 }
 
-.icons {
-    text-align: center;
-    background-color: rgb(36, 172, 230);
-    opacity: 0.8;
-    border-radius: 20px;
-    box-shadow: 4px 4px 5px 0px black;
-    padding: 5px;
-    width: 300px;
-}
-
-.icon {
-    width: 40px;
-    height: 40px;
-}
-
-
-.back-video {
-    position: absolute;
-    opacity: 1;
-    right: 0;
-    bottom: 0;
-    z-index: -1;
-    width: 80%;
-}
-
-@media (min-aspect-ratio: 16/9) {
-    .back-video{
-        width: 100%;
-        height: auto;
-    }
-}
-
-@media (max-aspect-ratio: 16/9) {
-    .back-video {
-        width: auto;
-        height: 100%;
-    }
-}
-
-h1, h2, h3, h4 , h5{
+h1,h2,h3,h4,h5 {
     font-family: 'Bebas Neue', cursive;
     font-family: 'Schibsted Grotesk', sans-serif;
 }
 
-.welcome-font {
-    font-family: 'Lovers Quarrel', cursive;
-    font-size: 150px;
-    color: white;
-    text-shadow: 5px 5px 10px rgb(247, 205, 39);
-    text-align: center;
-}
-
-.header-text {
-    text-shadow: 2px 1px 5px white;
-}
-
-form, label, input {
+form,label,input {
     padding: 5px;
 }
 
@@ -94,36 +50,18 @@ p {
 
 a {
     text-decoration: none;
-    color: white;
+    color: rgb(255, 255, 255);
     position: relative;
     letter-spacing: 0.5px;
     padding: 0 10px;
 }
 
-/* a:after {
-    content: "";
-    position: absolute;
-    background-color: rgba(255, 255, 255, 0.654);
-    height: 3px;
-    width: 0;
-    left: 0;
-    bottom: -10px;
-    transition: 0.3s;
-    opacity: 0.4;
-} */
-
 a:hover {
     color: rgba(255, 255, 255, 0.654);
 }
 
-/* a:hover:after {
-    width: 100%;
-    opacity: 0.4; */
-
-
-
-.container {
-    display: flex;
+.center {
+    text-align: center;
 }
 
 .flex {
@@ -137,71 +75,35 @@ a:hover {
     width: 300px;
 }
 
-.total-box {
-    /* width: 500px; */
-    padding: 20px;
+.container {
+    display: flex;
 }
 
-.center {
+
+
+/* knick knack styling */
+
+.icon {
+    width: 40px;
+    height: 40px;
+}
+
+.header-text {
+    text-shadow: 2px 1px 5px white;
+}
+
+.welcome-font {
+    font-family: 'Lovers Quarrel', cursive;
+    font-size: 150px;
+    color: white;
+    text-shadow: 5px 5px 10px rgb(247, 205, 39);
     text-align: center;
-}
-
-.center-bottom {
-    width: 400px;
-    text-align: center;
-}
-
-.wall-box {
-    background-image: url(../static/files/blue.jpg);
-    opacity: 0.9;
-    width: 300px;
-    box-shadow: 4px 4px 5px 0px black;
-    border-radius: 10px;
-    text-align: center;
-    height: 200px;
-    overflow-x: hidden;
-    overflow-y: auto;
-    direction: ltr;
-}
-
-
-.wall-text {
-    background-color: rgb(255, 86, 86);
-    opacity: 0.9;
-    width: 220px;
-    box-shadow: 4px 4px 5px 0px black;
-    border-radius: 10px;
-    text-align: center;
-    margin-top: -5px;
-    height: 50px;
-    /* overflow-x: hidden;
-    overflow-y: auto;
-    direction: rtl; */
-    
-}
-
-.wall-span {
-    position: relative;
-    top: -20px;
 }
 
 
 .upload-box {
     width: 500px;
     padding: 20px;
-}
-
-.bio-box {
-    background-color: rgb(245, 195, 120);
-    opacity: 0.9;
-    width: 100%;
-    box-shadow: 4px 4px 5px 0px black;
-    border-radius: 10px;
-    padding: 5px;
-    margin-bottom: 10px;
-    text-align: center;
-    border: 2px solid rgba(255, 255, 255, .5);
-    
 }
 
 .results {
@@ -217,80 +119,6 @@ a:hover {
     -webkit-animation-iteration-count: infinite;
 }
 
-.nav-links {
-    text-align: right;
-}
-
-.glass-box {
-    position: relative;
-    background: transparent;
-    border: 2px solid rgba(255, 255, 255, .5);
-    border-radius: 20px;
-    backdrop-filter: blur(15px);
-    box-shadow: 0 0 30px rgba(0, 0, 0, .5);
-    padding-top: 20px;
-    padding-bottom: 20px;
-
-}
-
-.links-glass-box {
-    position: relative;
-    background: transparent;
-    border: 2px solid rgba(255, 255, 255, .5);
-    border-radius: 20px;
-    backdrop-filter: blur(15px);
-    box-shadow: 0 0 30px rgba(0, 0, 0, .5);
-}
-
-
-.bottom-nav-glass {
-    position: relative;
-    background: transparent;
-    border: 2px solid rgba(255, 255, 255, .5);
-    border-radius: 20px;
-    backdrop-filter: blur(30px);
-    box-shadow: 0 0 30px rgba(0, 0, 0, .5);
-    padding-top: 20px;
-    padding-bottom: 20px;
-    display: flex;
-}
-
-.results-box {
-    background-color: rgb(245, 195, 120);
-    opacity: 0.9;
-    width: 500px;
-    margin-top: 20px;
-    box-shadow: 4px 4px 5px 0px black;
-    border-radius: 10px;
-    margin-bottom: 10px;
-    text-align: center;
-    display: flex;
-}
-
-.lovebirds-box {
-    background-color: rgb(36, 172, 230);
-    opacity: 0.9;
-    width: 100%;
-    box-shadow: 4px 4px 5px 0px black;
-    border-radius: 10px;
-    margin-bottom: 10px;
-    padding-bottom: 10px;
-    text-align: center;
-}
-
-.radio-boxes {
-    display: flex;
-    width: 550px;
-    text-align: center;
-}
-
-.profile-bar {
-    display: flex;
-    justify-content: flex-end;
-}
-
-
-
 .red {
     color: red;
     text-shadow: 1px 1px 1px black;
@@ -304,6 +132,7 @@ a:hover {
 .regular-input {
     width: 300px;
     border-radius: 10px;
+    padding: 10px;
 }
 
 .long-button {
@@ -315,6 +144,93 @@ a:hover {
 .regular-button {
     width: 20%;
     border-radius: 20px;
+}
+
+.cheers-video {
+    margin-top: 10px;
+    border-radius: 20px;
+    opacity: 0.9;
+}
+
+.back-video {
+    position: absolute;
+    opacity: 1;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+    width: 80%;
+}
+
+.all-photos {
+    /* display:inline-block; */
+    height: 300px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    direction: rtl;
+
+}
+
+.one-photo {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    height: 170px;
+    text-align: center;
+    padding: 10px;
+}
+
+.delete-button {
+    width: 80px;
+    border-radius: 10px;
+    box-shadow: 2px 2px 5px 0px black;
+}
+
+.heart-shape {
+    -webkit-animation: pulsate 1s ease-out;
+    -webkit-animation-iteration-count: infinite;
+    opacity: 1.5;
+    width: 70px;
+}
+
+.block-button {
+    width: 70px;
+}
+
+.form-bg {
+    background-color: rgb(245, 195, 120);
+    opacity: 0.9;
+    width: 100%;
+    box-shadow: 4px 4px 5px 0px black;
+    border-radius: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+/* dashboard */
+
+.total {
+    display: flex;
+    width: 100%;
+}
+
+.top-message {
+    width: 70%;
+}
+
+.home {
+    width: 62%;
+}
+
+.hello-message {
+    padding: 10px;
+}
+
+.profile-bar {
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+    padding: 10px;
 }
 
 .photo-profile {
@@ -333,6 +249,226 @@ a:hover {
     padding: 3px;
 }
 
+.total-box {
+    width: 100%;
+    padding: 20px;
+    padding: 10px;
+}
+
+.lovebirds-box {
+    background-color: rgb(36, 172, 230);
+    opacity: 0.9;
+    width: 100%;
+    box-shadow: 4px 4px 5px 0px black;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    text-align: center;
+    padding: 10px;
+}
+
+.bio-box {
+    background-color: rgb(245, 195, 120);
+    opacity: 0.9;
+    width: 100%;
+    box-shadow: 4px 4px 5px 0px black;
+    border-radius: 10px;
+    padding: 5px;
+    margin-bottom: 10px;
+    text-align: center;
+    border: 2px solid rgba(255, 255, 255, .5);
+    padding: 10px;
+}
+
+.center-bottom {
+    width: 90%;
+    text-align: center;
+    padding: 10px;
+}
+
+.one-note {
+    padding: 10px;
+}
+
+.wall-box {
+    background-image: url(../static/files/blue.jpg);
+    opacity: 0.9;
+    width: 100%;
+    box-shadow: 4px 4px 5px 0px black;
+    border-radius: 10px;
+    text-align: center;
+    height: 200px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    direction: ltr;
+    padding: 10px;
+}
+
+.wall-text {
+    background-color: rgb(255, 86, 86);
+    opacity: 0.9;
+    box-shadow: 4px 4px 5px 0px black;
+    border-radius: 10px;
+    text-align: center;
+    height: 60px;
+    margin-bottom: 10px;
+}
+
+.note-date {
+    margin-bottom: 10px;
+}
+
+.nav-links {
+    padding: 10px;
+}
+
+.glass-box {
+    position: relative;
+    background: transparent;
+    border: 2px solid rgba(255, 255, 255, .5);
+    border-radius: 20px;
+    backdrop-filter: blur(15px);
+    box-shadow: 0 0 30px rgba(0, 0, 0, .5);
+    padding: 10px;
+}
+
+.nav-bar {
+    width: 100%;
+    height: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+
+/* user profile display */
+
+.top {
+    width: 60%;
+    padding: 10px;
+}
+
+.display {
+    width: 70%;
+}
+
+.all-photos1 {
+    display: grid;
+    justify-content: center;
+    height: 300px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    direction: rtl;
+    width: 300px;
+    padding: 10px;
+}
+
+.icons {
+    text-align: center;
+    background-color: rgb(36, 172, 230);
+    opacity: 0.8;
+    border-radius: 20px;
+    box-shadow: 4px 4px 5px 0px black;
+    padding: 10px;
+    width: 80%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.bottom {
+    width: 80%;
+}
+
+.bottom-nav-glass {
+    position: relative;
+    background: transparent;
+    border: 2px solid rgba(255, 255, 255, .5);
+    border-radius: 20px;
+    backdrop-filter: blur(30px);
+    box-shadow: 0 0 30px rgba(0, 0, 0, .5);
+    margin-top: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    padding: 10px;
+}
+
+.heart-set {
+    text-align: center;
+    color: white;
+    padding: 5px;
+}
+
+.heart-text {
+    color: white;
+    width: 100px;
+    border-radius: 200px;
+    opacity: 0.9;
+}
+
+
+/* edit profile */
+
+.side-bar {
+    margin-top: 10px;
+    width: 70%;
+    padding: 10px;
+    text-align: center;
+}
+
+
+/* inbox */
+
+
+
+
+
+@media (min-aspect-ratio: 16/9) {
+    .back-video{
+        width: 100%;
+        height: auto;
+    }
+}
+
+@media (max-aspect-ratio: 16/9) {
+    .back-video {
+        width: auto;
+        height: 100%;
+    }
+}
+
+
+
+.links-glass-box {
+    position: relative;
+    background: transparent;
+    border: 2px solid rgba(255, 255, 255, .5);
+    border-radius: 20px;
+    backdrop-filter: blur(15px);
+    box-shadow: 0 0 30px rgba(0, 0, 0, .5);
+}
+
+
+
+
+.results-box {
+    background-color: rgb(245, 195, 120);
+    opacity: 0.9;
+    width: 500px;
+    margin-top: 20px;
+    box-shadow: 4px 4px 5px 0px black;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    text-align: center;
+    display: flex;
+}
+
+
+
+.radio-boxes {
+    display: flex;
+    width: 550px;
+    text-align: center;
+}
 
 
 .photo-list {
@@ -343,16 +479,7 @@ a:hover {
     padding: 3px;
 }
 
-.all-photos1 {
-    display:grid;
-    justify-content: center;
-    height: 250px;
-    overflow-x: hidden;
-    overflow-y: auto;
-    direction: rtl;
-    width: 300px;
-    /* background-color: cadetblue; */
-}
+
 
 
 .flex-column {
@@ -364,52 +491,9 @@ a:hover {
     padding: 20px;
 }
 
-.all-photos {
-    /* display:inline-block; */
-    height: 300px;
-    overflow-x: hidden;
-    overflow-y: auto;
-    direction: rtl;
-    
-}
-
-.one-photo {
-    display: flex;
-    flex-direction: column;
-    width: 300px;
-    height: 170px;
-    text-align: center;
-}
-
-.delete-button {
-    width: 80px;
-    border-radius: 10px;
-    box-shadow: 2px 2px 5px 0px black;
-}
 
 
-.heart-shape {
-    -webkit-animation: pulsate 1s ease-out;
-    -webkit-animation-iteration-count: infinite;
-    opacity: 1.5;
-    width: 70px;
-}
 
-.block-button {
-    width: 70px;
-}
-
-.heart-set {
-    text-align: center;
-    color: white;
-}
-
-.heart-text {
-    color: white;
-    width: 100px;
-    border-radius: 200px;
-    opacity: 0.9;
-}
 
 .bottom-navi {
     display: flex;
@@ -459,41 +543,15 @@ a:hover {
     box-shadow: 0 0 30px rgba(0, 0, 0, .5);
 }
 
-.top {
 
-}
-
-.total {
-    display: flex;
-    width: 80%;
-}
 
 .left {
-    /* margin-left: 20px; */
 }
 
 .right {
-    /* text-align:left; */
-    /* margin-right: 20px; */
-    /* background-color: aqua; */
-    /* text-align: center; */
 }
 
 
 
-.form-bg {
-    background-color: rgb(245, 195, 120);
-    opacity: 0.9;
-    width: 100%;
-    box-shadow: 4px 4px 5px 0px black;
-    border-radius: 10px;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    text-align: center;
-}
 
-.cheers-video {
-    margin-top: 10px;
-    border-radius: 20px;
-    opacity: 0.9;
-}
+
