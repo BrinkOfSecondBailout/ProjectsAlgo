@@ -52,7 +52,7 @@
                                 {% endif %}
                             {% endfor %}
                         </div>
-                        <a href="/filter"><button class="delete-button">Filter</button></a>
+                        <a href="/filter"><button class="delete-button"><p>Filter</p></button></a>
                 </div>
 
                 <div class="bio-box">
@@ -69,7 +69,7 @@
                             <div class="flex">
                                 {% if match.first_name != None %}
                                     <h4><a href="/users/{{match.id}}">{{ match.first_name }}</a></h4>
-                                    <a href="/messages/new/{{match.id}}"><button class="delete-button">Message</button></a>
+                                    <a href="/messages/new/{{match.id}}"><button class="delete-button"><p>Message</p></button></a>
                                 {% endif %}
                             </div>
                         {% endfor %}
@@ -85,7 +85,7 @@
                         {% if receiver.id %}
                             <div class="flex">
                                 <h4><a href="/users/{{receiver.id}}">{{receiver.first_name}}</a></h4>
-                                <a href="/unsend/{{receiver.id}}"><button class="delete-button">Unsend</button></a>
+                                <a href="/unsend/{{receiver.id}}"><button class="delete-button"><p>Unsend</p></button></a>
                             </div>
                         {% endif %}
                     {% endfor %}
@@ -108,7 +108,7 @@
                             </div>
                             <h5 class="note-date">{{note.created_at.strftime("%I:%M %a - %b %d")}}</h5>
                             {% if note.creator.id == session.user_id %}
-                                <a href="wall/delete/{{note.id}}"><button class="delete-button">delete</button></a>
+                                <a href="wall/delete/{{note.id}}"><button class="delete-button"><p>delete</p></button></a>
                             {% endif %}
                         </div>
                     {% endfor %}

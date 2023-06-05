@@ -21,7 +21,7 @@
         <div class="profile-bar">
             <div class="profile-pic">
                 {% if profile %}
-                    <a href="/pics/{{profile.id}}"><img src="/pics/{{profile.id}}" alt="profile-pic" class="photo-profile-main"></a>
+                    <a href="/dashboard"><img src="/pics/{{profile.id}}" alt="profile-pic" class="photo-profile-main"></a>
                 {% endif %}
                 {% if not profile %}
                     <img src="../static/files/noprofile.png" alt="no-profile-pic" class="photo-profile-main">
@@ -39,26 +39,27 @@
         </div>
     
 
-    <div class="flex-column">
-    
-    {% if messages %}
-        <div class="message-scroll">
-        {% for message in messages %}
-            <div class="message-box">
-                <h4>From: <a href="/users/{{message.sender.id}}">{{message.sender.first_name}}</a></h4>
-                <h4><u>{{message.text}}</u></h4>
-                <p>{{message.created_at.strftime("%I:%M %a - %b %d")}}</p>
-                <a href="/messages/new/{{message.sender.id}}"><button class="delete-button">Reply</button></a>
-                <a href="/messages/delete/{{message.id}}"><button class="delete-button">Delete</button></a><br><br>
-            </div>
-        {% endfor %}
-        </div>
-    {% endif %}
+        <div class="flex-column">
+            {% if messages %}
+                <div class="message-scroll">
+                {% for message in messages %}
+                    <div class="message-box">
+                        <p>From: <a href="/users/{{message.sender.id}}">{{message.sender.first_name}}</a></p>
+                        <h4 class="message-text">{{message.text}}</h4>
+                        <p>{{message.created_at.strftime("%I:%M %a - %b %d")}}</p>
+                        <div class="message-buttons">
+                            <a href="/messages/new/{{message.sender.id}}"><button class="delete-button"><p>Reply</p></button></a>
+                            <a href="/messages/delete/{{message.id}}"><button class="delete-button"><p>Delete</p></button></a>
+                        </div>
+                    </div>
+                {% endfor %}
+                </div>
+            {% endif %}
 
-    {% if not messages %}
-        <p>No messages yet...</p>
-    {% endif %}
-    </div>
+            {% if not messages %}
+                <p>No messages yet...</p>
+            {% endif %}
+        </div>
     </div>
 </body>
 </html>

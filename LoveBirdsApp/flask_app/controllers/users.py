@@ -251,7 +251,21 @@ def confirmed_block(id):
 
 @app.route('/filter')
 def filter_out():
-    return render_template('filter.html')
+    data = {
+        'user_id': session['user_id']
+    }
+    id = session['user_id']
+
+    all_pics = image.Photo.query.filter_by(user=id).all()
+    user1 = user.User.get_info_by_id(data)
+    if user1.suspended == "yes":
+        return redirect('/suspended')
+
+    for pic in all_pics:
+        if(pic.profile == "yes"):
+            profile_pic = pic
+            return render_template('filter.html', profile=profile_pic, user=user1)
+    return render_template('filter.html', profile=profile_pic, user=user1)
 
 
 @app.route('/logout')

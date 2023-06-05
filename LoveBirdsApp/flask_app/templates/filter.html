@@ -15,11 +15,31 @@
 </head>
 <body>
     <div>
-        <h1>Filter By Preferences:</h1>
-        <h4><a href="/dashboard">Back to dashboard</a></h4>
+        <div class="top-message">
+            <h1 class="hello-message filter">Filter By Preferences, {{user.first_name}}:</h1>
+        </div>
+        <div class="profile-bar">
+            <div class="profile-pic">
+                {% if profile %}
+                    <a href="/dashboard"><img src="/pics/{{profile.id}}" alt="profile-pic" class="photo-profile-main"></a>
+                {% endif %}
+                {% if not profile %}
+                    <a href="/dashboard"><img src="../static/files/noprofile.png" alt="no-profile-pic" class="photo-profile-main"></a>
+                {% endif %}
+            </div>
+            <div class="nav-links">
+                <div class="glass-box nav-bar">
+                    <h4><a href="/dashboard">Dashboard</a></h4>
+                    <h4><a href="/logout">Logout</a></h4>
+                    <h4><a href="/users/edit">Edit profile</a></h4>
+                    <h4><a href="/users/inbox">Inbox</a></h4>
+                    <h4>(You have <span class="notifications">{{user.new_message}}</span> new message)</h4>
+                </div>
+            </div>
+        </div>
 
-        <div class="form-bg">
-            <h3>Select individual Preference and Go!</h3>
+        <div class="form-bg filter-form">
+            <h3>Select Your Individual Preferences and Go!</h3>
             <div class="red">
                 {% with messages = get_flashed_messages() %}
                     {% if messages %}
@@ -29,47 +49,48 @@
                     {% endif %}
                 {% endwith %}
             </div>
+
             <form action="/filter/age" method="post">
-                
                 <div class="radio-boxes">
                     <label for="param"><h4>Above</h4></label>
                     <input type="radio" name="param" value="above">
                     <label for="param"><h4>Below</h4></label>
                     <input type="radio" name="param" value="below">
-
                     <label for="age">
                         <h4>Age:</h4>
                     </label>
-                    <input class="small-input" type="number" name="age"><br>
-                    <input type="submit" class="long-button" value="Go!"><br>
+                    <input class="small-input" type="number" name="age">
                 </div>
-                </form>
+                <div>
+                    <input type="submit" class="delete-button" value="Go!">
+                </div>
+            </form>
 
-                <form action="/filter/gender" method="post">
+            <form action="/filter/gender" method="post">
                 <label for="gender">
                     <h4>Gender?</h4>
                 </label>
-                <select class="small-input" id="gender" name="gender">
+                <select class="regular-input" id="gender" name="gender">
                     <option value="male">Male</option>
                     <option value="female">Female</option>
                     <option value="not specified">N/A</option>
                 </select><br>
                 <input type="submit" class="delete-button" value="Go!">
-                </form>
-        
-                <form action="/filter/smoker" method="post">
+            </form>
+
+            <form action="/filter/smoker" method="post">
                 <label for="smoker">
                     <h4>Smoker?</h4>
                 </label>
-                <select class="small-input" id="smoker" name="smoker">
+                <select class="regular-input" id="smoker" name="smoker">
                     <option value="never">Never</option>
                     <option value="occasionally">Sometimes</option>
                     <option value="frequently">Very frequently</option>
                 </select><br>
                 <input type="submit" class="delete-button" value="Go!">
-                </form>
+            </form>
         
-                <form action="/filter/drinker" method="post">
+            <form action="/filter/drinker" method="post">
                 <label for="drinker">
                     <h4>Drinker?</h4>
                 </label>
@@ -79,9 +100,9 @@
                     <option value="frequently">Yes, very frequently</option>
                 </select><br>
                 <input type="submit" class="delete-button" value="Go!">
-                </form>
+            </form>
         
-                <form action="/filter/goal" method="post">
+            <form action="/filter/goal" method="post">
                 <label for="dating_goal">
                     <h4>Their dating goal?</h4>
                 </label>
@@ -92,9 +113,9 @@
                     <option value="someone who's marriage material">Marriage material</option>
                 </select><br>
                 <input type="submit" class="delete-button" value="Go!">
-                </form>
+            </form>
         
-                <form action="/filter/hobbies" method="post">
+            <form action="/filter/hobbies" method="post">
                 <label for="hobbies">
                     <h4>Their hobby:</h4>
                 </label>
@@ -108,9 +129,9 @@
                     <option value="photography">Photography</option>
                 </select><br>
                 <input type="submit" class="delete-button" value="Go!">
-                </form>
+            </form>
         
-                <form action="/filter/body" method="post">
+            <form action="/filter/body" method="post">
                 <label for="body_type">
                     <h4>Their body type:</h4>
                 </label>
@@ -123,7 +144,6 @@
                 <input type="submit" class="delete-button" value="Go!"><br>
                 </form>
             </form>
-        
         </div>
     </div>
 </body>

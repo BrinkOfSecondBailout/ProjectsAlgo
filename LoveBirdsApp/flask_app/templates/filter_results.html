@@ -14,21 +14,25 @@
     <title>Filter Results</title>
 </head>
 <body>
-    <div class="results">
-        <h1>We found some great choices!</h1>
-        <h3>Check out their profiles and send a heart!</h3>
-        <h4><a href="/dashboard">Back to dashboard</a></h4>
-        <div class="results-box">
-            {% if users %}
-                {% for user in users %}
-                    <div>
-                        <a href="/users/{{user.id}}">{{user.first_name}} {{user.last_name}}</a>
-                    </div>
-                {% endfor %}
-            {% endif %}
-            {% if not users %}
-                <p>No users fit your search at the moment... Try again!</p>
-            {% endif %}
+    <div>
+        <div class="results">
+            <div class="results-text">
+                <h1>We found some great choices!</h1>
+                <h3>Check out their profiles and send a heart!</h3>
+                <h4><a href="/dashboard">Back to dashboard</a></h4>
+            </div>
+            <div class="results-box">
+                {% if users %}
+                    {% for user in users %}
+                        <div>
+                            <a href="/users/{{user.id}}">{{user.first_name}} {{user.last_name}}</a>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+                {% if not users %}
+                    <p>No users fit your search at the moment... Try again!</p>
+                {% endif %}
+            </div>
         </div>
     </div>
 </body>
