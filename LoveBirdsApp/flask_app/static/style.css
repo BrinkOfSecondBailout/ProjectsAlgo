@@ -30,7 +30,7 @@
 body {
     /* background-image: url(../static/files/mountain.png); */
     /* background-repeat: no-repeat; */
-    background-color: rgb(251, 246, 174);
+    background-color: rgb(255, 196, 0);
     /* z-index: -1; */
     overflow-x: hidden;
 }
@@ -588,6 +588,25 @@ a:hover {
 }
 
 
+/* new message page */
+
+.message-section {
+    width: 40%;
+    padding: 10px;
+    text-align:  center;
+}
+
+/* suspended */
+
+.suspended {
+    height: 280px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    padding: 10px;
+}
+
+
 
 
 
@@ -616,10 +635,6 @@ a:hover {
     backdrop-filter: blur(15px);
     box-shadow: 0 0 30px rgba(0, 0, 0, .5);
 }
-
-
-
-
 
 
 .bottom-navi {
