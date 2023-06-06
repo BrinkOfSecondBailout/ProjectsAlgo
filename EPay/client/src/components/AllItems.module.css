@@ -33,9 +33,12 @@
     /* max-height: 800px; */
 }
 
-@media all and (max-width: 400px) {
+@media all and (max-width: 956px) {
     .allItems {
         max-width: 100%;
-        overflow-x: auto;
+        max-height: 100%;
     }
+}
+
+@media all and (max-width: 400px) {
 }
