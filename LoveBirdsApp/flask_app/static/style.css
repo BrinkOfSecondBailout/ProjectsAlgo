@@ -576,6 +576,14 @@ a:hover {
     flex-direction: column;
     justify-content: space-between;
     height: 400px;
+    width: 90%;
+    
+}
+
+.block-reason {
+    width: 400px;
+    height: 200px;
+    border-radius: 10px;
 }
 
 

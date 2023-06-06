@@ -31,7 +31,7 @@
         <div>
             <form action="/block/confirmed/{{user.id}}" method="post">
                 <label for="reason">What's the reason for the block?</label><br>
-                <textarea rows="10" cols="50" name="reason"></textarea><br><br>
+                <textarea name="reason" class="block-reason"></textarea><br><br>
                 <input type="hidden" name="id" value="{{user.id}}">
                 <button class="delete-button"><p>Submit</p></button>
             </form>
