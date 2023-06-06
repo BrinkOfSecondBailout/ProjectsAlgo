@@ -48,7 +48,7 @@
                         <div class="flex2">
                             {% for user in all_users %}
                                 {% if session.user_id != user.id %}
-                                    <h4><a href="/users/{{user.id}}">{{user.first_name}} {{user.last_name}}</a></h4>
+                                    <h5><a href="/users/{{user.id}}">{{user.first_name}} {{user.last_name}}</a></h5>
                                 {% endif %}
                             {% endfor %}
                         </div>
@@ -119,7 +119,7 @@
                             <h4>Write on the wall:</h4>
                         </label>
                         <textarea class="regular-input" rows="3" cols="20" name="text"></textarea>
-                        <input type="submit" value="Post it!" class="delete-button">
+                        <button class="delete-button"><p>Post it!</p></button>
                     </form>
 
                     {% with messages = get_flashed_messages(category_filter=['wall']) %}

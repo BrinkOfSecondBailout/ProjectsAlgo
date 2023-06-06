@@ -1,11 +1,28 @@
 from flask_app import app
 from flask import render_template, redirect, request, session, flash, url_for, Response
-from flask_app.models import user, attribute
+from flask_app.models import user, attribute, image
 
 
 @app.route('/attributes/new')
 def new_attributes():
-    return render_template('new_attributes.html')
+    data = {
+        'user_id': session['user_id']
+    }
+
+    id = session['user_id']
+
+    all_pics = image.Photo.query.filter_by(user=id).all()
+
+    user1 = user.User.get_info_by_id(data)
+    if user1.suspended == "yes":
+        return redirect('/suspended')
+
+    for pic in all_pics:
+        if(pic.profile == "yes"):
+            profile_pic = pic
+            return render_template('new_attributes.html', profile=profile_pic, user=user1)
+
+    return render_template('new_attributes.html', user=user1)
 
 @app.route('/attributes/create', methods=['POST'])
 def create_attributes():
@@ -35,7 +52,18 @@ def update_attributes():
     data = {
         'user_id': session['user_id']
     }
-    return render_template('update_attributes.html', attribute=attribute.Attribute.get_attribute_by_user_id(data))
+    
+    id = session['user_id']
+    all_pics = image.Photo.query.filter_by(user=id).all()
+    user1 = user.User.get_info_by_id(data)
+    if user1.suspended == "yes":
+        return redirect('/suspended')
+    
+    for pic in all_pics:
+        if(pic.profile == "yes"):
+            profile_pic = pic
+            return render_template('update_attributes.html', attribute=attribute.Attribute.get_attribute_by_user_id(data), profile=profile_pic, user=user1)
+    return render_template('update_attributes.html', attribute=attribute.Attribute.get_attribute_by_user_id(data), user=user1)
 
 @app.route('/attributes/update', methods=['POST'])
 def process_update_attributes():

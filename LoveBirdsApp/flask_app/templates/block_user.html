@@ -14,7 +14,7 @@
     <title>Block User</title>
 </head>
 <body>
-    <div class="flex-column">
+    <div class="flex-column center block">
         <h1>Are you sure you want to block and report {{user.first_name}}?</h1>
         <a href="/dashboard">Go Back</a>
         <div class="red">
@@ -32,7 +32,7 @@
                 <label for="reason">What's the reason for the block?</label><br>
                 <textarea rows="10" cols="50" name="reason"></textarea><br><br>
                 <input type="hidden" name="id" value="{{user.id}}">
-                <button class="delete-button">Submit</button>
+                <button class="delete-button"><p>Submit</p></button>
             </form>
         </div>
 

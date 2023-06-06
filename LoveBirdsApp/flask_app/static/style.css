@@ -32,6 +32,7 @@ body {
     /* background-repeat: no-repeat; */
     background-color: rgb(251, 246, 174);
     /* z-index: -1; */
+    overflow-x: hidden;
 }
 
 h1,h2,h3,h4,h5 {
@@ -426,10 +427,17 @@ a:hover {
     text-align: center;
 }
 
+.edit-profile{
+    width: 95%;
+}
 
 /* inbox */
 
 .flex-column {
+    /* width: 40%; */
+}
+
+.inbox {
     width: 40%;
 }
 
@@ -516,7 +524,34 @@ a:hover {
 }
 
 
+/* block page */
 
+.block {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 400px;
+}
+
+
+/* change password page */
+
+.pw-change {
+    width: 40%;
+    padding: 10px;
+}
+
+.margin-bottom {
+    margin-bottom: 10px;
+}
+
+/* new attributes page */
+
+.new-attributes {
+    width: 60%;
+    padding-bottom: 20px;
+}
 
 
 
