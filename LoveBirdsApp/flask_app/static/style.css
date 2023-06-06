@@ -158,12 +158,6 @@ a:hover {
     border-radius: 20px;
 }
 
-.cheers-video {
-    margin-top: 10px;
-    border-radius: 20px;
-    opacity: 0.9;
-}
-
 .back-video {
     position: absolute;
     opacity: 1;
@@ -417,6 +411,13 @@ a:hover {
     opacity: 0.9;
 }
 
+.photo-list {
+    width: 140px;
+    height: 100px;
+    border-radius: 20px;
+    box-shadow: 2px 2px 5px 2px black;
+    padding: 3px;
+}
 
 /* edit profile */
 
@@ -553,6 +554,38 @@ a:hover {
     padding-bottom: 20px;
 }
 
+/* matched up page */
+
+.flex-column2 {
+    width: 50%;
+    text-align: center;
+    padding: 20px;
+}
+
+.matched-video {
+    align-items: center;
+}
+
+.cheers-video {
+    margin-top: 10px;
+    border-radius: 20px;
+    opacity: 0.9;
+    width: 70%;
+}
+
+.matched-up {
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.matched-buttons {
+    margin-bottom: 20px;
+    width: 60%;
+    padding: 10px;
+}
 
 
 
@@ -585,20 +618,9 @@ a:hover {
 }
 
 
-.photo-list {
-    width: 140px;
-    height: 100px;
-    border-radius: 20px;
-    box-shadow: 2px 2px 5px 2px black;
-    padding: 3px;
-}
 
 
-.flex-column2 {
-    width: 750px;
-    text-align: center;
-    padding: 20px;
-}
+
 
 .bottom-navi {
     display: flex;

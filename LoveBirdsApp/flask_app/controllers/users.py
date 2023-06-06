@@ -194,8 +194,19 @@ def send_a_heart(id):
         data2 = {
             'user_id': id
         }
+        id = session['user_id']
+
+
+        all_pics = image.Photo.query.filter_by(user=id).all()
+
+        user1 = user.User.get_info_by_id(data)
+
         match = user.User.get_info_by_id(data2)
-        return render_template('matched_up.html', match=match)
+        for pic in all_pics:
+            if(pic.profile == "yes"):
+                profile_pic = pic
+                return render_template('matched_up.html', profile=profile_pic, match=match, user=user1)
+        return render_template('matched_up.html', match=match, user=user1)
 
     return redirect('/users/' + str(id))
 
