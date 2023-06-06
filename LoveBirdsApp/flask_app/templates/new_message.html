@@ -11,6 +11,7 @@
         rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Schibsted+Grotesk&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='mediaqueries.css') }}">
     <title>Send A Message</title>
 </head>
 <body>
@@ -52,7 +53,7 @@
         <div class="glass-box message-section">
             <form action="/messages/process/{{receiver.id}}" method="post">
                 <label for="text"><p>Type here...</p></label><br>
-                <textarea rows="10" cols="50" name="text"></textarea><br><br>
+                <textarea class="new-message" name="text"></textarea><br><br>
                 <input type="hidden" name="sender_id" value="{{session['user_id']}}">
                 <input type="hidden" name="receiver_id" value="{{receiver.id}}">
                 <button class="delete-button"><p>Submit</p></button>

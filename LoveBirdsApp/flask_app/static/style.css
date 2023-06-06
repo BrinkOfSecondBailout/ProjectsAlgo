@@ -28,10 +28,11 @@
 /* all defaults */
 
 body {
-    /* background-image: url(../static/files/mountain.png); */
-    /* background-repeat: no-repeat; */
+    background-image: url(../static/files/birds-background.jpg);
+    background-repeat: no-repeat;
     background-color: rgb(255, 196, 0);
-    /* z-index: -1; */
+    object-fit: cover;
+    z-index: -1;
     overflow-x: hidden;
 }
 
@@ -68,12 +69,15 @@ a:hover {
 .flex {
     display: flex;
     padding: 5px;
+    width: 100%;
+    flex-wrap: wrap;
 }
 
 .flex2 {
     display: flex;
     padding: 5px;
-    width: 300px;
+    width: 100%;
+    flex-wrap: wrap;
 }
 
 .container {
@@ -115,7 +119,7 @@ a:hover {
 
 
 .upload-box {
-    width: 500px;
+    width: 100%;
     padding: 20px;
 }
 
@@ -140,7 +144,7 @@ a:hover {
 }
 
 .regular-input {
-    width: 300px;
+    width: 80%;
     border-radius: 10px;
     padding: 10px;
     margin-bottom: 10px;
@@ -168,7 +172,6 @@ a:hover {
 }
 
 .all-photos {
-    /* display:inline-block; */
     height: 300px;
     overflow-x: hidden;
     overflow-y: auto;
@@ -212,6 +215,31 @@ a:hover {
     margin-bottom: 10px;
     text-align: center;
 }
+
+/* index.html */
+.registration-container {
+    display: flex;
+}
+
+.left-register {
+
+}
+
+.right-login {
+
+}
+
+.register {
+    padding: 10px;
+    width: 100%;
+}
+
+.login {
+    padding: 10px;
+    width: 100%;
+}
+
+
 
 /* dashboard */
 
@@ -264,7 +292,7 @@ a:hover {
 .lovebirds-box {
     background-color: rgb(36, 172, 230);
     opacity: 0.9;
-    width: 100%;
+    width: 90%;
     box-shadow: 4px 4px 5px 0px black;
     border-radius: 10px;
     margin-bottom: 10px;
@@ -274,9 +302,9 @@ a:hover {
 }
 
 .bio-box {
-    background-color: rgb(245, 195, 120);
+    background-color: rgb(255, 161, 20);
     opacity: 0.9;
-    width: 100%;
+    width: 90%;
     box-shadow: 4px 4px 5px 0px black;
     border-radius: 10px;
     padding: 5px;
@@ -336,6 +364,8 @@ a:hover {
     backdrop-filter: blur(15px);
     box-shadow: 0 0 30px rgba(0, 0, 0, .5);
     padding: 10px;
+    background-color: rgba(238, 60, 60, 0.668);
+    opacity: 0.9;
 }
 
 .nav-bar {
@@ -344,6 +374,12 @@ a:hover {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+}
+
+.wall-form {
+    width: 100%;
+    border-radius: 10px;
+    padding: 10px;
 }
 
 
@@ -477,6 +513,13 @@ a:hover {
     padding: 10px;
 }
 
+.new-message {
+    width: 80%;
+    height: 250px;
+    padding: 10px;
+    border-radius: 20px;
+}
+
 /* filter page */
 
 .filter {
@@ -513,7 +556,7 @@ a:hover {
 .results-box {
     background-color: rgb(245, 195, 120);
     opacity: 0.9;
-    width: 500px;
+    width: 50%;
     margin-top: 30px;
     box-shadow: 4px 4px 5px 0px black;
     border-radius: 10px;

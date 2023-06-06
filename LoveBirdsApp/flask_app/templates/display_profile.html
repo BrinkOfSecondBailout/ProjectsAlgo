@@ -11,6 +11,7 @@
         rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Schibsted+Grotesk&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='mediaqueries.css') }}">
     <title>Show Profile</title>
 </head>
 <body>
@@ -74,7 +75,7 @@
                     {% endif %}
                 {% endwith %}
             </div>
-            <div class="total-box">
+            <div class="total-box display">
                 <div class="bio-box">
                     <h2>A little bit about myself:</h2>
                     {% if attributes %}

@@ -11,6 +11,7 @@
         rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Schibsted+Grotesk&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='mediaqueries.css') }}">
     <title>You matched!</title>
 </head>
 <body>
@@ -21,11 +22,11 @@
         <div class="profile-bar">
             <div class="profile-pic">
                 {% if profile %}
-                <a href="/pics/{{profile.id}}"><img src="/pics/{{profile.id}}" alt="profile-pic"
+                <a href="/dashboard"><img src="/pics/{{profile.id}}" alt="profile-pic"
                         class="photo-profile-main"></a>
                 {% endif %}
                 {% if not profile %}
-                <img src="../static/files/noprofile.png" alt="no-profile-pic" class="photo-profile-main">
+                <a href="/dashboard"><img src="../static/files/noprofile.png" alt="no-profile-pic" class="photo-profile-main"></a>
                 {% endif %}
             </div>
             <div class="nav-links">

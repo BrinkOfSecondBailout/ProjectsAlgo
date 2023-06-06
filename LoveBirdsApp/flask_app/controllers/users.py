@@ -208,7 +208,8 @@ def send_a_heart(id):
                 return render_template('matched_up.html', profile=profile_pic, match=match, user=user1)
         return render_template('matched_up.html', match=match, user=user1)
 
-    return redirect('/users/' + str(id))
+    # return redirect('/users/' + str(id))
+    return redirect('/dashboard')
 
 
 @app.route('/unsend/<int:id>')
