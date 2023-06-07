@@ -7,15 +7,6 @@ function toggleMenu() {
     icon.classList.toggle("open")
 }
 
-var counter = 1;
-
-setInterval(function() {
-    document.getElementById('radio' + counter).checked = true;
-    counter++;
-    if(counter > 4) {
-        counter = 1;
-    }
-}, 5000);
 
 var typed = new Typed(".auto-type", {
     strings: ["Full Stack Developer", "Problem Solver", "Lifelong Learner"],
@@ -23,3 +14,18 @@ var typed = new Typed(".auto-type", {
     backSpeed: 50,
     loop: true
 })
+
+// function sendEmail() {
+//     Email.send({
+//         SecureToken : "85764066-a617-49df-a809-1a515ad943d1",
+//         To : 'nguyenduongpa@gmail.com',
+//         From : document.getElementById("email").value,
+//         Subject : "New Contact Form Inquiry",
+//         Body : "Name: " + document.getElementById("name").value
+//             + "<br> Email: " + document.getElementById("email").value
+//             + "<br> Company: " + document.getElementById("company").value
+//             + "<br> Message: " + document.getElementById("message").value
+//     }).then(
+//         message => alert("Message Sent Successfully")
+// );
+// }
