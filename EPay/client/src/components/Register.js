@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import {Link, useNavigate} from 'react-router-dom';
 import axios from 'axios';
 import Css from '../components/Register.module.css';
+import saleIcon from '../assets/sale.png';
 
 const Register = () => {
 
@@ -36,34 +37,41 @@ const Register = () => {
 
 
     return (
-        <div className={Css.registerBody}>
-            <h1>Register Account</h1>
-            <form onSubmit={registerUser} method="POST">
+        <div>
+            <div className={Css.registerBody}>
+                <div className={Css.wholeLogo}><img className={Css.saleIcon} src={saleIcon} /><h1 className={Css.logo}>BargainHunt</h1></div>
+                <form onSubmit={registerUser} method="POST">
                     {errors.firstName? <p>{errors.firstName.message}</p> : null}
-                    <label>First Name:</label>
-                <div>
-                    <input type="text" name="firstName" onChange={(e) => setFirstName(e.target.value)}/>
-                </div>
-                    {errors.lastName? <p>{errors.lastName.message}</p> : null}
-                    <label>Last Name:</label>
-                <div>
-                    <input type="text" name="lastName" onChange={(e) => setLastName(e.target.value)}/>
-                </div>
-                    {errors.email? <p>{errors.email.message}</p> : null}
-                    <label>Email:</label>
-                <div>
-                    <input type="email" name="email" onChange={(e) => setEmail(e.target.value)}/>
-                </div>
-                    {errors.password? <p>{errors.password.message}</p> : null}
-                    <label>Password</label>
-                <div>
-                    <input type="password" name="password" onChange={(e) => setPassword(e.target.value)}/>
-                </div>
-                <input type="submit" value="Register"/>
-            </form>
-
-            <div>
-                <Link to='/'>Go to Login</Link>
+                    <div className={Css.oneField}>
+                        <h4>First Name:</h4>
+                        <div>
+                            <input type="text" name="firstName" onChange={(e) => setFirstName(e.target.value)} className={Css.inputField}/>
+                        </div>
+                    </div>
+                        {errors.lastName? <p>{errors.lastName.message}</p> : null}
+                    <div className={Css.oneField}>
+                        <h4>Last Name:</h4>
+                        <div>
+                            <input type="text" name="lastName" onChange={(e) => setLastName(e.target.value)} className={Css.inputField}/>
+                        </div>
+                    </div>
+                        {errors.email? <p>{errors.email.message}</p> : null}
+                    <div className={Css.oneField}>
+                        <h4>Email:</h4>
+                        <div>
+                            <input type="email" name="email" onChange={(e) => setEmail(e.target.value)} className={Css.inputField}/>
+                        </div>
+                    </div>
+                        {errors.password? <p>{errors.password.message}</p> : null}
+                    <div className={Css.oneField}>
+                        <h4>Password</h4>
+                        <div>
+                            <input type="password" name="password" onChange={(e) => setPassword(e.target.value)} className={Css.inputField}/>
+                        </div>
+                    </div>
+                    <button className={Css.registerButton}><h4>Register</h4></button>
+                </form>
+                    <Link to='/'><h4>Go to Login</h4></Link>
             </div>
         </div>
     )

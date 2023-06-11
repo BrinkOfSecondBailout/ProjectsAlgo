@@ -2,6 +2,7 @@ import React, {useState} from 'react'
 import {Link, useNavigate} from 'react-router-dom';
 import axios from 'axios';
 import Css from '../components/Login.module.css';
+import saleIcon from '../assets/sale.png';
 const Login = () => {
 
     const [email, setEmail] = useState("");
@@ -30,22 +31,28 @@ const Login = () => {
 
 
     return (
-        <div className={Css.loginBody}>
-            <h1>Login</h1>
-            {errors ? <p>{errors}</p> : null}
-            <form onSubmit={loginUser} method="POST">
-                    <label>Email:</label>
-                <div>
-                    <input type="email" name="email" onChange={(e) => setEmail(e.target.value)}/>
-                </div>
-                    <label>Password</label>
-                <div>
-                    <input type="password" name="password" onChange={(e) => setPassword(e.target.value)}/>
-                </div>
-                <input type="submit" value="Login"/>
-            </form>
+        <div>
+            <div className={Css.loginBody}>
+                <div className={Css.wholeLogo}><img className={Css.saleIcon} src={saleIcon} /><h1 className={Css.logo}>BargainHunt</h1></div>
+                {errors ? <p>{errors}</p> : null}
+                <form onSubmit={loginUser} method="POST">
+                    <div className={Css.oneField}>
+                        <h4>Email:</h4>
+                        <div>
+                            <input type="email" name="email" onChange={(e) => setEmail(e.target.value)} className={Css.inputField}/>
+                        </div>
+                    </div>
+                    <div className={Css.oneField}>
+                        <h4>Password</h4>
+                        <div>
+                            <input type="password" name="password" onChange={(e) => setPassword(e.target.value)} className={Css.inputField}/>
+                        </div>
+                    </div>
+                    <button className={Css.loginButton}><h4>Login</h4></button>
+                </form>
 
-            <Link to='/register'>Register an account</Link>
+                <Link to='/register'><h4>Register an account</h4></Link>
+            </div>
         </div>
     )
 }
