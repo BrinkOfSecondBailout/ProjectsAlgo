@@ -16,24 +16,25 @@
 }
 
 ::-webkit-scrollbar-thumb {
-    background: rgb(255, 144, 54);
+    background: rgb(196, 51, 11);
     border-radius: 100vw;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: rgb(232, 109, 8);
+    background: rgb(239, 70, 24);
     border-radius: 100vw;
 }
 
 /* all defaults */
 
 body {
-    background-image: url(../static/files/birds-background.jpg);
+    background-image: url(../static/files/lovebirds.png);
     background-repeat: no-repeat;
-    background-color: rgb(255, 196, 0);
-    object-fit: cover;
+    background-color: rgb(250, 188, 1);
+    object-fit: contain;
     z-index: -1;
     overflow-x: hidden;
+    background-position: 40% 0%;
 }
 
 h1,h2,h3,h4,h5 {
@@ -191,7 +192,10 @@ a:hover {
 .delete-button {
     width: 80px;
     border-radius: 10px;
-    box-shadow: 2px 2px 5px 0px black;
+    box-shadow: 3px 2px 5px 0px black;
+    background-color: rgba(242, 58, 52, 0.714);
+    color: rgba(255, 255, 255, 0.934);
+    border: 2px solid rgba(255, 255, 255, 0.867);
 }
 
 .heart-shape {
@@ -359,12 +363,12 @@ a:hover {
 .glass-box {
     position: relative;
     background: transparent;
-    border: 2px solid rgba(255, 255, 255, .5);
+    border: 2px solid rgba(255, 255, 255, 0.758);
     border-radius: 20px;
     backdrop-filter: blur(15px);
     box-shadow: 0 0 30px rgba(0, 0, 0, .5);
     padding: 10px;
-    background-color: rgba(238, 60, 60, 0.668);
+    background-color: rgba(251, 170, 70, 0.706);
     opacity: 0.9;
 }
 
