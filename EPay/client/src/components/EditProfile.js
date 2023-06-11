@@ -118,17 +118,17 @@ const EditProfile = (props) => {
                                 {errors.firstName? <p>{errors.firstName.message}</p> : null}
                                 <h5>First Name:</h5>
                             <div>
-                                <input type="text" name="firstName" value={firstName} onChange={(e) => setFirstName(e.target.value)}/>
+                                <input type="text" name="firstName" value={firstName} onChange={(e) => setFirstName(e.target.value)} className={Css.inputField}/>
                             </div>
                                 {errors.lastName? <p>{errors.lastName.message}</p> : null}
                                 <h5>Last Name:</h5>
                             <div>
-                                <input type="text" name="lastName" value={lastName} onChange={(e) => setLastName(e.target.value)}/>
+                                <input type="text" name="lastName" value={lastName} onChange={(e) => setLastName(e.target.value)} className={Css.inputField}/>
                             </div>
                                 {errors.email? <p>{errors.email.message}</p> : null}
                                 <h5>Email:</h5>
                             <div>
-                                <input type="email" name="email" value={email} onChange={(e) => setEmail(e.target.value)}/>
+                                <input type="email" name="email" value={email} onChange={(e) => setEmail(e.target.value)} className={Css.inputField}/>
                             </div>
                             <div>
                                 <button className={Css.updateButton}><h4>Update</h4></button>
