@@ -2,6 +2,14 @@
     width: 40px;
 }
 
+.smallIcon {
+    width: 35px;
+}
+
+.navLinksSmall {
+    display: none;
+}
+
 .logo {
     font-family: 'Cinzel', serif;
     font-size: xx-large;
@@ -157,6 +165,12 @@
         height: 400px;
 
     }
+
+    .navLinksSmall {
+        display: flex;
+        margin-right: 30px;
+        padding: 5px;
+    }
     .topLeft {
     }
     .topRight {
@@ -170,7 +184,7 @@
     }
 
     .navLinks {
-        display: flex;
+        display: none;
     }
 }
 

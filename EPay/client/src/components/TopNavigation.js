@@ -5,6 +5,10 @@ import cartIcon from '../assets/cart.png';
 import Css from './TopNavigation.module.css'
 import saleIcon from '../assets/sale.png';
 import inboxIcon from '../assets/inbox.png';
+import homeIcon from '../assets/home.png';
+import editIcon from '../assets/edit.png';
+import watchIcon from '../assets/watch.png';
+import logoutIcon from '../assets/logout.png';
 
 const TopNavigation = (props) => {
     const {inbox, user, cart} = props;
@@ -32,6 +36,12 @@ const TopNavigation = (props) => {
                     <Link to='/users/edit'><h4 className={Css.spaceOut}>edit profile</h4></Link>
                     <Link to='/favorites'><h4 className={Css.spaceOut}>watchlist</h4></Link>
                     <Link to='/logout'><h4 className={Css.spaceOut}>logout</h4></Link>
+                </div>
+                <div className={Css.navLinksSmall}>
+                    <Link to='/'><img src={homeIcon} className={Css.smallIcon}/></Link>
+                    <Link to='/users/edit'><img src={editIcon} className={Css.smallIcon}/></Link>
+                    <Link to='/favorites'><img src={watchIcon} className={Css.smallIcon}/></Link>
+                    <Link to='/logout'><img src={logoutIcon} className={Css.smallIcon}/></Link>
                 </div>
             </div>
         </div>

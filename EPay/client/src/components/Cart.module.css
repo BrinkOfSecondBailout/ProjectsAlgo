@@ -50,9 +50,11 @@
 }
 
 .totalDiv {
+    border-top: 1px solid rgb(182, 182, 182);
     text-decoration: underline;
     text-align: end;
     max-width: 70%;
+    padding: 20px;
 }
 
 .checkoutDiv {
@@ -113,6 +115,7 @@
     .SideBar {
         display: none;
     }
+    
 }
 
 @media all and (max-width: 700px) {
@@ -126,6 +129,8 @@
     .smallInput {
         width: 30px;
     }
+    
+
 }
 
 @media all and (max-width: 594px) {
