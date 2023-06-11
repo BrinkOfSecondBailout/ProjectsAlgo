@@ -50,4 +50,7 @@
     .SideBar {
         display: none;
     }
+    .flex {
+        max-height: 100%;
+    }
 }
