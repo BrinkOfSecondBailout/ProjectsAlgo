@@ -156,11 +156,17 @@ a:hover {
     width: 50%;
     border-radius: 20px;
     box-shadow: 2px 2px 5px 0px black;
+    background-color: rgba(242, 58, 52, 0.714);
+    color: rgba(255, 255, 255, 0.934);
+    border: 2px solid rgba(255, 255, 255, 0.867);
 }
 
 .regular-button {
     width: 20%;
     border-radius: 20px;
+    background-color: rgba(242, 58, 52, 0.714);
+    color: rgba(255, 255, 255, 0.934);
+    border: 2px solid rgba(255, 255, 255, 0.867);
 }
 
 .back-video {
@@ -629,11 +635,17 @@ a:hover {
 }
 
 .matched-up {
-    height: 200px;
     display: flex;
     flex-direction: column;
+    flex-wrap: wrap;
     justify-content: space-between;
     margin-bottom: 20px;
+    background-color: rgb(36, 172, 230);
+    opacity: 0.7;
+    box-shadow: 4px 4px 5px 0px black;
+    border-radius: 10px;
+    padding: 20px;
+    width: 90%;
 }
 
 .matched-buttons {

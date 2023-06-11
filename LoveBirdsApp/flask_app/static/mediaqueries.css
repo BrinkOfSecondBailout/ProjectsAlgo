@@ -67,6 +67,9 @@
     .long-button {
         width: 90%;
     }
+    .cheers-video {
+        width: 90%;
+    }
 }
 
 
@@ -108,6 +111,10 @@
     }
     
     .block-reason {
+        width: 100%;
+    }
+
+    .cheers-video {
         width: 100%;
     }
 }
