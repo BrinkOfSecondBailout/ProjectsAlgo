@@ -465,6 +465,14 @@ a:hover {
     padding: 3px;
 }
 
+.heart-sent {
+    font-size: large;
+}
+
+.send-heart {
+    font-size: medium;
+}
+
 /* edit profile */
 
 .side-bar {

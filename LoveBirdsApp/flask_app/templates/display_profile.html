@@ -62,19 +62,6 @@
                     {% endif %}
                 {% endwith %}
             </div>
-            <div class="red">
-                {% with messages = get_flashed_messages(category_filter=['heart']) %}
-                    {% if messages %}
-                        <ul>
-                            {% for message in messages %}
-                            <li>
-                                <p>{{ message }}</p>
-                            </li>
-                            {% endfor %}
-                        </ul>
-                    {% endif %}
-                {% endwith %}
-            </div>
             <div class="total-box display">
                 <div class="bio-box">
                     <h2>A little bit about myself:</h2>
@@ -102,9 +89,18 @@
     </div>
     <div class="bottom">
         {% if session.user_id != user.id %}
-            <div class="center red">
+            <div class="center">
                 <h3>Send a heart!</h3>
-                <p>Your heart will be sent without them knowing, but if they send you one back, you can start messaging your lovebird!</p>
+                <p class="send-heart">Your heart will be sent without them knowing, but if they send you one back, you can start messaging your lovebird!</p>
+            </div>
+            <div class="center red">
+                {% with messages = get_flashed_messages(category_filter=['heart']) %}
+                    {% if messages %}
+                        {% for message in messages %}
+                            <p>{{ message }}</p>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
             </div>
             <div class="bottom-nav-glass">
                 <div class="heart-set">

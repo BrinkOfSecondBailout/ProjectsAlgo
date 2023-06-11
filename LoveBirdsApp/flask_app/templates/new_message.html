@@ -38,8 +38,7 @@
                 </div>
             </div>
         </div>
-        <div class="flex-column2">
-            <h1>Send {{receiver.first_name}} a Message:</h1>
+        <div class="glass-box message-section">
             <div class="red">
                 {% with messages = get_flashed_messages(category_filter=['message']) %}
                     {% if messages %}
@@ -49,8 +48,7 @@
                     {% endif %}
                 {% endwith %}
             </div>
-        </div>
-        <div class="glass-box message-section">
+            <h1>Send {{receiver.first_name}} a Message:</h1>
             <form action="/messages/process/{{receiver.id}}" method="post">
                 <label for="text"><p>Type here...</p></label><br>
                 <textarea class="new-message" name="text"></textarea><br><br>
